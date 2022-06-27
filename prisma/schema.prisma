@@ -1,0 +1,113 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// generator dbml {
+//   provider = "prisma-dbml-generator"
+// }
+
+generator nestgraphql {
+  provider             = "prisma-nestjs-graphql"
+  output               = "../src/@generated"
+  combineScalarFilters = true
+  noAtomicOperations   = true
+}
+
+enum Type {
+  SYSTEM
+  DEFAULT
+}
+
+enum UserStatus {
+  VALIDATED
+  VALIDATION_PENDING
+}
+
+model User {
+  id String @id @default(cuid())
+
+  email     String  @unique
+  password  String
+  firstname String?
+  lastname  String?
+
+  isDeleted Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  uniqueKey String?  @unique
+  updatedBy String?
+  createdBy String?
+
+  // Relation fields
+
+  status          UserStatus       @default(VALIDATION_PENDING)
+  detail          UserDetail?
+  passwordHistory PasswordHistory?
+  role            Role             @relation(fields: [roleId], references: [id])
+  roleId          String
+}
+
+model Role {
+  id String @id @default(cuid())
+
+  name     String @unique
+  roleType Type   @default(DEFAULT)
+
+  isDeleted Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  uniqueKey String?  @unique
+  updatedBy String?
+  createdBy String?
+
+  // Relation fields
+  users User[]
+}
+
+model UserDetail {
+  id             String  @id @default(cuid())
+  avatar         String?
+  title          String?
+  phoneNumber    String?
+  company        String?
+  birthday       String?
+  streetAddress  String?
+  steetAddress2  String?
+  country        String
+  zip            String?
+  secondaryEmail String?
+  notes          String?
+
+  isDeleted Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  uniqueKey String?  @unique
+  updatedBy String?
+  createdBy String?
+
+  // Relation fields
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @unique
+}
+
+model PasswordHistory {
+  id String @id @default(cuid())
+
+  password String
+
+  isDeleted Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  uniqueKey String?  @unique
+  updatedBy String?
+  createdBy String?
+
+  // Relation fields
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @unique
+}

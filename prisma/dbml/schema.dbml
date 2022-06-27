@@ -1,0 +1,87 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Table User {
+  id String [pk]
+  email String [unique, not null]
+  password String [not null]
+  firstname String
+  lastname String
+  isDeleted Boolean [not null, default: false]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [default: `now()`, not null]
+  uniqueKey String [unique]
+  updatedBy String
+  createdBy String
+  status UserStatus [not null, default: 'VALIDATION_PENDING']
+  detail UserDetail
+  passwordHistory PasswordHistory
+  role Role [not null]
+  roleId String [not null]
+}
+
+Table Role {
+  id String [pk]
+  name String [unique, not null]
+  roleType Type [not null, default: 'DEFAULT']
+  isDeleted Boolean [not null, default: false]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [default: `now()`, not null]
+  uniqueKey String [unique]
+  updatedBy String
+  createdBy String
+  users User [not null]
+}
+
+Table UserDetail {
+  id String [pk]
+  avatar String
+  title String
+  phoneNumber String
+  company String
+  birthday String
+  streetAddress String
+  steetAddress2 String
+  country String [not null]
+  zip String
+  secondaryEmail String
+  notes String
+  isDeleted Boolean [not null, default: false]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [default: `now()`, not null]
+  uniqueKey String [unique]
+  updatedBy String
+  createdBy String
+  user User [not null]
+  userId String [unique, not null]
+}
+
+Table PasswordHistory {
+  id String [pk]
+  password String [not null]
+  isDeleted Boolean [not null, default: false]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [default: `now()`, not null]
+  uniqueKey String [unique]
+  updatedBy String
+  createdBy String
+  user User [not null]
+  userId String [unique, not null]
+}
+
+Enum Type {
+  SYSTEM
+  DEFAULT
+}
+
+Enum UserStatus {
+  VALIDATED
+  VALIDATION_PENDING
+}
+
+Ref: User.roleId > Role.id
+
+Ref: UserDetail.userId - User.id
+
+Ref: PasswordHistory.userId - User.id
