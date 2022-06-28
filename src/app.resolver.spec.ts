@@ -1,29 +1,29 @@
-import { Chance } from 'chance';
+import { Chance } from "chance";
 
-import { Test, TestingModule } from '@nestjs/testing';
+import { Test, TestingModule } from "@nestjs/testing";
 
-import { AppResolver } from './app.resolver';
-import { AppService } from './app.service';
+import { AppResolver } from "./app.resolver";
+import { AppService } from "./app.service";
 
 const chance = new Chance();
 
-describe('AppResolver', () => {
+describe("AppResolver", () => {
   let appResolver: AppResolver;
 
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
-      providers: [AppResolver, AppService],
+      providers: [AppResolver, AppService]
     }).compile();
 
     appResolver = app.get<AppResolver>(AppResolver);
   });
 
-  describe('helloWorld', () => {
+  describe("helloWorld", () => {
     it('should return "Hello World!"', () => {
-      expect(appResolver.helloWorld()).toBe('Hello World!');
+      expect(appResolver.helloWorld()).toBe("Hello World!");
     });
   });
-  describe('hello', () => {
+  describe("hello", () => {
     it('should return "Hello ${name}!"', () => {
       const name = chance.name();
       expect(appResolver.hello(name)).toBe(`Hello ${name}!`);
