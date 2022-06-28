@@ -8,16 +8,19 @@ export class UserMinAggregate {
   id?: string;
 
   @Field(() => String, { nullable: true })
+  userName?: string;
+
+  @Field(() => String, { nullable: true })
   email?: string;
 
   @Field(() => String, { nullable: true })
   password?: string;
 
   @Field(() => String, { nullable: true })
-  firstname?: string;
+  firstName?: string;
 
   @Field(() => String, { nullable: true })
-  lastname?: string;
+  lastName?: string;
 
   @Field(() => Boolean, { nullable: true })
   isDeleted?: boolean;

@@ -12,16 +12,19 @@ export class User {
   id!: string;
 
   @Field(() => String, { nullable: false })
-  email!: string;
+  userName!: string;
+
+  @Field(() => String, { nullable: true })
+  email!: string | null;
 
   @Field(() => String, { nullable: false })
   password!: string;
 
   @Field(() => String, { nullable: true })
-  firstname!: string | null;
+  firstName!: string | null;
 
   @Field(() => String, { nullable: true })
-  lastname!: string | null;
+  lastName!: string | null;
 
   @Field(() => Boolean, { nullable: false, defaultValue: false })
   isDeleted!: boolean;

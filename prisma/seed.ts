@@ -1,4 +1,4 @@
-import { PrismaClient, Type } from '@prisma/client';
+import { PrismaClient, Type } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -8,52 +8,56 @@ async function main() {
 
   const adminRole = await prisma.role.create({
     data: {
-      name: 'ADMIN',
-      roleType: Type.SYSTEM,
-    },
+      name: "ADMIN",
+      roleType: Type.SYSTEM
+    }
   });
 
   await prisma.role.create({
     data: {
-      name: 'DEFAULT',
-      roleType: Type.SYSTEM,
-    },
+      name: "DEFAULT",
+      roleType: Type.SYSTEM
+    }
   });
 
   await prisma.role.create({
     data: {
-      name: 'SANGHA_MEMBER',
-      roleType: Type.SYSTEM,
-    },
+      name: "SANGHA_MEMBER",
+      roleType: Type.SYSTEM
+    }
   });
 
-  console.log('Seeding...');
+  console.log("Seeding...");
 
   const user1 = await prisma.user.create({
     data: {
-      email: 'lisa@simpson.com',
-      firstname: 'Lisa',
-      lastname: 'Simpson',
-      password: '$2b$10$EpRnTzVlqHNP0.fUbXUwSOyuiXe/QLSUG6xNekdHgTGmrpHEfIoxm', // secret42
+      userName: "lisa@simpson.com",
+      email: "lisa@simpson.com",
+      firstName: "Lisa",
+      lastName: "Simpson",
+      password: "$2b$10$EpRnTzVlqHNP0.fUbXUwSOyuiXe/QLSUG6xNekdHgTGmrpHEfIoxm", // secret42
       role: {
         connect: {
-          name: adminRole.name,
-        },
+          name: adminRole.name
+        }
       },
-    },
+      status: "VALIDATED"
+    }
   });
   const user2 = await prisma.user.create({
     data: {
-      email: 'bart@simpson.com',
-      firstname: 'Bart',
-      lastname: 'Simpson',
+      userName: "bart@simpson.com",
+      email: "bart@simpson.com",
+      firstName: "Bart",
+      lastName: "Simpson",
+      password: "$2b$10$EpRnTzVlqHNP0.fUbXUwSOyuiXe/QLSUG6xNekdHgTGmrpHEfIoxm", // secret42F
       role: {
         connect: {
-          name: adminRole.name,
-        },
+          name: adminRole.name
+        }
       },
-      password: '$2b$10$EpRnTzVlqHNP0.fUbXUwSOyuiXe/QLSUG6xNekdHgTGmrpHEfIoxm', // secret42F
-    },
+      status: "VALIDATED"
+    }
   });
 
   console.log({ user1, user2 });

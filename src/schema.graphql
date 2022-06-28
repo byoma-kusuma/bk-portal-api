@@ -61,8 +61,8 @@ A field whose value is a JSON Web Token (JWT): https://jwt.io/introduction.
 scalar JWT
 
 input LoginInput {
-  email: String!
   password: String!
+  userName: String!
 }
 
 type Mutation {
@@ -151,10 +151,10 @@ enum Role_Type {
 }
 
 input SignupInput {
-  email: String!
-  firstname: String
-  lastname: String
+  firstName: String
+  lastName: String
   password: String!
+  userName: String!
 }
 
 """Current status of the user within the system"""
@@ -196,21 +196,21 @@ input UpdateRoleInput {
 }
 
 input UpdateUserInput {
-  firstname: String
-  lastname: String
+  firstName: String
+  lastName: String
   roleName: String
 }
 
 type User {
   """Identifies the date and time when the object was created."""
   createdAt: DateTime!
-  email: String!
-  firstname: String
+  email: String
+  firstName: String
   id: ID!
 
   """Identifies the date and time when the object was last updated."""
   isDeleted: Boolean!
-  lastname: String
+  lastName: String
   role: Role!
   status: Status!
 
@@ -219,6 +219,7 @@ type User {
 
   """Identifies the date and time when the object was last updated."""
   updatedAt: DateTime!
+  userName: String!
 }
 
 input UserDetailRelationFilter {
@@ -276,10 +277,10 @@ input UserWhereInput {
   createdBy: StringFilter
   detail: UserDetailRelationFilter
   email: StringFilter
-  firstname: StringFilter
+  firstName: StringFilter
   id: StringFilter
   isDeleted: BoolFilter
-  lastname: StringFilter
+  lastName: StringFilter
   password: StringFilter
   passwordHistory: PasswordHistoryRelationFilter
   role: RoleRelationFilter
@@ -288,4 +289,5 @@ input UserWhereInput {
   uniqueKey: StringFilter
   updatedAt: DateTimeFilter
   updatedBy: StringFilter
+  userName: StringFilter
 }

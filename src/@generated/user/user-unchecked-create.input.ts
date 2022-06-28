@@ -10,16 +10,19 @@ export class UserUncheckedCreateInput {
   id?: string;
 
   @Field(() => String, { nullable: false })
-  email!: string;
+  userName!: string;
+
+  @Field(() => String, { nullable: true })
+  email?: string;
 
   @Field(() => String, { nullable: false })
   password!: string;
 
   @Field(() => String, { nullable: true })
-  firstname?: string;
+  firstName?: string;
 
   @Field(() => String, { nullable: true })
-  lastname?: string;
+  lastName?: string;
 
   @Field(() => Boolean, { nullable: true })
   isDeleted?: boolean;

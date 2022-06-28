@@ -51,18 +51,21 @@ export class AuthService {
         e instanceof Prisma.PrismaClientKnownRequestError &&
         e.code === "P2002"
       ) {
-        throw new ConflictException(`Email ${payload.email} already used.`);
+        throw new ConflictException(
+          `Username ${payload.userName} is already used.`
+        );
       } else {
         throw new Error(e);
       }
     }
   }
 
-  async login(email: string, password: string): Promise<Token> {
-    const user = await this.prisma.user.findUnique({ where: { email } });
+  async login(userName: string, password: string): Promise<Token> {
+    const user = await this.prisma.user.findUnique({ where: { userName } });
 
     if (!user) {
-      throw new NotFoundException(`No user found for email: ${email}`);
+      console.log("ran");
+      throw new NotFoundException(`No user found for username: ${userName}!`);
     }
 
     const passwordValid = await this.passwordService.validatePassword(
@@ -71,7 +74,13 @@ export class AuthService {
     );
 
     if (!passwordValid) {
-      throw new BadRequestException("Invalid password");
+      throw new BadRequestException("Your entered a wrong password!");
+    }
+
+    if (user.status === "VALIDATION_PENDING") {
+      throw new BadRequestException(
+        "Validation is pending for this user! Please contact system administrator!"
+      );
     }
 
     return this.generateTokens({

@@ -23,16 +23,19 @@ export class UserWhereInput {
   id?: StringFilter;
 
   @Field(() => StringFilter, { nullable: true })
+  userName?: StringFilter;
+
+  @Field(() => StringFilter, { nullable: true })
   email?: StringFilter;
 
   @Field(() => StringFilter, { nullable: true })
   password?: StringFilter;
 
   @Field(() => StringFilter, { nullable: true })
-  firstname?: StringFilter;
+  firstName?: StringFilter;
 
   @Field(() => StringFilter, { nullable: true })
-  lastname?: StringFilter;
+  lastName?: StringFilter;
 
   @Field(() => BoolFilter, { nullable: true })
   isDeleted?: BoolFilter;

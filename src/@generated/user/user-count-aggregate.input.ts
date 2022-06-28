@@ -7,16 +7,19 @@ export class UserCountAggregateInput {
   id?: true;
 
   @Field(() => Boolean, { nullable: true })
+  userName?: true;
+
+  @Field(() => Boolean, { nullable: true })
   email?: true;
 
   @Field(() => Boolean, { nullable: true })
   password?: true;
 
   @Field(() => Boolean, { nullable: true })
-  firstname?: true;
+  firstName?: true;
 
   @Field(() => Boolean, { nullable: true })
-  lastname?: true;
+  lastName?: true;
 
   @Field(() => Boolean, { nullable: true })
   isDeleted?: true;

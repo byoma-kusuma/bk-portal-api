@@ -4,8 +4,8 @@ import { InputType, Field } from "@nestjs/graphql";
 @InputType()
 export class LoginInput {
   @Field()
-  @IsEmail()
-  email: string;
+  @MinLength(6)
+  userName: string;
 
   @Field()
   @IsNotEmpty()
