@@ -1,9 +1,8 @@
-import { registerEnumType } from '@nestjs/graphql';
+import { registerEnumType } from "@nestjs/graphql";
 
 export enum UserStatus {
-    VALIDATED = "VALIDATED",
-    VALIDATION_PENDING = "VALIDATION_PENDING"
+  VALIDATED = "VALIDATED",
+  VALIDATION_PENDING = "VALIDATION_PENDING"
 }
 
-
-registerEnumType(UserStatus, { name: 'UserStatus', description: undefined })
+registerEnumType(UserStatus, { name: "UserStatus", description: undefined });
