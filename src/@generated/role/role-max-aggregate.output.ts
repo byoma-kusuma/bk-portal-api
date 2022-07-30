@@ -1,33 +1,34 @@
-import { Field } from "@nestjs/graphql";
-import { ObjectType } from "@nestjs/graphql";
-import { Type } from "../prisma/type.enum";
+import { Field } from '@nestjs/graphql';
+import { ObjectType } from '@nestjs/graphql';
+import { Type } from '../prisma/type.enum';
 
 @ObjectType()
 export class RoleMaxAggregate {
-  @Field(() => String, { nullable: true })
-  id?: string;
 
-  @Field(() => String, { nullable: true })
-  name?: string;
+    @Field(() => String, {nullable:true})
+    id?: string;
 
-  @Field(() => Type, { nullable: true })
-  roleType?: keyof typeof Type;
+    @Field(() => String, {nullable:true})
+    name?: string;
 
-  @Field(() => Boolean, { nullable: true })
-  isDeleted?: boolean;
+    @Field(() => Type, {nullable:true})
+    roleType?: keyof typeof Type;
 
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
+    @Field(() => Boolean, {nullable:true})
+    isDeleted?: boolean;
 
-  @Field(() => Date, { nullable: true })
-  updatedAt?: Date | string;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
 
-  @Field(() => String, { nullable: true })
-  uniqueKey?: string;
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
 
-  @Field(() => String, { nullable: true })
-  updatedBy?: string;
+    @Field(() => String, {nullable:true})
+    uniqueKey?: string;
 
-  @Field(() => String, { nullable: true })
-  createdBy?: string;
+    @Field(() => String, {nullable:true})
+    updatedBy?: string;
+
+    @Field(() => String, {nullable:true})
+    createdBy?: string;
 }

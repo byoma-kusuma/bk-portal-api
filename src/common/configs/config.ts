@@ -22,8 +22,8 @@ const config: Config = {
     globalPrefix: "api"
   },
   security: {
-    expiresIn: "2m",
-    refreshIn: "7d",
+    expiresIn: "15m",
+    refreshIn: "1d",
     bcryptSaltOrRound: 10
   }
 };

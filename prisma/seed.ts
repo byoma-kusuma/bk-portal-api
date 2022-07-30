@@ -5,6 +5,7 @@ const prisma = new PrismaClient();
 async function main() {
   await prisma.user.deleteMany();
   await prisma.role.deleteMany();
+  await prisma.member.deleteMany();
 
   const adminRole = await prisma.role.create({
     data: {
@@ -29,34 +30,49 @@ async function main() {
 
   console.log("Seeding...");
 
-  const user1 = await prisma.user.create({
+  const user1 = await prisma.member.create({
     data: {
-      userName: "lisa@simpson.com",
-      email: "lisa@simpson.com",
       firstName: "Lisa",
       lastName: "Simpson",
-      password: "$2b$10$EpRnTzVlqHNP0.fUbXUwSOyuiXe/QLSUG6xNekdHgTGmrpHEfIoxm", // secret42
-      role: {
-        connect: {
-          name: adminRole.name
+      email: "lisa@simpson.com",
+      isMember: true,
+      centerAffiliation: "Nepal",
+      user: {
+        create: {
+          userName: "lisa@simpson.com",
+          password:
+            "$2b$10$EpRnTzVlqHNP0.fUbXUwSOyuiXe/QLSUG6xNekdHgTGmrpHEfIoxm", // secret42
+          role: {
+            connect: {
+              name: adminRole.name
+            }
+          },
+          status: "VALIDATED"
         }
-      },
-      status: "VALIDATED"
+      }
     }
   });
-  const user2 = await prisma.user.create({
+
+  const user2 = await prisma.member.create({
     data: {
-      userName: "bart@simpson.com",
-      email: "bart@simpson.com",
       firstName: "Bart",
       lastName: "Simpson",
-      password: "$2b$10$EpRnTzVlqHNP0.fUbXUwSOyuiXe/QLSUG6xNekdHgTGmrpHEfIoxm", // secret42F
-      role: {
-        connect: {
-          name: adminRole.name
+      email: "bart@simpson.com",
+      isMember: true,
+      centerAffiliation: "Nepal",
+      user: {
+        create: {
+          userName: "bart@simpson.com",
+          password:
+            "$2b$10$EpRnTzVlqHNP0.fUbXUwSOyuiXe/QLSUG6xNekdHgTGmrpHEfIoxm", // secret42
+          role: {
+            connect: {
+              name: adminRole.name
+            }
+          },
+          status: "VALIDATED"
         }
-      },
-      status: "VALIDATED"
+      }
     }
   });
 

@@ -21,6 +21,11 @@ input ChangePasswordInput {
   oldPassword: String!
 }
 
+input CreateMemberInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
 input CreateRoleInput {
   name: String!
 }
@@ -41,6 +46,13 @@ input DateTimeFilter {
   notIn: [DateTime!]
 }
 
+input EnumGenderTypeFilter {
+  equals: GenderType
+  in: [GenderType!]
+  not: EnumGenderTypeFilter
+  notIn: [GenderType!]
+}
+
 input EnumTypeFilter {
   equals: Type
   in: [Type!]
@@ -55,6 +67,21 @@ input EnumUserStatusFilter {
   notIn: [UserStatus!]
 }
 
+enum GenderType {
+  FEMALE
+  MALE
+  OTHER
+  PREFER_NOT_TO_SAY
+}
+
+"""Types of gender"""
+enum Gender_Type {
+  FEMALE
+  MALE
+  OTHER
+  PREFER_NOT_TO_SAY
+}
+
 """
 A field whose value is a JSON Web Token (JWT): https://jwt.io/introduction.
 """
@@ -65,15 +92,93 @@ input LoginInput {
   userName: String!
 }
 
+type Member {
+  active: Boolean!
+  centerAffiliation: String!
+
+  """Identifies the date and time when the object was created."""
+  createdAt: DateTime!
+  currentAddress: String
+  dob: DateTime
+  email: String
+  firstName: String!
+  gender: Gender_Type
+  id: ID!
+  insta: String
+
+  """Identifies the date and time when the object was last updated."""
+  isDeleted: Boolean!
+  isMember: Boolean!
+  lastName: String!
+  membershipType: String
+  messenger: String
+  middleName: String
+  permanentAddress: String
+  phonePrimary: String
+  phoneSecondary: String
+  photo: String
+  refugeName: String
+  sanghaJoinDate: DateTime
+  title: String
+
+  """Unique key associated with the object."""
+  uniqueKey: String
+
+  """Identifies the date and time when the object was last updated."""
+  updatedAt: DateTime!
+  viber: String
+}
+
+input MemberRelationFilter {
+  is: MemberWhereInput
+  isNot: MemberWhereInput
+}
+
+input MemberWhereInput {
+  AND: [MemberWhereInput!]
+  NOT: [MemberWhereInput!]
+  OR: [MemberWhereInput!]
+  active: BoolFilter
+  centerAffiliation: StringFilter
+  createdAt: DateTimeFilter
+  createdBy: StringFilter
+  currentAddress: StringFilter
+  dob: DateTimeFilter
+  email: StringFilter
+  firstName: StringFilter
+  gender: EnumGenderTypeFilter
+  id: StringFilter
+  insta: StringFilter
+  isDeleted: BoolFilter
+  isMember: BoolFilter
+  lastName: StringFilter
+  membershipType: StringFilter
+  messenger: StringFilter
+  middleName: StringFilter
+  permanentAddress: StringFilter
+  phonePrimary: StringFilter
+  phoneSecondary: StringFilter
+  photo: StringFilter
+  refugeName: StringFilter
+  sanghaJoinDate: DateTimeFilter
+  title: StringFilter
+  uniqueKey: StringFilter
+  updatedAt: DateTimeFilter
+  updatedBy: StringFilter
+  user: UserRelationFilter
+  viber: StringFilter
+}
+
 type Mutation {
   changePassword(data: ChangePasswordInput!): User!
+  createMember(createMemberInput: CreateMemberInput!): Member!
   createRole(createRoleInput: CreateRoleInput!): Role!
   login(data: LoginInput!): Auth!
   refreshToken(token: JWT!): Token!
+  removeMember(id: Int!): Member!
   removeRole(id: Int!): Role!
-  signup(data: SignupInput!): Auth!
+  updateMember(updateMemberInput: UpdateMemberInput!): Member!
   updateRole(updateRoleInput: UpdateRoleInput!): Role!
-  updateUser(data: UpdateUserInput!): User!
 }
 
 input PasswordHistoryRelationFilter {
@@ -101,6 +206,8 @@ type Query {
   hello(name: String!): String!
   helloWorld: String!
   me: User!
+  member(id: Int!): Member!
+  members: [Member!]!
   role(where: RoleWhereInput): Role!
   roles(where: RoleWhereInput): [Role!]!
 }
@@ -150,13 +257,6 @@ enum Role_Type {
   SYSTEM
 }
 
-input SignupInput {
-  firstName: String
-  lastName: String
-  password: String!
-  userName: String!
-}
-
 """Current status of the user within the system"""
 enum Status {
   VALIDATED
@@ -190,27 +290,24 @@ enum Type {
   SYSTEM
 }
 
+input UpdateMemberInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
 input UpdateRoleInput {
   id: String!
   name: String
 }
 
-input UpdateUserInput {
-  firstName: String
-  lastName: String
-  roleName: String
-}
-
 type User {
   """Identifies the date and time when the object was created."""
   createdAt: DateTime!
-  email: String
-  firstName: String
   id: ID!
 
   """Identifies the date and time when the object was last updated."""
   isDeleted: Boolean!
-  lastName: String
   role: Role!
   status: Status!
 
@@ -220,37 +317,6 @@ type User {
   """Identifies the date and time when the object was last updated."""
   updatedAt: DateTime!
   userName: String!
-}
-
-input UserDetailRelationFilter {
-  is: UserDetailWhereInput
-  isNot: UserDetailWhereInput
-}
-
-input UserDetailWhereInput {
-  AND: [UserDetailWhereInput!]
-  NOT: [UserDetailWhereInput!]
-  OR: [UserDetailWhereInput!]
-  avatar: StringFilter
-  birthday: StringFilter
-  company: StringFilter
-  country: StringFilter
-  createdAt: DateTimeFilter
-  createdBy: StringFilter
-  id: StringFilter
-  isDeleted: BoolFilter
-  notes: StringFilter
-  phoneNumber: StringFilter
-  secondaryEmail: StringFilter
-  steetAddress2: StringFilter
-  streetAddress: StringFilter
-  title: StringFilter
-  uniqueKey: StringFilter
-  updatedAt: DateTimeFilter
-  updatedBy: StringFilter
-  user: UserRelationFilter
-  userId: StringFilter
-  zip: StringFilter
 }
 
 input UserListRelationFilter {
@@ -273,14 +339,13 @@ input UserWhereInput {
   AND: [UserWhereInput!]
   NOT: [UserWhereInput!]
   OR: [UserWhereInput!]
+  avatar: StringFilter
   createdAt: DateTimeFilter
   createdBy: StringFilter
-  detail: UserDetailRelationFilter
-  email: StringFilter
-  firstName: StringFilter
   id: StringFilter
   isDeleted: BoolFilter
-  lastName: StringFilter
+  member: MemberRelationFilter
+  memberId: StringFilter
   password: StringFilter
   passwordHistory: PasswordHistoryRelationFilter
   role: RoleRelationFilter

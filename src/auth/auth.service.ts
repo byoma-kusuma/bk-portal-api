@@ -11,7 +11,6 @@ import {
 import { ConfigService } from "@nestjs/config";
 import { JwtService } from "@nestjs/jwt";
 import { PasswordService } from "./password.service";
-import { SignupInput } from "./dto/signup.input";
 import { Token } from "./models/token.model";
 import { SecurityConfig } from "../common/configs/config.interface";
 
@@ -24,47 +23,10 @@ export class AuthService {
     private readonly configService: ConfigService
   ) {}
 
-  async createUser(payload: SignupInput): Promise<Token> {
-    const hashedPassword = await this.passwordService.hashPassword(
-      payload.password
-    );
-
-    try {
-      const user = await this.prisma.user.create({
-        data: {
-          ...payload,
-          password: hashedPassword,
-          role: {
-            connect: {
-              name: "DEFAULT"
-            }
-          },
-          status: UserStatus.VALIDATION_PENDING
-        }
-      });
-
-      return this.generateTokens({
-        userId: user.id
-      });
-    } catch (e) {
-      if (
-        e instanceof Prisma.PrismaClientKnownRequestError &&
-        e.code === "P2002"
-      ) {
-        throw new ConflictException(
-          `Username ${payload.userName} is already used.`
-        );
-      } else {
-        throw new Error(e);
-      }
-    }
-  }
-
   async login(userName: string, password: string): Promise<Token> {
     const user = await this.prisma.user.findUnique({ where: { userName } });
 
     if (!user) {
-      console.log("ran");
       throw new NotFoundException(`No user found for username: ${userName}!`);
     }
 
@@ -74,7 +36,7 @@ export class AuthService {
     );
 
     if (!passwordValid) {
-      throw new BadRequestException("Your entered a wrong password!");
+      throw new BadRequestException("You entered a wrong password!");
     }
 
     if (user.status === "VALIDATION_PENDING") {
@@ -121,7 +83,6 @@ export class AuthService {
       const { userId } = this.jwtService.verify(token, {
         secret: this.configService.get("JWT_REFRESH_SECRET")
       });
-
       return this.generateTokens({
         userId
       });
