@@ -11,14 +11,15 @@ import {
   Info
 } from "@nestjs/graphql";
 import { UseGuards } from "@nestjs/common";
-import { UserEntity } from "../common/decorators/user.decorator";
+import { CurrentUser } from "../common/decorators/currentUser.decorator";
 import { GqlAuthGuard } from "../auth/gql-auth.guard";
 import { UsersService } from "./users.service";
 import { User } from "./models/user.model";
 import { ChangePasswordInput } from "./dto/change-password.input";
-import { UpdateUserInput } from "./dto/update-user.input";
 import { GraphQLResolveInfo } from "graphql";
 import { PrismaSelect } from "@paljs/plugins";
+import { UserRequest } from "src/common/decorators/userRequest";
+import { Request } from "express";
 @Resolver(() => User)
 @UseGuards(GqlAuthGuard)
 export class UsersResolver {
@@ -28,23 +29,19 @@ export class UsersResolver {
   ) {}
 
   @Query(() => User)
-  async me(@UserEntity() user: User): Promise<User> {
+  @UseGuards(GqlAuthGuard)
+  async me(
+    @CurrentUser() user: User,
+    @UserRequest() req: Request
+  ): Promise<User> {
+    console.log(req.headers);
     return user;
   }
 
   @UseGuards(GqlAuthGuard)
   @Mutation(() => User)
-  async updateUser(
-    @UserEntity() user: User,
-    @Args("data") newUserData: UpdateUserInput
-  ) {
-    return this.usersService.updateUser(user.id, newUserData);
-  }
-
-  @UseGuards(GqlAuthGuard)
-  @Mutation(() => User)
   async changePassword(
-    @UserEntity() user: User,
+    @CurrentUser() user: User,
     @Args("data") changePassword: ChangePasswordInput
   ) {
     return this.usersService.changePassword(

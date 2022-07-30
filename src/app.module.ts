@@ -13,6 +13,7 @@ import { AuthModule } from "./auth/auth.module";
 import { GqlConfigService } from "./gql-config.service";
 import { RolesModule } from "./roles/roles.module";
 import { UsersModule } from "./users/users.module";
+import { MembersModule } from "./members/members.module";
 
 @Module({
   imports: [
@@ -38,7 +39,8 @@ import { UsersModule } from "./users/users.module";
 
     AuthModule,
     UsersModule,
-    RolesModule
+    RolesModule,
+    MembersModule
   ],
   controllers: [AppController],
   providers: [AppService, AppResolver]
