@@ -16,10 +16,9 @@ import { GqlAuthGuard } from "../auth/gql-auth.guard";
 import { UsersService } from "./users.service";
 import { User } from "./models/user.model";
 import { ChangePasswordInput } from "./dto/change-password.input";
-import { GraphQLResolveInfo } from "graphql";
-import { PrismaSelect } from "@paljs/plugins";
 import { UserRequest } from "src/common/decorators/userRequest";
 import { Request } from "express";
+
 @Resolver(() => User)
 @UseGuards(GqlAuthGuard)
 export class UsersResolver {
@@ -29,7 +28,6 @@ export class UsersResolver {
   ) {}
 
   @Query(() => User)
-  @UseGuards(GqlAuthGuard)
   async me(
     @CurrentUser() user: User,
     @UserRequest() req: Request
@@ -38,7 +36,6 @@ export class UsersResolver {
     return user;
   }
 
-  @UseGuards(GqlAuthGuard)
   @Mutation(() => User)
   async changePassword(
     @CurrentUser() user: User,
@@ -50,9 +47,4 @@ export class UsersResolver {
       changePassword
     );
   }
-
-  // @ResolveField('posts')
-  // posts(@Parent() author: User) {
-  //   return this.prisma.user.findUnique({ where: { id: author.id } }).posts();
-  // }
 }

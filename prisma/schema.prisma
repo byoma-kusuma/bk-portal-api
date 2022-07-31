@@ -76,6 +76,24 @@ enum GenderType {
     PREFER_NOT_TO_SAY
 }
 
+enum CentreAffiliationType {
+    None
+    Nepal
+    UK
+    USA
+    Australia
+    Thailand
+    Hetauda
+    MahendraNagar
+}
+
+enum MembershipType {
+    LifeMember
+    HonoraryMember
+    BoardMember
+    GeneralMember
+}
+
 model Member {
     id String @id @default(cuid())
 
@@ -84,12 +102,12 @@ model Member {
     lastName          String
     middleName        String?
     title             String?
-    isMember          Boolean     @default(false)
-    active            Boolean     @default(true)
+    isMember          Boolean               @default(false)
+    active            Boolean               @default(true)
     phonePrimary      String?
     phoneSecondary    String?
-    centerAffiliation String
-    membershipType    String?
+    centerAffiliation CentreAffiliationType
+    membershipType    MembershipType?
     permanentAddress  String?
     currentAddress    String?
     dob               DateTime?

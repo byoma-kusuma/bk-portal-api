@@ -1,5 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
+import { CentreAffiliationType } from '../prisma/centre-affiliation-type.enum';
+import { MembershipType } from '../prisma/membership-type.enum';
 import { GenderType } from '../prisma/gender-type.enum';
 
 @ObjectType()
@@ -35,11 +37,11 @@ export class MemberMinAggregate {
     @Field(() => String, {nullable:true})
     phoneSecondary?: string;
 
-    @Field(() => String, {nullable:true})
-    centerAffiliation?: string;
+    @Field(() => CentreAffiliationType, {nullable:true})
+    centerAffiliation?: keyof typeof CentreAffiliationType;
 
-    @Field(() => String, {nullable:true})
-    membershipType?: string;
+    @Field(() => MembershipType, {nullable:true})
+    membershipType?: keyof typeof MembershipType;
 
     @Field(() => String, {nullable:true})
     permanentAddress?: string;

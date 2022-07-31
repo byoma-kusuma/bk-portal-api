@@ -1,6 +1,8 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
+import { CentreAffiliationType } from '../prisma/centre-affiliation-type.enum';
+import { MembershipType } from '../prisma/membership-type.enum';
 import { GenderType } from '../prisma/gender-type.enum';
 import { User } from '../user/user.model';
 
@@ -37,11 +39,11 @@ export class Member {
     @Field(() => String, {nullable:true})
     phoneSecondary!: string | null;
 
-    @Field(() => String, {nullable:false})
-    centerAffiliation!: string;
+    @Field(() => CentreAffiliationType, {nullable:false})
+    centerAffiliation!: keyof typeof CentreAffiliationType;
 
-    @Field(() => String, {nullable:true})
-    membershipType!: string | null;
+    @Field(() => MembershipType, {nullable:true})
+    membershipType!: keyof typeof MembershipType | null;
 
     @Field(() => String, {nullable:true})
     permanentAddress!: string | null;

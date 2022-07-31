@@ -21,7 +21,7 @@ export class MembersResolver {
   }
 
   @Query(() => Member, { name: "member" })
-  findOne(@Args("id", { type: () => Int }) id: number) {
+  findOne(@Args("id") id: string) {
     return this.membersService.findOne(id);
   }
 
@@ -33,7 +33,7 @@ export class MembersResolver {
   }
 
   @Mutation(() => Member)
-  removeMember(@Args("id", { type: () => Int }) id: number) {
+  removeMember(@Args("id") id: string) {
     return this.membersService.remove(id);
   }
 }

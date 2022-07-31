@@ -2,6 +2,8 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { StringFilter } from '../prisma/string-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
+import { EnumCentreAffiliationTypeFilter } from '../prisma/enum-centre-affiliation-type-filter.input';
+import { EnumMembershipTypeFilter } from '../prisma/enum-membership-type-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { EnumGenderTypeFilter } from '../prisma/enum-gender-type-filter.input';
 import { UserRelationFilter } from '../user/user-relation-filter.input';
@@ -48,11 +50,11 @@ export class MemberWhereInput {
     @Field(() => StringFilter, {nullable:true})
     phoneSecondary?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    centerAffiliation?: StringFilter;
+    @Field(() => EnumCentreAffiliationTypeFilter, {nullable:true})
+    centerAffiliation?: EnumCentreAffiliationTypeFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    membershipType?: StringFilter;
+    @Field(() => EnumMembershipTypeFilter, {nullable:true})
+    membershipType?: EnumMembershipTypeFilter;
 
     @Field(() => StringFilter, {nullable:true})
     permanentAddress?: StringFilter;

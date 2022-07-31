@@ -1,5 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { CentreAffiliationType } from '../prisma/centre-affiliation-type.enum';
+import { MembershipType } from '../prisma/membership-type.enum';
 import { GenderType } from '../prisma/gender-type.enum';
 
 @InputType()
@@ -35,11 +37,11 @@ export class MemberCreateManyInput {
     @Field(() => String, {nullable:true})
     phoneSecondary?: string;
 
-    @Field(() => String, {nullable:false})
-    centerAffiliation!: string;
+    @Field(() => CentreAffiliationType, {nullable:false})
+    centerAffiliation!: keyof typeof CentreAffiliationType;
 
-    @Field(() => String, {nullable:true})
-    membershipType?: string;
+    @Field(() => MembershipType, {nullable:true})
+    membershipType?: keyof typeof MembershipType;
 
     @Field(() => String, {nullable:true})
     permanentAddress?: string;

@@ -2,6 +2,8 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { StringWithAggregatesFilter } from '../prisma/string-with-aggregates-filter.input';
 import { BoolWithAggregatesFilter } from '../prisma/bool-with-aggregates-filter.input';
+import { EnumCentreAffiliationTypeWithAggregatesFilter } from '../prisma/enum-centre-affiliation-type-with-aggregates-filter.input';
+import { EnumMembershipTypeWithAggregatesFilter } from '../prisma/enum-membership-type-with-aggregates-filter.input';
 import { DateTimeWithAggregatesFilter } from '../prisma/date-time-with-aggregates-filter.input';
 import { EnumGenderTypeWithAggregatesFilter } from '../prisma/enum-gender-type-with-aggregates-filter.input';
 
@@ -47,11 +49,11 @@ export class MemberScalarWhereWithAggregatesInput {
     @Field(() => StringWithAggregatesFilter, {nullable:true})
     phoneSecondary?: StringWithAggregatesFilter;
 
-    @Field(() => StringWithAggregatesFilter, {nullable:true})
-    centerAffiliation?: StringWithAggregatesFilter;
+    @Field(() => EnumCentreAffiliationTypeWithAggregatesFilter, {nullable:true})
+    centerAffiliation?: EnumCentreAffiliationTypeWithAggregatesFilter;
 
-    @Field(() => StringWithAggregatesFilter, {nullable:true})
-    membershipType?: StringWithAggregatesFilter;
+    @Field(() => EnumMembershipTypeWithAggregatesFilter, {nullable:true})
+    membershipType?: EnumMembershipTypeWithAggregatesFilter;
 
     @Field(() => StringWithAggregatesFilter, {nullable:true})
     permanentAddress?: StringWithAggregatesFilter;

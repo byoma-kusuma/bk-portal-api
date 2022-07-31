@@ -1,6 +1,25 @@
 import { Field, ObjectType, registerEnumType } from "@nestjs/graphql";
-import { GenderType } from "@prisma/client";
+import {
+  CentreAffiliationType,
+  GenderType,
+  MembershipType
+} from "@prisma/client";
 import { BaseModel } from "src/common/models/base.model";
+
+registerEnumType(GenderType, {
+  name: "Gender_Type",
+  description: "Types of gender"
+});
+
+registerEnumType(MembershipType, {
+  name: "Membership_Type",
+  description: "Types of membership"
+});
+
+registerEnumType(CentreAffiliationType, {
+  name: "CentreAffiliation_Type",
+  description: "Types of centre affiliation"
+});
 
 @ObjectType()
 export class Member extends BaseModel {
@@ -31,11 +50,11 @@ export class Member extends BaseModel {
   @Field(() => String, { nullable: true })
   phoneSecondary?: string;
 
-  @Field(() => String)
-  centerAffiliation: string;
+  @Field(() => CentreAffiliationType)
+  centerAffiliation: CentreAffiliationType;
 
-  @Field(() => String, { nullable: true })
-  membershipType?: string;
+  @Field(() => MembershipType, { nullable: true })
+  membershipType?: MembershipType;
 
   @Field(() => String, { nullable: true })
   permanentAddress?: string;
@@ -67,8 +86,3 @@ export class Member extends BaseModel {
   @Field(() => String, { nullable: true })
   photo?: string;
 }
-
-registerEnumType(GenderType, {
-  name: "Gender_Type",
-  description: "Types of gender"
-});

@@ -16,14 +16,56 @@ input BoolFilter {
   not: BoolFilter
 }
 
+enum CentreAffiliationType {
+  Australia
+  Hetauda
+  MahendraNagar
+  Nepal
+  None
+  Thailand
+  UK
+  USA
+}
+
+"""Types of centre affiliation"""
+enum CentreAffiliation_Type {
+  Australia
+  Hetauda
+  MahendraNagar
+  Nepal
+  None
+  Thailand
+  UK
+  USA
+}
+
 input ChangePasswordInput {
   newPassword: String!
   oldPassword: String!
 }
 
 input CreateMemberInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  active: Boolean!
+  centerAffiliation: String!
+  currentAddress: String
+  dob: DateTime
+  email: String
+  firstName: String!
+  gender: String
+  insta: String
+  isMember: Boolean!
+  lastName: String!
+  membershipType: String
+  messenger: String
+  middleName: String
+  permanentAddress: String
+  phonePrimary: String
+  phoneSecondary: String
+  photo: String
+  refugeName: String
+  sanghaJoinDate: DateTime
+  title: String
+  viber: String
 }
 
 input CreateRoleInput {
@@ -46,11 +88,25 @@ input DateTimeFilter {
   notIn: [DateTime!]
 }
 
+input EnumCentreAffiliationTypeFilter {
+  equals: CentreAffiliationType
+  in: [CentreAffiliationType!]
+  not: EnumCentreAffiliationTypeFilter
+  notIn: [CentreAffiliationType!]
+}
+
 input EnumGenderTypeFilter {
   equals: GenderType
   in: [GenderType!]
   not: EnumGenderTypeFilter
   notIn: [GenderType!]
+}
+
+input EnumMembershipTypeFilter {
+  equals: MembershipType
+  in: [MembershipType!]
+  not: EnumMembershipTypeFilter
+  notIn: [MembershipType!]
 }
 
 input EnumTypeFilter {
@@ -94,7 +150,7 @@ input LoginInput {
 
 type Member {
   active: Boolean!
-  centerAffiliation: String!
+  centerAffiliation: CentreAffiliation_Type!
 
   """Identifies the date and time when the object was created."""
   createdAt: DateTime!
@@ -110,7 +166,7 @@ type Member {
   isDeleted: Boolean!
   isMember: Boolean!
   lastName: String!
-  membershipType: String
+  membershipType: Membership_Type
   messenger: String
   middleName: String
   permanentAddress: String
@@ -139,7 +195,7 @@ input MemberWhereInput {
   NOT: [MemberWhereInput!]
   OR: [MemberWhereInput!]
   active: BoolFilter
-  centerAffiliation: StringFilter
+  centerAffiliation: EnumCentreAffiliationTypeFilter
   createdAt: DateTimeFilter
   createdBy: StringFilter
   currentAddress: StringFilter
@@ -152,7 +208,7 @@ input MemberWhereInput {
   isDeleted: BoolFilter
   isMember: BoolFilter
   lastName: StringFilter
-  membershipType: StringFilter
+  membershipType: EnumMembershipTypeFilter
   messenger: StringFilter
   middleName: StringFilter
   permanentAddress: StringFilter
@@ -169,13 +225,28 @@ input MemberWhereInput {
   viber: StringFilter
 }
 
+enum MembershipType {
+  BoardMember
+  GeneralMember
+  HonoraryMember
+  LifeMember
+}
+
+"""Types of membership"""
+enum Membership_Type {
+  BoardMember
+  GeneralMember
+  HonoraryMember
+  LifeMember
+}
+
 type Mutation {
   changePassword(data: ChangePasswordInput!): User!
   createMember(createMemberInput: CreateMemberInput!): Member!
   createRole(createRoleInput: CreateRoleInput!): Role!
   login(data: LoginInput!): Auth!
   refreshToken(token: JWT!): Token!
-  removeMember(id: Int!): Member!
+  removeMember(id: String!): Member!
   removeRole(id: Int!): Role!
   updateMember(updateMemberInput: UpdateMemberInput!): Member!
   updateRole(updateRoleInput: UpdateRoleInput!): Role!
@@ -206,7 +277,7 @@ type Query {
   hello(name: String!): String!
   helloWorld: String!
   me: User!
-  member(id: Int!): Member!
+  member(id: String!): Member!
   members: [Member!]!
   role(where: RoleWhereInput): Role!
   roles(where: RoleWhereInput): [Role!]!
@@ -291,9 +362,28 @@ enum Type {
 }
 
 input UpdateMemberInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
+  active: Boolean!
+  centerAffiliation: String!
+  currentAddress: String
+  dob: DateTime
+  email: String
+  firstName: String!
+  gender: String
+  id: String!
+  insta: String
+  isMember: Boolean!
+  lastName: String!
+  membershipType: String
+  messenger: String
+  middleName: String
+  permanentAddress: String
+  phonePrimary: String
+  phoneSecondary: String
+  photo: String
+  refugeName: String
+  sanghaJoinDate: DateTime
+  title: String
+  viber: String
 }
 
 input UpdateRoleInput {
