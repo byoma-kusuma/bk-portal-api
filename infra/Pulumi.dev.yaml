@@ -1,2 +1,3 @@
 config:
   azure-native:location: EastUS
+  bk-portal-api:env: dev

@@ -1,9 +1,11 @@
 node_modules/
 dist/
-prisma/*.db
+api/prisma/*.db
 coverage/
 
 .DS_Store
 
-prisma/migrations/dev/
+api/prisma/migrations/dev/
 .env
+/bin
+*.zip

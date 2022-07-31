@@ -1,20 +1,4 @@
-# Welcome
-
-Welcome to BK Portal.
-This project contains the following:
-
-> 1. Azure infrastruction as a code using pulumi
-> 2. API Code with GraphQL and Prisma
-
-## 1. Infrastructure as a code using pulumi
-
-> .... work in progress
-
-## 2. API
-
-> Goto `api` folder and follow the following instructions to get started
-
-## Instructions
+# Instructions
 
 Starter template for 😻 [NestJS](https://nestjs.com/) and [Prisma](https://www.prisma.io/).
 
@@ -22,14 +6,14 @@ Starter template for 😻 [NestJS](https://nestjs.com/) and [Prisma](https://www
 
 ## Version
 
-| Branch                                                                                                              |  Nest | Prisma                                          |  Graphql                                                              |
-| ------------------------------------------------------------------------------------------------------------------- | ----- | ----------------------------------------------- | --------------------------------------------------------------------- |
-| main                                                                                                                | v8    | [v2](https://github.com/prisma/prisma2)         | [Code-first](https://docs.nestjs.com/graphql/quick-start#code-first)  |
-| [nest-7](https://github.com/fivethree-team/nestjs-prisma-starter/tree/nest-7)                                       | v7    | [v2](https://github.com/prisma/prisma2)         | [Code-first](https://docs.nestjs.com/graphql/quick-start#code-first)  |
+| Branch                                                                                                       |  Nest | Prisma                                               |  Graphql                                                              |
+| ------------------------------------------------------------------------------------------------------------ | ----- | ---------------------------------------------------- | --------------------------------------------------------------------- |
+| main                                                                                                       | v8    | [v2](https://github.com/prisma/prisma2)         | [Code-first](https://docs.nestjs.com/graphql/quick-start#code-first)  |
+| [nest-7](https://github.com/fivethree-team/nestjs-prisma-starter/tree/nest-7)                                                                                                       | v7    | [v2](https://github.com/prisma/prisma2)         | [Code-first](https://docs.nestjs.com/graphql/quick-start#code-first)  |
 | [nest-6-prisma2-code-first](https://github.com/fivethree-team/nestjs-prisma-starter/tree/nest-6-prisma2-code-first) | v6    | [v2-preview](https://github.com/prisma/prisma2) | [Code-first](https://github.com/19majkel94/type-graphql)              |
-| [nest-6-code-first](https://github.com/fivethree-team/nestjs-prisma-starter/tree/nest-6-code-first)                 | v6    | [v1](https://github.com/prisma/prisma)          | [Code-first](https://github.com/19majkel94/type-graphql)              |
-| [nest-6-sdl-first](https://github.com/fivethree-team/nestjs-prisma-starter/tree/nest-6-sdl-first)                   | v6    | [v1](https://github.com/prisma/prisma)          | [SDL First](https://docs.nestjs.com/graphql/quick-start#schema-first) |
-| [nest-5](https://github.com/fivethree-team/nestjs-prisma-starter/tree/nest-5)                                       | v5    | [v1](https://github.com/prisma/prisma)          | [SDL First](https://docs.nestjs.com/graphql/quick-start#schema-first) |
+| [nest-6-code-first](https://github.com/fivethree-team/nestjs-prisma-starter/tree/nest-6-code-first)         | v6    | [v1](https://github.com/prisma/prisma)               | [Code-first](https://github.com/19majkel94/type-graphql)              |
+| [nest-6-sdl-first](https://github.com/fivethree-team/nestjs-prisma-starter/tree/nest-6-sdl-first)                                                                                        | v6    | [v1](https://github.com/prisma/prisma)               | [SDL First](https://docs.nestjs.com/graphql/quick-start#schema-first) |
+| [nest-5](https://github.com/fivethree-team/nestjs-prisma-starter/tree/nest-5)                     | v5    | [v1](https://github.com/prisma/prisma)               | [SDL First](https://docs.nestjs.com/graphql/quick-start#schema-first) |
 
 ## Features
 
@@ -41,24 +25,19 @@ Starter template for 😻 [NestJS](https://nestjs.com/) and [Prisma](https://www
 
 ## Overview
 
-- [Welcome](#welcome)
-  - [1. Infrastructure as a code using pulumi](#1-infrastructure-as-a-code-using-pulumi)
-  - [2. API](#2-api)
-  - [Instructions](#instructions)
-  - [Version](#version)
+- [Instructions](#instructions)
   - [Features](#features)
   - [Overview](#overview)
   - [Prisma Setup](#prisma-setup)
     - [1. Install Dependencies](#1-install-dependencies)
-    - [2. PostgreSQL with Docker](#2-postgresql-with-docker)
-    - [3. Prisma Migrate](#3-prisma-migrate)
-    - [4. Prisma: Prisma Client JS](#4-prisma-prisma-client-js)
+    - [2. PostgreSQL with Docker](#2-PostgreSQL-with-docker)
+    - [3. Prisma: Prisma Migrate](#3-prisma-prisma-migrate)
+    - [4. Prisma: Prisma Client JS](#4-prisma-client-js)
     - [5. Seed the database data with this script](#5-seed-the-database-data-with-this-script)
     - [6. Start NestJS Server](#6-start-nestjs-server)
   - [GraphQL Playground](#graphql-playground)
   - [Rest Api](#rest-api)
   - [Docker](#docker)
-    - [Docker Compose](#docker-compose)
   - [Schema Development](#schema-development)
   - [NestJS - Api Schema](#nestjs---api-schema)
     - [Resolver](#resolver)
@@ -313,7 +292,7 @@ You can also add the `GraphQLModule` in the `AppModule` to make `Apollo` availab
 You need to set the URL to the NestJS GraphQL Api. Open the file `src/app/graphql.module.ts` and update `uri`:
 
 ```ts
-const uri = "http://localhost:3000/graphql";
+const uri = 'http://localhost:3000/graphql';
 ```
 
 To use Apollo-Angular you can inject `private apollo: Apollo` into the constructor of a page, component or service.
@@ -348,9 +327,9 @@ const CurrentUserProfile = gql`
 `;
 
 @Component({
-  selector: "app-home",
-  templateUrl: "home.page.html",
-  styleUrls: ["home.page.scss"],
+  selector: 'app-home',
+  templateUrl: 'home.page.html',
+  styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
   data: Observable<any>;
@@ -409,9 +388,9 @@ const Login = gql`
 `;
 
 @Component({
-  selector: "app-home",
-  templateUrl: "home.page.html",
-  styleUrls: ["home.page.scss"],
+  selector: 'app-home',
+  templateUrl: 'home.page.html',
+  styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
   data: Observable<any>;
@@ -449,14 +428,14 @@ Because the apollo client is using `HttpClient` under the hood you are able to s
 Create the following class:
 
 ```ts
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import {
   HttpEvent,
   HttpInterceptor,
   HttpHandler,
   HttpRequest,
-} from "@angular/common/http";
-import { Observable } from "rxjs";
+} from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -466,7 +445,7 @@ export class TokenInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const token = "YOUR_TOKEN"; // get from local storage
+    const token = 'YOUR_TOKEN'; // get from local storage
     if (token !== undefined) {
       req = req.clone({
         setHeaders: {
