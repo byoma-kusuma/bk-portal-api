@@ -32,6 +32,9 @@ export class UserWhereInput {
     @Field(() => StringFilter, {nullable:true})
     avatar?: StringFilter;
 
+    @Field(() => StringFilter, {nullable:true})
+    email?: StringFilter;
+
     @Field(() => BoolFilter, {nullable:true})
     isDeleted?: BoolFilter;
 

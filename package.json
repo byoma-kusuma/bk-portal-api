@@ -38,7 +38,7 @@
     "prisma:studio": "npx prisma studio",
     "prisma:generate": "npx prisma generate",
     "prisma:generate:watch": "npx prisma generate --watch",
-    "prisma:db-reset:force": "npx prisma db push --force-reset",
+    "prisma:db:reset:force": "npx prisma db push --force-reset",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",

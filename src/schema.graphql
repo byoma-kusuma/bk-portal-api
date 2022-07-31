@@ -304,6 +304,7 @@ input UpdateRoleInput {
 type User {
   """Identifies the date and time when the object was created."""
   createdAt: DateTime!
+  email: String!
   id: ID!
 
   """Identifies the date and time when the object was last updated."""
@@ -342,6 +343,7 @@ input UserWhereInput {
   avatar: StringFilter
   createdAt: DateTimeFilter
   createdBy: StringFilter
+  email: StringFilter
   id: StringFilter
   isDeleted: BoolFilter
   member: MemberRelationFilter

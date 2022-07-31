@@ -29,6 +29,7 @@ model User {
     userName String  @unique
     password String
     avatar   String?
+    email    String? @unique
 
     isDeleted Boolean  @default(false)
     createdAt DateTime @default(now())

@@ -17,6 +17,7 @@ registerEnumType(UserStatus, {
 export class User extends BaseModel {
   userName: string;
   role: Role;
+  email: string;
 
   @HideField()
   password: string;

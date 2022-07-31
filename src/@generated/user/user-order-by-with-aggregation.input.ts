@@ -21,6 +21,9 @@ export class UserOrderByWithAggregationInput {
     avatar?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
+    email?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
     isDeleted?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})

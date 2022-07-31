@@ -20,6 +20,9 @@ export class UserCreateInput {
     @Field(() => String, {nullable:true})
     avatar?: string;
 
+    @Field(() => String, {nullable:true})
+    email?: string;
+
     @Field(() => Boolean, {nullable:true})
     isDeleted?: boolean;
 

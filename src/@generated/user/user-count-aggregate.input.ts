@@ -17,6 +17,9 @@ export class UserCountAggregateInput {
     avatar?: true;
 
     @Field(() => Boolean, {nullable:true})
+    email?: true;
+
+    @Field(() => Boolean, {nullable:true})
     isDeleted?: true;
 
     @Field(() => Boolean, {nullable:true})

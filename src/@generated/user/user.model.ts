@@ -21,6 +21,9 @@ export class User {
     @Field(() => String, {nullable:true})
     avatar!: string | null;
 
+    @Field(() => String, {nullable:true})
+    email!: string | null;
+
     @Field(() => Boolean, {nullable:false,defaultValue:false})
     isDeleted!: boolean;
 

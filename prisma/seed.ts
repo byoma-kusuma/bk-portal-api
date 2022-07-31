@@ -40,6 +40,7 @@ async function main() {
       user: {
         create: {
           userName: "lisa@simpson.com",
+          email: "lisa@simpson.com",
           password:
             "$2b$10$EpRnTzVlqHNP0.fUbXUwSOyuiXe/QLSUG6xNekdHgTGmrpHEfIoxm", // secret42
           role: {
@@ -63,6 +64,7 @@ async function main() {
       user: {
         create: {
           userName: "bart@simpson.com",
+          email: "bart@simpson.com",
           password:
             "$2b$10$EpRnTzVlqHNP0.fUbXUwSOyuiXe/QLSUG6xNekdHgTGmrpHEfIoxm", // secret42
           role: {
