@@ -159,7 +159,7 @@ type Member {
   email: String
   firstName: String!
   gender: Gender_Type
-  id: ID!
+  id: String!
   insta: String
 
   """Identifies the date and time when the object was last updated."""
@@ -182,6 +182,7 @@ type Member {
 
   """Identifies the date and time when the object was last updated."""
   updatedAt: DateTime!
+  user: User
   viber: String
 }
 
@@ -392,13 +393,17 @@ input UpdateRoleInput {
 }
 
 type User {
+  avatar: String!
+
   """Identifies the date and time when the object was created."""
   createdAt: DateTime!
   email: String!
-  id: ID!
+  id: String!
 
   """Identifies the date and time when the object was last updated."""
   isDeleted: Boolean!
+  member: Member!
+  memberId: String!
   role: Role!
   status: Status!
 

@@ -1,14 +1,11 @@
 import { PrismaService } from "nestjs-prisma";
-// import { PrismaService } from 'prisma/prisma.service';
-
 import {
   Resolver,
   Query,
-  Parent,
   Mutation,
   Args,
   ResolveField,
-  Info
+  Parent
 } from "@nestjs/graphql";
 import { UseGuards } from "@nestjs/common";
 import { CurrentUser } from "../common/decorators/currentUser.decorator";
@@ -16,8 +13,7 @@ import { GqlAuthGuard } from "../auth/gql-auth.guard";
 import { UsersService } from "./users.service";
 import { User } from "./models/user.model";
 import { ChangePasswordInput } from "./dto/change-password.input";
-import { UserRequest } from "src/common/decorators/userRequest";
-import { Request } from "express";
+import { Member } from "src/members/entities/member.entity";
 
 @Resolver(() => User)
 @UseGuards(GqlAuthGuard)
@@ -28,11 +24,7 @@ export class UsersResolver {
   ) {}
 
   @Query(() => User)
-  async me(
-    @CurrentUser() user: User,
-    @UserRequest() req: Request
-  ): Promise<User> {
-    console.log(req.headers);
+  async me(@CurrentUser() user: User): Promise<User> {
     return user;
   }
 
@@ -46,5 +38,10 @@ export class UsersResolver {
       user.password,
       changePassword
     );
+  }
+
+  @ResolveField(() => Member)
+  member(@Parent() user: User) {
+    return this.usersService.findUnique({ where: { id: user.id } }).member();
   }
 }

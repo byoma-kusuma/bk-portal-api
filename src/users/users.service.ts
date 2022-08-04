@@ -4,6 +4,7 @@ import { PasswordService } from "../auth/password.service";
 import { ChangePasswordInput } from "./dto/change-password.input";
 // import { PrismaService } from 'prisma/prisma.service';
 import { PrismaService } from "nestjs-prisma";
+import { Args } from "@nestjs/graphql";
 
 @Injectable()
 export class UsersService {
@@ -11,6 +12,9 @@ export class UsersService {
     private prisma: PrismaService,
     private passwordService: PasswordService
   ) {}
+
+  findMany = this.prisma.user.findMany;
+  findUnique = this.prisma.user.findUnique;
 
   updateUser(userId: string, newUserData: null) {
     return this.prisma.user.update({

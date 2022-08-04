@@ -5,6 +5,7 @@ import {
   MembershipType
 } from "@prisma/client";
 import { BaseModel } from "src/common/models/base.model";
+import { User } from "src/users/models/user.model";
 
 registerEnumType(GenderType, {
   name: "Gender_Type",
@@ -23,6 +24,9 @@ registerEnumType(CentreAffiliationType, {
 
 @ObjectType()
 export class Member extends BaseModel {
+  @Field()
+  id: string;
+
   @Field(() => String, { nullable: true })
   email?: string;
 
@@ -85,4 +89,7 @@ export class Member extends BaseModel {
 
   @Field(() => String, { nullable: true })
   photo?: string;
+
+  @Field(() => User, { nullable: true })
+  user?: User;
 }

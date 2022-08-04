@@ -28,8 +28,6 @@ async function main() {
     }
   });
 
-  console.log("Seeding...");
-
   const user1 = await prisma.member.create({
     data: {
       firstName: "Lisa",
@@ -37,10 +35,16 @@ async function main() {
       email: "lisa@simpson.com",
       isMember: true,
       centerAffiliation: "Nepal",
+      photo: `https://avatars.dicebear.com/api/avataaars/${
+        Math.random() * 100000
+      }.svg`,
       user: {
         create: {
           userName: "lisa@simpson.com",
           email: "lisa@simpson.com",
+          avatar: `https://avatars.dicebear.com/api/avataaars/${
+            Math.random() * 100000
+          }.svg`,
           password:
             "$2b$10$EpRnTzVlqHNP0.fUbXUwSOyuiXe/QLSUG6xNekdHgTGmrpHEfIoxm", // secret42
           role: {
@@ -61,10 +65,16 @@ async function main() {
       email: "bart@simpson.com",
       isMember: true,
       centerAffiliation: "Nepal",
+      photo: `https://avatars.dicebear.com/api/avataaars/${
+        Math.random() * 100000
+      }.svg`,
       user: {
         create: {
           userName: "bart@simpson.com",
           email: "bart@simpson.com",
+          avatar: `https://avatars.dicebear.com/api/avataaars/${
+            Math.random() * 100000
+          }.svg`,
           password:
             "$2b$10$EpRnTzVlqHNP0.fUbXUwSOyuiXe/QLSUG6xNekdHgTGmrpHEfIoxm", // secret42
           role: {

@@ -5,6 +5,7 @@ import {
   Field
 } from "@nestjs/graphql";
 import { UserStatus } from "@prisma/client";
+import { Member } from "src/members/entities/member.entity";
 import { BaseModel } from "../../common/models/base.model";
 import { Role } from "../../roles/entities/role.entity";
 
@@ -15,13 +16,21 @@ registerEnumType(UserStatus, {
 
 @ObjectType()
 export class User extends BaseModel {
+  id: string;
+
   userName: string;
   role: Role;
   email: string;
+
+  avatar: string;
 
   @HideField()
   password: string;
 
   @Field(() => UserStatus)
   status: UserStatus;
+
+  member: Member;
+
+  memberId: string;
 }

@@ -9,6 +9,7 @@ import {
   IsDate,
   IsEmail,
   IsEnum,
+  IsOptional,
   IsPhoneNumber,
   IsString,
   IsUrl,
@@ -19,7 +20,8 @@ import {
 
 @InputType()
 export class CreateMemberInput {
-  @Field()
+  @Field({ nullable: true })
+  @IsOptional()
   @IsEmail()
   email?: string;
 
@@ -35,13 +37,15 @@ export class CreateMemberInput {
   @MaxLength(32)
   lastName: string;
 
-  @Field()
+  @Field({ nullable: true })
+  @IsOptional()
   @IsString()
   @MinLength(1)
   @MaxLength(32)
   middleName?: string;
 
-  @Field()
+  @Field({ nullable: true })
+  @IsOptional()
   @IsString()
   @MinLength(1)
   @MaxLength(32)
@@ -55,13 +59,15 @@ export class CreateMemberInput {
   @IsBoolean()
   active: boolean;
 
-  @Field()
+  @Field({ nullable: true })
   @IsString()
   @IsPhoneNumber()
+  @IsOptional()
   phonePrimary?: string;
 
-  @Field()
+  @Field({ nullable: true })
   @IsString()
+  @IsOptional()
   @IsPhoneNumber()
   phoneSecondary?: string;
 
@@ -69,57 +75,68 @@ export class CreateMemberInput {
   @IsEnum(CentreAffiliationType)
   centerAffiliation: CentreAffiliationType;
 
-  @Field()
+  @Field({ nullable: true })
+  @IsOptional()
   @IsEnum(MembershipType)
   membershipType?: MembershipType;
 
-  @Field()
+  @Field({ nullable: true })
   @IsString()
   @MaxLength(128)
+  @IsOptional()
   @MinLength(4)
   permanentAddress?: string;
 
-  @Field()
+  @Field({ nullable: true })
   @IsString()
   @MaxLength(128)
   @MinLength(4)
+  @IsOptional()
   currentAddress?: string;
 
-  @Field()
+  @Field({ nullable: true })
   @IsDate()
   @MaxDate(new Date())
+  @IsOptional()
   dob?: Date;
 
-  @Field()
+  @Field({ nullable: true })
   @IsEnum(GenderType)
+  @IsOptional()
   gender?: GenderType;
 
-  @Field()
+  @Field({ nullable: true })
   @IsDate()
   @MaxDate(new Date())
+  @IsOptional()
   sanghaJoinDate?: Date;
 
-  @Field()
+  @Field({ nullable: true })
   @IsString()
   @MinLength(1)
+  @IsOptional()
   refugeName?: string;
 
-  @Field()
+  @Field({ nullable: true })
   @IsString()
   @IsPhoneNumber()
+  @IsOptional()
   viber?: string;
 
-  @Field()
+  @Field({ nullable: true })
   @IsString()
   @MinLength(2)
+  @IsOptional()
   messenger?: string;
 
-  @Field()
+  @Field({ nullable: true })
   @IsString()
   @MinLength(2)
+  @IsOptional()
   insta?: string;
 
-  @Field()
+  @Field({ nullable: true })
   @IsUrl()
+  @IsOptional()
   photo?: string;
 }
