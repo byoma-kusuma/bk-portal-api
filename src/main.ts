@@ -1,8 +1,8 @@
 import { ValidationPipe } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
-import { HttpAdapterHost, NestFactory } from "@nestjs/core";
+import { NestFactory } from "@nestjs/core";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
-import { PrismaClientExceptionFilter, PrismaService } from "nestjs-prisma";
+import { PrismaService } from "nestjs-prisma";
 // import { PrismaService } from 'prisma/prisma.service';
 
 import { AppModule } from "./app.module";
@@ -12,6 +12,7 @@ import type {
   NestConfig,
   SwaggerConfig
 } from "./common/configs/config.interface";
+import { HttpExceptionFilter } from "./common/exceptions/HttpExceptionFilter";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -25,8 +26,8 @@ async function bootstrap() {
   prismaService.enableShutdownHooks(app);
 
   // Prisma Client Exception Filter for unhandled exceptions
-  const { httpAdapter } = app.get(HttpAdapterHost);
-  app.useGlobalFilters(new PrismaClientExceptionFilter(httpAdapter));
+
+  app.useGlobalFilters(new HttpExceptionFilter());
 
   const configService = app.get(ConfigService);
   const nestConfig = configService.get<NestConfig>("nest");
