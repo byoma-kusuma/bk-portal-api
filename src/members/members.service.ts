@@ -1,9 +1,11 @@
 import {
   ForbiddenException,
   Injectable,
+  InternalServerErrorException,
   NotFoundException
 } from "@nestjs/common";
 import { PrismaService } from "nestjs-prisma";
+import createAvatar from "src/common/utils/avatar";
 import { CreateMemberInput } from "./dto/create-member.input";
 import { UpdateMemberInput } from "./dto/update-member.input";
 
@@ -11,6 +13,7 @@ import { UpdateMemberInput } from "./dto/update-member.input";
 export class MembersService {
   findMany = this.prisma.member.findMany;
   findUnique = this.prisma.member.findUnique;
+  findFirst = this.prisma.member.findFirst;
 
   constructor(private readonly prisma: PrismaService) {}
 
@@ -18,9 +21,7 @@ export class MembersService {
     return this.prisma.member.create({
       data: {
         ...createMemberInput,
-        photo: `https://avatars.dicebear.com/api/avataaars/${
-          Math.random() * 100000
-        }.svg`
+        photo: createAvatar()
       }
     });
   }
@@ -77,7 +78,7 @@ export class MembersService {
     }
 
     if (myId === member.id) {
-      throw new ForbiddenException("Cannot delete yourself!");
+      throw new InternalServerErrorException("Cannot delete yourself!");
     }
 
     const deleteMemberOperation = this.prisma.member.update({

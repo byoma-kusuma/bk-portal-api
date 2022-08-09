@@ -4,7 +4,8 @@ import {
   Mutation,
   Args,
   ResolveField,
-  Parent
+  Parent,
+  ResolveProperty
 } from "@nestjs/graphql";
 import { UseGuards } from "@nestjs/common";
 import { CurrentUser } from "../common/decorators/currentUser.decorator";
@@ -14,6 +15,7 @@ import { User } from "./models/user.model";
 import { ChangePasswordInput } from "./dto/change-password.input";
 import { Member } from "src/members/entities/member.entity";
 import { CreateUserInput } from "./dto/create-user.input";
+import { Role } from "src/roles/entities/role.entity";
 
 @Resolver(() => User)
 @UseGuards(GqlAuthGuard)
@@ -25,9 +27,24 @@ export class UsersResolver {
     return user;
   }
 
+  @Query(() => [User], { name: "users" })
+  findAll() {
+    return this.usersService.findAll();
+  }
+
+  @Query(() => User, { name: "user" })
+  findOne(@Args("id") id: string) {
+    return this.usersService.findOne(id);
+  }
+
   @Mutation(() => User)
   createUser(@Args("createUserInput") createUserInput: CreateUserInput) {
     return this.usersService.create(createUserInput);
+  }
+
+  @Mutation(() => User)
+  removeUser(@Args("id") id: string, @CurrentUser() user: User) {
+    return this.usersService.remove(id, user.id);
   }
 
   @Mutation(() => User)
@@ -45,5 +62,10 @@ export class UsersResolver {
   @ResolveField(() => Member)
   member(@Parent() user: User) {
     return this.usersService.findUnique({ where: { id: user.id } }).member();
+  }
+
+  @ResolveField(() => Role)
+  role(@Parent() user: User) {
+    return this.usersService.findUnique({ where: { id: user.id } }).role();
   }
 }

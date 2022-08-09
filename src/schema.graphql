@@ -254,6 +254,7 @@ type Mutation {
   refreshToken(token: JWT!): Token!
   removeMember(id: String!): Member!
   removeRole(id: Int!): Role!
+  removeUser(id: String!): User!
   updateMember(updateMemberInput: UpdateMemberInput!): Member!
   updateRole(updateRoleInput: UpdateRoleInput!): Role!
 }
@@ -287,6 +288,8 @@ type Query {
   members: [Member!]!
   role(where: RoleWhereInput): Role!
   roles(where: RoleWhereInput): [Role!]!
+  user(id: String!): User!
+  users: [User!]!
 }
 
 type Role {
@@ -402,7 +405,6 @@ type User {
 
   """Identifies the date and time when the object was created."""
   createdAt: DateTime!
-  email: String!
   id: String!
 
   """Identifies the date and time when the object was last updated."""
@@ -443,7 +445,6 @@ input UserWhereInput {
   avatar: StringFilter
   createdAt: DateTimeFilter
   createdBy: StringFilter
-  email: StringFilter
   id: StringFilter
   isDeleted: BoolFilter
   member: MemberRelationFilter

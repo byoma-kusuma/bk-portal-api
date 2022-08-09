@@ -29,9 +29,6 @@ export class UserScalarWhereWithAggregatesInput {
     @Field(() => StringWithAggregatesFilter, {nullable:true})
     avatar?: StringWithAggregatesFilter;
 
-    @Field(() => StringWithAggregatesFilter, {nullable:true})
-    email?: StringWithAggregatesFilter;
-
     @Field(() => BoolWithAggregatesFilter, {nullable:true})
     isDeleted?: BoolWithAggregatesFilter;
 

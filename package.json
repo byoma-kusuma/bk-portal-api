@@ -81,7 +81,8 @@
     "reflect-metadata": "0.1.13",
     "rimraf": "3.0.2",
     "rxjs": "7.5.2",
-    "swagger-ui-express": "4.3.0"
+    "swagger-ui-express": "4.3.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@nestjs/cli": "8.2.0",
@@ -93,6 +94,7 @@
     "@types/jest": "27.0.1",
     "@types/node": "14.17.3",
     "@types/supertest": "2.0.11",
+    "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "5.10.0",
     "@typescript-eslint/parser": "5.10.0",
     "chance": "1.1.8",
