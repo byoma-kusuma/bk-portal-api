@@ -18,9 +18,6 @@ export class UserCountAggregate {
     avatar!: number;
 
     @Field(() => Int, {nullable:false})
-    email!: number;
-
-    @Field(() => Int, {nullable:false})
     isDeleted!: number;
 
     @Field(() => Int, {nullable:false})

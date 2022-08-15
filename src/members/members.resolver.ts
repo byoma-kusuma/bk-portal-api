@@ -51,7 +51,11 @@ export class MembersResolver {
   }
 
   @ResolveField(() => User)
-  user(@Parent() member: Member) {
-    return this.membersService.findUnique({ where: { id: member.id } }).user();
+  async user(@Parent() member: Member) {
+    const user = await this.membersService
+      .findUnique({ where: { id: member.id } })
+      .user();
+    if (user.isDeleted) return null;
+    return user;
   }
 }

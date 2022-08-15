@@ -1,4 +1,4 @@
-import { InputType, Field } from "@nestjs/graphql";
+import { InputType, Int, Field } from "@nestjs/graphql";
 import {
   CentreAffiliationType,
   GenderType,
@@ -9,6 +9,7 @@ import {
   IsDate,
   IsEmail,
   IsEnum,
+  IsOptional,
   IsPhoneNumber,
   IsString,
   IsUrl,
@@ -19,36 +20,34 @@ import {
 
 @InputType()
 export class UpdateMemberInput {
-  @Field()
-  @IsString()
+  @Field({ nullable: false })
   id: string;
 
-  @Field()
+  @Field({ nullable: true })
+  @IsOptional()
   @IsEmail()
   email?: string;
 
   @Field()
   @IsString()
-  @MinLength(2)
-  @MaxLength(32)
+  @MaxLength(64)
   firstName: string;
 
   @Field()
   @IsString()
-  @MinLength(2)
-  @MaxLength(32)
+  @MaxLength(64)
   lastName: string;
 
-  @Field()
+  @Field({ nullable: true })
+  @IsOptional()
   @IsString()
-  @MinLength(1)
-  @MaxLength(32)
+  @MaxLength(64)
   middleName?: string;
 
-  @Field()
+  @Field({ nullable: true })
+  @IsOptional()
   @IsString()
-  @MinLength(1)
-  @MaxLength(32)
+  @MaxLength(64)
   title?: string;
 
   @Field()
@@ -59,13 +58,15 @@ export class UpdateMemberInput {
   @IsBoolean()
   active: boolean;
 
-  @Field()
+  @Field({ nullable: true })
   @IsString()
   @IsPhoneNumber()
+  @IsOptional()
   phonePrimary?: string;
 
-  @Field()
+  @Field({ nullable: true })
   @IsString()
+  @IsOptional()
   @IsPhoneNumber()
   phoneSecondary?: string;
 
@@ -73,57 +74,69 @@ export class UpdateMemberInput {
   @IsEnum(CentreAffiliationType)
   centerAffiliation: CentreAffiliationType;
 
-  @Field()
+  @Field({ nullable: true })
+  @IsOptional()
   @IsEnum(MembershipType)
   membershipType?: MembershipType;
 
-  @Field()
+  @Field({ nullable: true })
   @IsString()
-  @MaxLength(128)
-  @MinLength(4)
+  @MaxLength(256)
+  @IsOptional()
   permanentAddress?: string;
 
-  @Field()
+  @Field({ nullable: true })
   @IsString()
-  @MaxLength(128)
-  @MinLength(4)
+  @MaxLength(256)
+  @IsOptional()
   currentAddress?: string;
 
-  @Field()
+  @Field({ nullable: true })
   @IsDate()
   @MaxDate(new Date())
+  @IsOptional()
   dob?: Date;
 
-  @Field()
+  @Field({ nullable: true })
   @IsEnum(GenderType)
+  @IsOptional()
   gender?: GenderType;
 
-  @Field()
+  @Field({ nullable: true })
   @IsDate()
   @MaxDate(new Date())
+  @IsOptional()
   sanghaJoinDate?: Date;
 
-  @Field()
+  @Field({ nullable: true })
   @IsString()
-  @MinLength(1)
+  @IsOptional()
+  @MaxLength(128)
   refugeName?: string;
 
-  @Field()
+  @Field({ nullable: true })
   @IsString()
   @IsPhoneNumber()
+  @IsOptional()
+  @MaxLength(256)
   viber?: string;
 
-  @Field()
+  @Field({ nullable: true })
   @IsString()
-  @MinLength(2)
+  @IsOptional()
+  @MaxLength(256)
   messenger?: string;
 
-  @Field()
+  @Field({ nullable: true })
   @IsString()
   @MinLength(2)
+  @IsOptional()
+  @MaxLength(256)
   insta?: string;
 
-  @Field()
+  @Field({ nullable: true })
   @IsUrl()
+  @IsOptional()
+  @MaxLength(512)
   photo?: string;
 }

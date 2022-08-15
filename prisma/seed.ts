@@ -1,4 +1,6 @@
 import { PrismaClient, Type } from "@prisma/client";
+import { SystemRoleTypes } from "../src/common/constants/global-constants";
+import createAvatar from "../src/common/utils/avatar";
 
 const prisma = new PrismaClient();
 
@@ -9,21 +11,14 @@ async function main() {
 
   const adminRole = await prisma.role.create({
     data: {
-      name: "ADMIN",
+      name: SystemRoleTypes.ADMIN,
       roleType: Type.SYSTEM
     }
   });
 
   await prisma.role.create({
     data: {
-      name: "DEFAULT",
-      roleType: Type.SYSTEM
-    }
-  });
-
-  await prisma.role.create({
-    data: {
-      name: "SANGHA_MEMBER",
+      name: SystemRoleTypes.DEFAULT,
       roleType: Type.SYSTEM
     }
   });
@@ -35,16 +30,11 @@ async function main() {
       email: "lisa@simpson.com",
       isMember: true,
       centerAffiliation: "Nepal",
-      photo: `https://avatars.dicebear.com/api/avataaars/${
-        Math.random() * 100000
-      }.svg`,
+      photo: createAvatar(),
       user: {
         create: {
           userName: "lisa@simpson.com",
-          email: "lisa@simpson.com",
-          avatar: `https://avatars.dicebear.com/api/avataaars/${
-            Math.random() * 100000
-          }.svg`,
+          avatar: createAvatar(),
           password:
             "$2b$10$EpRnTzVlqHNP0.fUbXUwSOyuiXe/QLSUG6xNekdHgTGmrpHEfIoxm", // secret42
           role: {
@@ -65,16 +55,11 @@ async function main() {
       email: "bart@simpson.com",
       isMember: true,
       centerAffiliation: "Nepal",
-      photo: `https://avatars.dicebear.com/api/avataaars/${
-        Math.random() * 100000
-      }.svg`,
+      photo: createAvatar(),
       user: {
         create: {
           userName: "bart@simpson.com",
-          email: "bart@simpson.com",
-          avatar: `https://avatars.dicebear.com/api/avataaars/${
-            Math.random() * 100000
-          }.svg`,
+          avatar: createAvatar(),
           password:
             "$2b$10$EpRnTzVlqHNP0.fUbXUwSOyuiXe/QLSUG6xNekdHgTGmrpHEfIoxm", // secret42
           role: {

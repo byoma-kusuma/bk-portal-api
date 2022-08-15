@@ -27,28 +27,24 @@ export class CreateMemberInput {
 
   @Field()
   @IsString()
-  @MinLength(2)
-  @MaxLength(32)
+  @MaxLength(64)
   firstName: string;
 
   @Field()
   @IsString()
-  @MinLength(2)
-  @MaxLength(32)
+  @MaxLength(64)
   lastName: string;
 
   @Field({ nullable: true })
   @IsOptional()
   @IsString()
-  @MinLength(1)
-  @MaxLength(32)
+  @MaxLength(64)
   middleName?: string;
 
   @Field({ nullable: true })
   @IsOptional()
   @IsString()
-  @MinLength(1)
-  @MaxLength(32)
+  @MaxLength(64)
   title?: string;
 
   @Field()
@@ -82,15 +78,13 @@ export class CreateMemberInput {
 
   @Field({ nullable: true })
   @IsString()
-  @MaxLength(128)
+  @MaxLength(256)
   @IsOptional()
-  @MinLength(4)
   permanentAddress?: string;
 
   @Field({ nullable: true })
   @IsString()
-  @MaxLength(128)
-  @MinLength(4)
+  @MaxLength(256)
   @IsOptional()
   currentAddress?: string;
 
@@ -113,30 +107,33 @@ export class CreateMemberInput {
 
   @Field({ nullable: true })
   @IsString()
-  @MinLength(1)
   @IsOptional()
+  @MaxLength(128)
   refugeName?: string;
 
   @Field({ nullable: true })
   @IsString()
   @IsPhoneNumber()
   @IsOptional()
+  @MaxLength(256)
   viber?: string;
 
   @Field({ nullable: true })
   @IsString()
-  @MinLength(2)
   @IsOptional()
+  @MaxLength(256)
   messenger?: string;
 
   @Field({ nullable: true })
   @IsString()
   @MinLength(2)
   @IsOptional()
+  @MaxLength(256)
   insta?: string;
 
   @Field({ nullable: true })
   @IsUrl()
   @IsOptional()
+  @MaxLength(512)
   photo?: string;
 }

@@ -20,7 +20,6 @@ export class User extends BaseModel {
 
   userName: string;
   role: Role;
-  email: string;
 
   avatar: string;
 
