@@ -2,8 +2,7 @@ import {
   Injectable,
   BadRequestException,
   NotFoundException,
-  InternalServerErrorException,
-  ForbiddenException
+  InternalServerErrorException
 } from "@nestjs/common";
 import { PasswordService } from "../auth/password.service";
 import { ChangePasswordInput } from "./dto/change-password.input";
@@ -24,8 +23,7 @@ export class UsersService {
   findUnique = this.prisma.user.findUnique;
 
   async generateUserCredentials(member: Member) {
-    const password = await this.passwordService.hashPassword("amoghrijal");
-    // const password = await this.passwordService.hashPassword(uuidv4());
+    const password = await this.passwordService.hashPassword(uuidv4());
     const userNumber = Math.floor(Math.random() * 10000);
     const userName = `${member.firstName.replace(" ", "-")}_${
       member.lastName
@@ -59,7 +57,9 @@ export class UsersService {
 
   async remove(id: string, myId: string) {
     if (myId === id) {
-      throw new InternalServerErrorException("Cannot delete yourself as a user");
+      throw new InternalServerErrorException(
+        "Cannot delete yourself as a user"
+      );
     }
     const user = await this.prisma.user.update({
       where: { id },
