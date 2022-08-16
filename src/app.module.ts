@@ -1,7 +1,7 @@
 import { PrismaModule } from "nestjs-prisma";
 
 import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
-import { Module } from "@nestjs/common";
+import { CacheModule, Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { GraphQLModule } from "@nestjs/graphql";
 
@@ -15,11 +15,10 @@ import { RolesModule } from "./roles/roles.module";
 import { UsersModule } from "./users/users.module";
 import { MembersModule } from "./members/members.module";
 import { ThrottlerModule } from "@nestjs/throttler";
-import { APP_GUARD } from "@nestjs/core";
-import { GqlThrottlerGuard } from "./common/throttling/GqlThrottlerGuard";
 
 @Module({
   imports: [
+    CacheModule.register(),
     ThrottlerModule.forRoot({
       ttl: 20,
       limit: 20
@@ -44,13 +43,6 @@ import { GqlThrottlerGuard } from "./common/throttling/GqlThrottlerGuard";
     MembersModule
   ],
   controllers: [AppController],
-  providers: [
-    AppService,
-    AppResolver
-    /* { */
-    /*   provide: APP_GUARD, */
-    /*   useClass: GqlThrottlerGuard */
-    /* } */
-  ]
+  providers: [AppService, AppResolver]
 })
 export class AppModule {}
