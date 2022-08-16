@@ -1,7 +1,5 @@
 import { Inject, Injectable } from "@nestjs/common";
-// import { Prisma } from '@prisma/client';
 import { PrismaService } from "nestjs-prisma";
-// import { PrismaService } from 'prisma/prisma.service';
 
 import { CreateRoleInput } from "./dto/create-role.input";
 import { UpdateRoleInput } from "./dto/update-role.input";

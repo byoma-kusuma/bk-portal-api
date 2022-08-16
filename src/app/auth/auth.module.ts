@@ -1,4 +1,4 @@
-import { Module } from "@nestjs/common";
+import { CacheModule, CACHE_MANAGER, Module } from "@nestjs/common";
 import { JwtModule } from "@nestjs/jwt";
 import { PassportModule } from "@nestjs/passport";
 import { ConfigService } from "@nestjs/config";
@@ -7,11 +7,13 @@ import { GqlAuthGuard } from "./gql-auth.guard";
 import { AuthService } from "./auth.service";
 import { AuthResolver } from "./auth.resolver";
 import { JwtStrategy } from "./jwt.strategy";
-import { SecurityConfig } from "../common/configs/config.interface";
+import { SecurityConfig } from "../../common/configs/config.interface";
+import { Otp } from "./otp.service";
 // import { PrismaService } from 'prisma/prisma.service';
 
 @Module({
   imports: [
+    CacheModule.register(),
     PassportModule.register({ defaultStrategy: "jwt" }),
     JwtModule.registerAsync({
       useFactory: async (configService: ConfigService) => {
@@ -31,7 +33,8 @@ import { SecurityConfig } from "../common/configs/config.interface";
     AuthResolver,
     JwtStrategy,
     GqlAuthGuard,
-    PasswordService
+    PasswordService,
+    Otp
   ],
   exports: [GqlAuthGuard]
 })

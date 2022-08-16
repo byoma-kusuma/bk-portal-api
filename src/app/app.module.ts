@@ -1,25 +1,24 @@
 import { PrismaModule } from "nestjs-prisma";
 
 import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
-import { Module } from "@nestjs/common";
+import { CacheModule, Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { GraphQLModule } from "@nestjs/graphql";
 
-import config from "../src/common/configs/config";
+import config from "../../src/common/configs/config";
 import { AppController } from "./app.controller";
 import { AppResolver } from "./app.resolver";
 import { AppService } from "./app.service";
-import { AuthModule } from "./auth/auth.module";
-import { GqlConfigService } from "./gql-config.service";
-import { RolesModule } from "./roles/roles.module";
-import { UsersModule } from "./users/users.module";
-import { MembersModule } from "./members/members.module";
+import { AuthModule } from "../app/auth/auth.module";
+import { GqlConfigService } from "../gql-config.service";
+import { RolesModule } from "../app/roles/roles.module";
+import { UsersModule } from "../app/users/users.module";
+import { MembersModule } from "../app/members/members.module";
 import { ThrottlerModule } from "@nestjs/throttler";
-import { APP_GUARD } from "@nestjs/core";
-import { GqlThrottlerGuard } from "./common/throttling/GqlThrottlerGuard";
 
 @Module({
   imports: [
+    CacheModule.register(),
     ThrottlerModule.forRoot({
       ttl: 20,
       limit: 20
@@ -44,13 +43,6 @@ import { GqlThrottlerGuard } from "./common/throttling/GqlThrottlerGuard";
     MembersModule
   ],
   controllers: [AppController],
-  providers: [
-    AppService,
-    AppResolver
-    /* { */
-    /*   provide: APP_GUARD, */
-    /*   useClass: GqlThrottlerGuard */
-    /* } */
-  ]
+  providers: [AppService, AppResolver]
 })
 export class AppModule {}

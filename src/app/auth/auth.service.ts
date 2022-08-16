@@ -6,13 +6,16 @@ import {
   NotFoundException,
   BadRequestException,
   ConflictException,
-  UnauthorizedException
+  UnauthorizedException,
+  InternalServerErrorException
 } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { JwtService } from "@nestjs/jwt";
 import { PasswordService } from "./password.service";
 import { Token } from "./models/token.model";
-import { SecurityConfig } from "../common/configs/config.interface";
+import { SecurityConfig } from "../../common/configs/config.interface";
+import * as nodemailer from "nodemailer";
+import { Otp } from "./otp.service";
 
 @Injectable()
 export class AuthService {
@@ -20,7 +23,8 @@ export class AuthService {
     private readonly jwtService: JwtService,
     private readonly prisma: PrismaService,
     private readonly passwordService: PasswordService,
-    private readonly configService: ConfigService
+    private readonly configService: ConfigService,
+    private readonly otp: Otp
   ) {}
 
   async login(userName: string, password: string): Promise<Token> {
@@ -34,7 +38,6 @@ export class AuthService {
       password,
       user.password
     );
-
     if (!passwordValid) {
       throw new BadRequestException("You entered a wrong password!");
     }
@@ -76,6 +79,46 @@ export class AuthService {
       secret: this.configService.get("JWT_REFRESH_SECRET"),
       expiresIn: securityConfig.refreshIn
     });
+  }
+
+  /* async resetPassword(otp: string, userName: string) { */
+  /*        */
+  /* } */
+
+  async initiateRequestPassword(userName: string) {
+    const user = await this.prisma.user.findUnique({
+      where: {
+        userName
+      },
+      include: {
+        member: {
+          select: {
+            id: true,
+            email: true
+          }
+        }
+      }
+    });
+    if (!user || user.isDeleted || !user.member || !user.member.email) {
+      throw new InternalServerErrorException(
+        "This request cannot be processed!"
+      );
+    }
+    const otp = await this.otp.create(120, user.id);
+    const client = nodemailer.createTransport({
+      service: "Gmail",
+      auth: {
+        user: "xamoghx@gmail.com",
+        pass: "zhvchnxxzjfcomgw"
+      }
+    });
+    client.sendMail({
+      from: "xamoghx@gmail.com",
+      to: "xamoghx@gmail.com",
+      subject: "BK portal password reset",
+      text: `Your password reset otp is ${otp}`
+    });
+    return user;
   }
 
   refreshToken(token: string) {

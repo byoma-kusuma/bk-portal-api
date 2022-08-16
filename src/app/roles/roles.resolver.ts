@@ -9,15 +9,15 @@ import {
   Info
 } from "@nestjs/graphql";
 import { RolesService } from "./roles.service";
-import { Role } from "./entities/role.entity";
+import { Role } from "./entities/role.model";
 import { CreateRoleInput } from "./dto/create-role.input";
 import { UpdateRoleInput } from "./dto/update-role.input";
 import { Logger } from "@nestjs/common";
 import { PrismaSelect } from "@paljs/plugins";
 import { GraphQLResolveInfo } from "graphql";
 import { User } from "../users/models/user.model";
-import { RoleWhereInput } from "../@generated/role/role-where.input";
-import { RoleWhereUniqueInput } from "../@generated/role/role-where-unique.input";
+import { RoleWhereInput } from "../../@generated/role/role-where.input";
+import { RoleWhereUniqueInput } from "../../@generated/role/role-where-unique.input";
 
 @Resolver(() => Role)
 export class RolesResolver {

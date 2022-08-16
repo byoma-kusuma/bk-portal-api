@@ -250,6 +250,7 @@ type Mutation {
   createMember(createMemberInput: CreateMemberInput!): Member!
   createRole(createRoleInput: CreateRoleInput!): Role!
   createUser(createUserInput: CreateUserInput!): User!
+  initiateResetPassword(resetPasswordInitiateInput: ResetPasswordInitiateInput!): User!
   login(data: LoginInput!): Auth!
   refreshToken(token: JWT!): Token!
   removeMember(id: String!): Member!
@@ -290,6 +291,10 @@ type Query {
   roles(where: RoleWhereInput): [Role!]!
   user(id: String!): User!
   users: [User!]!
+}
+
+input ResetPasswordInitiateInput {
+  userName: String!
 }
 
 type Role {
