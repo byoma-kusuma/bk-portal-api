@@ -14,16 +14,19 @@ import { GqlConfigService } from "./gql-config.service";
 import { RolesModule } from "./roles/roles.module";
 import { UsersModule } from "./users/users.module";
 import { MembersModule } from "./members/members.module";
+import { ThrottlerModule } from "@nestjs/throttler";
+import { APP_GUARD } from "@nestjs/core";
+import { GqlThrottlerGuard } from "./common/throttling/GqlThrottlerGuard";
 
 @Module({
   imports: [
+    ThrottlerModule.forRoot({
+      ttl: 20,
+      limit: 20
+    }),
     ConfigModule.forRoot({ isGlobal: true, load: [config] }),
     PrismaModule.forRootAsync({
       isGlobal: true,
-      // prismaServiceOptions: {
-      //   middlewares: [loggingMiddleware()], // configure your prisma middleware
-      // },
-
       useFactory: () => ({
         prismaOptions: {
           log: ["info", "query"]
@@ -31,18 +34,23 @@ import { MembersModule } from "./members/members.module";
         explicitConnect: false
       })
     }),
-
     GraphQLModule.forRootAsync<ApolloDriverConfig>({
       driver: ApolloDriver,
       useClass: GqlConfigService
     }),
-
     AuthModule,
     UsersModule,
     RolesModule,
     MembersModule
   ],
   controllers: [AppController],
-  providers: [AppService, AppResolver]
+  providers: [
+    AppService,
+    AppResolver
+    /* { */
+    /*   provide: APP_GUARD, */
+    /*   useClass: GqlThrottlerGuard */
+    /* } */
+  ]
 })
 export class AppModule {}

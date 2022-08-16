@@ -32,7 +32,6 @@ import { SecurityConfig } from "../common/configs/config.interface";
     JwtStrategy,
     GqlAuthGuard,
     PasswordService
-    // PrismaService,
   ],
   exports: [GqlAuthGuard]
 })
