@@ -5,15 +5,15 @@ import { CacheModule, Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { GraphQLModule } from "@nestjs/graphql";
 
-import config from "../src/common/configs/config";
+import config from "../../src/common/configs/config";
 import { AppController } from "./app.controller";
 import { AppResolver } from "./app.resolver";
 import { AppService } from "./app.service";
-import { AuthModule } from "./auth/auth.module";
-import { GqlConfigService } from "./gql-config.service";
-import { RolesModule } from "./roles/roles.module";
-import { UsersModule } from "./users/users.module";
-import { MembersModule } from "./members/members.module";
+import { AuthModule } from "../app/auth/auth.module";
+import { GqlConfigService } from "../gql-config.service";
+import { RolesModule } from "../app/roles/roles.module";
+import { UsersModule } from "../app/users/users.module";
+import { MembersModule } from "../app/members/members.module";
 import { ThrottlerModule } from "@nestjs/throttler";
 
 @Module({

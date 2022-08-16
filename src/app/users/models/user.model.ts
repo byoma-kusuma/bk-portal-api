@@ -5,9 +5,9 @@ import {
   Field
 } from "@nestjs/graphql";
 import { UserStatus } from "@prisma/client";
-import { Member } from "src/members/entities/member.entity";
-import { BaseModel } from "../../common/models/base.model";
-import { Role } from "../../roles/entities/role.entity";
+import { Member } from "src/app/members/entities/member.entity";
+import { BaseModel } from "../../../common/models/base.model";
+import { Role } from "../../roles/entities/role.model";
 
 registerEnumType(UserStatus, {
   name: "Status",

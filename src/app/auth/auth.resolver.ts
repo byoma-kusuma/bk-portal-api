@@ -15,7 +15,7 @@ import { GqlThrottlerGuard } from "src/common/throttling/GqlThrottlerGuard";
 import { Throttle } from "@nestjs/throttler";
 import { ResetPasswordInput } from "./dto/reset-password.input";
 import { ResetPasswordInitiateInput } from "./dto/reset-password-initiate.input";
-import { User } from "src/users/models/user.model";
+import { User } from "src/app/users/models/user.model";
 
 @Resolver(() => Auth)
 export class AuthResolver {

@@ -5,7 +5,7 @@ import {
   MembershipType
 } from "@prisma/client";
 import { BaseModel } from "src/common/models/base.model";
-import { User } from "src/users/models/user.model";
+import { User } from "src/app/users/models/user.model";
 
 registerEnumType(GenderType, {
   name: "Gender_Type",

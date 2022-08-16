@@ -13,7 +13,7 @@ import { ConfigService } from "@nestjs/config";
 import { JwtService } from "@nestjs/jwt";
 import { PasswordService } from "./password.service";
 import { Token } from "./models/token.model";
-import { SecurityConfig } from "../common/configs/config.interface";
+import { SecurityConfig } from "../../common/configs/config.interface";
 import * as nodemailer from "nodemailer";
 import { Otp } from "./otp.service";
 
