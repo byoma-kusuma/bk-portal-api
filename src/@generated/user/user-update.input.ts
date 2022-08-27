@@ -4,6 +4,7 @@ import { UserStatus } from '../prisma/user-status.enum';
 import { PasswordHistoryUpdateOneWithoutUserInput } from '../password-history/password-history-update-one-without-user.input';
 import { RoleUpdateOneRequiredWithoutUsersInput } from '../role/role-update-one-required-without-users.input';
 import { MemberUpdateOneRequiredWithoutUserInput } from '../member/member-update-one-required-without-user.input';
+import { PasswordTokenUpdateOneWithoutUserInput } from '../password-token/password-token-update-one-without-user.input';
 
 @InputType()
 export class UserUpdateInput {
@@ -49,4 +50,7 @@ export class UserUpdateInput {
 
     @Field(() => MemberUpdateOneRequiredWithoutUserInput, {nullable:true})
     member?: MemberUpdateOneRequiredWithoutUserInput;
+
+    @Field(() => PasswordTokenUpdateOneWithoutUserInput, {nullable:true})
+    passwordToken?: PasswordTokenUpdateOneWithoutUserInput;
 }

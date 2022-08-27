@@ -19,7 +19,6 @@ CREATE TABLE "User" (
     "userName" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "avatar" TEXT,
-    "email" TEXT,
     "isDeleted" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -97,11 +96,19 @@ CREATE TABLE "PasswordHistory" (
     CONSTRAINT "PasswordHistory_pkey" PRIMARY KEY ("id")
 );
 
--- CreateIndex
-CREATE UNIQUE INDEX "User_userName_key" ON "User"("userName");
+-- CreateTable
+CREATE TABLE "PasswordToken" (
+    "id" TEXT NOT NULL,
+    "token" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+    "userId" TEXT NOT NULL,
+
+    CONSTRAINT "PasswordToken_pkey" PRIMARY KEY ("id")
+);
 
 -- CreateIndex
-CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
+CREATE UNIQUE INDEX "User_userName_key" ON "User"("userName");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_uniqueKey_key" ON "User"("uniqueKey");
@@ -124,6 +131,9 @@ CREATE UNIQUE INDEX "PasswordHistory_uniqueKey_key" ON "PasswordHistory"("unique
 -- CreateIndex
 CREATE UNIQUE INDEX "PasswordHistory_userId_key" ON "PasswordHistory"("userId");
 
+-- CreateIndex
+CREATE UNIQUE INDEX "PasswordToken_userId_key" ON "PasswordToken"("userId");
+
 -- AddForeignKey
 ALTER TABLE "User" ADD CONSTRAINT "User_roleId_fkey" FOREIGN KEY ("roleId") REFERENCES "Role"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
@@ -132,3 +142,6 @@ ALTER TABLE "User" ADD CONSTRAINT "User_memberId_fkey" FOREIGN KEY ("memberId") 
 
 -- AddForeignKey
 ALTER TABLE "PasswordHistory" ADD CONSTRAINT "PasswordHistory_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "PasswordToken" ADD CONSTRAINT "PasswordToken_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

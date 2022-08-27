@@ -3,6 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { UserStatus } from '../prisma/user-status.enum';
 import { PasswordHistoryUpdateOneWithoutUserInput } from '../password-history/password-history-update-one-without-user.input';
 import { RoleUpdateOneRequiredWithoutUsersInput } from '../role/role-update-one-required-without-users.input';
+import { PasswordTokenUpdateOneWithoutUserInput } from '../password-token/password-token-update-one-without-user.input';
 
 @InputType()
 export class UserUpdateWithoutMemberInput {
@@ -45,4 +46,7 @@ export class UserUpdateWithoutMemberInput {
 
     @Field(() => RoleUpdateOneRequiredWithoutUsersInput, {nullable:true})
     role?: RoleUpdateOneRequiredWithoutUsersInput;
+
+    @Field(() => PasswordTokenUpdateOneWithoutUserInput, {nullable:true})
+    passwordToken?: PasswordTokenUpdateOneWithoutUserInput;
 }

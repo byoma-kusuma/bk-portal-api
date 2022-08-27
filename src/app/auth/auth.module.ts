@@ -8,12 +8,12 @@ import { AuthService } from "./auth.service";
 import { AuthResolver } from "./auth.resolver";
 import { JwtStrategy } from "./jwt.strategy";
 import { SecurityConfig } from "../../common/configs/config.interface";
-import { Otp } from "./otp.service";
+import { EmailService } from "../email/email.service";
+import { PasswordTokenService } from "../password-token/password-token.service";
 // import { PrismaService } from 'prisma/prisma.service';
 
 @Module({
   imports: [
-    CacheModule.register(),
     PassportModule.register({ defaultStrategy: "jwt" }),
     JwtModule.registerAsync({
       useFactory: async (configService: ConfigService) => {
@@ -34,7 +34,8 @@ import { Otp } from "./otp.service";
     JwtStrategy,
     GqlAuthGuard,
     PasswordService,
-    Otp
+    EmailService,
+    PasswordTokenService
   ],
   exports: [GqlAuthGuard]
 })
