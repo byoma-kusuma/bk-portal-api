@@ -5,6 +5,7 @@ import { UserStatus } from '../prisma/user-status.enum';
 import { PasswordHistory } from '../password-history/password-history.model';
 import { Role } from '../role/role.model';
 import { Member } from '../member/member.model';
+import { PasswordToken } from '../password-token/password-token.model';
 
 @ObjectType()
 export class User {
@@ -56,4 +57,7 @@ export class User {
 
     @Field(() => String, {nullable:false})
     memberId!: string;
+
+    @Field(() => PasswordToken, {nullable:true})
+    passwordToken?: PasswordToken | null;
 }

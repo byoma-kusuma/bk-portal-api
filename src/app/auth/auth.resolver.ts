@@ -1,27 +1,24 @@
-import {
-  Resolver,
-  Mutation,
-  Args,
-  Parent,
-  ResolveField
-} from "@nestjs/graphql";
+import { Resolver, Mutation, Args } from "@nestjs/graphql";
 import { AuthService } from "./auth.service";
 import { Auth } from "./models/auth.model";
 import { Token } from "./models/token.model";
 import { LoginInput } from "./dto/login.input";
 import { RefreshTokenInput } from "./dto/refresh-token.input";
-import { Query, UseGuards } from "@nestjs/common";
+import { UseGuards } from "@nestjs/common";
 import { GqlThrottlerGuard } from "src/common/throttling/GqlThrottlerGuard";
 import { Throttle } from "@nestjs/throttler";
 import { ResetPasswordInput } from "./dto/reset-password.input";
 import { ResetPasswordInitiateInput } from "./dto/reset-password-initiate.input";
-import { User } from "src/app/users/models/user.model";
+import ResponseStatus from "src/common/ResponseClasses/ResponseStatus";
+
+// 4 requests per 60 secods
+const AUTH_THROTTLE_RATE = [4, 60];
 
 @Resolver(() => Auth)
 export class AuthResolver {
   constructor(private readonly auth: AuthService) {}
 
-  @Throttle(4, 60)
+  @Throttle(...AUTH_THROTTLE_RATE)
   @UseGuards(GqlThrottlerGuard)
   @Mutation(() => Auth)
   async login(@Args("data") { userName, password }: LoginInput) {
@@ -35,24 +32,27 @@ export class AuthResolver {
     };
   }
 
-  @Throttle(4, 60)
+  @Throttle(...AUTH_THROTTLE_RATE)
   @UseGuards(GqlThrottlerGuard)
-  @Mutation(() => User)
+  @Mutation(() => ResponseStatus)
   async initiateResetPassword(
     @Args("resetPasswordInitiateInput")
     resetPasswordInitiateInput: ResetPasswordInitiateInput
   ) {
-    return this.auth.initiateRequestPassword(
-      resetPasswordInitiateInput.userName
-    );
+    // dont await here because we want response to be immediate and ambigious for all scenarios
+    this.auth.initiateRequestPassword(resetPasswordInitiateInput.userName);
+    return new ResponseStatus("Completed");
   }
 
-  /* @Mutation(() => Auth) */
-  /* async resetPassword( */
-  /*   @Args("resetPasswordInput") resetPasswordInput: ResetPasswordInput */
-  /* ) { */
-  /*   return this.auth.resetPassword(resetPasswordInput.otp); */
-  /* } */
+  @Throttle(...AUTH_THROTTLE_RATE)
+  @UseGuards(GqlThrottlerGuard)
+  @Mutation(() => ResponseStatus)
+  async resetPassword(
+    @Args("resetPasswordInput") resetPasswordInput: ResetPasswordInput
+  ) {
+    await this.auth.resetPassword(resetPasswordInput);
+    return new ResponseStatus("Completed");
+  }
 
   @Mutation(() => Token)
   async refreshToken(@Args() { token }: RefreshTokenInput) {

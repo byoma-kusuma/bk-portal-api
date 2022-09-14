@@ -7,6 +7,7 @@ import { EnumUserStatusFilter } from '../prisma/enum-user-status-filter.input';
 import { PasswordHistoryRelationFilter } from '../password-history/password-history-relation-filter.input';
 import { RoleRelationFilter } from '../role/role-relation-filter.input';
 import { MemberRelationFilter } from '../member/member-relation-filter.input';
+import { PasswordTokenRelationFilter } from '../password-token/password-token-relation-filter.input';
 
 @InputType()
 export class UserWhereInput {
@@ -67,4 +68,7 @@ export class UserWhereInput {
 
     @Field(() => StringFilter, {nullable:true})
     memberId?: StringFilter;
+
+    @Field(() => PasswordTokenRelationFilter, {nullable:true})
+    passwordToken?: PasswordTokenRelationFilter;
 }

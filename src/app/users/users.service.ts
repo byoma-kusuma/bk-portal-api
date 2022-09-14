@@ -22,15 +22,15 @@ export class UsersService {
   findMany = this.prisma.user.findMany;
   findUnique = this.prisma.user.findUnique;
 
-  async generateUserCredentials(member: Member) {
+  async generateUserCredentials(member: Member): Promise<{
+    userName: string;
+    password: string;
+  }> {
     const password = await this.passwordService.hashPassword(uuidv4());
-    const userNumber = Math.floor(Math.random() * 10000);
-    const userName = `${member.firstName.replace(" ", "-")}_${
+    const count = await this.prisma.user.count();
+    const userName = `${member.firstName.replace(" ", "-")}-${
       member.lastName
-    }-${userNumber.toLocaleString("en-US", {
-      minimumIntegerDigits: 5,
-      useGrouping: false
-    })}`;
+    }-${count + 1}`;
     return { userName, password };
   }
 

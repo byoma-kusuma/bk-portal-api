@@ -4,6 +4,7 @@ import { SortOrder } from '../prisma/sort-order.enum';
 import { PasswordHistoryOrderByWithRelationInput } from '../password-history/password-history-order-by-with-relation.input';
 import { RoleOrderByWithRelationInput } from '../role/role-order-by-with-relation.input';
 import { MemberOrderByWithRelationInput } from '../member/member-order-by-with-relation.input';
+import { PasswordTokenOrderByWithRelationInput } from '../password-token/password-token-order-by-with-relation.input';
 
 @InputType()
 export class UserOrderByWithRelationInput {
@@ -55,4 +56,7 @@ export class UserOrderByWithRelationInput {
 
     @Field(() => SortOrder, {nullable:true})
     memberId?: keyof typeof SortOrder;
+
+    @Field(() => PasswordTokenOrderByWithRelationInput, {nullable:true})
+    passwordToken?: PasswordTokenOrderByWithRelationInput;
 }

@@ -4,8 +4,11 @@ import { IsString, Length } from "class-validator";
 @InputType()
 export class ResetPasswordInput {
   @IsString()
-  otp: string;
+  token: string;
 
   @IsString()
-  userName: string;
+  userId: string;
+
+  @IsString()
+  password: string;
 }

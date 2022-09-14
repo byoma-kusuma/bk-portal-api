@@ -6,7 +6,6 @@ datasource db {
 generator client {
     provider = "prisma-client-js"
 }
-
 generator nestgraphql {
     provider             = "prisma-nestjs-graphql"
     output               = "../src/@generated"
@@ -40,10 +39,12 @@ model User {
     roleId          String
     member          Member           @relation(fields: [memberId], references: [id])
     memberId        String           @unique
+
+    passwordToken PasswordToken?
 }
 
 enum Type {
-    SYSTEM
+    SYSTEM 
     DEFAULT
 }
 
@@ -140,4 +141,17 @@ model PasswordHistory {
     // Relation fields
     user   User   @relation(fields: [userId], references: [id])
     userId String @unique
+}
+
+model PasswordToken {
+    id String @id @default(cuid())
+    token String
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    // Relation fields
+    user   User   @relation(fields: [userId], references: [id])
+    userId String @unique
+
 }

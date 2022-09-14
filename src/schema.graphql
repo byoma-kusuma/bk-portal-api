@@ -250,12 +250,13 @@ type Mutation {
   createMember(createMemberInput: CreateMemberInput!): Member!
   createRole(createRoleInput: CreateRoleInput!): Role!
   createUser(createUserInput: CreateUserInput!): User!
-  initiateResetPassword(resetPasswordInitiateInput: ResetPasswordInitiateInput!): User!
+  initiateResetPassword(resetPasswordInitiateInput: ResetPasswordInitiateInput!): ResponseStatus!
   login(data: LoginInput!): Auth!
   refreshToken(token: JWT!): Token!
   removeMember(id: String!): Member!
   removeRole(id: Int!): Role!
   removeUser(id: String!): User!
+  resetPassword(resetPasswordInput: ResetPasswordInput!): ResponseStatus!
   updateMember(updateMemberInput: UpdateMemberInput!): Member!
   updateRole(updateRoleInput: UpdateRoleInput!): Role!
 }
@@ -281,6 +282,23 @@ input PasswordHistoryWhereInput {
   userId: StringFilter
 }
 
+input PasswordTokenRelationFilter {
+  is: PasswordTokenWhereInput
+  isNot: PasswordTokenWhereInput
+}
+
+input PasswordTokenWhereInput {
+  AND: [PasswordTokenWhereInput!]
+  NOT: [PasswordTokenWhereInput!]
+  OR: [PasswordTokenWhereInput!]
+  createdAt: DateTimeFilter
+  id: StringFilter
+  token: StringFilter
+  updatedAt: DateTimeFilter
+  user: UserRelationFilter
+  userId: StringFilter
+}
+
 type Query {
   hello(name: String!): String!
   helloWorld: String!
@@ -295,6 +313,16 @@ type Query {
 
 input ResetPasswordInitiateInput {
   userName: String!
+}
+
+input ResetPasswordInput {
+  password: String!
+  token: String!
+  userId: String!
+}
+
+type ResponseStatus {
+  status: String!
 }
 
 type Role {
@@ -456,6 +484,7 @@ input UserWhereInput {
   memberId: StringFilter
   password: StringFilter
   passwordHistory: PasswordHistoryRelationFilter
+  passwordToken: PasswordTokenRelationFilter
   role: RoleRelationFilter
   roleId: StringFilter
   status: EnumUserStatusFilter

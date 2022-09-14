@@ -3,6 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { UserStatus } from '../prisma/user-status.enum';
 import { PasswordHistoryCreateNestedOneWithoutUserInput } from '../password-history/password-history-create-nested-one-without-user.input';
 import { MemberCreateNestedOneWithoutUserInput } from '../member/member-create-nested-one-without-user.input';
+import { PasswordTokenCreateNestedOneWithoutUserInput } from '../password-token/password-token-create-nested-one-without-user.input';
 
 @InputType()
 export class UserCreateWithoutRoleInput {
@@ -45,4 +46,7 @@ export class UserCreateWithoutRoleInput {
 
     @Field(() => MemberCreateNestedOneWithoutUserInput, {nullable:false})
     member!: MemberCreateNestedOneWithoutUserInput;
+
+    @Field(() => PasswordTokenCreateNestedOneWithoutUserInput, {nullable:true})
+    passwordToken?: PasswordTokenCreateNestedOneWithoutUserInput;
 }
