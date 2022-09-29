@@ -5,9 +5,9 @@ import {
   Args,
   ResolveField,
   Parent,
-  ResolveProperty
+  Int
 } from "@nestjs/graphql";
-import { UseGuards } from "@nestjs/common";
+import { ParseIntPipe, UseGuards } from "@nestjs/common";
 import { CurrentUser } from "../../common/decorators/currentUser.decorator";
 import { GqlAuthGuard } from "../auth/gql-auth.guard";
 import { UsersService } from "./users.service";
@@ -33,7 +33,7 @@ export class UsersResolver {
   }
 
   @Query(() => User, { name: "user" })
-  findOne(@Args("id") id: string) {
+  findOne(@Args("id", ParseIntPipe) id: number) {
     return this.usersService.findOne(id);
   }
 
@@ -43,7 +43,10 @@ export class UsersResolver {
   }
 
   @Mutation(() => User)
-  removeUser(@Args("id") id: string, @CurrentUser() user: User) {
+  removeUser(
+    @Args("id", { type: () => Int }) id: number,
+    @CurrentUser() user: User
+  ) {
     return this.usersService.remove(id, user.id);
   }
 

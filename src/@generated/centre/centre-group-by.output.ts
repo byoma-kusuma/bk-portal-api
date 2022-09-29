@@ -22,32 +22,17 @@ export class CentreGroupBy {
     @Field(() => Int, {nullable:false})
     displaySequence!: number;
 
-    @Field(() => String, {nullable:false})
-    streetAddress!: string;
-
-    @Field(() => String, {nullable:false})
-    city!: string;
-
-    @Field(() => String, {nullable:false})
-    stateProvince!: string;
-
-    @Field(() => String, {nullable:false})
-    country!: string;
-
-    @Field(() => Date, {nullable:false})
-    createdAt!: Date | string;
-
-    @Field(() => Date, {nullable:false})
-    updatedAt!: Date | string;
+    @Field(() => String, {nullable:true})
+    streetAddress?: string;
 
     @Field(() => String, {nullable:true})
-    uniqueKey?: string;
+    city?: string;
 
     @Field(() => String, {nullable:true})
-    updatedBy?: string;
+    stateProvince?: string;
 
     @Field(() => String, {nullable:true})
-    createdBy?: string;
+    country?: string;
 
     @Field(() => CentreCountAggregate, {nullable:true})
     _count?: CentreCountAggregate;

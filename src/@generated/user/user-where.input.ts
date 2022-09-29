@@ -1,5 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { IntFilter } from '../prisma/int-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
@@ -21,8 +22,8 @@ export class UserWhereInput {
     @Field(() => [UserWhereInput], {nullable:true})
     NOT?: Array<UserWhereInput>;
 
-    @Field(() => StringFilter, {nullable:true})
-    id?: StringFilter;
+    @Field(() => IntFilter, {nullable:true})
+    id?: IntFilter;
 
     @Field(() => StringFilter, {nullable:true})
     userName?: StringFilter;
@@ -60,14 +61,14 @@ export class UserWhereInput {
     @Field(() => RoleRelationFilter, {nullable:true})
     role?: RoleRelationFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    roleId?: StringFilter;
+    @Field(() => IntFilter, {nullable:true})
+    roleId?: IntFilter;
 
     @Field(() => MemberRelationFilter, {nullable:true})
     member?: MemberRelationFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    memberId?: StringFilter;
+    @Field(() => IntFilter, {nullable:true})
+    memberId?: IntFilter;
 
     @Field(() => PasswordTokenRelationFilter, {nullable:true})
     passwordToken?: PasswordTokenRelationFilter;

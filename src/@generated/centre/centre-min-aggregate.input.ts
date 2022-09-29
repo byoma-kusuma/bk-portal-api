@@ -27,19 +27,4 @@ export class CentreMinAggregateInput {
 
     @Field(() => Boolean, {nullable:true})
     country?: true;
-
-    @Field(() => Boolean, {nullable:true})
-    createdAt?: true;
-
-    @Field(() => Boolean, {nullable:true})
-    updatedAt?: true;
-
-    @Field(() => Boolean, {nullable:true})
-    uniqueKey?: true;
-
-    @Field(() => Boolean, {nullable:true})
-    updatedBy?: true;
-
-    @Field(() => Boolean, {nullable:true})
-    createdBy?: true;
 }

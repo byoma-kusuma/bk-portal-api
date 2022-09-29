@@ -4,6 +4,7 @@ import { ID } from '@nestjs/graphql';
 import { UserStatus } from '../prisma/user-status.enum';
 import { PasswordHistory } from '../password-history/password-history.model';
 import { Role } from '../role/role.model';
+import { Int } from '@nestjs/graphql';
 import { Member } from '../member/member.model';
 import { PasswordToken } from '../password-token/password-token.model';
 
@@ -11,7 +12,7 @@ import { PasswordToken } from '../password-token/password-token.model';
 export class User {
 
     @Field(() => ID, {nullable:false})
-    id!: string;
+    id!: number;
 
     @Field(() => String, {nullable:false})
     userName!: string;
@@ -49,14 +50,14 @@ export class User {
     @Field(() => Role, {nullable:false})
     role?: Role;
 
-    @Field(() => String, {nullable:false})
-    roleId!: string;
+    @Field(() => Int, {nullable:false})
+    roleId!: number;
 
     @Field(() => Member, {nullable:false})
     member?: Member;
 
-    @Field(() => String, {nullable:false})
-    memberId!: string;
+    @Field(() => Int, {nullable:false})
+    memberId!: number;
 
     @Field(() => PasswordToken, {nullable:true})
     passwordToken?: PasswordToken | null;

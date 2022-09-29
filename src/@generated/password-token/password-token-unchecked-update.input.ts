@@ -1,11 +1,12 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { Int } from '@nestjs/graphql';
 
 @InputType()
 export class PasswordTokenUncheckedUpdateInput {
 
-    @Field(() => String, {nullable:true})
-    id?: string;
+    @Field(() => Int, {nullable:true})
+    id?: number;
 
     @Field(() => String, {nullable:true})
     token?: string;
@@ -16,6 +17,6 @@ export class PasswordTokenUncheckedUpdateInput {
     @Field(() => Date, {nullable:true})
     updatedAt?: Date | string;
 
-    @Field(() => String, {nullable:true})
-    userId?: string;
+    @Field(() => Int, {nullable:true})
+    userId?: number;
 }

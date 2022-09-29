@@ -1,5 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { Int } from '@nestjs/graphql';
 import { UserStatus } from '../prisma/user-status.enum';
 import { PasswordHistoryUncheckedCreateNestedOneWithoutUserInput } from '../password-history/password-history-unchecked-create-nested-one-without-user.input';
 import { PasswordTokenUncheckedCreateNestedOneWithoutUserInput } from '../password-token/password-token-unchecked-create-nested-one-without-user.input';
@@ -7,8 +8,8 @@ import { PasswordTokenUncheckedCreateNestedOneWithoutUserInput } from '../passwo
 @InputType()
 export class UserUncheckedCreateWithoutMemberInput {
 
-    @Field(() => String, {nullable:true})
-    id?: string;
+    @Field(() => Int, {nullable:true})
+    id?: number;
 
     @Field(() => String, {nullable:false})
     userName!: string;
@@ -40,8 +41,8 @@ export class UserUncheckedCreateWithoutMemberInput {
     @Field(() => UserStatus, {nullable:true})
     status?: keyof typeof UserStatus;
 
-    @Field(() => String, {nullable:false})
-    roleId!: string;
+    @Field(() => Int, {nullable:false})
+    roleId!: number;
 
     @Field(() => PasswordHistoryUncheckedCreateNestedOneWithoutUserInput, {nullable:true})
     passwordHistory?: PasswordHistoryUncheckedCreateNestedOneWithoutUserInput;

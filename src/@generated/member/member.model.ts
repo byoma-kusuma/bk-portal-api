@@ -7,12 +7,14 @@ import { GenderType } from '../prisma/gender-type.enum';
 import { Centre } from '../centre/centre.model';
 import { Int } from '@nestjs/graphql';
 import { User } from '../user/user.model';
+import { MemberGroups } from '../member-groups/member-groups.model';
+import { MemberCount } from './member-count.output';
 
 @ObjectType()
 export class Member {
 
     @Field(() => ID, {nullable:false})
-    id!: string;
+    id!: number;
 
     @Field(() => String, {nullable:true})
     email!: string | null;
@@ -103,4 +105,10 @@ export class Member {
 
     @Field(() => User, {nullable:true})
     user?: User | null;
+
+    @Field(() => [MemberGroups], {nullable:true})
+    memberGroups?: Array<MemberGroups>;
+
+    @Field(() => MemberCount, {nullable:false})
+    _count?: MemberCount;
 }

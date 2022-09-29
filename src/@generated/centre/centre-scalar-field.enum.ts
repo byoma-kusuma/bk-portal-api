@@ -8,12 +8,7 @@ export enum CentreScalarFieldEnum {
     streetAddress = "streetAddress",
     city = "city",
     stateProvince = "stateProvince",
-    country = "country",
-    createdAt = "createdAt",
-    updatedAt = "updatedAt",
-    uniqueKey = "uniqueKey",
-    updatedBy = "updatedBy",
-    createdBy = "createdBy"
+    country = "country"
 }
 
 

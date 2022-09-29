@@ -1,4 +1,4 @@
-import { InputType, Int, Field } from "@nestjs/graphql";
+import { InputType, Field, Int } from "@nestjs/graphql";
 import {
   Centre,
   CentreAffiliationType,
@@ -10,6 +10,7 @@ import {
   IsDate,
   IsEmail,
   IsEnum,
+  IsNumber,
   IsOptional,
   IsPhoneNumber,
   IsString,
@@ -142,5 +143,8 @@ export class CreateMemberInput {
   @MaxLength(512)
   photo?: string;
 
-
+  @Field(() => [Int], { nullable: true })
+  @IsNumber({}, { each: true })
+  @IsOptional()
+  groupIds?: Array<number>;
 }

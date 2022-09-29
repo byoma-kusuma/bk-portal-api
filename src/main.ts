@@ -34,24 +34,26 @@ async function bootstrap() {
   const graphqlConfig = configService.get<GraphqlConfig>("graphql");
 
   // Swagger Api
-  if (swaggerConfig.enabled) {
+  if (swaggerConfig?.enabled) {
     const options = new DocumentBuilder()
-      .setTitle(swaggerConfig.title || "Nestjs")
-      .setDescription(swaggerConfig.description || "The nestjs API description")
-      .setVersion(swaggerConfig.version || "1.0")
+      .setTitle(swaggerConfig?.title || "Nestjs")
+      .setDescription(
+        swaggerConfig?.description || "The nestjs API description"
+      )
+      .setVersion(swaggerConfig?.version || "1.0")
       .build();
     const document = SwaggerModule.createDocument(app, options);
 
-    SwaggerModule.setup(swaggerConfig.path || "api", app, document);
+    SwaggerModule.setup(swaggerConfig?.path || "api", app, document);
   }
 
-  app.setGlobalPrefix(graphqlConfig.globalPrefix);
+  app.setGlobalPrefix(graphqlConfig?.globalPrefix || "api");
 
   // Cors
-  if (corsConfig.enabled) {
+  if (corsConfig?.enabled) {
     app.enableCors();
   }
 
-  await app.listen(nestConfig.port);
+  await app.listen(nestConfig?.port || 7200);
 }
 bootstrap();

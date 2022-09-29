@@ -1,5 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { IntFilter } from '../prisma/int-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
 import { EnumCentreAffiliationTypeFilter } from '../prisma/enum-centre-affiliation-type-filter.input';
@@ -7,8 +8,8 @@ import { EnumMembershipTypeFilter } from '../prisma/enum-membership-type-filter.
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { EnumGenderTypeFilter } from '../prisma/enum-gender-type-filter.input';
 import { CentreRelationFilter } from '../centre/centre-relation-filter.input';
-import { IntFilter } from '../prisma/int-filter.input';
 import { UserRelationFilter } from '../user/user-relation-filter.input';
+import { MemberGroupsListRelationFilter } from '../member-groups/member-groups-list-relation-filter.input';
 
 @InputType()
 export class MemberWhereInput {
@@ -22,8 +23,8 @@ export class MemberWhereInput {
     @Field(() => [MemberWhereInput], {nullable:true})
     NOT?: Array<MemberWhereInput>;
 
-    @Field(() => StringFilter, {nullable:true})
-    id?: StringFilter;
+    @Field(() => IntFilter, {nullable:true})
+    id?: IntFilter;
 
     @Field(() => StringFilter, {nullable:true})
     email?: StringFilter;
@@ -114,4 +115,7 @@ export class MemberWhereInput {
 
     @Field(() => UserRelationFilter, {nullable:true})
     user?: UserRelationFilter;
+
+    @Field(() => MemberGroupsListRelationFilter, {nullable:true})
+    memberGroups?: MemberGroupsListRelationFilter;
 }

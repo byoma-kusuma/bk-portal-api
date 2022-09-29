@@ -1,12 +1,12 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { IntFilter } from '../prisma/int-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
 import { EnumCentreAffiliationTypeFilter } from '../prisma/enum-centre-affiliation-type-filter.input';
 import { EnumMembershipTypeFilter } from '../prisma/enum-membership-type-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { EnumGenderTypeFilter } from '../prisma/enum-gender-type-filter.input';
-import { IntFilter } from '../prisma/int-filter.input';
 
 @InputType()
 export class MemberScalarWhereInput {
@@ -20,8 +20,8 @@ export class MemberScalarWhereInput {
     @Field(() => [MemberScalarWhereInput], {nullable:true})
     NOT?: Array<MemberScalarWhereInput>;
 
-    @Field(() => StringFilter, {nullable:true})
-    id?: StringFilter;
+    @Field(() => IntFilter, {nullable:true})
+    id?: IntFilter;
 
     @Field(() => StringFilter, {nullable:true})
     email?: StringFilter;

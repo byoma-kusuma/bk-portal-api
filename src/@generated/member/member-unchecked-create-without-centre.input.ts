@@ -1,15 +1,17 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { Int } from '@nestjs/graphql';
 import { CentreAffiliationType } from '../prisma/centre-affiliation-type.enum';
 import { MembershipType } from '../prisma/membership-type.enum';
 import { GenderType } from '../prisma/gender-type.enum';
 import { UserUncheckedCreateNestedOneWithoutMemberInput } from '../user/user-unchecked-create-nested-one-without-member.input';
+import { MemberGroupsUncheckedCreateNestedManyWithoutMemberInput } from '../member-groups/member-groups-unchecked-create-nested-many-without-member.input';
 
 @InputType()
 export class MemberUncheckedCreateWithoutCentreInput {
 
-    @Field(() => String, {nullable:true})
-    id?: string;
+    @Field(() => Int, {nullable:true})
+    id?: number;
 
     @Field(() => String, {nullable:true})
     email?: string;
@@ -94,4 +96,7 @@ export class MemberUncheckedCreateWithoutCentreInput {
 
     @Field(() => UserUncheckedCreateNestedOneWithoutMemberInput, {nullable:true})
     user?: UserUncheckedCreateNestedOneWithoutMemberInput;
+
+    @Field(() => MemberGroupsUncheckedCreateNestedManyWithoutMemberInput, {nullable:true})
+    memberGroups?: MemberGroupsUncheckedCreateNestedManyWithoutMemberInput;
 }

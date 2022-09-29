@@ -1,5 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { IntFilter } from '../prisma/int-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { EnumTypeFilter } from '../prisma/enum-type-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
@@ -18,8 +19,8 @@ export class RoleWhereInput {
     @Field(() => [RoleWhereInput], {nullable:true})
     NOT?: Array<RoleWhereInput>;
 
-    @Field(() => StringFilter, {nullable:true})
-    id?: StringFilter;
+    @Field(() => IntFilter, {nullable:true})
+    id?: IntFilter;
 
     @Field(() => StringFilter, {nullable:true})
     name?: StringFilter;

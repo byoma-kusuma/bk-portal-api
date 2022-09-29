@@ -1,15 +1,16 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { Int } from '@nestjs/graphql';
 
 @InputType()
 export class PasswordHistoryWhereUniqueInput {
 
-    @Field(() => String, {nullable:true})
-    id?: string;
+    @Field(() => Int, {nullable:true})
+    id?: number;
 
     @Field(() => String, {nullable:true})
     uniqueKey?: string;
 
-    @Field(() => String, {nullable:true})
-    userId?: string;
+    @Field(() => Int, {nullable:true})
+    userId?: number;
 }

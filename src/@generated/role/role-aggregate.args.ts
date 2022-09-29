@@ -6,6 +6,8 @@ import { RoleOrderByWithRelationInput } from './role-order-by-with-relation.inpu
 import { RoleWhereUniqueInput } from './role-where-unique.input';
 import { Int } from '@nestjs/graphql';
 import { RoleCountAggregateInput } from './role-count-aggregate.input';
+import { RoleAvgAggregateInput } from './role-avg-aggregate.input';
+import { RoleSumAggregateInput } from './role-sum-aggregate.input';
 import { RoleMinAggregateInput } from './role-min-aggregate.input';
 import { RoleMaxAggregateInput } from './role-max-aggregate.input';
 
@@ -30,6 +32,12 @@ export class RoleAggregateArgs {
 
     @Field(() => RoleCountAggregateInput, {nullable:true})
     _count?: RoleCountAggregateInput;
+
+    @Field(() => RoleAvgAggregateInput, {nullable:true})
+    _avg?: RoleAvgAggregateInput;
+
+    @Field(() => RoleSumAggregateInput, {nullable:true})
+    _sum?: RoleSumAggregateInput;
 
     @Field(() => RoleMinAggregateInput, {nullable:true})
     _min?: RoleMinAggregateInput;

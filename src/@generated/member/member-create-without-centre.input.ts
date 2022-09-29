@@ -4,12 +4,10 @@ import { CentreAffiliationType } from '../prisma/centre-affiliation-type.enum';
 import { MembershipType } from '../prisma/membership-type.enum';
 import { GenderType } from '../prisma/gender-type.enum';
 import { UserCreateNestedOneWithoutMemberInput } from '../user/user-create-nested-one-without-member.input';
+import { MemberGroupsCreateNestedManyWithoutMemberInput } from '../member-groups/member-groups-create-nested-many-without-member.input';
 
 @InputType()
 export class MemberCreateWithoutCentreInput {
-
-    @Field(() => String, {nullable:true})
-    id?: string;
 
     @Field(() => String, {nullable:true})
     email?: string;
@@ -94,4 +92,7 @@ export class MemberCreateWithoutCentreInput {
 
     @Field(() => UserCreateNestedOneWithoutMemberInput, {nullable:true})
     user?: UserCreateNestedOneWithoutMemberInput;
+
+    @Field(() => MemberGroupsCreateNestedManyWithoutMemberInput, {nullable:true})
+    memberGroups?: MemberGroupsCreateNestedManyWithoutMemberInput;
 }

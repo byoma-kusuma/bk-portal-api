@@ -7,6 +7,8 @@ import { PasswordTokenScalarFieldEnum } from './password-token-scalar-field.enum
 import { PasswordTokenScalarWhereWithAggregatesInput } from './password-token-scalar-where-with-aggregates.input';
 import { Int } from '@nestjs/graphql';
 import { PasswordTokenCountAggregateInput } from './password-token-count-aggregate.input';
+import { PasswordTokenAvgAggregateInput } from './password-token-avg-aggregate.input';
+import { PasswordTokenSumAggregateInput } from './password-token-sum-aggregate.input';
 import { PasswordTokenMinAggregateInput } from './password-token-min-aggregate.input';
 import { PasswordTokenMaxAggregateInput } from './password-token-max-aggregate.input';
 
@@ -34,6 +36,12 @@ export class PasswordTokenGroupByArgs {
 
     @Field(() => PasswordTokenCountAggregateInput, {nullable:true})
     _count?: PasswordTokenCountAggregateInput;
+
+    @Field(() => PasswordTokenAvgAggregateInput, {nullable:true})
+    _avg?: PasswordTokenAvgAggregateInput;
+
+    @Field(() => PasswordTokenSumAggregateInput, {nullable:true})
+    _sum?: PasswordTokenSumAggregateInput;
 
     @Field(() => PasswordTokenMinAggregateInput, {nullable:true})
     _min?: PasswordTokenMinAggregateInput;

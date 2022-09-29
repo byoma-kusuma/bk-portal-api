@@ -10,7 +10,4 @@ export class CentreWhereUniqueInput {
 
     @Field(() => String, {nullable:true})
     name?: string;
-
-    @Field(() => String, {nullable:true})
-    uniqueKey?: string;
 }

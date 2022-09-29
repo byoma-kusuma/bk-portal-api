@@ -8,9 +8,6 @@ import { PasswordTokenCreateNestedOneWithoutUserInput } from '../password-token/
 @InputType()
 export class UserCreateWithoutMemberInput {
 
-    @Field(() => String, {nullable:true})
-    id?: string;
-
     @Field(() => String, {nullable:false})
     userName!: string;
 

@@ -5,6 +5,8 @@ import createAvatar from "../src/common/utils/avatar";
 const prisma = new PrismaClient();
 
 async function main() {
+  await prisma.memberGroups.deleteMany();
+  await prisma.group.deleteMany();
   await prisma.user.deleteMany();
   await prisma.role.deleteMany();
   await prisma.member.deleteMany();

@@ -26,7 +26,7 @@ registerEnumType(CentreAffiliationType, {
 @ObjectType()
 export class Member extends BaseModel {
   @Field()
-  id: string;
+  id: number;
 
   @Field(() => String, { nullable: true })
   email?: string;
