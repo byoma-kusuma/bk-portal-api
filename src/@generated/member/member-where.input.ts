@@ -6,6 +6,8 @@ import { EnumCentreAffiliationTypeFilter } from '../prisma/enum-centre-affiliati
 import { EnumMembershipTypeFilter } from '../prisma/enum-membership-type-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { EnumGenderTypeFilter } from '../prisma/enum-gender-type-filter.input';
+import { CentreRelationFilter } from '../centre/centre-relation-filter.input';
+import { IntFilter } from '../prisma/int-filter.input';
 import { UserRelationFilter } from '../user/user-relation-filter.input';
 
 @InputType()
@@ -85,6 +87,12 @@ export class MemberWhereInput {
 
     @Field(() => StringFilter, {nullable:true})
     photo?: StringFilter;
+
+    @Field(() => CentreRelationFilter, {nullable:true})
+    centre?: CentreRelationFilter;
+
+    @Field(() => IntFilter, {nullable:true})
+    centreId?: IntFilter;
 
     @Field(() => BoolFilter, {nullable:true})
     isDeleted?: BoolFilter;

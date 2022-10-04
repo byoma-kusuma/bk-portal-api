@@ -3,6 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { CentreAffiliationType } from '../prisma/centre-affiliation-type.enum';
 import { MembershipType } from '../prisma/membership-type.enum';
 import { GenderType } from '../prisma/gender-type.enum';
+import { CentreCreateNestedOneWithoutUsersInput } from '../centre/centre-create-nested-one-without-users.input';
 
 @InputType()
 export class MemberCreateWithoutUserInput {
@@ -90,4 +91,7 @@ export class MemberCreateWithoutUserInput {
 
     @Field(() => String, {nullable:true})
     createdBy?: string;
+
+    @Field(() => CentreCreateNestedOneWithoutUsersInput, {nullable:true})
+    centre?: CentreCreateNestedOneWithoutUsersInput;
 }

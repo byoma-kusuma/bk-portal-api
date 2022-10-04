@@ -8,6 +8,48 @@ async function main() {
   await prisma.user.deleteMany();
   await prisma.role.deleteMany();
   await prisma.member.deleteMany();
+  await prisma.centre.deleteMany();
+
+
+  const nepalCentre = await prisma.centre.create({
+    data: {
+      name: "Bishal Nagar",
+      displayText: "Bishal Nagar - Kathmandu",
+      displaySequence: 1,
+      streetAddress: "Bishal Nagar",
+      city: "Kathmandu",
+      stateProvince: "Bagmati",
+      country: "Nepal"
+    }
+  });
+
+  console.log({ nepalCentre });
+
+  const ukCentre = await prisma.centre.create({
+    data: {
+      name: "U.K.",
+      displayText: "United Kingdom (UK)",
+      displaySequence: 2,
+      streetAddress: "",
+      city: "Ruislip",
+      stateProvince: "Middlesex",
+      country: "UK"
+    }
+  });
+  console.log({ ukCentre });
+
+  const usCentre = await prisma.centre.create({
+    data: {
+      name: "U.S.",
+      displayText: "United States (USA)",
+      displaySequence: 3,
+      streetAddress: "13342 Regal Crest Drive",
+      city: "Clifton",
+      stateProvince: "Virginia",
+      country: "USA"
+    }
+  });
+  console.log({ usCentre });
 
   const adminRole = await prisma.role.create({
     data: {
@@ -31,6 +73,7 @@ async function main() {
       isMember: true,
       centerAffiliation: "Nepal",
       photo: createAvatar(),
+      centreId: 1,
       user: {
         create: {
           userName: "lisa@simpson.com",
@@ -56,6 +99,7 @@ async function main() {
       isMember: true,
       centerAffiliation: "Nepal",
       photo: createAvatar(),
+      centreId: 2,
       user: {
         create: {
           userName: "bart@simpson.com",

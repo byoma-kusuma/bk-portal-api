@@ -14,6 +14,7 @@ import { UpdateMemberInput } from "./dto/update-member.input";
 import { GqlAuthGuard } from "src/app/auth/gql-auth.guard";
 import { UseGuards } from "@nestjs/common";
 import { User } from "src/app/users/models/user.model";
+import { Centre } from "src/app/centre/entities/centre.entity";
 import { CurrentUser } from "src/common/decorators/currentUser.decorator";
 
 @Resolver(() => Member)
@@ -57,5 +58,13 @@ export class MembersResolver {
       .user();
     if (user.isDeleted) return null;
     return user;
+  }
+
+  @ResolveField(() => Centre)
+  async centre(@Parent() member: Member) {
+    const centre = await this.membersService
+      .findUnique({ where: { id: member.id } })
+      .centre();
+    return centre;
   }
 }

@@ -16,6 +16,26 @@ input BoolFilter {
   not: BoolFilter
 }
 
+type Centre {
+  city: String
+  country: String
+
+  """Identifies the date and time when the object was created."""
+  createdAt: DateTime!
+  displaySequence: Int!
+  displayText: String
+  id: Int!
+  name: String
+  stateProvince: String
+  streetAddress: String
+
+  """Unique key associated with the object."""
+  uniqueKey: String
+
+  """Identifies the date and time when the object was last updated."""
+  updatedAt: DateTime!
+}
+
 enum CentreAffiliationType {
   Australia
   Hetauda
@@ -155,6 +175,7 @@ input LoginInput {
 type Member {
   active: Boolean!
   centerAffiliation: CentreAffiliation_Type!
+  centre: Centre!
 
   """Identifies the date and time when the object was created."""
   createdAt: DateTime!

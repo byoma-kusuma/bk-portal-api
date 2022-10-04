@@ -23,6 +23,7 @@ export enum MemberScalarFieldEnum {
     messenger = "messenger",
     insta = "insta",
     photo = "photo",
+    centreId = "centreId",
     isDeleted = "isDeleted",
     createdAt = "createdAt",
     updatedAt = "updatedAt",

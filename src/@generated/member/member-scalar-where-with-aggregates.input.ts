@@ -6,6 +6,7 @@ import { EnumCentreAffiliationTypeWithAggregatesFilter } from '../prisma/enum-ce
 import { EnumMembershipTypeWithAggregatesFilter } from '../prisma/enum-membership-type-with-aggregates-filter.input';
 import { DateTimeWithAggregatesFilter } from '../prisma/date-time-with-aggregates-filter.input';
 import { EnumGenderTypeWithAggregatesFilter } from '../prisma/enum-gender-type-with-aggregates-filter.input';
+import { IntWithAggregatesFilter } from '../prisma/int-with-aggregates-filter.input';
 
 @InputType()
 export class MemberScalarWhereWithAggregatesInput {
@@ -84,6 +85,9 @@ export class MemberScalarWhereWithAggregatesInput {
 
     @Field(() => StringWithAggregatesFilter, {nullable:true})
     photo?: StringWithAggregatesFilter;
+
+    @Field(() => IntWithAggregatesFilter, {nullable:true})
+    centreId?: IntWithAggregatesFilter;
 
     @Field(() => BoolWithAggregatesFilter, {nullable:true})
     isDeleted?: BoolWithAggregatesFilter;
