@@ -7,10 +7,10 @@ export class Centre {
   id: number;
 
   @Field(() => String, { nullable: true })
-  name?: string;
+  name: string;
 
   @Field(() => String, { nullable: true })
-  displayText?: string;
+  displayText: string;
 
   @Field((type) => Int)
   displaySequence: number;

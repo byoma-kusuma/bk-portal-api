@@ -176,5 +176,5 @@ model Centre {
     createdBy String?
 
     // Relation fields
-    users Member[]
+    members Member[]
 }

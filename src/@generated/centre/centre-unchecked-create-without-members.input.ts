@@ -1,10 +1,12 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
-import { MemberCreateNestedManyWithoutCentreInput } from '../member/member-create-nested-many-without-centre.input';
 
 @InputType()
-export class CentreCreateInput {
+export class CentreUncheckedCreateWithoutMembersInput {
+
+    @Field(() => Int, {nullable:true})
+    id?: number;
 
     @Field(() => String, {nullable:false})
     name!: string;
@@ -41,7 +43,4 @@ export class CentreCreateInput {
 
     @Field(() => String, {nullable:true})
     createdBy?: string;
-
-    @Field(() => MemberCreateNestedManyWithoutCentreInput, {nullable:true})
-    members?: MemberCreateNestedManyWithoutCentreInput;
 }

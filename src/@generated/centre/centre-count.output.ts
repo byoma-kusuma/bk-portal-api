@@ -6,5 +6,5 @@ import { Int } from '@nestjs/graphql';
 export class CentreCount {
 
     @Field(() => Int, {nullable:false})
-    users?: number;
+    members?: number;
 }

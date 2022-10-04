@@ -59,14 +59,49 @@ enum CentreAffiliation_Type {
   USA
 }
 
+input CentreRelationFilter {
+  is: CentreWhereInput
+  isNot: CentreWhereInput
+}
+
+input CentreWhereInput {
+  AND: [CentreWhereInput!]
+  NOT: [CentreWhereInput!]
+  OR: [CentreWhereInput!]
+  city: StringFilter
+  country: StringFilter
+  createdAt: DateTimeFilter
+  createdBy: StringFilter
+  displaySequence: IntFilter
+  displayText: StringFilter
+  id: IntFilter
+  members: MemberListRelationFilter
+  name: StringFilter
+  stateProvince: StringFilter
+  streetAddress: StringFilter
+  uniqueKey: StringFilter
+  updatedAt: DateTimeFilter
+  updatedBy: StringFilter
+}
+
 input ChangePasswordInput {
   newPassword: String!
   oldPassword: String!
 }
 
+input CreateCentreInput {
+  city: String
+  country: String
+  displaySequence: Int!
+  displayText: String!
+  name: String!
+  stateProvince: String
+}
+
 input CreateMemberInput {
   active: Boolean!
   centerAffiliation: String!
+  centreId: Int
   currentAddress: String
   dob: DateTime
   email: String
@@ -162,6 +197,17 @@ enum Gender_Type {
   PREFER_NOT_TO_SAY
 }
 
+input IntFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: IntFilter
+  notIn: [Int!]
+}
+
 """
 A field whose value is a JSON Web Token (JWT): https://jwt.io/introduction.
 """
@@ -175,7 +221,8 @@ input LoginInput {
 type Member {
   active: Boolean!
   centerAffiliation: CentreAffiliation_Type!
-  centre: Centre!
+  centre: Centre
+  centreId: Int
 
   """Identifies the date and time when the object was created."""
   createdAt: DateTime!
@@ -211,6 +258,12 @@ type Member {
   viber: String
 }
 
+input MemberListRelationFilter {
+  every: MemberWhereInput
+  none: MemberWhereInput
+  some: MemberWhereInput
+}
+
 input MemberRelationFilter {
   is: MemberWhereInput
   isNot: MemberWhereInput
@@ -222,6 +275,8 @@ input MemberWhereInput {
   OR: [MemberWhereInput!]
   active: BoolFilter
   centerAffiliation: EnumCentreAffiliationTypeFilter
+  centre: CentreRelationFilter
+  centreId: IntFilter
   createdAt: DateTimeFilter
   createdBy: StringFilter
   currentAddress: StringFilter
@@ -268,16 +323,19 @@ enum Membership_Type {
 
 type Mutation {
   changePassword(data: ChangePasswordInput!): User!
+  createCentre(createCentreInput: CreateCentreInput!): Centre!
   createMember(createMemberInput: CreateMemberInput!): Member!
   createRole(createRoleInput: CreateRoleInput!): Role!
   createUser(createUserInput: CreateUserInput!): User!
   initiateResetPassword(resetPasswordInitiateInput: ResetPasswordInitiateInput!): ResponseStatus!
   login(data: LoginInput!): Auth!
   refreshToken(token: JWT!): Token!
+  removeCentre(id: Int!): Centre!
   removeMember(id: String!): Member!
   removeRole(id: Int!): Role!
   removeUser(id: String!): User!
   resetPassword(resetPasswordInput: ResetPasswordInput!): ResponseStatus!
+  updateCentre(updateCentreInput: UpdateCentreInput!): Centre!
   updateMember(updateMemberInput: UpdateMemberInput!): Member!
   updateRole(updateRoleInput: UpdateRoleInput!): Role!
 }
@@ -321,6 +379,8 @@ input PasswordTokenWhereInput {
 }
 
 type Query {
+  centre(id: Int!): Centre!
+  centres: [Centre!]!
   hello(name: String!): String!
   helloWorld: String!
   me: User!
@@ -422,6 +482,16 @@ type Token {
 enum Type {
   DEFAULT
   SYSTEM
+}
+
+input UpdateCentreInput {
+  city: String
+  country: String
+  displaySequence: Int
+  displayText: String
+  id: Int!
+  name: String
+  stateProvince: String
 }
 
 input UpdateMemberInput {

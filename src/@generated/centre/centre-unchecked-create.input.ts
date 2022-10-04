@@ -46,5 +46,5 @@ export class CentreUncheckedCreateInput {
     createdBy?: string;
 
     @Field(() => MemberUncheckedCreateNestedManyWithoutCentreInput, {nullable:true})
-    users?: MemberUncheckedCreateNestedManyWithoutCentreInput;
+    members?: MemberUncheckedCreateNestedManyWithoutCentreInput;
 }

@@ -3,7 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { CentreAffiliationType } from '../prisma/centre-affiliation-type.enum';
 import { MembershipType } from '../prisma/membership-type.enum';
 import { GenderType } from '../prisma/gender-type.enum';
-import { CentreCreateNestedOneWithoutUsersInput } from '../centre/centre-create-nested-one-without-users.input';
+import { CentreCreateNestedOneWithoutMembersInput } from '../centre/centre-create-nested-one-without-members.input';
 import { UserCreateNestedOneWithoutMemberInput } from '../user/user-create-nested-one-without-member.input';
 
 @InputType()
@@ -93,8 +93,8 @@ export class MemberCreateInput {
     @Field(() => String, {nullable:true})
     createdBy?: string;
 
-    @Field(() => CentreCreateNestedOneWithoutUsersInput, {nullable:true})
-    centre?: CentreCreateNestedOneWithoutUsersInput;
+    @Field(() => CentreCreateNestedOneWithoutMembersInput, {nullable:true})
+    centre?: CentreCreateNestedOneWithoutMembersInput;
 
     @Field(() => UserCreateNestedOneWithoutMemberInput, {nullable:true})
     user?: UserCreateNestedOneWithoutMemberInput;

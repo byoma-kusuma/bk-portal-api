@@ -43,5 +43,5 @@ export class CentreUpdateInput {
     createdBy?: string;
 
     @Field(() => MemberUpdateManyWithoutCentreInput, {nullable:true})
-    users?: MemberUpdateManyWithoutCentreInput;
+    members?: MemberUpdateManyWithoutCentreInput;
 }

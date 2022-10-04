@@ -46,5 +46,5 @@ export class CentreOrderByWithRelationInput {
     createdBy?: keyof typeof SortOrder;
 
     @Field(() => MemberOrderByRelationAggregateInput, {nullable:true})
-    users?: MemberOrderByRelationAggregateInput;
+    members?: MemberOrderByRelationAggregateInput;
 }

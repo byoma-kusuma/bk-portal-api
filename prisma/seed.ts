@@ -73,7 +73,7 @@ async function main() {
       isMember: true,
       centerAffiliation: "Nepal",
       photo: createAvatar(),
-      centreId: 1,
+      centreId: nepalCentre.id,
       user: {
         create: {
           userName: "lisa@simpson.com",
@@ -99,7 +99,7 @@ async function main() {
       isMember: true,
       centerAffiliation: "Nepal",
       photo: createAvatar(),
-      centreId: 2,
+      centreId: ukCentre.id,
       user: {
         create: {
           userName: "bart@simpson.com",

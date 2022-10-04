@@ -1,7 +1,48 @@
-import { InputType, Int, Field } from "@nestjs/graphql";
+import { InputType, Field } from "@nestjs/graphql";
+import {
+  IsNumber,
+  IsOptional,
+  IsString,
+  MaxLength,
+} from "class-validator";
 
 @InputType()
 export class CreateCentreInput {
-  @Field(() => Int, { description: "Example field (placeholder)" })
-  exampleField: number;
+  @Field()
+  @IsString()
+  @MaxLength(256)
+  name: string;
+
+  @Field()
+  @IsString()
+  @MaxLength(256)
+  displayText: string;
+
+  @Field()
+  @IsNumber()
+  displaySequence: number;
+
+  @Field({ nullable: true })
+  @IsOptional()
+  @IsString()
+  @MaxLength(256)
+  streetAddress?: string;
+
+  @Field({ nullable: true })
+  @IsOptional()
+  @IsString()
+  @MaxLength(256)
+  city?: string;
+
+  @Field({ nullable: true })
+  @IsOptional()
+  @IsString()
+  @MaxLength(256)
+  stateProvince?: string;
+
+  @Field({ nullable: true })
+  @IsOptional()
+  @IsString()
+  @MaxLength(256)
+  country?: string;
 }

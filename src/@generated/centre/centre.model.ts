@@ -48,7 +48,7 @@ export class Centre {
     createdBy!: string | null;
 
     @Field(() => [Member], {nullable:true})
-    users?: Array<Member>;
+    members?: Array<Member>;
 
     @Field(() => CentreCount, {nullable:false})
     _count?: CentreCount;

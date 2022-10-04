@@ -57,5 +57,5 @@ export class CentreWhereInput {
     createdBy?: StringFilter;
 
     @Field(() => MemberListRelationFilter, {nullable:true})
-    users?: MemberListRelationFilter;
+    members?: MemberListRelationFilter;
 }

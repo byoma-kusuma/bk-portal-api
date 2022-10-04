@@ -1,12 +1,9 @@
 import {
-  ForbiddenException,
   Injectable,
-  InternalServerErrorException,
   NotFoundException
 } from "@nestjs/common";
 import { PrismaService } from "nestjs-prisma";
-import createAvatar from "src/common/utils/avatar";
-import { CreateCentreInput } from "./dto/create-centre.input";
+import { CentreCreateInput } from "src/@generated/centre/centre-create.input";
 import { UpdateCentreInput } from "./dto/update-centre.input";
 
 @Injectable()
@@ -15,14 +12,16 @@ export class CentreService {
   findUnique = this.prisma.centre.findUnique;
   findFirst = this.prisma.centre.findFirst;
 
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) { }
 
-  create(createCentreInput: CreateCentreInput) {
-    return "This action adds a new centre";
+  async create(createCentreInput: CentreCreateInput) {
+    return await this.prisma.centre.create({
+      data: createCentreInput
+    });
   }
 
-  findAll() {
-    return this.prisma.centre.findMany({});
+  async findAll() {
+    return await this.prisma.centre.findMany({});
   }
 
   async findOne(id: number) {
@@ -38,11 +37,30 @@ export class CentreService {
     return centre;
   }
 
-  update(id: number, updateCentreInput: UpdateCentreInput) {
-    return `This action updates a #${id} centre`;
+  async update(id: number, updateCentreInput: UpdateCentreInput) {
+    const centre = await this.prisma.centre.findFirst({
+      where: {
+        id
+      }
+    });
+
+    if (!centre) {
+      throw new NotFoundException(`Centre with id: '${id}' not found`);
+    }
+
+    return await this.prisma.centre.update({
+      data: updateCentreInput,
+      where: {
+        id
+      }
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} centre`;
+  async remove(id: number) {
+    const deleteCentre = await this.prisma.centre.delete({
+      where: {
+        id
+      }
+    });
   }
 }

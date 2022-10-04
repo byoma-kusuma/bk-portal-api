@@ -1,10 +1,9 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
-import { MemberUncheckedUpdateManyWithoutCentreInput } from '../member/member-unchecked-update-many-without-centre.input';
 
 @InputType()
-export class CentreUncheckedUpdateInput {
+export class CentreUncheckedUpdateWithoutMembersInput {
 
     @Field(() => Int, {nullable:true})
     id?: number;
@@ -44,7 +43,4 @@ export class CentreUncheckedUpdateInput {
 
     @Field(() => String, {nullable:true})
     createdBy?: string;
-
-    @Field(() => MemberUncheckedUpdateManyWithoutCentreInput, {nullable:true})
-    members?: MemberUncheckedUpdateManyWithoutCentreInput;
 }
