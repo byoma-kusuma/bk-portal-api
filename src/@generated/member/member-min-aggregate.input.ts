@@ -71,6 +71,9 @@ export class MemberMinAggregateInput {
     photo?: true;
 
     @Field(() => Boolean, {nullable:true})
+    centreId?: true;
+
+    @Field(() => Boolean, {nullable:true})
     isDeleted?: true;
 
     @Field(() => Boolean, {nullable:true})

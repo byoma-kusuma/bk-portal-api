@@ -17,6 +17,7 @@ import { MembersModule } from "../app/members/members.module";
 import { ThrottlerModule } from "@nestjs/throttler";
 import { PasswordTokenModule } from "./password-token/password-token.module";
 import { EmailModule } from "./email/email.module";
+import { CentreModule } from "./centre/centre.module";
 
 @Module({
   imports: [
@@ -44,7 +45,9 @@ import { EmailModule } from "./email/email.module";
     RolesModule,
     MembersModule,
     PasswordTokenModule,
-    EmailModule
+    EmailModule,
+    MembersModule,
+    CentreModule
   ],
   controllers: [AppController],
   providers: [AppService, AppResolver]

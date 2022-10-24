@@ -1,5 +1,6 @@
 import { InputType, Int, Field } from "@nestjs/graphql";
 import {
+  Centre,
   CentreAffiliationType,
   GenderType,
   MembershipType
@@ -73,6 +74,10 @@ export class CreateMemberInput {
 
   @Field({ nullable: true })
   @IsOptional()
+  centreId?: number;
+
+  @Field({ nullable: true })
+  @IsOptional()
   @IsEnum(MembershipType)
   membershipType?: MembershipType;
 
@@ -136,4 +141,6 @@ export class CreateMemberInput {
   @IsOptional()
   @MaxLength(512)
   photo?: string;
+
+
 }

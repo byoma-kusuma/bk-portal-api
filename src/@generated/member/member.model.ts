@@ -4,6 +4,8 @@ import { ID } from '@nestjs/graphql';
 import { CentreAffiliationType } from '../prisma/centre-affiliation-type.enum';
 import { MembershipType } from '../prisma/membership-type.enum';
 import { GenderType } from '../prisma/gender-type.enum';
+import { Centre } from '../centre/centre.model';
+import { Int } from '@nestjs/graphql';
 import { User } from '../user/user.model';
 
 @ObjectType()
@@ -74,6 +76,12 @@ export class Member {
 
     @Field(() => String, {nullable:true})
     photo!: string | null;
+
+    @Field(() => Centre, {nullable:true})
+    centre?: Centre | null;
+
+    @Field(() => Int, {nullable:true})
+    centreId!: number | null;
 
     @Field(() => Boolean, {nullable:false,defaultValue:false})
     isDeleted!: boolean;

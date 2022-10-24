@@ -3,6 +3,7 @@ import { ObjectType } from '@nestjs/graphql';
 import { CentreAffiliationType } from '../prisma/centre-affiliation-type.enum';
 import { MembershipType } from '../prisma/membership-type.enum';
 import { GenderType } from '../prisma/gender-type.enum';
+import { Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class MemberMaxAggregate {
@@ -72,6 +73,9 @@ export class MemberMaxAggregate {
 
     @Field(() => String, {nullable:true})
     photo?: string;
+
+    @Field(() => Int, {nullable:true})
+    centreId?: number;
 
     @Field(() => Boolean, {nullable:true})
     isDeleted?: boolean;
