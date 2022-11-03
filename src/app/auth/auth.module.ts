@@ -1,4 +1,4 @@
-import { CacheModule, CACHE_MANAGER, Module } from "@nestjs/common";
+import { Module } from "@nestjs/common";
 import { JwtModule } from "@nestjs/jwt";
 import { PassportModule } from "@nestjs/passport";
 import { ConfigService } from "@nestjs/config";
@@ -10,7 +10,6 @@ import { JwtStrategy } from "./jwt.strategy";
 import { SecurityConfig } from "../../common/configs/config.interface";
 import { EmailService } from "../email/email.service";
 import { PasswordTokenService } from "../password-token/password-token.service";
-// import { PrismaService } from 'prisma/prisma.service';
 
 @Module({
   imports: [
@@ -21,7 +20,7 @@ import { PasswordTokenService } from "../password-token/password-token.service";
         return {
           secret: configService.get<string>("JWT_ACCESS_SECRET"),
           signOptions: {
-            expiresIn: securityConfig.expiresIn
+            expiresIn: securityConfig?.expiresIn
           }
         };
       },

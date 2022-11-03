@@ -7,9 +7,6 @@ import { UserUpdateManyWithoutRoleInput } from '../user/user-update-many-without
 export class RoleUpdateInput {
 
     @Field(() => String, {nullable:true})
-    id?: string;
-
-    @Field(() => String, {nullable:true})
     name?: string;
 
     @Field(() => Type, {nullable:true})

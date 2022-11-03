@@ -1,4 +1,4 @@
-import { Inject, Injectable } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { PrismaService } from "nestjs-prisma";
 
 import { CreateRoleInput } from "./dto/create-role.input";
@@ -31,7 +31,7 @@ export class RolesService {
     });
   }
 
-  update(id: string, updateRoleInput: UpdateRoleInput) {
+  update(id: number, updateRoleInput: UpdateRoleInput) {
     return this.prisma.user.update({
       data: updateRoleInput,
       where: {

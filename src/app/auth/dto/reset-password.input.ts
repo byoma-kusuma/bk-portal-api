@@ -1,13 +1,13 @@
 import { InputType } from "@nestjs/graphql";
-import { IsString, Length } from "class-validator";
+import { IsNumber, IsString, Length } from "class-validator";
 
 @InputType()
 export class ResetPasswordInput {
   @IsString()
   token: string;
 
-  @IsString()
-  userId: string;
+  @IsNumber()
+  userId: number;
 
   @IsString()
   password: string;

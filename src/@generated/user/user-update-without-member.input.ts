@@ -9,9 +9,6 @@ import { PasswordTokenUpdateOneWithoutUserInput } from '../password-token/passwo
 export class UserUpdateWithoutMemberInput {
 
     @Field(() => String, {nullable:true})
-    id?: string;
-
-    @Field(() => String, {nullable:true})
     userName?: string;
 
     @Field(() => String, {nullable:true})

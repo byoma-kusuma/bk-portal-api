@@ -6,9 +6,6 @@ import { Type } from '../prisma/type.enum';
 export class RoleUpdateManyMutationInput {
 
     @Field(() => String, {nullable:true})
-    id?: string;
-
-    @Field(() => String, {nullable:true})
     name?: string;
 
     @Field(() => Type, {nullable:true})

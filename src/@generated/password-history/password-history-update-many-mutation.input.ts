@@ -5,9 +5,6 @@ import { InputType } from '@nestjs/graphql';
 export class PasswordHistoryUpdateManyMutationInput {
 
     @Field(() => String, {nullable:true})
-    id?: string;
-
-    @Field(() => String, {nullable:true})
     password?: string;
 
     @Field(() => Boolean, {nullable:true})

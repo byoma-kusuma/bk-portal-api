@@ -16,7 +16,7 @@ registerEnumType(UserStatus, {
 
 @ObjectType()
 export class User extends BaseModel {
-  id: string;
+  id: number;
 
   userName: string;
   role: Role;
@@ -31,5 +31,5 @@ export class User extends BaseModel {
 
   member: Member;
 
-  memberId: string;
+  memberId: number;
 }

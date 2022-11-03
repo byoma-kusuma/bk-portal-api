@@ -28,19 +28,4 @@ export class CentreMaxAggregate {
 
     @Field(() => String, {nullable:true})
     country?: string;
-
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
-
-    @Field(() => Date, {nullable:true})
-    updatedAt?: Date | string;
-
-    @Field(() => String, {nullable:true})
-    uniqueKey?: string;
-
-    @Field(() => String, {nullable:true})
-    updatedBy?: string;
-
-    @Field(() => String, {nullable:true})
-    createdBy?: string;
 }

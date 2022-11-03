@@ -9,6 +9,7 @@ import {
   IsDate,
   IsEmail,
   IsEnum,
+  IsNumber,
   IsOptional,
   IsPhoneNumber,
   IsString,
@@ -21,7 +22,8 @@ import {
 @InputType()
 export class UpdateMemberInput {
   @Field({ nullable: false })
-  id: string;
+  @IsNumber()
+  id: number;
 
   @Field({ nullable: true })
   @IsOptional()
@@ -139,4 +141,9 @@ export class UpdateMemberInput {
   @IsOptional()
   @MaxLength(512)
   photo?: string;
+
+  @Field(() => [Int], { nullable: true })
+  @IsNumber({}, { each: true })
+  @IsOptional()
+  groupIds?: Array<number>;
 }

@@ -1,5 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { Int } from '@nestjs/graphql';
 import { UserStatus } from '../prisma/user-status.enum';
 import { PasswordHistoryUncheckedUpdateOneWithoutUserInput } from '../password-history/password-history-unchecked-update-one-without-user.input';
 import { PasswordTokenUncheckedUpdateOneWithoutUserInput } from '../password-token/password-token-unchecked-update-one-without-user.input';
@@ -7,8 +8,8 @@ import { PasswordTokenUncheckedUpdateOneWithoutUserInput } from '../password-tok
 @InputType()
 export class UserUncheckedUpdateInput {
 
-    @Field(() => String, {nullable:true})
-    id?: string;
+    @Field(() => Int, {nullable:true})
+    id?: number;
 
     @Field(() => String, {nullable:true})
     userName?: string;
@@ -40,11 +41,11 @@ export class UserUncheckedUpdateInput {
     @Field(() => UserStatus, {nullable:true})
     status?: keyof typeof UserStatus;
 
-    @Field(() => String, {nullable:true})
-    roleId?: string;
+    @Field(() => Int, {nullable:true})
+    roleId?: number;
 
-    @Field(() => String, {nullable:true})
-    memberId?: string;
+    @Field(() => Int, {nullable:true})
+    memberId?: number;
 
     @Field(() => PasswordHistoryUncheckedUpdateOneWithoutUserInput, {nullable:true})
     passwordHistory?: PasswordHistoryUncheckedUpdateOneWithoutUserInput;

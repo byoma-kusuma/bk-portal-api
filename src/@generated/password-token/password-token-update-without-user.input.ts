@@ -5,9 +5,6 @@ import { InputType } from '@nestjs/graphql';
 export class PasswordTokenUpdateWithoutUserInput {
 
     @Field(() => String, {nullable:true})
-    id?: string;
-
-    @Field(() => String, {nullable:true})
     token?: string;
 
     @Field(() => Date, {nullable:true})

@@ -1,11 +1,14 @@
 import {
   ForbiddenException,
+  forwardRef,
+  Inject,
   Injectable,
   InternalServerErrorException,
   NotFoundException
 } from "@nestjs/common";
 import { PrismaService } from "nestjs-prisma";
 import createAvatar from "src/common/utils/avatar";
+import { GroupsService } from "../groups/groups.service";
 import { CreateMemberInput } from "./dto/create-member.input";
 import { UpdateMemberInput } from "./dto/update-member.input";
 
@@ -15,15 +18,33 @@ export class MembersService {
   findUnique = this.prisma.member.findUnique;
   findFirst = this.prisma.member.findFirst;
 
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
 
-  create(createMemberInput: CreateMemberInput) {
-    return this.prisma.member.create({
+    @Inject(forwardRef(() => GroupsService))
+    private readonly groupService: GroupsService
+  ) {}
+
+  async create(createMemberInput: CreateMemberInput) {
+    const { groupIds, ...createMemberArgs } = createMemberInput;
+
+    const filteredGroups = await this.groupService.filterValidGroups(
+      groupIds || []
+    );
+
+    const member = this.prisma.member.create({
       data: {
-        ...createMemberInput,
-        photo: createAvatar()
+        ...createMemberArgs,
+        photo: createAvatar(),
+        memberGroups: {
+          create: filteredGroups.map((groupId) => ({
+            group: { connect: { id: groupId } }
+          }))
+        }
       }
     });
+
+    return member;
   }
 
   findAll() {
@@ -34,7 +55,7 @@ export class MembersService {
     });
   }
 
-  async findOne(id: string) {
+  async findOne(id: number) {
     const member = await this.prisma.member.findFirst({
       where: {
         id
@@ -50,22 +71,47 @@ export class MembersService {
     return member;
   }
 
-  async update(id: string, updateMemberInput: UpdateMemberInput) {
+  async update(id: number, updateMemberInput: UpdateMemberInput) {
+    const { groupIds, ...updateMemberArgs } = updateMemberInput;
+
+    const filteredGroups = await this.groupService.filterValidGroups(
+      groupIds || []
+    );
+
     const member = await this.prisma.member.findUnique({ where: { id } });
 
-    if (member.isDeleted) {
-      throw new ForbiddenException("This member has been already deleted!");
+    if (!member || member.isDeleted) {
+      throw new ForbiddenException(
+        "Member not found or this member has already been deleted!"
+      );
     }
 
     return this.prisma.member.update({
-      data: updateMemberInput,
+      data: {
+        ...updateMemberArgs,
+        ...(groupIds && {
+          groups: {
+            upsert: filteredGroups.map((groupId) => ({
+              where: {
+                memberId_groupId: { memberId: member.id, groupId }
+              },
+              update: {},
+              create: { group: { connect: { id: groupId } } }
+            })),
+            deleteMany: {
+              memberId: member.id,
+              groupId: { notIn: filteredGroups }
+            }
+          }
+        })
+      },
       where: {
         id
       }
     });
   }
 
-  async remove(id: string, myId: string) {
+  async remove(id: number, myId: number) {
     const member = await this.prisma.member.findUnique({
       where: { id },
       include: { user: true }
@@ -104,5 +150,23 @@ export class MembersService {
       await deleteMemberOperation;
     }
     return member;
+  }
+
+  async filterValidMembers(memberIds: Array<number>): Promise<Array<number>> {
+    const members = await this.prisma.member.findMany({
+      where: {
+        id: {
+          in: memberIds
+        }
+      },
+      select: {
+        id: true,
+        isDeleted: true
+      }
+    });
+
+    return members
+      .filter((group) => !group.isDeleted)
+      .map(({ id, ...rest }) => id);
   }
 }

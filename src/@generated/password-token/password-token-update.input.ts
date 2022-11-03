@@ -6,9 +6,6 @@ import { UserUpdateOneRequiredWithoutPasswordTokenInput } from '../user/user-upd
 export class PasswordTokenUpdateInput {
 
     @Field(() => String, {nullable:true})
-    id?: string;
-
-    @Field(() => String, {nullable:true})
     token?: string;
 
     @Field(() => Date, {nullable:true})

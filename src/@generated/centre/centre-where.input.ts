@@ -2,7 +2,6 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { IntFilter } from '../prisma/int-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
-import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { MemberListRelationFilter } from '../member/member-list-relation-filter.input';
 
 @InputType()
@@ -40,21 +39,6 @@ export class CentreWhereInput {
 
     @Field(() => StringFilter, {nullable:true})
     country?: StringFilter;
-
-    @Field(() => DateTimeFilter, {nullable:true})
-    createdAt?: DateTimeFilter;
-
-    @Field(() => DateTimeFilter, {nullable:true})
-    updatedAt?: DateTimeFilter;
-
-    @Field(() => StringFilter, {nullable:true})
-    uniqueKey?: StringFilter;
-
-    @Field(() => StringFilter, {nullable:true})
-    updatedBy?: StringFilter;
-
-    @Field(() => StringFilter, {nullable:true})
-    createdBy?: StringFilter;
 
     @Field(() => MemberListRelationFilter, {nullable:true})
     members?: MemberListRelationFilter;

@@ -6,9 +6,6 @@ import { UserUpdateOneRequiredWithoutPasswordHistoryInput } from '../user/user-u
 export class PasswordHistoryUpdateInput {
 
     @Field(() => String, {nullable:true})
-    id?: string;
-
-    @Field(() => String, {nullable:true})
     password?: string;
 
     @Field(() => Boolean, {nullable:true})

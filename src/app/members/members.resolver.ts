@@ -3,19 +3,20 @@ import {
   Query,
   Mutation,
   Args,
-  Int,
   ResolveField,
-  Parent
+  Parent,
+  Int
 } from "@nestjs/graphql";
 import { MembersService } from "./members.service";
 import { Member } from "./entities/member.entity";
 import { CreateMemberInput } from "./dto/create-member.input";
 import { UpdateMemberInput } from "./dto/update-member.input";
 import { GqlAuthGuard } from "src/app/auth/gql-auth.guard";
-import { UseGuards } from "@nestjs/common";
+import { ParseIntPipe, UseGuards } from "@nestjs/common";
 import { User } from "src/app/users/models/user.model";
 import { Centre } from "src/app/centre/entities/centre.entity";
 import { CurrentUser } from "src/common/decorators/currentUser.decorator";
+import { Group } from "../groups/entities/group.entity";
 
 @Resolver(() => Member)
 @UseGuards(GqlAuthGuard)
@@ -35,7 +36,7 @@ export class MembersResolver {
   }
 
   @Query(() => Member, { name: "member" })
-  findOne(@Args("id") id: string) {
+  findOne(@Args("id", { type: () => Int }) id: number) {
     return this.membersService.findOne(id);
   }
 
@@ -47,7 +48,10 @@ export class MembersResolver {
   }
 
   @Mutation(() => Member)
-  removeMember(@Args("id") id: string, @CurrentUser() user: User) {
+  removeMember(
+    @Args("id", { type: () => Int }) id: number,
+    @CurrentUser() user: User
+  ) {
     return this.membersService.remove(id, user.memberId);
   }
 
@@ -56,7 +60,7 @@ export class MembersResolver {
     const user = await this.membersService
       .findUnique({ where: { id: member.id } })
       .user();
-    if (user.isDeleted) return null;
+    if (!user || user.isDeleted) return null;
     return user;
   }
 
@@ -66,5 +70,24 @@ export class MembersResolver {
       .findUnique({ where: { id: member.id } })
       .centre();
     return centre;
+  }
+
+  @ResolveField(() => [Group])
+  async groups(@Parent() member: Member) {
+    const memberGroups = await this.membersService.findUnique({
+      where: { id: member.id },
+      select: {
+        id: true,
+        memberGroups: {
+          select: {
+            group: true
+          }
+        }
+      }
+    });
+    if (!memberGroups) return null;
+    return memberGroups.memberGroups.map(
+      (groupRelation) => groupRelation.group
+    );
   }
 }

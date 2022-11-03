@@ -5,12 +5,10 @@ import { MembershipType } from '../prisma/membership-type.enum';
 import { GenderType } from '../prisma/gender-type.enum';
 import { CentreUpdateOneWithoutMembersInput } from '../centre/centre-update-one-without-members.input';
 import { UserUpdateOneWithoutMemberInput } from '../user/user-update-one-without-member.input';
+import { MemberGroupsUpdateManyWithoutMemberInput } from '../member-groups/member-groups-update-many-without-member.input';
 
 @InputType()
 export class MemberUpdateInput {
-
-    @Field(() => String, {nullable:true})
-    id?: string;
 
     @Field(() => String, {nullable:true})
     email?: string;
@@ -98,4 +96,7 @@ export class MemberUpdateInput {
 
     @Field(() => UserUpdateOneWithoutMemberInput, {nullable:true})
     user?: UserUpdateOneWithoutMemberInput;
+
+    @Field(() => MemberGroupsUpdateManyWithoutMemberInput, {nullable:true})
+    memberGroups?: MemberGroupsUpdateManyWithoutMemberInput;
 }

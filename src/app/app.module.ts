@@ -18,6 +18,7 @@ import { ThrottlerModule } from "@nestjs/throttler";
 import { PasswordTokenModule } from "./password-token/password-token.module";
 import { EmailModule } from "./email/email.module";
 import { CentreModule } from "./centre/centre.module";
+import { GroupsModule } from "./groups/groups.module";
 
 @Module({
   imports: [
@@ -47,7 +48,8 @@ import { CentreModule } from "./centre/centre.module";
     PasswordTokenModule,
     EmailModule,
     MembersModule,
-    CentreModule
+    CentreModule,
+    GroupsModule
   ],
   controllers: [AppController],
   providers: [AppService, AppResolver]

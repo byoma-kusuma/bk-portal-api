@@ -1,9 +1,9 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
+import { Int } from '@nestjs/graphql';
 import { CentreAffiliationType } from '../prisma/centre-affiliation-type.enum';
 import { MembershipType } from '../prisma/membership-type.enum';
 import { GenderType } from '../prisma/gender-type.enum';
-import { Int } from '@nestjs/graphql';
 import { MemberCountAggregate } from './member-count-aggregate.output';
 import { MemberAvgAggregate } from './member-avg-aggregate.output';
 import { MemberSumAggregate } from './member-sum-aggregate.output';
@@ -13,8 +13,8 @@ import { MemberMaxAggregate } from './member-max-aggregate.output';
 @ObjectType()
 export class MemberGroupBy {
 
-    @Field(() => String, {nullable:false})
-    id!: string;
+    @Field(() => Int, {nullable:false})
+    id!: number;
 
     @Field(() => String, {nullable:true})
     email?: string;

@@ -7,6 +7,8 @@ import { PasswordHistoryScalarFieldEnum } from './password-history-scalar-field.
 import { PasswordHistoryScalarWhereWithAggregatesInput } from './password-history-scalar-where-with-aggregates.input';
 import { Int } from '@nestjs/graphql';
 import { PasswordHistoryCountAggregateInput } from './password-history-count-aggregate.input';
+import { PasswordHistoryAvgAggregateInput } from './password-history-avg-aggregate.input';
+import { PasswordHistorySumAggregateInput } from './password-history-sum-aggregate.input';
 import { PasswordHistoryMinAggregateInput } from './password-history-min-aggregate.input';
 import { PasswordHistoryMaxAggregateInput } from './password-history-max-aggregate.input';
 
@@ -34,6 +36,12 @@ export class PasswordHistoryGroupByArgs {
 
     @Field(() => PasswordHistoryCountAggregateInput, {nullable:true})
     _count?: PasswordHistoryCountAggregateInput;
+
+    @Field(() => PasswordHistoryAvgAggregateInput, {nullable:true})
+    _avg?: PasswordHistoryAvgAggregateInput;
+
+    @Field(() => PasswordHistorySumAggregateInput, {nullable:true})
+    _sum?: PasswordHistorySumAggregateInput;
 
     @Field(() => PasswordHistoryMinAggregateInput, {nullable:true})
     _min?: PasswordHistoryMinAggregateInput;

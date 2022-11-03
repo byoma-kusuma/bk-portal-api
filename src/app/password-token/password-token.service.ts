@@ -18,7 +18,7 @@ export class PasswordTokenService {
     return dayjs(token.createdAt).add(ttl, "s").isBefore(dayjs());
   }
 
-  async create(forUserId: string) {
+  async create(forUserId: number) {
     await this.prisma.passwordToken.deleteMany({
       where: {
         userId: forUserId
@@ -33,7 +33,7 @@ export class PasswordTokenService {
     return passwordToken.token;
   }
 
-  async verifyAndRevoke(userId: string, token: string): Promise<boolean> {
+  async verifyAndRevoke(userId: number, token: string): Promise<boolean> {
     const realToken = await this.prisma.passwordToken.findUnique({
       where: {
         userId

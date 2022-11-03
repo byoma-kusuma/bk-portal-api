@@ -70,8 +70,6 @@ input CentreWhereInput {
   OR: [CentreWhereInput!]
   city: StringFilter
   country: StringFilter
-  createdAt: DateTimeFilter
-  createdBy: StringFilter
   displaySequence: IntFilter
   displayText: StringFilter
   id: IntFilter
@@ -79,9 +77,6 @@ input CentreWhereInput {
   name: StringFilter
   stateProvince: StringFilter
   streetAddress: StringFilter
-  uniqueKey: StringFilter
-  updatedAt: DateTimeFilter
-  updatedBy: StringFilter
 }
 
 input ChangePasswordInput {
@@ -96,6 +91,14 @@ input CreateCentreInput {
   displayText: String!
   name: String!
   stateProvince: String
+  streetAddress: String
+}
+
+input CreateGroupInput {
+  description: String!
+  memberIds: [Int!]
+  name: String!
+  visible: Boolean!
 }
 
 input CreateMemberInput {
@@ -107,6 +110,7 @@ input CreateMemberInput {
   email: String
   firstName: String!
   gender: String
+  groupIds: [Int!]
   insta: String
   isMember: Boolean!
   lastName: String!
@@ -128,7 +132,7 @@ input CreateRoleInput {
 }
 
 input CreateUserInput {
-  memberId: String!
+  memberId: Int!
 }
 
 """
@@ -197,6 +201,53 @@ enum Gender_Type {
   PREFER_NOT_TO_SAY
 }
 
+type Group {
+  """Identifies the date and time when the object was created."""
+  createdAt: DateTime!
+
+  """Identifies who created the object."""
+  createdBy: String
+  description: String
+  id: ID!
+
+  """Identifies the date and time when the object was last updated."""
+  isDeleted: Boolean!
+  members: [Member!]!
+  name: String
+
+  """Unique key associated with the object."""
+  uniqueKey: String
+
+  """Identifies the date and time when the object was last updated."""
+  updatedAt: DateTime!
+
+  """Identifies who made the last update to the object."""
+  updatedBy: String
+  visible: Boolean
+}
+
+input GroupRelationFilter {
+  is: GroupWhereInput
+  isNot: GroupWhereInput
+}
+
+input GroupWhereInput {
+  AND: [GroupWhereInput!]
+  NOT: [GroupWhereInput!]
+  OR: [GroupWhereInput!]
+  createdAt: DateTimeFilter
+  createdBy: StringFilter
+  description: StringFilter
+  id: IntFilter
+  isDeleted: BoolFilter
+  memberGroups: MemberGroupsListRelationFilter
+  name: StringFilter
+  uniqueKey: StringFilter
+  updatedAt: DateTimeFilter
+  updatedBy: StringFilter
+  visible: BoolFilter
+}
+
 input IntFilter {
   equals: Int
   gt: Int
@@ -226,12 +277,16 @@ type Member {
 
   """Identifies the date and time when the object was created."""
   createdAt: DateTime!
+
+  """Identifies who created the object."""
+  createdBy: String
   currentAddress: String
   dob: DateTime
   email: String
   firstName: String!
   gender: Gender_Type
-  id: String!
+  groups: [Group!]!
+  id: Int!
   insta: String
 
   """Identifies the date and time when the object was last updated."""
@@ -254,8 +309,29 @@ type Member {
 
   """Identifies the date and time when the object was last updated."""
   updatedAt: DateTime!
+
+  """Identifies who made the last update to the object."""
+  updatedBy: String
   user: User
   viber: String
+}
+
+input MemberGroupsListRelationFilter {
+  every: MemberGroupsWhereInput
+  none: MemberGroupsWhereInput
+  some: MemberGroupsWhereInput
+}
+
+input MemberGroupsWhereInput {
+  AND: [MemberGroupsWhereInput!]
+  NOT: [MemberGroupsWhereInput!]
+  OR: [MemberGroupsWhereInput!]
+  createdAt: DateTimeFilter
+  createdBy: StringFilter
+  group: GroupRelationFilter
+  groupId: IntFilter
+  member: MemberRelationFilter
+  memberId: IntFilter
 }
 
 input MemberListRelationFilter {
@@ -284,11 +360,12 @@ input MemberWhereInput {
   email: StringFilter
   firstName: StringFilter
   gender: EnumGenderTypeFilter
-  id: StringFilter
+  id: IntFilter
   insta: StringFilter
   isDeleted: BoolFilter
   isMember: BoolFilter
   lastName: StringFilter
+  memberGroups: MemberGroupsListRelationFilter
   membershipType: EnumMembershipTypeFilter
   messenger: StringFilter
   middleName: StringFilter
@@ -324,6 +401,7 @@ enum Membership_Type {
 type Mutation {
   changePassword(data: ChangePasswordInput!): User!
   createCentre(createCentreInput: CreateCentreInput!): Centre!
+  createGroup(createGroupInput: CreateGroupInput!): Group!
   createMember(createMemberInput: CreateMemberInput!): Member!
   createRole(createRoleInput: CreateRoleInput!): Role!
   createUser(createUserInput: CreateUserInput!): User!
@@ -331,11 +409,13 @@ type Mutation {
   login(data: LoginInput!): Auth!
   refreshToken(token: JWT!): Token!
   removeCentre(id: Int!): Centre!
-  removeMember(id: String!): Member!
+  removeGroup(id: Int!): Group!
+  removeMember(id: Int!): Member!
   removeRole(id: Int!): Role!
-  removeUser(id: String!): User!
+  removeUser(id: Int!): User!
   resetPassword(resetPasswordInput: ResetPasswordInput!): ResponseStatus!
   updateCentre(updateCentreInput: UpdateCentreInput!): Centre!
+  updateGroup(updateGroupInput: UpdateGroupInput!): Group!
   updateMember(updateMemberInput: UpdateMemberInput!): Member!
   updateRole(updateRoleInput: UpdateRoleInput!): Role!
 }
@@ -351,14 +431,14 @@ input PasswordHistoryWhereInput {
   OR: [PasswordHistoryWhereInput!]
   createdAt: DateTimeFilter
   createdBy: StringFilter
-  id: StringFilter
+  id: IntFilter
   isDeleted: BoolFilter
   password: StringFilter
   uniqueKey: StringFilter
   updatedAt: DateTimeFilter
   updatedBy: StringFilter
   user: UserRelationFilter
-  userId: StringFilter
+  userId: IntFilter
 }
 
 input PasswordTokenRelationFilter {
@@ -371,24 +451,26 @@ input PasswordTokenWhereInput {
   NOT: [PasswordTokenWhereInput!]
   OR: [PasswordTokenWhereInput!]
   createdAt: DateTimeFilter
-  id: StringFilter
+  id: IntFilter
   token: StringFilter
   updatedAt: DateTimeFilter
   user: UserRelationFilter
-  userId: StringFilter
+  userId: IntFilter
 }
 
 type Query {
   centre(id: Int!): Centre!
   centres: [Centre!]!
+  group(id: Int!): Group!
+  groups: [Group!]!
   hello(name: String!): String!
   helloWorld: String!
   me: User!
-  member(id: String!): Member!
+  member(id: Int!): Member!
   members: [Member!]!
   role(where: RoleWhereInput): Role!
   roles(where: RoleWhereInput): [Role!]!
-  user(id: String!): User!
+  user(id: Int!): User!
   users: [User!]!
 }
 
@@ -399,7 +481,7 @@ input ResetPasswordInitiateInput {
 input ResetPasswordInput {
   password: String!
   token: String!
-  userId: String!
+  userId: Int!
 }
 
 type ResponseStatus {
@@ -409,6 +491,9 @@ type ResponseStatus {
 type Role {
   """Identifies the date and time when the object was created."""
   createdAt: DateTime!
+
+  """Identifies who created the object."""
+  createdBy: String
   id: ID!
 
   """Identifies the date and time when the object was last updated."""
@@ -421,6 +506,9 @@ type Role {
 
   """Identifies the date and time when the object was last updated."""
   updatedAt: DateTime!
+
+  """Identifies who made the last update to the object."""
+  updatedBy: String
   users: [User!]!
 }
 
@@ -435,7 +523,7 @@ input RoleWhereInput {
   OR: [RoleWhereInput!]
   createdAt: DateTimeFilter
   createdBy: StringFilter
-  id: StringFilter
+  id: IntFilter
   isDeleted: BoolFilter
   name: StringFilter
   roleType: EnumTypeFilter
@@ -492,6 +580,14 @@ input UpdateCentreInput {
   id: Int!
   name: String
   stateProvince: String
+  streetAddress: String
+}
+
+input UpdateGroupInput {
+  description: String!
+  id: Int!
+  memberIds: [Int!]
+  name: String!
 }
 
 input UpdateMemberInput {
@@ -502,7 +598,8 @@ input UpdateMemberInput {
   email: String
   firstName: String!
   gender: String
-  id: String!
+  groupIds: [Int!]
+  id: Int!
   insta: String
   isMember: Boolean!
   lastName: String!
@@ -520,7 +617,7 @@ input UpdateMemberInput {
 }
 
 input UpdateRoleInput {
-  id: String!
+  id: Int!
   name: String
 }
 
@@ -529,12 +626,15 @@ type User {
 
   """Identifies the date and time when the object was created."""
   createdAt: DateTime!
-  id: String!
+
+  """Identifies who created the object."""
+  createdBy: String
+  id: Int!
 
   """Identifies the date and time when the object was last updated."""
   isDeleted: Boolean!
   member: Member!
-  memberId: String!
+  memberId: Int!
   role: Role!
   status: Status!
 
@@ -543,6 +643,9 @@ type User {
 
   """Identifies the date and time when the object was last updated."""
   updatedAt: DateTime!
+
+  """Identifies who made the last update to the object."""
+  updatedBy: String
   userName: String!
 }
 
@@ -569,15 +672,15 @@ input UserWhereInput {
   avatar: StringFilter
   createdAt: DateTimeFilter
   createdBy: StringFilter
-  id: StringFilter
+  id: IntFilter
   isDeleted: BoolFilter
   member: MemberRelationFilter
-  memberId: StringFilter
+  memberId: IntFilter
   password: StringFilter
   passwordHistory: PasswordHistoryRelationFilter
   passwordToken: PasswordTokenRelationFilter
   role: RoleRelationFilter
-  roleId: StringFilter
+  roleId: IntFilter
   status: EnumUserStatusFilter
   uniqueKey: StringFilter
   updatedAt: DateTimeFilter

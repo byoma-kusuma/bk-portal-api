@@ -2,12 +2,13 @@ import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
 import { User } from '../user/user.model';
+import { Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class PasswordToken {
 
     @Field(() => ID, {nullable:false})
-    id!: string;
+    id!: number;
 
     @Field(() => String, {nullable:false})
     token!: string;
@@ -21,6 +22,6 @@ export class PasswordToken {
     @Field(() => User, {nullable:false})
     user?: User;
 
-    @Field(() => String, {nullable:false})
-    userId!: string;
+    @Field(() => Int, {nullable:false})
+    userId!: number;
 }

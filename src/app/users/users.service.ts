@@ -42,7 +42,7 @@ export class UsersService {
     });
   }
 
-  async findOne(id: string) {
+  async findOne(id: number) {
     const user = await this.prisma.user.findUnique({
       where: { id }
     });
@@ -55,7 +55,7 @@ export class UsersService {
     return user;
   }
 
-  async remove(id: string, myId: string) {
+  async remove(id: number, myId: number) {
     if (myId === id) {
       throw new InternalServerErrorException(
         "Cannot delete yourself as a user"
@@ -68,7 +68,7 @@ export class UsersService {
     return user;
   }
 
-  async create({ memberId }: { memberId: string }) {
+  async create({ memberId }: { memberId: number }) {
     const member = await this.prisma.member.findFirst({
       where: {
         id: memberId,
@@ -145,17 +145,8 @@ export class UsersService {
     return user;
   }
 
-  updateUser(userId: string, newUserData: null) {
-    return this.prisma.user.update({
-      data: newUserData,
-      where: {
-        id: userId
-      }
-    });
-  }
-
   async changePassword(
-    userId: string,
+    userId: number,
     userPassword: string,
     changePassword: ChangePasswordInput
   ) {

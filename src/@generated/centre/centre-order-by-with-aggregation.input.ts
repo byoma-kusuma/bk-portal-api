@@ -34,21 +34,6 @@ export class CentreOrderByWithAggregationInput {
     @Field(() => SortOrder, {nullable:true})
     country?: keyof typeof SortOrder;
 
-    @Field(() => SortOrder, {nullable:true})
-    createdAt?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
-    updatedAt?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
-    uniqueKey?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
-    updatedBy?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
-    createdBy?: keyof typeof SortOrder;
-
     @Field(() => CentreCountOrderByAggregateInput, {nullable:true})
     _count?: CentreCountOrderByAggregateInput;
 

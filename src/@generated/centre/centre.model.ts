@@ -20,32 +20,17 @@ export class Centre {
     @Field(() => Int, {nullable:false})
     displaySequence!: number;
 
-    @Field(() => String, {nullable:false})
-    streetAddress!: string;
-
-    @Field(() => String, {nullable:false})
-    city!: string;
-
-    @Field(() => String, {nullable:false})
-    stateProvince!: string;
-
-    @Field(() => String, {nullable:false})
-    country!: string;
-
-    @Field(() => Date, {nullable:false})
-    createdAt!: Date;
-
-    @Field(() => Date, {nullable:false})
-    updatedAt!: Date;
+    @Field(() => String, {nullable:true})
+    streetAddress!: string | null;
 
     @Field(() => String, {nullable:true})
-    uniqueKey!: string | null;
+    city!: string | null;
 
     @Field(() => String, {nullable:true})
-    updatedBy!: string | null;
+    stateProvince!: string | null;
 
     @Field(() => String, {nullable:true})
-    createdBy!: string | null;
+    country!: string | null;
 
     @Field(() => [Member], {nullable:true})
     members?: Array<Member>;
