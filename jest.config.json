@@ -1,0 +1,19 @@
+{
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "rootDir": "src",
+  "testRegex": ".*\\.spec\\.ts$",
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "globals": {
+    "ts-jest": {
+      "isolatedModules": true
+    }
+  },
+  "coverageReporters": ["json", "html", "text"],
+  "coverageDirectory": "../coverage",
+  "testEnvironment": "node",
+  "collectCoverageFrom": ["**/*.(t|j)s"],
+  "collectCoverage": true,
+  "modulePathIgnorePatterns": ["@generated"]
+}
