@@ -1,25 +1,26 @@
-import { Test, TestingModule } from "@nestjs/testing";
-import { PrismaService } from "nestjs-prisma";
+import { createMock } from "@golevelup/ts-jest";
+
+import { CreateMemberInput } from "./dto/create-member.input";
+import { UpdateMemberInput } from "./dto/update-member.input";
 import { MembersService } from "./members.service";
 
 describe("MembersService", () => {
-  //   let service: MembersService;
-  //   beforeEach(async () => {
-  //     const module: TestingModule = await Test.createTestingModule({
-  //       providers: [
-  //         {
-  //           provide: MembersService,
-  //           useValue: new MembersService(new PrismaService())
-  //         }
-  //       ]
-  //     }).compile();
-  //     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  //     service = module.get<MembersService>(MembersService);
-  //   });
-  //   it("should be defined", () => {
-  //     expect(service).toBeDefined();
-  //   });
   it("should be defined", () => {
-    expect(1).toEqual(1);
+    const membersServiceMock = createMock<MembersService>();
+
+    expect(membersServiceMock.filterValidMembers([])).toBeDefined();
+
+    expect(
+      membersServiceMock.create(createMock<CreateMemberInput>())
+    ).toBeDefined();
+
+    expect(membersServiceMock.findAll()).toBeDefined();
+
+    expect(membersServiceMock.findOne(0)).toBeDefined();
+    expect(membersServiceMock.remove(0, 0)).toBeDefined();
+
+    expect(
+      membersServiceMock.update(0, createMock<UpdateMemberInput>())
+    ).toBeDefined();
   });
 });

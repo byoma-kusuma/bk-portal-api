@@ -1,18 +1,35 @@
-import { Test, TestingModule } from "@nestjs/testing";
+import { CentreCreateInput } from "src/@generated/centre/centre-create.input";
+
+import { createMock } from "@golevelup/ts-jest";
+import { Prisma } from "@prisma/client";
+
 import { CentreService } from "./centre.service";
+import { UpdateCentreInput } from "./dto/update-centre.input";
 
 describe("CentreService", () => {
-  let service: CentreService;
-
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [CentreService]
-    }).compile();
-
-    service = module.get<CentreService>(CentreService);
-  });
-
   it("should be defined", () => {
-    expect(service).toBeDefined();
+    const centreServiceMock = createMock<CentreService>();
+
+    expect(
+      centreServiceMock.create(createMock<CentreCreateInput>())
+    ).toBeDefined();
+
+    expect(centreServiceMock.findAll()).toBeDefined();
+
+    expect(centreServiceMock.findFirst()).toBeDefined();
+
+    expect(centreServiceMock.findMany()).toBeDefined();
+
+    expect(
+      centreServiceMock.findUnique({
+        where: createMock<Prisma.CentreWhereUniqueInput>()
+      })
+    ).toBeDefined();
+
+    expect(centreServiceMock.remove(0)).toBeDefined();
+
+    expect(
+      centreServiceMock.update(0, createMock<UpdateCentreInput>())
+    ).toBeDefined();
   });
 });

@@ -1,18 +1,12 @@
-import { Test, TestingModule } from "@nestjs/testing";
 import { PasswordTokenService } from "./password-token.service";
+import { createMock } from "@golevelup/ts-jest";
 
 describe("PasswordTokenService", () => {
-  let service: PasswordTokenService;
+  it("create and verifyAndRevoke functions should be defined", () => {
+    const passwordTokenService = createMock<PasswordTokenService>();
 
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [PasswordTokenService]
-    }).compile();
+    expect(passwordTokenService.create(0)).toBeDefined();
 
-    service = module.get<PasswordTokenService>(PasswordTokenService);
-  });
-
-  it("should be defined", () => {
-    expect(service).toBeDefined();
+    expect(passwordTokenService.verifyAndRevoke(0, "Test")).toBeDefined();
   });
 });

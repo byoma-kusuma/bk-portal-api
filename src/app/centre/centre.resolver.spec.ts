@@ -1,19 +1,25 @@
-import { Test, TestingModule } from "@nestjs/testing";
+import { createMock } from "@golevelup/ts-jest";
+
 import { CentreResolver } from "./centre.resolver";
-import { CentreService } from "./centre.service";
+import { CreateCentreInput } from "./dto/create-centre.input";
+import { UpdateCentreInput } from "./dto/update-centre.input";
 
 describe("CentreResolver", () => {
-  let resolver: CentreResolver;
-
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [CentreResolver, CentreService]
-    }).compile();
-
-    resolver = module.get<CentreResolver>(CentreResolver);
-  });
-
   it("should be defined", () => {
-    expect(resolver).toBeDefined();
+    const centreResolverMock = createMock<CentreResolver>();
+
+    expect(
+      centreResolverMock.createCentre(createMock<CreateCentreInput>())
+    ).toBeDefined();
+
+    expect(centreResolverMock.findAll()).toBeDefined();
+
+    expect(centreResolverMock.findOne(0)).toBeDefined();
+
+    expect(centreResolverMock.removeCentre(0)).toBeDefined();
+
+    expect(
+      centreResolverMock.updateCentre(createMock<UpdateCentreInput>())
+    ).toBeDefined();
   });
 });
