@@ -8,9 +8,6 @@ import { GenderType } from '../prisma/gender-type.enum';
 export class MemberUpdateManyMutationInput {
 
     @Field(() => String, {nullable:true})
-    id?: string;
-
-    @Field(() => String, {nullable:true})
     email?: string;
 
     @Field(() => String, {nullable:true})

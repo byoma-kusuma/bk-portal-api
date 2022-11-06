@@ -2,8 +2,10 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { SortOrder } from '../prisma/sort-order.enum';
 import { MemberCountOrderByAggregateInput } from './member-count-order-by-aggregate.input';
+import { MemberAvgOrderByAggregateInput } from './member-avg-order-by-aggregate.input';
 import { MemberMaxOrderByAggregateInput } from './member-max-order-by-aggregate.input';
 import { MemberMinOrderByAggregateInput } from './member-min-order-by-aggregate.input';
+import { MemberSumOrderByAggregateInput } from './member-sum-order-by-aggregate.input';
 
 @InputType()
 export class MemberOrderByWithAggregationInput {
@@ -75,6 +77,9 @@ export class MemberOrderByWithAggregationInput {
     photo?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
+    centreId?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
     isDeleted?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
@@ -95,9 +100,15 @@ export class MemberOrderByWithAggregationInput {
     @Field(() => MemberCountOrderByAggregateInput, {nullable:true})
     _count?: MemberCountOrderByAggregateInput;
 
+    @Field(() => MemberAvgOrderByAggregateInput, {nullable:true})
+    _avg?: MemberAvgOrderByAggregateInput;
+
     @Field(() => MemberMaxOrderByAggregateInput, {nullable:true})
     _max?: MemberMaxOrderByAggregateInput;
 
     @Field(() => MemberMinOrderByAggregateInput, {nullable:true})
     _min?: MemberMinOrderByAggregateInput;
+
+    @Field(() => MemberSumOrderByAggregateInput, {nullable:true})
+    _sum?: MemberSumOrderByAggregateInput;
 }

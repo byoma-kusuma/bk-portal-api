@@ -1,13 +1,14 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { Int } from '@nestjs/graphql';
 import { Type } from '../prisma/type.enum';
 import { UserUncheckedCreateNestedManyWithoutRoleInput } from '../user/user-unchecked-create-nested-many-without-role.input';
 
 @InputType()
 export class RoleUncheckedCreateInput {
 
-    @Field(() => String, {nullable:true})
-    id?: string;
+    @Field(() => Int, {nullable:true})
+    id?: number;
 
     @Field(() => String, {nullable:false})
     name!: string;

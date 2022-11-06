@@ -6,11 +6,6 @@ datasource db {
 generator client {
     provider = "prisma-client-js"
 }
-
-// generator dbml {
-//   provider = "prisma-dbml-generator"
-// }
-
 generator nestgraphql {
     provider             = "prisma-nestjs-graphql"
     output               = "../src/@generated"
@@ -24,12 +19,11 @@ enum UserStatus {
 }
 
 model User {
-    id String @id @default(cuid())
+    id        Int      @id @default(autoincrement())
 
     userName String  @unique
     password String
     avatar   String?
-    email    String? @unique
 
     isDeleted Boolean  @default(false)
     createdAt DateTime @default(now())
@@ -42,18 +36,20 @@ model User {
     status          UserStatus       @default(VALIDATION_PENDING)
     passwordHistory PasswordHistory?
     role            Role             @relation(fields: [roleId], references: [id])
-    roleId          String
+    roleId          Int
     member          Member           @relation(fields: [memberId], references: [id])
-    memberId        String           @unique
+    memberId        Int              @unique
+
+    passwordToken PasswordToken?
 }
 
 enum Type {
-    SYSTEM
+    SYSTEM 
     DEFAULT
 }
 
 model Role {
-    id String @id @default(cuid())
+    id        Int      @id @default(autoincrement())
 
     name     String @unique
     roleType Type   @default(DEFAULT)
@@ -95,7 +91,7 @@ enum MembershipType {
 }
 
 model Member {
-    id String @id @default(cuid())
+    id        Int      @id @default(autoincrement())
 
     email             String?
     firstName         String
@@ -118,20 +114,23 @@ model Member {
     messenger         String?
     insta             String?
     photo             String?
+    centre            Centre?                @relation(fields: [centreId], references: [id])
+    centreId          Int?
 
     isDeleted Boolean  @default(false)
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
-    uniqueKey String?  @unique
+    uniqueKey String?  @unique 
     updatedBy String?
     createdBy String?
 
     // Relation fields
     user User?
+    memberGroups MemberGroups[]
 }
 
 model PasswordHistory {
-    id String @id @default(cuid())
+    id        Int      @id @default(autoincrement())
 
     password String
 
@@ -144,5 +143,66 @@ model PasswordHistory {
 
     // Relation fields
     user   User   @relation(fields: [userId], references: [id])
-    userId String @unique
+    userId Int    @unique
 }
+
+model PasswordToken {
+    id        Int      @id @default(autoincrement())
+    token String
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    // Relation fields
+    user   User   @relation(fields: [userId], references: [id])
+    userId Int @unique
+
+}
+
+model Centre {
+    id Int @id @default(autoincrement())
+
+    name            String @unique
+    displayText     String
+    displaySequence Int
+    streetAddress   String?
+    city            String?
+    stateProvince   String?
+    country         String?
+
+    members Member[]
+}
+model Group {
+    id        Int      @id @default(autoincrement())
+    name String
+    description String
+    visible Boolean
+
+    isDeleted Boolean  @default(false)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    uniqueKey String?  @unique
+    updatedBy String?
+    createdBy String?
+
+    // Relation fields
+    memberGroups MemberGroups[]
+}
+
+model MemberGroups {
+  createdAt DateTime @default(now())
+  createdBy String?
+
+  // Relation fields
+  member   Member   @relation(fields: [memberId], references: [id])
+  memberId Int
+
+  group   Group   @relation(fields: [groupId], references: [id])
+  groupId Int
+
+  @@id([memberId, groupId])
+}
+
+
+
+

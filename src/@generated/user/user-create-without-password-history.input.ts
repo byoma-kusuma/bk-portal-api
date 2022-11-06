@@ -3,12 +3,10 @@ import { InputType } from '@nestjs/graphql';
 import { UserStatus } from '../prisma/user-status.enum';
 import { RoleCreateNestedOneWithoutUsersInput } from '../role/role-create-nested-one-without-users.input';
 import { MemberCreateNestedOneWithoutUserInput } from '../member/member-create-nested-one-without-user.input';
+import { PasswordTokenCreateNestedOneWithoutUserInput } from '../password-token/password-token-create-nested-one-without-user.input';
 
 @InputType()
 export class UserCreateWithoutPasswordHistoryInput {
-
-    @Field(() => String, {nullable:true})
-    id?: string;
 
     @Field(() => String, {nullable:false})
     userName!: string;
@@ -18,9 +16,6 @@ export class UserCreateWithoutPasswordHistoryInput {
 
     @Field(() => String, {nullable:true})
     avatar?: string;
-
-    @Field(() => String, {nullable:true})
-    email?: string;
 
     @Field(() => Boolean, {nullable:true})
     isDeleted?: boolean;
@@ -48,4 +43,7 @@ export class UserCreateWithoutPasswordHistoryInput {
 
     @Field(() => MemberCreateNestedOneWithoutUserInput, {nullable:false})
     member!: MemberCreateNestedOneWithoutUserInput;
+
+    @Field(() => PasswordTokenCreateNestedOneWithoutUserInput, {nullable:true})
+    passwordToken?: PasswordTokenCreateNestedOneWithoutUserInput;
 }

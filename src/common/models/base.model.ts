@@ -3,7 +3,7 @@ import { Field, ObjectType, ID } from "@nestjs/graphql";
 @ObjectType({ isAbstract: true })
 export abstract class BaseModel {
   @Field(() => ID)
-  id: string;
+  id: number;
 
   @Field({
     description: "Identifies the date and time when the object was created."
@@ -27,13 +27,13 @@ export abstract class BaseModel {
   })
   uniqueKey?: string;
 
-  // @Field({
-  //   description: 'Identifies who created the object.',
-  // })
-  // createdBy?: string;
+  @Field({
+    description: "Identifies who created the object."
+  })
+  createdBy?: string;
 
-  // @Field({
-  //   description: 'Identifies who made the last update to the object.',
-  // })
-  // updatedBy?: string;
+  @Field({
+    description: "Identifies who made the last update to the object."
+  })
+  updatedBy?: string;
 }

@@ -6,9 +6,6 @@ import { UserStatus } from '../prisma/user-status.enum';
 export class UserUpdateManyMutationInput {
 
     @Field(() => String, {nullable:true})
-    id?: string;
-
-    @Field(() => String, {nullable:true})
     userName?: string;
 
     @Field(() => String, {nullable:true})
@@ -16,9 +13,6 @@ export class UserUpdateManyMutationInput {
 
     @Field(() => String, {nullable:true})
     avatar?: string;
-
-    @Field(() => String, {nullable:true})
-    email?: string;
 
     @Field(() => Boolean, {nullable:true})
     isDeleted?: boolean;

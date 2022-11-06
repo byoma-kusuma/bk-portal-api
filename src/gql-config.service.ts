@@ -6,6 +6,7 @@ import { ConfigService } from "@nestjs/config";
 import { GqlOptionsFactory } from "@nestjs/graphql";
 
 import { GraphqlConfig } from "./common/configs/config.interface";
+import { ApolloServerPluginLandingPageLocalDefault } from "apollo-server-core";
 
 @Injectable()
 export class GqlConfigService implements GqlOptionsFactory {
@@ -16,17 +17,18 @@ export class GqlConfigService implements GqlOptionsFactory {
 
     const apolloDriverConfig: ApolloDriverConfig = {
       installSubscriptionHandlers: true,
-      debug: graphqlConfig.debug,
-      playground: graphqlConfig.playgroundEnabled,
+      debug: graphqlConfig?.debug,
+      playground: false,
+      plugins: [ApolloServerPluginLandingPageLocalDefault()],
       context: ({ req }) => ({ req }),
-      useGlobalPrefix: graphqlConfig.globalPrefix ? true : false
+      useGlobalPrefix: graphqlConfig?.globalPrefix ? true : false
     };
 
     if (this.configService.get<string>("NODE_ENV") === "development") {
-      apolloDriverConfig.sortSchema = graphqlConfig.sortSchema;
+      apolloDriverConfig.sortSchema = graphqlConfig?.sortSchema;
       apolloDriverConfig.autoSchemaFile = join(
         process.cwd(),
-        graphqlConfig.schemaDestination
+        graphqlConfig?.schemaDestination || "src/schema.graphql"
       );
       apolloDriverConfig.buildSchemaOptions = {
         numberScalarMode: "integer"

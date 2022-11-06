@@ -3,9 +3,9 @@ export const SystemType = {
   SYSTEM: "SYSTEM"
 };
 
-export const RoleType = {
+export const SystemRoleTypes = {
   ADMIN: "ADMIN",
-  DEFAULT: "DEFAULT"
+  DEFAULT: "DEFAULT_MEMBER"
 };
 
 export const ConfigConstants = {

@@ -6,6 +6,8 @@ import { MemberOrderByWithRelationInput } from './member-order-by-with-relation.
 import { MemberWhereUniqueInput } from './member-where-unique.input';
 import { Int } from '@nestjs/graphql';
 import { MemberCountAggregateInput } from './member-count-aggregate.input';
+import { MemberAvgAggregateInput } from './member-avg-aggregate.input';
+import { MemberSumAggregateInput } from './member-sum-aggregate.input';
 import { MemberMinAggregateInput } from './member-min-aggregate.input';
 import { MemberMaxAggregateInput } from './member-max-aggregate.input';
 
@@ -30,6 +32,12 @@ export class MemberAggregateArgs {
 
     @Field(() => MemberCountAggregateInput, {nullable:true})
     _count?: MemberCountAggregateInput;
+
+    @Field(() => MemberAvgAggregateInput, {nullable:true})
+    _avg?: MemberAvgAggregateInput;
+
+    @Field(() => MemberSumAggregateInput, {nullable:true})
+    _sum?: MemberSumAggregateInput;
 
     @Field(() => MemberMinAggregateInput, {nullable:true})
     _min?: MemberMinAggregateInput;

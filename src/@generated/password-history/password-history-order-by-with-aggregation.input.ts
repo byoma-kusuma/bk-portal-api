@@ -2,8 +2,10 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { SortOrder } from '../prisma/sort-order.enum';
 import { PasswordHistoryCountOrderByAggregateInput } from './password-history-count-order-by-aggregate.input';
+import { PasswordHistoryAvgOrderByAggregateInput } from './password-history-avg-order-by-aggregate.input';
 import { PasswordHistoryMaxOrderByAggregateInput } from './password-history-max-order-by-aggregate.input';
 import { PasswordHistoryMinOrderByAggregateInput } from './password-history-min-order-by-aggregate.input';
+import { PasswordHistorySumOrderByAggregateInput } from './password-history-sum-order-by-aggregate.input';
 
 @InputType()
 export class PasswordHistoryOrderByWithAggregationInput {
@@ -38,9 +40,15 @@ export class PasswordHistoryOrderByWithAggregationInput {
     @Field(() => PasswordHistoryCountOrderByAggregateInput, {nullable:true})
     _count?: PasswordHistoryCountOrderByAggregateInput;
 
+    @Field(() => PasswordHistoryAvgOrderByAggregateInput, {nullable:true})
+    _avg?: PasswordHistoryAvgOrderByAggregateInput;
+
     @Field(() => PasswordHistoryMaxOrderByAggregateInput, {nullable:true})
     _max?: PasswordHistoryMaxOrderByAggregateInput;
 
     @Field(() => PasswordHistoryMinOrderByAggregateInput, {nullable:true})
     _min?: PasswordHistoryMinOrderByAggregateInput;
+
+    @Field(() => PasswordHistorySumOrderByAggregateInput, {nullable:true})
+    _sum?: PasswordHistorySumOrderByAggregateInput;
 }

@@ -3,12 +3,10 @@ import { InputType } from '@nestjs/graphql';
 import { UserStatus } from '../prisma/user-status.enum';
 import { PasswordHistoryUpdateOneWithoutUserInput } from '../password-history/password-history-update-one-without-user.input';
 import { MemberUpdateOneRequiredWithoutUserInput } from '../member/member-update-one-required-without-user.input';
+import { PasswordTokenUpdateOneWithoutUserInput } from '../password-token/password-token-update-one-without-user.input';
 
 @InputType()
 export class UserUpdateWithoutRoleInput {
-
-    @Field(() => String, {nullable:true})
-    id?: string;
 
     @Field(() => String, {nullable:true})
     userName?: string;
@@ -18,9 +16,6 @@ export class UserUpdateWithoutRoleInput {
 
     @Field(() => String, {nullable:true})
     avatar?: string;
-
-    @Field(() => String, {nullable:true})
-    email?: string;
 
     @Field(() => Boolean, {nullable:true})
     isDeleted?: boolean;
@@ -48,4 +43,7 @@ export class UserUpdateWithoutRoleInput {
 
     @Field(() => MemberUpdateOneRequiredWithoutUserInput, {nullable:true})
     member?: MemberUpdateOneRequiredWithoutUserInput;
+
+    @Field(() => PasswordTokenUpdateOneWithoutUserInput, {nullable:true})
+    passwordToken?: PasswordTokenUpdateOneWithoutUserInput;
 }

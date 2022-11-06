@@ -1,14 +1,16 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { Int } from '@nestjs/graphql';
 import { CentreAffiliationType } from '../prisma/centre-affiliation-type.enum';
 import { MembershipType } from '../prisma/membership-type.enum';
 import { GenderType } from '../prisma/gender-type.enum';
+import { MemberGroupsUncheckedUpdateManyWithoutMemberInput } from '../member-groups/member-groups-unchecked-update-many-without-member.input';
 
 @InputType()
 export class MemberUncheckedUpdateWithoutUserInput {
 
-    @Field(() => String, {nullable:true})
-    id?: string;
+    @Field(() => Int, {nullable:true})
+    id?: number;
 
     @Field(() => String, {nullable:true})
     email?: string;
@@ -73,6 +75,9 @@ export class MemberUncheckedUpdateWithoutUserInput {
     @Field(() => String, {nullable:true})
     photo?: string;
 
+    @Field(() => Int, {nullable:true})
+    centreId?: number;
+
     @Field(() => Boolean, {nullable:true})
     isDeleted?: boolean;
 
@@ -90,4 +95,7 @@ export class MemberUncheckedUpdateWithoutUserInput {
 
     @Field(() => String, {nullable:true})
     createdBy?: string;
+
+    @Field(() => MemberGroupsUncheckedUpdateManyWithoutMemberInput, {nullable:true})
+    memberGroups?: MemberGroupsUncheckedUpdateManyWithoutMemberInput;
 }

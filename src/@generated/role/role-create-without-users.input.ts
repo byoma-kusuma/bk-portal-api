@@ -5,9 +5,6 @@ import { Type } from '../prisma/type.enum';
 @InputType()
 export class RoleCreateWithoutUsersInput {
 
-    @Field(() => String, {nullable:true})
-    id?: string;
-
     @Field(() => String, {nullable:false})
     name!: string;
 

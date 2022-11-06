@@ -1,5 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { IntFilter } from '../prisma/int-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
@@ -7,6 +8,7 @@ import { EnumUserStatusFilter } from '../prisma/enum-user-status-filter.input';
 import { PasswordHistoryRelationFilter } from '../password-history/password-history-relation-filter.input';
 import { RoleRelationFilter } from '../role/role-relation-filter.input';
 import { MemberRelationFilter } from '../member/member-relation-filter.input';
+import { PasswordTokenRelationFilter } from '../password-token/password-token-relation-filter.input';
 
 @InputType()
 export class UserWhereInput {
@@ -20,8 +22,8 @@ export class UserWhereInput {
     @Field(() => [UserWhereInput], {nullable:true})
     NOT?: Array<UserWhereInput>;
 
-    @Field(() => StringFilter, {nullable:true})
-    id?: StringFilter;
+    @Field(() => IntFilter, {nullable:true})
+    id?: IntFilter;
 
     @Field(() => StringFilter, {nullable:true})
     userName?: StringFilter;
@@ -31,9 +33,6 @@ export class UserWhereInput {
 
     @Field(() => StringFilter, {nullable:true})
     avatar?: StringFilter;
-
-    @Field(() => StringFilter, {nullable:true})
-    email?: StringFilter;
 
     @Field(() => BoolFilter, {nullable:true})
     isDeleted?: BoolFilter;
@@ -62,12 +61,15 @@ export class UserWhereInput {
     @Field(() => RoleRelationFilter, {nullable:true})
     role?: RoleRelationFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    roleId?: StringFilter;
+    @Field(() => IntFilter, {nullable:true})
+    roleId?: IntFilter;
 
     @Field(() => MemberRelationFilter, {nullable:true})
     member?: MemberRelationFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    memberId?: StringFilter;
+    @Field(() => IntFilter, {nullable:true})
+    memberId?: IntFilter;
+
+    @Field(() => PasswordTokenRelationFilter, {nullable:true})
+    passwordToken?: PasswordTokenRelationFilter;
 }

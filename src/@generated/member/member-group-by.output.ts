@@ -1,17 +1,20 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
+import { Int } from '@nestjs/graphql';
 import { CentreAffiliationType } from '../prisma/centre-affiliation-type.enum';
 import { MembershipType } from '../prisma/membership-type.enum';
 import { GenderType } from '../prisma/gender-type.enum';
 import { MemberCountAggregate } from './member-count-aggregate.output';
+import { MemberAvgAggregate } from './member-avg-aggregate.output';
+import { MemberSumAggregate } from './member-sum-aggregate.output';
 import { MemberMinAggregate } from './member-min-aggregate.output';
 import { MemberMaxAggregate } from './member-max-aggregate.output';
 
 @ObjectType()
 export class MemberGroupBy {
 
-    @Field(() => String, {nullable:false})
-    id!: string;
+    @Field(() => Int, {nullable:false})
+    id!: number;
 
     @Field(() => String, {nullable:true})
     email?: string;
@@ -76,6 +79,9 @@ export class MemberGroupBy {
     @Field(() => String, {nullable:true})
     photo?: string;
 
+    @Field(() => Int, {nullable:true})
+    centreId?: number;
+
     @Field(() => Boolean, {nullable:false})
     isDeleted!: boolean;
 
@@ -96,6 +102,12 @@ export class MemberGroupBy {
 
     @Field(() => MemberCountAggregate, {nullable:true})
     _count?: MemberCountAggregate;
+
+    @Field(() => MemberAvgAggregate, {nullable:true})
+    _avg?: MemberAvgAggregate;
+
+    @Field(() => MemberSumAggregate, {nullable:true})
+    _sum?: MemberSumAggregate;
 
     @Field(() => MemberMinAggregate, {nullable:true})
     _min?: MemberMinAggregate;

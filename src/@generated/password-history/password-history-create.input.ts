@@ -5,9 +5,6 @@ import { UserCreateNestedOneWithoutPasswordHistoryInput } from '../user/user-cre
 @InputType()
 export class PasswordHistoryCreateInput {
 
-    @Field(() => String, {nullable:true})
-    id?: string;
-
     @Field(() => String, {nullable:false})
     password!: string;
 

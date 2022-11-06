@@ -1,5 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { IntWithAggregatesFilter } from '../prisma/int-with-aggregates-filter.input';
 import { StringWithAggregatesFilter } from '../prisma/string-with-aggregates-filter.input';
 import { BoolWithAggregatesFilter } from '../prisma/bool-with-aggregates-filter.input';
 import { EnumCentreAffiliationTypeWithAggregatesFilter } from '../prisma/enum-centre-affiliation-type-with-aggregates-filter.input';
@@ -19,8 +20,8 @@ export class MemberScalarWhereWithAggregatesInput {
     @Field(() => [MemberScalarWhereWithAggregatesInput], {nullable:true})
     NOT?: Array<MemberScalarWhereWithAggregatesInput>;
 
-    @Field(() => StringWithAggregatesFilter, {nullable:true})
-    id?: StringWithAggregatesFilter;
+    @Field(() => IntWithAggregatesFilter, {nullable:true})
+    id?: IntWithAggregatesFilter;
 
     @Field(() => StringWithAggregatesFilter, {nullable:true})
     email?: StringWithAggregatesFilter;
@@ -84,6 +85,9 @@ export class MemberScalarWhereWithAggregatesInput {
 
     @Field(() => StringWithAggregatesFilter, {nullable:true})
     photo?: StringWithAggregatesFilter;
+
+    @Field(() => IntWithAggregatesFilter, {nullable:true})
+    centreId?: IntWithAggregatesFilter;
 
     @Field(() => BoolWithAggregatesFilter, {nullable:true})
     isDeleted?: BoolWithAggregatesFilter;

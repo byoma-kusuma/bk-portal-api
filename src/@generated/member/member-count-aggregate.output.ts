@@ -72,6 +72,9 @@ export class MemberCountAggregate {
     photo!: number;
 
     @Field(() => Int, {nullable:false})
+    centreId!: number;
+
+    @Field(() => Int, {nullable:false})
     isDeleted!: number;
 
     @Field(() => Int, {nullable:false})

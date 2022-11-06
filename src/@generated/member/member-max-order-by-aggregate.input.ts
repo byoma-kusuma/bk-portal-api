@@ -72,6 +72,9 @@ export class MemberMaxOrderByAggregateInput {
     photo?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
+    centreId?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
     isDeleted?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})

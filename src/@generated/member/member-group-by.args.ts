@@ -7,6 +7,8 @@ import { MemberScalarFieldEnum } from './member-scalar-field.enum';
 import { MemberScalarWhereWithAggregatesInput } from './member-scalar-where-with-aggregates.input';
 import { Int } from '@nestjs/graphql';
 import { MemberCountAggregateInput } from './member-count-aggregate.input';
+import { MemberAvgAggregateInput } from './member-avg-aggregate.input';
+import { MemberSumAggregateInput } from './member-sum-aggregate.input';
 import { MemberMinAggregateInput } from './member-min-aggregate.input';
 import { MemberMaxAggregateInput } from './member-max-aggregate.input';
 
@@ -34,6 +36,12 @@ export class MemberGroupByArgs {
 
     @Field(() => MemberCountAggregateInput, {nullable:true})
     _count?: MemberCountAggregateInput;
+
+    @Field(() => MemberAvgAggregateInput, {nullable:true})
+    _avg?: MemberAvgAggregateInput;
+
+    @Field(() => MemberSumAggregateInput, {nullable:true})
+    _sum?: MemberSumAggregateInput;
 
     @Field(() => MemberMinAggregateInput, {nullable:true})
     _min?: MemberMinAggregateInput;

@@ -22,7 +22,7 @@ const config: Config = {
     globalPrefix: "api"
   },
   security: {
-    expiresIn: "15m",
+    expiresIn: process.env.NODE_ENV === "development" ? "12h" : "15m",
     refreshIn: "1d",
     bcryptSaltOrRound: 10
   }

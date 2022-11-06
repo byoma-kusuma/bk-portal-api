@@ -1,12 +1,13 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { Int } from '@nestjs/graphql';
 import { UserStatus } from '../prisma/user-status.enum';
 
 @InputType()
 export class UserUncheckedUpdateManyWithoutUsersInput {
 
-    @Field(() => String, {nullable:true})
-    id?: string;
+    @Field(() => Int, {nullable:true})
+    id?: number;
 
     @Field(() => String, {nullable:true})
     userName?: string;
@@ -16,9 +17,6 @@ export class UserUncheckedUpdateManyWithoutUsersInput {
 
     @Field(() => String, {nullable:true})
     avatar?: string;
-
-    @Field(() => String, {nullable:true})
-    email?: string;
 
     @Field(() => Boolean, {nullable:true})
     isDeleted?: boolean;
@@ -41,6 +39,6 @@ export class UserUncheckedUpdateManyWithoutUsersInput {
     @Field(() => UserStatus, {nullable:true})
     status?: keyof typeof UserStatus;
 
-    @Field(() => String, {nullable:true})
-    memberId?: string;
+    @Field(() => Int, {nullable:true})
+    memberId?: number;
 }

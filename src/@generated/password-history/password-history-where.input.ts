@@ -1,5 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { IntFilter } from '../prisma/int-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
@@ -17,8 +18,8 @@ export class PasswordHistoryWhereInput {
     @Field(() => [PasswordHistoryWhereInput], {nullable:true})
     NOT?: Array<PasswordHistoryWhereInput>;
 
-    @Field(() => StringFilter, {nullable:true})
-    id?: StringFilter;
+    @Field(() => IntFilter, {nullable:true})
+    id?: IntFilter;
 
     @Field(() => StringFilter, {nullable:true})
     password?: StringFilter;
@@ -44,6 +45,6 @@ export class PasswordHistoryWhereInput {
     @Field(() => UserRelationFilter, {nullable:true})
     user?: UserRelationFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    userId?: StringFilter;
+    @Field(() => IntFilter, {nullable:true})
+    userId?: IntFilter;
 }

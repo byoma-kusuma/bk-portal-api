@@ -1,0 +1,93 @@
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  ResolveField,
+  Parent,
+  Int
+} from "@nestjs/graphql";
+import { MembersService } from "./members.service";
+import { Member } from "./entities/member.entity";
+import { CreateMemberInput } from "./dto/create-member.input";
+import { UpdateMemberInput } from "./dto/update-member.input";
+import { GqlAuthGuard } from "src/app/auth/gql-auth.guard";
+import { ParseIntPipe, UseGuards } from "@nestjs/common";
+import { User } from "src/app/users/models/user.model";
+import { Centre } from "src/app/centre/entities/centre.entity";
+import { CurrentUser } from "src/common/decorators/currentUser.decorator";
+import { Group } from "../groups/entities/group.entity";
+
+@Resolver(() => Member)
+@UseGuards(GqlAuthGuard)
+export class MembersResolver {
+  constructor(private readonly membersService: MembersService) {}
+
+  @Mutation(() => Member)
+  createMember(
+    @Args("createMemberInput") createMemberInput: CreateMemberInput
+  ) {
+    return this.membersService.create(createMemberInput);
+  }
+
+  @Query(() => [Member], { name: "members" })
+  findAll() {
+    return this.membersService.findAll();
+  }
+
+  @Query(() => Member, { name: "member" })
+  findOne(@Args("id", { type: () => Int }) id: number) {
+    return this.membersService.findOne(id);
+  }
+
+  @Mutation(() => Member)
+  updateMember(
+    @Args("updateMemberInput") updateMemberInput: UpdateMemberInput
+  ) {
+    return this.membersService.update(updateMemberInput.id, updateMemberInput);
+  }
+
+  @Mutation(() => Member)
+  removeMember(
+    @Args("id", { type: () => Int }) id: number,
+    @CurrentUser() user: User
+  ) {
+    return this.membersService.remove(id, user.memberId);
+  }
+
+  @ResolveField(() => User)
+  async user(@Parent() member: Member) {
+    const user = await this.membersService
+      .findUnique({ where: { id: member.id } })
+      .user();
+    if (!user || user.isDeleted) return null;
+    return user;
+  }
+
+  @ResolveField(() => Centre)
+  async centre(@Parent() member: Member) {
+    const centre = await this.membersService
+      .findUnique({ where: { id: member.id } })
+      .centre();
+    return centre;
+  }
+
+  @ResolveField(() => [Group])
+  async groups(@Parent() member: Member) {
+    const memberGroups = await this.membersService.findUnique({
+      where: { id: member.id },
+      select: {
+        id: true,
+        memberGroups: {
+          select: {
+            group: true
+          }
+        }
+      }
+    });
+    if (!memberGroups) return null;
+    return memberGroups.memberGroups.map(
+      (groupRelation) => groupRelation.group
+    );
+  }
+}

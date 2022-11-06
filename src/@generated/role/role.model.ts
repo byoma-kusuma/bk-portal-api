@@ -9,7 +9,7 @@ import { RoleCount } from './role-count.output';
 export class Role {
 
     @Field(() => ID, {nullable:false})
-    id!: string;
+    id!: number;
 
     @Field(() => String, {nullable:false})
     name!: string;
