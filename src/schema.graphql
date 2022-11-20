@@ -414,6 +414,7 @@ type Mutation {
   removeRole(id: Int!): Role!
   removeUser(id: Int!): User!
   resetPassword(resetPasswordInput: ResetPasswordInput!): ResponseStatus!
+  sendEmail(sendEmailInput: SendEmailInput!): ResponseStatus!
   updateCentre(updateCentreInput: UpdateCentreInput!): Centre!
   updateGroup(updateGroupInput: UpdateGroupInput!): Group!
   updateMember(updateMemberInput: UpdateMemberInput!): Member!
@@ -537,6 +538,12 @@ input RoleWhereInput {
 enum Role_Type {
   DEFAULT
   SYSTEM
+}
+
+input SendEmailInput {
+  content: String!
+  memberEmails: [String!]!
+  subject: String!
 }
 
 """Current status of the user within the system"""

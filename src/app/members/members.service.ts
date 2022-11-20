@@ -7,9 +7,12 @@ import {
   NotFoundException
 } from "@nestjs/common";
 import { PrismaService } from "nestjs-prisma";
+import { send } from "process";
 import createAvatar from "src/common/utils/avatar";
+import { EmailService } from "../email/email.service";
 import { GroupsService } from "../groups/groups.service";
 import { CreateMemberInput } from "./dto/create-member.input";
+import { SendEmailInput } from "./dto/send-email.input";
 import { UpdateMemberInput } from "./dto/update-member.input";
 
 @Injectable()
@@ -22,7 +25,8 @@ export class MembersService {
     private readonly prisma: PrismaService,
 
     @Inject(forwardRef(() => GroupsService))
-    private readonly groupService: GroupsService
+    private readonly groupService: GroupsService,
+    private readonly emailService: EmailService
   ) {}
 
   async create(createMemberInput: CreateMemberInput) {
@@ -150,6 +154,14 @@ export class MembersService {
       await deleteMemberOperation;
     }
     return member;
+  }
+
+  sendEmail(sendEmailInput: SendEmailInput) {
+    this.emailService.sendMail({
+      to: sendEmailInput.memberEmails,
+      subject: sendEmailInput.subject,
+      text: sendEmailInput.content
+    });
   }
 
   async filterValidMembers(memberIds: Array<number>): Promise<Array<number>> {
