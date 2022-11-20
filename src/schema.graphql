@@ -96,7 +96,7 @@ input CreateCentreInput {
 
 input CreateGroupInput {
   description: String!
-  memberIds: [Int!]
+  memberIds: [Int!]!
   name: String!
   visible: Boolean!
 }
@@ -207,13 +207,13 @@ type Group {
 
   """Identifies who created the object."""
   createdBy: String
-  description: String
-  id: ID!
+  description: String!
+  id: Int!
 
   """Identifies the date and time when the object was last updated."""
   isDeleted: Boolean!
   members: [Member!]!
-  name: String
+  name: String!
 
   """Unique key associated with the object."""
   uniqueKey: String
@@ -223,7 +223,7 @@ type Group {
 
   """Identifies who made the last update to the object."""
   updatedBy: String
-  visible: Boolean
+  visible: Boolean!
 }
 
 input GroupRelationFilter {
@@ -414,6 +414,7 @@ type Mutation {
   removeRole(id: Int!): Role!
   removeUser(id: Int!): User!
   resetPassword(resetPasswordInput: ResetPasswordInput!): ResponseStatus!
+  sendEmail(sendEmailInput: SendEmailInput!): ResponseStatus!
   updateCentre(updateCentreInput: UpdateCentreInput!): Centre!
   updateGroup(updateGroupInput: UpdateGroupInput!): Group!
   updateMember(updateMemberInput: UpdateMemberInput!): Member!
@@ -494,7 +495,7 @@ type Role {
 
   """Identifies who created the object."""
   createdBy: String
-  id: ID!
+  id: Int!
 
   """Identifies the date and time when the object was last updated."""
   isDeleted: Boolean!
@@ -537,6 +538,12 @@ input RoleWhereInput {
 enum Role_Type {
   DEFAULT
   SYSTEM
+}
+
+input SendEmailInput {
+  content: String!
+  memberEmails: [String!]!
+  subject: String!
 }
 
 """Current status of the user within the system"""
@@ -586,13 +593,15 @@ input UpdateCentreInput {
 input UpdateGroupInput {
   description: String!
   id: Int!
-  memberIds: [Int!]
+  memberIds: [Int!]!
   name: String!
+  visible: Boolean!
 }
 
 input UpdateMemberInput {
   active: Boolean!
   centerAffiliation: String!
+  centreId: Int
   currentAddress: String
   dob: DateTime
   email: String

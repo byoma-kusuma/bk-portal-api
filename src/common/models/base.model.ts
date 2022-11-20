@@ -1,8 +1,8 @@
-import { Field, ObjectType, ID } from "@nestjs/graphql";
+import { Field, ObjectType, Int } from "@nestjs/graphql";
 
 @ObjectType({ isAbstract: true })
 export abstract class BaseModel {
-  @Field(() => ID)
+  @Field(() => Int)
   id: number;
 
   @Field({

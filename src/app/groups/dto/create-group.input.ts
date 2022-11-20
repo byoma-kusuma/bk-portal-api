@@ -12,7 +12,7 @@ export class CreateGroupInput {
   @Field(() => String)
   description: string;
 
-  @Field(() => [Int], { nullable: true })
+  @Field(() => [Int])
   @IsNumber({}, { each: true })
   memberIds: Array<number>;
 }

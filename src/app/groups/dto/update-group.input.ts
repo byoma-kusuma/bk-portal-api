@@ -9,10 +9,13 @@ export class UpdateGroupInput {
   @Field(() => Int)
   id: number;
 
+  @Field(() => Boolean)
+  visible: boolean;
+
   @Field(() => String)
   description: string;
 
-  @Field(() => [Int], { nullable: true })
+  @Field(() => [Int])
   @IsNumber({}, { each: true })
   memberIds: Array<number>;
 }
