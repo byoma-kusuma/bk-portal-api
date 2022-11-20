@@ -96,7 +96,7 @@ input CreateCentreInput {
 
 input CreateGroupInput {
   description: String!
-  memberIds: [Int!]
+  memberIds: [Int!]!
   name: String!
   visible: Boolean!
 }
@@ -207,13 +207,13 @@ type Group {
 
   """Identifies who created the object."""
   createdBy: String
-  description: String
-  id: ID!
+  description: String!
+  id: Int!
 
   """Identifies the date and time when the object was last updated."""
   isDeleted: Boolean!
   members: [Member!]!
-  name: String
+  name: String!
 
   """Unique key associated with the object."""
   uniqueKey: String
@@ -223,7 +223,7 @@ type Group {
 
   """Identifies who made the last update to the object."""
   updatedBy: String
-  visible: Boolean
+  visible: Boolean!
 }
 
 input GroupRelationFilter {
@@ -494,7 +494,7 @@ type Role {
 
   """Identifies who created the object."""
   createdBy: String
-  id: ID!
+  id: Int!
 
   """Identifies the date and time when the object was last updated."""
   isDeleted: Boolean!
@@ -586,13 +586,15 @@ input UpdateCentreInput {
 input UpdateGroupInput {
   description: String!
   id: Int!
-  memberIds: [Int!]
+  memberIds: [Int!]!
   name: String!
+  visible: Boolean!
 }
 
 input UpdateMemberInput {
   active: Boolean!
   centerAffiliation: String!
+  centreId: Int
   currentAddress: String
   dob: DateTime
   email: String

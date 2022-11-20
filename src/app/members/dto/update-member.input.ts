@@ -78,6 +78,10 @@ export class UpdateMemberInput {
 
   @Field({ nullable: true })
   @IsOptional()
+  centreId?: number;
+
+  @Field({ nullable: true })
+  @IsOptional()
   @IsEnum(MembershipType)
   membershipType?: MembershipType;
 
