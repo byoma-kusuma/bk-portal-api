@@ -1,7 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { PrismaService } from "nestjs-prisma";
 
-import { CreateRoleInput } from "./dto/create-role.input";
 import { UpdateRoleInput } from "./dto/update-role.input";
 
 @Injectable()
@@ -11,7 +10,7 @@ export class RolesService {
 
   constructor(private prisma: PrismaService) {}
 
-  create(createRoleInput: CreateRoleInput) {
+  create() {
     return "This action adds a new role";
   }
 

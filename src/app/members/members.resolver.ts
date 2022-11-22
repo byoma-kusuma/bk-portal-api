@@ -12,12 +12,11 @@ import { Member } from "./entities/member.entity";
 import { CreateMemberInput } from "./dto/create-member.input";
 import { UpdateMemberInput } from "./dto/update-member.input";
 import { GqlAuthGuard } from "src/app/auth/gql-auth.guard";
-import { ParseIntPipe, UseGuards } from "@nestjs/common";
+import { UseGuards } from "@nestjs/common";
 import { User } from "src/app/users/models/user.model";
 import { Centre } from "src/app/centre/entities/centre.entity";
 import { CurrentUser } from "src/common/decorators/currentUser.decorator";
 import { Group } from "../groups/entities/group.entity";
-import { VoidMock } from "graphql-scalars";
 import { SendEmailInput } from "./dto/send-email.input";
 import ResponseStatus from "src/common/ResponseClasses/ResponseStatus";
 

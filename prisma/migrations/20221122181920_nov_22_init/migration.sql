@@ -114,10 +114,10 @@ CREATE TABLE "Centre" (
     "name" TEXT NOT NULL,
     "displayText" TEXT NOT NULL,
     "displaySequence" INTEGER NOT NULL,
-    "streetAddress" TEXT NOT NULL,
-    "city" TEXT NOT NULL,
-    "stateProvince" TEXT NOT NULL,
-    "country" TEXT NOT NULL,
+    "streetAddress" TEXT,
+    "city" TEXT,
+    "stateProvince" TEXT,
+    "country" TEXT,
 
     CONSTRAINT "Centre_pkey" PRIMARY KEY ("id")
 );

@@ -3,10 +3,14 @@
 # ------------------------------------------------------
 
 type Auth {
-  """JWT access token"""
+  """
+  JWT access token
+  """
   accessToken: JWT!
 
-  """JWT refresh token"""
+  """
+  JWT refresh token
+  """
   refreshToken: JWT!
   user: User!
 }
@@ -20,7 +24,9 @@ type Centre {
   city: String
   country: String
 
-  """Identifies the date and time when the object was created."""
+  """
+  Identifies the date and time when the object was created.
+  """
   createdAt: DateTime!
   displaySequence: Int!
   displayText: String
@@ -29,10 +35,14 @@ type Centre {
   stateProvince: String
   streetAddress: String
 
-  """Unique key associated with the object."""
+  """
+  Unique key associated with the object.
+  """
   uniqueKey: String
 
-  """Identifies the date and time when the object was last updated."""
+  """
+  Identifies the date and time when the object was last updated.
+  """
   updatedAt: DateTime!
 }
 
@@ -47,7 +57,9 @@ enum CentreAffiliationType {
   USA
 }
 
-"""Types of centre affiliation"""
+"""
+Types of centre affiliation
+"""
 enum CentreAffiliation_Type {
   Australia
   Hetauda
@@ -193,7 +205,9 @@ enum GenderType {
   PREFER_NOT_TO_SAY
 }
 
-"""Types of gender"""
+"""
+Types of gender
+"""
 enum Gender_Type {
   FEMALE
   MALE
@@ -202,26 +216,38 @@ enum Gender_Type {
 }
 
 type Group {
-  """Identifies the date and time when the object was created."""
+  """
+  Identifies the date and time when the object was created.
+  """
   createdAt: DateTime!
 
-  """Identifies who created the object."""
+  """
+  Identifies who created the object.
+  """
   createdBy: String
   description: String!
   id: Int!
 
-  """Identifies the date and time when the object was last updated."""
+  """
+  Identifies the date and time when the object was last updated.
+  """
   isDeleted: Boolean!
   members: [Member!]!
   name: String!
 
-  """Unique key associated with the object."""
+  """
+  Unique key associated with the object.
+  """
   uniqueKey: String
 
-  """Identifies the date and time when the object was last updated."""
+  """
+  Identifies the date and time when the object was last updated.
+  """
   updatedAt: DateTime!
 
-  """Identifies who made the last update to the object."""
+  """
+  Identifies who made the last update to the object.
+  """
   updatedBy: String
   visible: Boolean!
 }
@@ -275,10 +301,14 @@ type Member {
   centre: Centre
   centreId: Int
 
-  """Identifies the date and time when the object was created."""
+  """
+  Identifies the date and time when the object was created.
+  """
   createdAt: DateTime!
 
-  """Identifies who created the object."""
+  """
+  Identifies who created the object.
+  """
   createdBy: String
   currentAddress: String
   dob: DateTime
@@ -289,7 +319,9 @@ type Member {
   id: Int!
   insta: String
 
-  """Identifies the date and time when the object was last updated."""
+  """
+  Identifies the date and time when the object was last updated.
+  """
   isDeleted: Boolean!
   isMember: Boolean!
   lastName: String!
@@ -304,13 +336,19 @@ type Member {
   sanghaJoinDate: DateTime
   title: String
 
-  """Unique key associated with the object."""
+  """
+  Unique key associated with the object.
+  """
   uniqueKey: String
 
-  """Identifies the date and time when the object was last updated."""
+  """
+  Identifies the date and time when the object was last updated.
+  """
   updatedAt: DateTime!
 
-  """Identifies who made the last update to the object."""
+  """
+  Identifies who made the last update to the object.
+  """
   updatedBy: String
   user: User
   viber: String
@@ -390,7 +428,9 @@ enum MembershipType {
   LifeMember
 }
 
-"""Types of membership"""
+"""
+Types of membership
+"""
 enum Membership_Type {
   BoardMember
   GeneralMember
@@ -405,7 +445,9 @@ type Mutation {
   createMember(createMemberInput: CreateMemberInput!): Member!
   createRole(createRoleInput: CreateRoleInput!): Role!
   createUser(createUserInput: CreateUserInput!): User!
-  initiateResetPassword(resetPasswordInitiateInput: ResetPasswordInitiateInput!): ResponseStatus!
+  initiateResetPassword(
+    resetPasswordInitiateInput: ResetPasswordInitiateInput!
+  ): ResponseStatus!
   login(data: LoginInput!): Auth!
   refreshToken(token: JWT!): Token!
   removeCentre(id: Int!): Centre!
@@ -490,25 +532,37 @@ type ResponseStatus {
 }
 
 type Role {
-  """Identifies the date and time when the object was created."""
+  """
+  Identifies the date and time when the object was created.
+  """
   createdAt: DateTime!
 
-  """Identifies who created the object."""
+  """
+  Identifies who created the object.
+  """
   createdBy: String
   id: Int!
 
-  """Identifies the date and time when the object was last updated."""
+  """
+  Identifies the date and time when the object was last updated.
+  """
   isDeleted: Boolean!
   name: String!
   type: Role_Type!
 
-  """Unique key associated with the object."""
+  """
+  Unique key associated with the object.
+  """
   uniqueKey: String
 
-  """Identifies the date and time when the object was last updated."""
+  """
+  Identifies the date and time when the object was last updated.
+  """
   updatedAt: DateTime!
 
-  """Identifies who made the last update to the object."""
+  """
+  Identifies who made the last update to the object.
+  """
   updatedBy: String
   users: [User!]!
 }
@@ -534,7 +588,9 @@ input RoleWhereInput {
   users: UserListRelationFilter
 }
 
-"""Type of the role"""
+"""
+Type of the role
+"""
 enum Role_Type {
   DEFAULT
   SYSTEM
@@ -546,7 +602,9 @@ input SendEmailInput {
   subject: String!
 }
 
-"""Current status of the user within the system"""
+"""
+Current status of the user within the system
+"""
 enum Status {
   VALIDATED
   VALIDATION_PENDING
@@ -567,10 +625,14 @@ input StringFilter {
 }
 
 type Token {
-  """JWT access token"""
+  """
+  JWT access token
+  """
   accessToken: JWT!
 
-  """JWT refresh token"""
+  """
+  JWT refresh token
+  """
   refreshToken: JWT!
 }
 
@@ -633,27 +695,39 @@ input UpdateRoleInput {
 type User {
   avatar: String!
 
-  """Identifies the date and time when the object was created."""
+  """
+  Identifies the date and time when the object was created.
+  """
   createdAt: DateTime!
 
-  """Identifies who created the object."""
+  """
+  Identifies who created the object.
+  """
   createdBy: String
   id: Int!
 
-  """Identifies the date and time when the object was last updated."""
+  """
+  Identifies the date and time when the object was last updated.
+  """
   isDeleted: Boolean!
   member: Member!
   memberId: Int!
   role: Role!
   status: Status!
 
-  """Unique key associated with the object."""
+  """
+  Unique key associated with the object.
+  """
   uniqueKey: String
 
-  """Identifies the date and time when the object was last updated."""
+  """
+  Identifies the date and time when the object was last updated.
+  """
   updatedAt: DateTime!
 
-  """Identifies who made the last update to the object."""
+  """
+  Identifies who made the last update to the object.
+  """
   updatedBy: String
   userName: String!
 }

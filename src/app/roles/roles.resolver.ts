@@ -29,7 +29,7 @@ export class RolesResolver {
 
   @Mutation(() => Role)
   createRole(@Args("createRoleInput") createRoleInput: CreateRoleInput) {
-    return this.rolesService.create(createRoleInput);
+    return this.rolesService.create();
   }
 
   @Query(() => [Role], { name: "roles" })

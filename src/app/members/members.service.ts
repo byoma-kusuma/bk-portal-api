@@ -7,7 +7,6 @@ import {
   NotFoundException
 } from "@nestjs/common";
 import { PrismaService } from "nestjs-prisma";
-import { send } from "process";
 import createAvatar from "src/common/utils/avatar";
 import { EmailService } from "../email/email.service";
 import { GroupsService } from "../groups/groups.service";
