@@ -12,14 +12,16 @@ import { RolesService } from "./roles.service";
 import { Role } from "./entities/role.model";
 import { CreateRoleInput } from "./dto/create-role.input";
 import { UpdateRoleInput } from "./dto/update-role.input";
-import { Logger } from "@nestjs/common";
+import { Logger, UseGuards } from "@nestjs/common";
 import { PrismaSelect } from "@paljs/plugins";
 import { GraphQLResolveInfo } from "graphql";
 import { User } from "../users/models/user.model";
 import { RoleWhereInput } from "../../@generated/role/role-where.input";
 import { RoleWhereUniqueInput } from "../../@generated/role/role-where-unique.input";
+import { GqlAuthGuard } from "../auth/gql-auth.guard";
 
 @Resolver(() => Role)
+@UseGuards(GqlAuthGuard)
 export class RolesResolver {
   private readonly logger = new Logger(RolesResolver.name);
 
