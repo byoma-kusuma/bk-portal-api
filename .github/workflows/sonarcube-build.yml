@@ -15,6 +15,7 @@ env:
 
 jobs:
   sonarcloud:
+    environment: DEV
     name: SonarCloud
     runs-on: ubuntu-latest
     steps:

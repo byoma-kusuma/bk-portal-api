@@ -14,10 +14,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/fivethree-team/nestjs-prisma-client-example.git"
+    "url": "https://github.com/byoma-kusuma/bk-portal-api"
   },
   "bugs": {
-    "url": "https://github.com/fivethree-team/nestjs-prisma-client-example/issues"
+    "url": "https://github.com/byoma-kusuma/bk-portal-api/issues"
   },
   "scripts": {
     "prebuild": "rimraf dist",
