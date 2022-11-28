@@ -13,7 +13,7 @@ import type {
 } from "./common/configs/config.interface";
 import { HttpExceptionFilter } from "./common/exceptions/HttpExceptionFilter";
 
-async function bootstrap() {
+export default async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.set("trust proxy", true);
 
@@ -57,5 +57,7 @@ async function bootstrap() {
   }
 
   await app.listen(nestConfig?.port || 7200);
+  return app;
 }
+
 bootstrap();
