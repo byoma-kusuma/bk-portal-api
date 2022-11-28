@@ -2,6 +2,7 @@ node_modules/
 dist/
 prisma/*.db
 coverage/
+test-report.xml
 
 .DS_Store
 
