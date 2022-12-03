@@ -1,12 +1,13 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/azure/functions-action
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: dev site ci/cd
+name: Build and deploy Node.js project to Azure Function App - bk-portal-api
 
 on:
   push:
     branches:
-      - dev
+      - feature/new-env-setup
+      - prod
   workflow_dispatch:
 
 env:
@@ -15,7 +16,7 @@ env:
 
 jobs:
   build-and-deploy:
-    environment: DEV
+    environment: PROD
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout GitHub Action"
@@ -51,7 +52,7 @@ jobs:
         uses: Azure/functions-action@v1
         id: fa
         with:
-          app-name: "bk-dev-api"
+          app-name: "bk-portal-api"
           slot-name: "Production"
           package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_45186EAE50E94B51B251835A65629CF7 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9A7641F8327E402B99549774A39BA4D9 }}
