@@ -6,7 +6,6 @@ name: qa site ci/cd
 on:
   push:
     branches:
-      - feature/new-env-setup
       - qa
   workflow_dispatch:
 

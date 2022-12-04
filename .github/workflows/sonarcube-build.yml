@@ -6,7 +6,6 @@ on:
       - main
       - dev
       - qa
-      - feature/sonar-cube-setup
   pull_request:
     types: [opened, synchronize, reopened]
 
