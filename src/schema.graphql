@@ -103,7 +103,7 @@ input CreateGroupInput {
 
 input CreateMemberInput {
   active: Boolean!
-  centerAffiliation: String!
+  centerAffiliation: CentreAffiliation_Type!
   centreId: Int
   currentAddress: String
   dob: DateTime
@@ -600,19 +600,19 @@ input UpdateGroupInput {
 
 input UpdateMemberInput {
   active: Boolean!
-  centerAffiliation: String!
+  centerAffiliation: CentreAffiliation_Type!
   centreId: Int
   currentAddress: String
   dob: DateTime
   email: String
   firstName: String!
-  gender: String
+  gender: Gender_Type
   groupIds: [Int!]
   id: Int!
   insta: String
   isMember: Boolean!
   lastName: String!
-  membershipType: String
+  membershipType: Membership_Type
   messenger: String
   middleName: String
   permanentAddress: String
