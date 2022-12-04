@@ -1,12 +1,11 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/azure/functions-action
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js project to Azure Function App - bk-portal-api
+name: prod site ci/cd
 
 on:
   push:
     branches:
-      - feature/new-env-setup
       - prod
   workflow_dispatch:
 
