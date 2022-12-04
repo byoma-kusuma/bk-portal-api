@@ -6,7 +6,6 @@ on:
       - main
       - dev
       - qa
-      - feature/sonar-cube-setup
   pull_request:
     types: [opened, synchronize, reopened]
 
@@ -17,7 +16,7 @@ jobs:
   sonarcloud:
     environment: DEV
     name: SonarCloud
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
         with:
