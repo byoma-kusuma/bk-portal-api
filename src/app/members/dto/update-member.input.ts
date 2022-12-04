@@ -72,7 +72,7 @@ export class UpdateMemberInput {
   @IsPhoneNumber()
   phoneSecondary?: string;
 
-  @Field()
+  @Field(() => CentreAffiliationType)
   @IsEnum(CentreAffiliationType)
   centerAffiliation: CentreAffiliationType;
 
@@ -80,7 +80,7 @@ export class UpdateMemberInput {
   @IsOptional()
   centreId?: number;
 
-  @Field({ nullable: true })
+  @Field(() => MembershipType, { nullable: true })
   @IsOptional()
   @IsEnum(MembershipType)
   membershipType?: MembershipType;
@@ -103,7 +103,7 @@ export class UpdateMemberInput {
   @IsOptional()
   dob?: Date;
 
-  @Field({ nullable: true })
+  @Field(() => GenderType, { nullable: true })
   @IsEnum(GenderType)
   @IsOptional()
   gender?: GenderType;

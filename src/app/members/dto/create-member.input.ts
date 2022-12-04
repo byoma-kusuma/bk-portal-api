@@ -69,7 +69,7 @@ export class CreateMemberInput {
   @IsPhoneNumber()
   phoneSecondary?: string;
 
-  @Field()
+  @Field(() => CentreAffiliationType)
   @IsEnum(CentreAffiliationType)
   centerAffiliation: CentreAffiliationType;
 
