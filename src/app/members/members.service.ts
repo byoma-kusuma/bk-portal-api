@@ -159,7 +159,11 @@ export class MembersService {
     this.emailService.sendMail({
       to: sendEmailInput.memberEmails,
       subject: sendEmailInput.subject,
-      text: sendEmailInput.content
+      html: sendEmailInput.content,
+      // https://github.com/DefinitelyTyped/DefinitelyTyped/pull/63398
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      attachDataUrls: true
     });
   }
 
