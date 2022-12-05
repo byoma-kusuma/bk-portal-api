@@ -6,4 +6,6 @@ coverage/
 .DS_Store
 
 .env
-.env.encoded*
+.env.*
+schema.dbml
+test-report.xml

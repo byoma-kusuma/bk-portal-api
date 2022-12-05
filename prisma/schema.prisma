@@ -6,6 +6,7 @@ datasource db {
 generator client {
     provider = "prisma-client-js"
 }
+
 generator nestgraphql {
     provider             = "prisma-nestjs-graphql"
     output               = "../src/@generated"
@@ -13,13 +14,18 @@ generator nestgraphql {
     noAtomicOperations   = true
 }
 
+// uncomment the following to generate a sql dbml to view schema
+// generator dbml {
+//     provider = "prisma-dbml-generator"
+// }
+
 enum UserStatus {
     VALIDATED
     VALIDATION_PENDING
 }
 
 model User {
-    id        Int      @id @default(autoincrement())
+    id Int @id @default(autoincrement())
 
     userName String  @unique
     password String
@@ -44,12 +50,12 @@ model User {
 }
 
 enum Type {
-    SYSTEM 
+    SYSTEM
     DEFAULT
 }
 
 model Role {
-    id        Int      @id @default(autoincrement())
+    id Int @id @default(autoincrement())
 
     name     String @unique
     roleType Type   @default(DEFAULT)
@@ -91,7 +97,7 @@ enum MembershipType {
 }
 
 model Member {
-    id        Int      @id @default(autoincrement())
+    id Int @id @default(autoincrement())
 
     email             String?
     firstName         String
@@ -114,23 +120,25 @@ model Member {
     messenger         String?
     insta             String?
     photo             String?
-    centre            Centre?                @relation(fields: [centreId], references: [id])
+    centre            Centre?               @relation(fields: [centreId], references: [id])
     centreId          Int?
 
     isDeleted Boolean  @default(false)
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
-    uniqueKey String?  @unique 
+    uniqueKey String?  @unique
     updatedBy String?
     createdBy String?
 
     // Relation fields
-    user User?
-    memberGroups MemberGroups[]
+    user            User?
+    memberGroups    MemberGroups[]
+    EventMember     EventMember[]
+    AbhisekhaMember AbhisekhaMember[]
 }
 
 model PasswordHistory {
-    id        Int      @id @default(autoincrement())
+    id Int @id @default(autoincrement())
 
     password String
 
@@ -142,27 +150,26 @@ model PasswordHistory {
     createdBy String?
 
     // Relation fields
-    user   User   @relation(fields: [userId], references: [id])
-    userId Int    @unique
+    user   User @relation(fields: [userId], references: [id])
+    userId Int  @unique
 }
 
 model PasswordToken {
-    id        Int      @id @default(autoincrement())
+    id    Int    @id @default(autoincrement())
     token String
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
     // Relation fields
-    user   User   @relation(fields: [userId], references: [id])
-    userId Int @unique
-
+    user   User @relation(fields: [userId], references: [id])
+    userId Int  @unique
 }
 
 model Centre {
     id Int @id @default(autoincrement())
 
-    name            String @unique
+    name            String  @unique
     displayText     String
     displaySequence Int
     streetAddress   String?
@@ -172,11 +179,13 @@ model Centre {
 
     members Member[]
 }
+
 model Group {
-    id        Int      @id @default(autoincrement())
-    name String
+    id          Int     @id @default(autoincrement())
+    name        String
     description String
-    visible Boolean
+    visible     Boolean
+    isLocked    Boolean
 
     isDeleted Boolean  @default(false)
     createdAt DateTime @default(now())
@@ -186,23 +195,155 @@ model Group {
     createdBy String?
 
     // Relation fields
-    memberGroups MemberGroups[]
+    memberGroups       MemberGroups[]
+    GroupResourceProxy GroupResource[]
+}
+
+model GroupResource {
+    group   Group @relation(fields: [groupId], references: [id])
+    groupId Int
+
+    resource   Resource @relation(fields: [resourceId], references: [id])
+    resourceId Int
+
+    @@id([groupId, resourceId])
 }
 
 model MemberGroups {
-  createdAt DateTime @default(now())
-  createdBy String?
+    createdAt DateTime @default(now())
+    createdBy String?
 
-  // Relation fields
-  member   Member   @relation(fields: [memberId], references: [id])
-  memberId Int
+    // Relation fields
+    member   Member @relation(fields: [memberId], references: [id])
+    memberId Int
 
-  group   Group   @relation(fields: [groupId], references: [id])
-  groupId Int
+    group   Group @relation(fields: [groupId], references: [id])
+    groupId Int
 
-  @@id([memberId, groupId])
+    @@id([memberId, groupId])
 }
 
+model Event {
+    id Int @id @default(autoincrement())
 
+    startDate DateTime
+    endDate   DateTime
+    isLocked  Boolean
 
+    isDeleted Boolean  @default(false)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    uniqueKey String?  @unique
+    updatedBy String?
+    createdBy String?
 
+    // Relation fields
+    parentEvent   Event?  @relation("eventToevent_parent_event_id", fields: [parentEventId], references: [id])
+    parentEventId Int?
+    childEvents   Event[] @relation("eventToevent_parent_event_id")
+
+    memberRelations         EventMember[]
+    eventResourceRelations  EventResource[]
+    eventAbhisekhaRelations EventAbhisekha[]
+    // type String // summer camp, ganachakra puja, abhisekha
+}
+
+model EventMember {
+    event   Event @relation(fields: [eventId], references: [id])
+    eventId Int
+
+    member   Member @relation(fields: [memberId], references: [id])
+    memberId Int
+
+    hasAttended Boolean
+
+    type String // peripheral, core, front row, 
+
+    @@id([memberId, eventId])
+}
+
+model EventResource {
+    event   Event @relation(fields: [eventId], references: [id])
+    eventId Int
+
+    resource   Resource @relation(fields: [resourceId], references: [id])
+    resourceId Int
+
+    type String // peripheral, core, front row, 
+
+    @@id([eventId, resourceId])
+}
+
+model EventAbhisekha {
+    event   Event @relation(fields: [eventId], references: [id])
+    eventId Int
+
+    abhisheka   Abhisekha @relation(fields: [abhishekaId], references: [id])
+    abhishekaId Int
+
+    type String // peripheral, core, front row, 
+
+    @@id([eventId, abhishekaId])
+}
+
+model Abhisekha {
+    id Int @id @default(autoincrement())
+
+    name        String
+    description String
+
+    isDeleted Boolean  @default(false)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    uniqueKey String?  @unique
+    updatedBy String?
+    createdBy String?
+
+    // Relation fields
+    memberAbhisekhaRelations   AbhisekhaMember[]
+    abhisekhaResourceRelations AbhisekhaResource[]
+    eventAbhisekhaRelations    EventAbhisekha[]
+}
+
+model AbhisekhaResource {
+    abhisheka   Abhisekha @relation(fields: [abhishekaId], references: [id])
+    abhishekaId Int
+
+    resource   Resource @relation(fields: [resourceId], references: [id])
+    resourceId Int
+
+    type String // peripheral, core, front row, 
+
+    @@id([abhishekaId, resourceId])
+}
+
+model AbhisekhaMember {
+    abhisheka   Abhisekha @relation(fields: [abhishekaId], references: [id])
+    abhishekaId Int
+
+    member   Member @relation(fields: [memberId], references: [id])
+    memberId Int
+
+    type String // peripheral, core, front row, 
+
+    @@id([memberId, abhishekaId])
+}
+
+model Resource {
+    id          Int    @id @default(autoincrement())
+    name        String
+    description String
+    url         String
+    type        String // image, video, document, etc
+
+    isDeleted Boolean  @default(false)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    uniqueKey String?  @unique
+    updatedBy String?
+    createdBy String?
+
+    abhisekhaResourceRelations AbhisekhaResource[]
+    eventResourceRelations     EventResource[]
+    groupResourceRelations     GroupResource[]
+}
