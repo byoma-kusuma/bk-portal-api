@@ -1,9 +1,5 @@
 import { InputType, Int, Field } from "@nestjs/graphql";
-import {
-  CentreAffiliationType,
-  GenderType,
-  MembershipType
-} from "@prisma/client";
+import { GenderType, MembershipType } from "@prisma/client";
 import {
   IsBoolean,
   IsDate,
@@ -64,17 +60,19 @@ export class UpdateMemberInput {
   @IsString()
   @IsPhoneNumber()
   @IsOptional()
-  phonePrimary?: string;
+  phoneMobile?: string;
 
   @Field({ nullable: true })
   @IsString()
   @IsOptional()
   @IsPhoneNumber()
-  phoneSecondary?: string;
+  phoneLand?: string;
 
-  @Field(() => CentreAffiliationType)
-  @IsEnum(CentreAffiliationType)
-  centerAffiliation: CentreAffiliationType;
+  @Field({ nullable: true })
+  @IsString()
+  @IsOptional()
+  @IsPhoneNumber()
+  phoneOther?: string;
 
   @Field({ nullable: true })
   @IsOptional()
@@ -86,22 +84,8 @@ export class UpdateMemberInput {
   membershipType?: MembershipType;
 
   @Field({ nullable: true })
-  @IsString()
-  @MaxLength(256)
   @IsOptional()
-  permanentAddress?: string;
-
-  @Field({ nullable: true })
-  @IsString()
-  @MaxLength(256)
-  @IsOptional()
-  currentAddress?: string;
-
-  @Field({ nullable: true })
-  @IsDate()
-  @MaxDate(new Date())
-  @IsOptional()
-  dob?: Date;
+  yearOfBirth?: number;
 
   @Field(() => GenderType, { nullable: true })
   @IsEnum(GenderType)
@@ -146,8 +130,23 @@ export class UpdateMemberInput {
   @MaxLength(512)
   photo?: string;
 
+  @Field({ nullable: true })
+  @IsString()
+  @MinLength(2)
+  @IsOptional()
+  @MaxLength(3000)
+  note?: string;
+
   @Field(() => [Int], { nullable: true })
   @IsNumber({}, { each: true })
   @IsOptional()
   groupIds?: Array<number>;
+
+  @Field({ nullable: true })
+  @IsOptional()
+  currentAddressId?: number;
+
+  @Field({ nullable: true })
+  @IsOptional()
+  permanentAddressId?: number;
 }

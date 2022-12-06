@@ -1,12 +1,12 @@
 import { Field, ObjectType, registerEnumType } from "@nestjs/graphql";
 import {
-  CentreAffiliationType,
   GenderType,
   MembershipType
 } from "@prisma/client";
 import { BaseModel } from "src/common/models/base.model";
 import { User } from "src/app/users/models/user.model";
 import { Centre } from "src/app/centre/entities/centre.entity";
+import { Address } from "src/app/addresses/entities/address.entity";
 
 registerEnumType(GenderType, {
   name: "Gender_Type",
@@ -16,11 +16,6 @@ registerEnumType(GenderType, {
 registerEnumType(MembershipType, {
   name: "Membership_Type",
   description: "Types of membership"
-});
-
-registerEnumType(CentreAffiliationType, {
-  name: "CentreAffiliation_Type",
-  description: "Types of centre affiliation"
 });
 
 @ObjectType()
@@ -50,25 +45,19 @@ export class Member extends BaseModel {
   active: boolean;
 
   @Field(() => String, { nullable: true })
-  phonePrimary?: string;
+  phoneMobile?: string;
 
   @Field(() => String, { nullable: true })
-  phoneSecondary?: string;
+  phoneLand?: string;
 
-  @Field(() => CentreAffiliationType)
-  centerAffiliation: CentreAffiliationType;
+  @Field(() => String, { nullable: true })
+  phoneOther?: string;
 
   @Field(() => MembershipType, { nullable: true })
   membershipType?: MembershipType;
 
   @Field(() => String, { nullable: true })
-  permanentAddress?: string;
-
-  @Field(() => String, { nullable: true })
-  currentAddress?: string;
-
-  @Field(() => Date, { nullable: true })
-  dob?: Date;
+  yearOfBirth?: String;
 
   @Field(() => GenderType, { nullable: true })
   gender?: GenderType;
@@ -91,6 +80,9 @@ export class Member extends BaseModel {
   @Field(() => String, { nullable: true })
   photo?: string;
 
+  @Field(() => String, { nullable: true })
+  notes?: string;
+
   @Field(() => User, { nullable: true })
   user?: User;
 
@@ -99,4 +91,17 @@ export class Member extends BaseModel {
 
   @Field(() => Number, { nullable: true })
   centreId?: number;
+
+  @Field(() => Number, { nullable: true })
+  permanentAddressId?: Number;
+
+  @Field(() => Address, { nullable: true })
+  permanentAddress?: Address;
+
+  @Field(() => Number, { nullable: true })
+  currentAddressId?: Number;
+
+  @Field(() => Address, { nullable: true })
+  currentAddress?: Address;
+
 }
