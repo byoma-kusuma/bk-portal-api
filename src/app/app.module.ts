@@ -19,6 +19,7 @@ import { PasswordTokenModule } from "./password-token/password-token.module";
 import { EmailModule } from "./email/email.module";
 import { CentreModule } from "./centre/centre.module";
 import { GroupsModule } from "./groups/groups.module";
+import { AddressesModule } from "./addresses/addresses.module";
 
 @Module({
   imports: [
@@ -49,7 +50,8 @@ import { GroupsModule } from "./groups/groups.module";
     EmailModule,
     MembersModule,
     CentreModule,
-    GroupsModule
+    GroupsModule,
+    AddressesModule
   ],
   controllers: [AppController],
   providers: [AppService, AppResolver]
