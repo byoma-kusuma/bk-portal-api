@@ -4,7 +4,7 @@ import { IntFilter } from '../prisma/int-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
-import { MemberGroupsListRelationFilter } from '../member-groups/member-groups-list-relation-filter.input';
+import { MemberGroupListRelationFilter } from '../member-group/member-group-list-relation-filter.input';
 
 @InputType()
 export class GroupWhereInput {
@@ -48,6 +48,6 @@ export class GroupWhereInput {
     @Field(() => StringFilter, {nullable:true})
     createdBy?: StringFilter;
 
-    @Field(() => MemberGroupsListRelationFilter, {nullable:true})
-    memberGroups?: MemberGroupsListRelationFilter;
+    @Field(() => MemberGroupListRelationFilter, {nullable:true})
+    memberGroups?: MemberGroupListRelationFilter;
 }

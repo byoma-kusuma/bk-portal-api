@@ -5,13 +5,12 @@ import createAvatar from "../src/common/utils/avatar";
 const prisma = new PrismaClient();
 
 async function main() {
-  await prisma.memberGroups.deleteMany();
+  await prisma.memberGroup.deleteMany();
   await prisma.group.deleteMany();
   await prisma.user.deleteMany();
   await prisma.role.deleteMany();
   await prisma.member.deleteMany();
   await prisma.centre.deleteMany();
-
 
   const nepalCentre = await prisma.centre.create({
     data: {

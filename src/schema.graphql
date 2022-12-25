@@ -6,37 +6,25 @@ type Address {
   city: String
   country: String
 
-  """
-  Identifies the date and time when the object was created.
-  """
+  """Identifies the date and time when the object was created."""
   createdAt: DateTime!
 
-  """
-  Identifies who created the object.
-  """
+  """Identifies who created the object."""
   createdBy: String
   id: Int!
 
-  """
-  Identifies the date and time when the object was last updated.
-  """
+  """Identifies the date and time when the object was last updated."""
   isDeleted: Boolean!
   stateProvince: String
   street: String
 
-  """
-  Unique key associated with the object.
-  """
+  """Unique key associated with the object."""
   uniqueKey: String
 
-  """
-  Identifies the date and time when the object was last updated.
-  """
+  """Identifies the date and time when the object was last updated."""
   updatedAt: DateTime!
 
-  """
-  Identifies who made the last update to the object.
-  """
+  """Identifies who made the last update to the object."""
   updatedBy: String
 }
 
@@ -45,11 +33,11 @@ input AddressCreateInput {
   country: String!
   createdAt: DateTime
   createdBy: String
-  isDeleted: Boolean
   memberCurrentAddress: MemberCreateNestedOneWithoutCurrentAddressInput
   memberPermanentAddress: MemberCreateNestedOneWithoutPermanentAddressInput
   stateProvince: String!
   street: String!
+  uniqueKey: String
   updatedAt: DateTime
   updatedBy: String
 }
@@ -81,10 +69,10 @@ input AddressCreateWithoutMemberCurrentAddressInput {
   country: String!
   createdAt: DateTime
   createdBy: String
-  isDeleted: Boolean
   memberPermanentAddress: MemberCreateNestedOneWithoutPermanentAddressInput
   stateProvince: String!
   street: String!
+  uniqueKey: String
   updatedAt: DateTime
   updatedBy: String
 }
@@ -94,10 +82,10 @@ input AddressCreateWithoutMemberPermanentAddressInput {
   country: String!
   createdAt: DateTime
   createdBy: String
-  isDeleted: Boolean
   memberCurrentAddress: MemberCreateNestedOneWithoutCurrentAddressInput
   stateProvince: String!
   street: String!
+  uniqueKey: String
   updatedAt: DateTime
   updatedBy: String
 }
@@ -116,28 +104,25 @@ input AddressWhereInput {
   createdAt: DateTimeFilter
   createdBy: StringFilter
   id: IntFilter
-  isDeleted: BoolFilter
   memberCurrentAddress: MemberRelationFilter
   memberPermanentAddress: MemberRelationFilter
   stateProvince: StringFilter
   street: StringFilter
+  uniqueKey: StringFilter
   updatedAt: DateTimeFilter
   updatedBy: StringFilter
 }
 
 input AddressWhereUniqueInput {
   id: Int
+  uniqueKey: String
 }
 
 type Auth {
-  """
-  JWT access token
-  """
+  """JWT access token"""
   accessToken: JWT!
 
-  """
-  JWT refresh token
-  """
+  """JWT refresh token"""
   refreshToken: JWT!
   user: User!
 }
@@ -151,9 +136,7 @@ type Centre {
   city: String
   country: String
 
-  """
-  Identifies the date and time when the object was created.
-  """
+  """Identifies the date and time when the object was created."""
   createdAt: DateTime!
   displaySequence: Int!
   displayText: String
@@ -162,14 +145,10 @@ type Centre {
   stateProvince: String
   streetAddress: String
 
-  """
-  Unique key associated with the object.
-  """
+  """Unique key associated with the object."""
   uniqueKey: String
 
-  """
-  Identifies the date and time when the object was last updated.
-  """
+  """Identifies the date and time when the object was last updated."""
   updatedAt: DateTime!
 }
 
@@ -317,9 +296,7 @@ enum GenderType {
   PREFER_NOT_TO_SAY
 }
 
-"""
-Types of gender
-"""
+"""Types of gender"""
 enum Gender_Type {
   FEMALE
   MALE
@@ -328,38 +305,26 @@ enum Gender_Type {
 }
 
 type Group {
-  """
-  Identifies the date and time when the object was created.
-  """
+  """Identifies the date and time when the object was created."""
   createdAt: DateTime!
 
-  """
-  Identifies who created the object.
-  """
+  """Identifies who created the object."""
   createdBy: String
   description: String!
   id: Int!
 
-  """
-  Identifies the date and time when the object was last updated.
-  """
+  """Identifies the date and time when the object was last updated."""
   isDeleted: Boolean!
   members: [Member!]!
   name: String!
 
-  """
-  Unique key associated with the object.
-  """
+  """Unique key associated with the object."""
   uniqueKey: String
 
-  """
-  Identifies the date and time when the object was last updated.
-  """
+  """Identifies the date and time when the object was last updated."""
   updatedAt: DateTime!
 
-  """
-  Identifies who made the last update to the object.
-  """
+  """Identifies who made the last update to the object."""
   updatedBy: String
   visible: Boolean!
 }
@@ -401,7 +366,7 @@ input GroupWhereInput {
   description: StringFilter
   id: IntFilter
   isDeleted: BoolFilter
-  memberGroups: MemberGroupsListRelationFilter
+  memberGroups: MemberGroupListRelationFilter
   name: StringFilter
   uniqueKey: StringFilter
   updatedAt: DateTimeFilter
@@ -440,14 +405,10 @@ type Member {
   centre: Centre
   centreId: Int
 
-  """
-  Identifies the date and time when the object was created.
-  """
+  """Identifies the date and time when the object was created."""
   createdAt: DateTime!
 
-  """
-  Identifies who created the object.
-  """
+  """Identifies who created the object."""
   createdBy: String
   currentAddress: Address
   currentAddressId: Int
@@ -458,9 +419,7 @@ type Member {
   id: Int!
   insta: String
 
-  """
-  Identifies the date and time when the object was last updated.
-  """
+  """Identifies the date and time when the object was last updated."""
   isDeleted: Boolean!
   isMember: Boolean!
   lastName: String!
@@ -478,19 +437,13 @@ type Member {
   sanghaJoinDate: DateTime
   title: String
 
-  """
-  Unique key associated with the object.
-  """
+  """Unique key associated with the object."""
   uniqueKey: String
 
-  """
-  Identifies the date and time when the object was last updated.
-  """
+  """Identifies the date and time when the object was last updated."""
   updatedAt: DateTime!
 
-  """
-  Identifies who made the last update to the object.
-  """
+  """Identifies who made the last update to the object."""
   updatedBy: String
   user: User
   viber: String
@@ -531,7 +484,7 @@ input MemberCreateWithoutCurrentAddressInput {
   isDeleted: Boolean
   isMember: Boolean
   lastName: String!
-  memberGroups: MemberGroupsCreateNestedManyWithoutMemberInput
+  memberGroup: MemberGroupCreateNestedManyWithoutMemberInput
   membershipType: MembershipType
   messenger: String
   middleName: String
@@ -565,7 +518,7 @@ input MemberCreateWithoutPermanentAddressInput {
   isDeleted: Boolean
   isMember: Boolean
   lastName: String!
-  memberGroups: MemberGroupsCreateNestedManyWithoutMemberInput
+  memberGroup: MemberGroupCreateNestedManyWithoutMemberInput
   membershipType: MembershipType
   messenger: String
   middleName: String
@@ -585,50 +538,50 @@ input MemberCreateWithoutPermanentAddressInput {
   yearOfBirth: Int
 }
 
-input MemberGroupsCreateManyMemberInput {
+input MemberGroupCreateManyMemberInput {
   createdAt: DateTime
   createdBy: String
   groupId: Int!
 }
 
-input MemberGroupsCreateManyMemberInputEnvelope {
-  data: [MemberGroupsCreateManyMemberInput!]!
+input MemberGroupCreateManyMemberInputEnvelope {
+  data: [MemberGroupCreateManyMemberInput!]!
   skipDuplicates: Boolean
 }
 
-input MemberGroupsCreateNestedManyWithoutMemberInput {
-  connect: [MemberGroupsWhereUniqueInput!]
-  connectOrCreate: [MemberGroupsCreateOrConnectWithoutMemberInput!]
-  create: [MemberGroupsCreateWithoutMemberInput!]
-  createMany: MemberGroupsCreateManyMemberInputEnvelope
+input MemberGroupCreateNestedManyWithoutMemberInput {
+  connect: [MemberGroupWhereUniqueInput!]
+  connectOrCreate: [MemberGroupCreateOrConnectWithoutMemberInput!]
+  create: [MemberGroupCreateWithoutMemberInput!]
+  createMany: MemberGroupCreateManyMemberInputEnvelope
 }
 
-input MemberGroupsCreateOrConnectWithoutMemberInput {
-  create: MemberGroupsCreateWithoutMemberInput!
-  where: MemberGroupsWhereUniqueInput!
+input MemberGroupCreateOrConnectWithoutMemberInput {
+  create: MemberGroupCreateWithoutMemberInput!
+  where: MemberGroupWhereUniqueInput!
 }
 
-input MemberGroupsCreateWithoutMemberInput {
+input MemberGroupCreateWithoutMemberInput {
   createdAt: DateTime
   createdBy: String
   group: GroupCreateNestedOneWithoutMemberGroupsInput!
 }
 
-input MemberGroupsListRelationFilter {
-  every: MemberGroupsWhereInput
-  none: MemberGroupsWhereInput
-  some: MemberGroupsWhereInput
+input MemberGroupListRelationFilter {
+  every: MemberGroupWhereInput
+  none: MemberGroupWhereInput
+  some: MemberGroupWhereInput
 }
 
-input MemberGroupsMemberIdGroupIdCompoundUniqueInput {
+input MemberGroupMemberIdGroupIdCompoundUniqueInput {
   groupId: Int!
   memberId: Int!
 }
 
-input MemberGroupsWhereInput {
-  AND: [MemberGroupsWhereInput!]
-  NOT: [MemberGroupsWhereInput!]
-  OR: [MemberGroupsWhereInput!]
+input MemberGroupWhereInput {
+  AND: [MemberGroupWhereInput!]
+  NOT: [MemberGroupWhereInput!]
+  OR: [MemberGroupWhereInput!]
   createdAt: DateTimeFilter
   createdBy: StringFilter
   group: GroupRelationFilter
@@ -637,8 +590,8 @@ input MemberGroupsWhereInput {
   memberId: IntFilter
 }
 
-input MemberGroupsWhereUniqueInput {
-  memberId_groupId: MemberGroupsMemberIdGroupIdCompoundUniqueInput
+input MemberGroupWhereUniqueInput {
+  memberId_groupId: MemberGroupMemberIdGroupIdCompoundUniqueInput
 }
 
 input MemberListRelationFilter {
@@ -671,7 +624,7 @@ input MemberWhereInput {
   isDeleted: BoolFilter
   isMember: BoolFilter
   lastName: StringFilter
-  memberGroups: MemberGroupsListRelationFilter
+  memberGroup: MemberGroupListRelationFilter
   membershipType: EnumMembershipTypeFilter
   messenger: StringFilter
   middleName: StringFilter
@@ -707,9 +660,7 @@ enum MembershipType {
   LifeMember
 }
 
-"""
-Types of membership
-"""
+"""Types of membership"""
 enum Membership_Type {
   BoardMember
   GeneralMember
@@ -724,9 +675,7 @@ type Mutation {
   createMember(createMemberInput: CreateMemberInput!): Member!
   createRole(createRoleInput: CreateRoleInput!): Role!
   createUser(createUserInput: CreateUserInput!): User!
-  initiateResetPassword(
-    resetPasswordInitiateInput: ResetPasswordInitiateInput!
-  ): ResponseStatus!
+  initiateResetPassword(resetPasswordInitiateInput: ResetPasswordInitiateInput!): ResponseStatus!
   login(data: LoginInput!): Auth!
   refreshToken(token: JWT!): Token!
   removeAddress(id: Int!): Address!
@@ -864,37 +813,25 @@ type ResponseStatus {
 }
 
 type Role {
-  """
-  Identifies the date and time when the object was created.
-  """
+  """Identifies the date and time when the object was created."""
   createdAt: DateTime!
 
-  """
-  Identifies who created the object.
-  """
+  """Identifies who created the object."""
   createdBy: String
   id: Int!
 
-  """
-  Identifies the date and time when the object was last updated.
-  """
+  """Identifies the date and time when the object was last updated."""
   isDeleted: Boolean!
   name: String!
   type: Role_Type!
 
-  """
-  Unique key associated with the object.
-  """
+  """Unique key associated with the object."""
   uniqueKey: String
 
-  """
-  Identifies the date and time when the object was last updated.
-  """
+  """Identifies the date and time when the object was last updated."""
   updatedAt: DateTime!
 
-  """
-  Identifies who made the last update to the object.
-  """
+  """Identifies who made the last update to the object."""
   updatedBy: String
   users: [User!]!
 }
@@ -948,9 +885,7 @@ input RoleWhereUniqueInput {
   uniqueKey: String
 }
 
-"""
-Type of the role
-"""
+"""Type of the role"""
 enum Role_Type {
   DEFAULT
   SYSTEM
@@ -962,9 +897,7 @@ input SendEmailInput {
   subject: String!
 }
 
-"""
-Current status of the user within the system
-"""
+"""Current status of the user within the system"""
 enum Status {
   VALIDATED
   VALIDATION_PENDING
@@ -985,14 +918,10 @@ input StringFilter {
 }
 
 type Token {
-  """
-  JWT access token
-  """
+  """JWT access token"""
   accessToken: JWT!
 
-  """
-  JWT refresh token
-  """
+  """JWT refresh token"""
   refreshToken: JWT!
 }
 
@@ -1064,39 +993,27 @@ input UpdateRoleInput {
 type User {
   avatar: String!
 
-  """
-  Identifies the date and time when the object was created.
-  """
+  """Identifies the date and time when the object was created."""
   createdAt: DateTime!
 
-  """
-  Identifies who created the object.
-  """
+  """Identifies who created the object."""
   createdBy: String
   id: Int!
 
-  """
-  Identifies the date and time when the object was last updated.
-  """
+  """Identifies the date and time when the object was last updated."""
   isDeleted: Boolean!
   member: Member!
   memberId: Int!
   role: Role!
   status: Status!
 
-  """
-  Unique key associated with the object.
-  """
+  """Unique key associated with the object."""
   uniqueKey: String
 
-  """
-  Identifies the date and time when the object was last updated.
-  """
+  """Identifies the date and time when the object was last updated."""
   updatedAt: DateTime!
 
-  """
-  Identifies who made the last update to the object.
-  """
+  """Identifies who made the last update to the object."""
   updatedBy: String
   userName: String!
 }

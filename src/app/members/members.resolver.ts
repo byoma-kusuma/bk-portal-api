@@ -86,7 +86,7 @@ export class MembersResolver {
       where: { id: member.id },
       select: {
         id: true,
-        memberGroups: {
+        memberGroup: {
           select: {
             group: true
           }
@@ -94,8 +94,6 @@ export class MembersResolver {
       }
     });
     if (!memberGroups) return null;
-    return memberGroups.memberGroups.map(
-      (groupRelation) => groupRelation.group
-    );
+    return memberGroups.memberGroup.map((groupRelation) => groupRelation.group);
   }
 }

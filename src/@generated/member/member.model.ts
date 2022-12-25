@@ -1,13 +1,13 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
-import { CentreAffiliationType } from '../prisma/centre-affiliation-type.enum';
 import { MembershipType } from '../prisma/membership-type.enum';
+import { Int } from '@nestjs/graphql';
 import { GenderType } from '../prisma/gender-type.enum';
 import { Centre } from '../centre/centre.model';
-import { Int } from '@nestjs/graphql';
+import { Address } from '../address/address.model';
 import { User } from '../user/user.model';
-import { MemberGroups } from '../member-groups/member-groups.model';
+import { MemberGroup } from '../member-group/member-group.model';
 import { MemberCount } from './member-count.output';
 
 @ObjectType()
@@ -38,25 +38,19 @@ export class Member {
     active!: boolean;
 
     @Field(() => String, {nullable:true})
-    phonePrimary!: string | null;
+    phoneMobile!: string | null;
 
     @Field(() => String, {nullable:true})
-    phoneSecondary!: string | null;
+    phoneLand!: string | null;
 
-    @Field(() => CentreAffiliationType, {nullable:false})
-    centerAffiliation!: keyof typeof CentreAffiliationType;
+    @Field(() => String, {nullable:true})
+    phoneOther!: string | null;
 
     @Field(() => MembershipType, {nullable:true})
     membershipType!: keyof typeof MembershipType | null;
 
-    @Field(() => String, {nullable:true})
-    permanentAddress!: string | null;
-
-    @Field(() => String, {nullable:true})
-    currentAddress!: string | null;
-
-    @Field(() => Date, {nullable:true})
-    dob!: Date | null;
+    @Field(() => Int, {nullable:true})
+    yearOfBirth!: number | null;
 
     @Field(() => GenderType, {nullable:true})
     gender!: keyof typeof GenderType | null;
@@ -79,11 +73,26 @@ export class Member {
     @Field(() => String, {nullable:true})
     photo!: string | null;
 
+    @Field(() => String, {nullable:true})
+    note!: string | null;
+
     @Field(() => Centre, {nullable:true})
     centre?: Centre | null;
 
     @Field(() => Int, {nullable:true})
     centreId!: number | null;
+
+    @Field(() => Address, {nullable:true})
+    currentAddress?: Address | null;
+
+    @Field(() => Int, {nullable:true})
+    currentAddressId!: number | null;
+
+    @Field(() => Address, {nullable:true})
+    permanentAddress?: Address | null;
+
+    @Field(() => Int, {nullable:true})
+    permanentAddressId!: number | null;
 
     @Field(() => Boolean, {nullable:false,defaultValue:false})
     isDeleted!: boolean;
@@ -106,8 +115,8 @@ export class Member {
     @Field(() => User, {nullable:true})
     user?: User | null;
 
-    @Field(() => [MemberGroups], {nullable:true})
-    memberGroups?: Array<MemberGroups>;
+    @Field(() => [MemberGroup], {nullable:true})
+    memberGroup?: Array<MemberGroup>;
 
     @Field(() => MemberCount, {nullable:false})
     _count?: MemberCount;

@@ -1,7 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
-import { MemberGroups } from '../member-groups/member-groups.model';
+import { MemberGroup } from '../member-group/member-group.model';
 import { GroupCount } from './group-count.output';
 
 @ObjectType()
@@ -37,8 +37,8 @@ export class Group {
     @Field(() => String, {nullable:true})
     createdBy!: string | null;
 
-    @Field(() => [MemberGroups], {nullable:true})
-    memberGroups?: Array<MemberGroups>;
+    @Field(() => [MemberGroup], {nullable:true})
+    memberGroups?: Array<MemberGroup>;
 
     @Field(() => GroupCount, {nullable:false})
     _count?: GroupCount;

@@ -1,7 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { SortOrder } from '../prisma/sort-order.enum';
-import { MemberGroupsOrderByRelationAggregateInput } from '../member-groups/member-groups-order-by-relation-aggregate.input';
+import { MemberGroupOrderByRelationAggregateInput } from '../member-group/member-group-order-by-relation-aggregate.input';
 
 @InputType()
 export class GroupOrderByWithRelationInput {
@@ -36,6 +36,6 @@ export class GroupOrderByWithRelationInput {
     @Field(() => SortOrder, {nullable:true})
     createdBy?: keyof typeof SortOrder;
 
-    @Field(() => MemberGroupsOrderByRelationAggregateInput, {nullable:true})
-    memberGroups?: MemberGroupsOrderByRelationAggregateInput;
+    @Field(() => MemberGroupOrderByRelationAggregateInput, {nullable:true})
+    memberGroups?: MemberGroupOrderByRelationAggregateInput;
 }

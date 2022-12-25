@@ -8,3 +8,6 @@ test-report.xml
 
 .env
 .env.*
+
+src/@generated
+src/schema.graphql

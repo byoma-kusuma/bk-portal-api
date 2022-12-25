@@ -9,5 +9,14 @@ export class MemberAvgAggregate {
     id?: number;
 
     @Field(() => Float, {nullable:true})
+    yearOfBirth?: number;
+
+    @Field(() => Float, {nullable:true})
     centreId?: number;
+
+    @Field(() => Float, {nullable:true})
+    currentAddressId?: number;
+
+    @Field(() => Float, {nullable:true})
+    permanentAddressId?: number;
 }

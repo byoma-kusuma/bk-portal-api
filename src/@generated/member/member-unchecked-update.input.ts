@@ -1,11 +1,10 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
-import { CentreAffiliationType } from '../prisma/centre-affiliation-type.enum';
 import { MembershipType } from '../prisma/membership-type.enum';
 import { GenderType } from '../prisma/gender-type.enum';
 import { UserUncheckedUpdateOneWithoutMemberInput } from '../user/user-unchecked-update-one-without-member.input';
-import { MemberGroupsUncheckedUpdateManyWithoutMemberInput } from '../member-groups/member-groups-unchecked-update-many-without-member.input';
+import { MemberGroupUncheckedUpdateManyWithoutMemberInput } from '../member-group/member-group-unchecked-update-many-without-member.input';
 
 @InputType()
 export class MemberUncheckedUpdateInput {
@@ -35,25 +34,19 @@ export class MemberUncheckedUpdateInput {
     active?: boolean;
 
     @Field(() => String, {nullable:true})
-    phonePrimary?: string;
+    phoneMobile?: string;
 
     @Field(() => String, {nullable:true})
-    phoneSecondary?: string;
+    phoneLand?: string;
 
-    @Field(() => CentreAffiliationType, {nullable:true})
-    centerAffiliation?: keyof typeof CentreAffiliationType;
+    @Field(() => String, {nullable:true})
+    phoneOther?: string;
 
     @Field(() => MembershipType, {nullable:true})
     membershipType?: keyof typeof MembershipType;
 
-    @Field(() => String, {nullable:true})
-    permanentAddress?: string;
-
-    @Field(() => String, {nullable:true})
-    currentAddress?: string;
-
-    @Field(() => Date, {nullable:true})
-    dob?: Date | string;
+    @Field(() => Int, {nullable:true})
+    yearOfBirth?: number;
 
     @Field(() => GenderType, {nullable:true})
     gender?: keyof typeof GenderType;
@@ -76,8 +69,17 @@ export class MemberUncheckedUpdateInput {
     @Field(() => String, {nullable:true})
     photo?: string;
 
+    @Field(() => String, {nullable:true})
+    note?: string;
+
     @Field(() => Int, {nullable:true})
     centreId?: number;
+
+    @Field(() => Int, {nullable:true})
+    currentAddressId?: number;
+
+    @Field(() => Int, {nullable:true})
+    permanentAddressId?: number;
 
     @Field(() => Boolean, {nullable:true})
     isDeleted?: boolean;
@@ -100,6 +102,6 @@ export class MemberUncheckedUpdateInput {
     @Field(() => UserUncheckedUpdateOneWithoutMemberInput, {nullable:true})
     user?: UserUncheckedUpdateOneWithoutMemberInput;
 
-    @Field(() => MemberGroupsUncheckedUpdateManyWithoutMemberInput, {nullable:true})
-    memberGroups?: MemberGroupsUncheckedUpdateManyWithoutMemberInput;
+    @Field(() => MemberGroupUncheckedUpdateManyWithoutMemberInput, {nullable:true})
+    memberGroup?: MemberGroupUncheckedUpdateManyWithoutMemberInput;
 }

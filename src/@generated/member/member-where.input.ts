@@ -3,13 +3,13 @@ import { InputType } from '@nestjs/graphql';
 import { IntFilter } from '../prisma/int-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
-import { EnumCentreAffiliationTypeFilter } from '../prisma/enum-centre-affiliation-type-filter.input';
 import { EnumMembershipTypeFilter } from '../prisma/enum-membership-type-filter.input';
-import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { EnumGenderTypeFilter } from '../prisma/enum-gender-type-filter.input';
+import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { CentreRelationFilter } from '../centre/centre-relation-filter.input';
+import { AddressRelationFilter } from '../address/address-relation-filter.input';
 import { UserRelationFilter } from '../user/user-relation-filter.input';
-import { MemberGroupsListRelationFilter } from '../member-groups/member-groups-list-relation-filter.input';
+import { MemberGroupListRelationFilter } from '../member-group/member-group-list-relation-filter.input';
 
 @InputType()
 export class MemberWhereInput {
@@ -48,25 +48,19 @@ export class MemberWhereInput {
     active?: BoolFilter;
 
     @Field(() => StringFilter, {nullable:true})
-    phonePrimary?: StringFilter;
+    phoneMobile?: StringFilter;
 
     @Field(() => StringFilter, {nullable:true})
-    phoneSecondary?: StringFilter;
+    phoneLand?: StringFilter;
 
-    @Field(() => EnumCentreAffiliationTypeFilter, {nullable:true})
-    centerAffiliation?: EnumCentreAffiliationTypeFilter;
+    @Field(() => StringFilter, {nullable:true})
+    phoneOther?: StringFilter;
 
     @Field(() => EnumMembershipTypeFilter, {nullable:true})
     membershipType?: EnumMembershipTypeFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    permanentAddress?: StringFilter;
-
-    @Field(() => StringFilter, {nullable:true})
-    currentAddress?: StringFilter;
-
-    @Field(() => DateTimeFilter, {nullable:true})
-    dob?: DateTimeFilter;
+    @Field(() => IntFilter, {nullable:true})
+    yearOfBirth?: IntFilter;
 
     @Field(() => EnumGenderTypeFilter, {nullable:true})
     gender?: EnumGenderTypeFilter;
@@ -89,11 +83,26 @@ export class MemberWhereInput {
     @Field(() => StringFilter, {nullable:true})
     photo?: StringFilter;
 
+    @Field(() => StringFilter, {nullable:true})
+    note?: StringFilter;
+
     @Field(() => CentreRelationFilter, {nullable:true})
     centre?: CentreRelationFilter;
 
     @Field(() => IntFilter, {nullable:true})
     centreId?: IntFilter;
+
+    @Field(() => AddressRelationFilter, {nullable:true})
+    currentAddress?: AddressRelationFilter;
+
+    @Field(() => IntFilter, {nullable:true})
+    currentAddressId?: IntFilter;
+
+    @Field(() => AddressRelationFilter, {nullable:true})
+    permanentAddress?: AddressRelationFilter;
+
+    @Field(() => IntFilter, {nullable:true})
+    permanentAddressId?: IntFilter;
 
     @Field(() => BoolFilter, {nullable:true})
     isDeleted?: BoolFilter;
@@ -116,6 +125,6 @@ export class MemberWhereInput {
     @Field(() => UserRelationFilter, {nullable:true})
     user?: UserRelationFilter;
 
-    @Field(() => MemberGroupsListRelationFilter, {nullable:true})
-    memberGroups?: MemberGroupsListRelationFilter;
+    @Field(() => MemberGroupListRelationFilter, {nullable:true})
+    memberGroup?: MemberGroupListRelationFilter;
 }
