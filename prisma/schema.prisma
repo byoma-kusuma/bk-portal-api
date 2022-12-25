@@ -216,23 +216,24 @@ model MemberGroup {
     // Relation fields
     member   Member @relation(fields: [memberId], references: [id])
     memberId Int
-
-    group   Group @relation(fields: [groupId], references: [id])
-    groupId Int
+    group    Group  @relation(fields: [groupId], references: [id])
+    groupId  Int
 
     @@id([memberId, groupId])
 }
 
 model Abhisekha {
-    id          Int      @id @default(autoincrement())
+    id          Int    @id @default(autoincrement())
     name        String
     description String
-    isDeleted   Boolean  @default(false)
-    createdAt   DateTime @default(now())
-    updatedAt   DateTime @updatedAt
-    uniqueKey   String?  @unique
-    updatedBy   String?
-    createdBy   String?
+    teacher     String
+
+    isDeleted Boolean  @default(false)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    uniqueKey String?  @unique
+    updatedBy String?
+    createdBy String?
 
     // Relation fields
     memberAbhisekha   MemberAbhisekha[]
@@ -293,7 +294,9 @@ model AbhisekhaResource {
 }
 
 model MemberAbhisekha {
-    type String
+    type           String
+    abhisekhaDate  DateTime
+    abhisekhaPlace String
 
     // Relation fields
     abhisheka   Abhisekha @relation(fields: [abhishekaId], references: [id])

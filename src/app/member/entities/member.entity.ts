@@ -1,12 +1,10 @@
-import { Field, ObjectType, registerEnumType } from "@nestjs/graphql";
-import {
-  GenderType,
-  MembershipType
-} from "@prisma/client";
+import { Field, Int, ObjectType, registerEnumType } from "@nestjs/graphql";
+import { GenderType, MembershipType } from "@prisma/client";
 import { BaseModel } from "src/common/models/base.model";
 import { User } from "src/app/users/models/user.model";
 import { Centre } from "src/app/centre/entities/centre.entity";
 import { Address } from "src/app/addresses/entities/address.entity";
+import { MemberAbhisekha } from "src/@generated/member-abhisekha/member-abhisekha.model";
 
 registerEnumType(GenderType, {
   name: "Gender_Type",
@@ -57,7 +55,7 @@ export class Member extends BaseModel {
   membershipType?: MembershipType;
 
   @Field(() => String, { nullable: true })
-  yearOfBirth?: String;
+  yearOfBirth?: string;
 
   @Field(() => GenderType, { nullable: true })
   gender?: GenderType;
@@ -93,15 +91,29 @@ export class Member extends BaseModel {
   centreId?: number;
 
   @Field(() => Number, { nullable: true })
-  permanentAddressId?: Number;
+  permanentAddressId?: number;
 
   @Field(() => Address, { nullable: true })
   permanentAddress?: Address;
 
   @Field(() => Number, { nullable: true })
-  currentAddressId?: Number;
+  currentAddressId?: number;
 
   @Field(() => Address, { nullable: true })
   currentAddress?: Address;
 
+  @Field(() => MemberAbhisekhaEntity, { nullable: false })
+  memberAbhisekha: Pick<MemberAbhisekha, "abhisekhaDate" | "abhisekhaPlace">;
+}
+
+@ObjectType()
+export class MemberAbhisekhaEntity {
+  @Field(() => String)
+  type: string;
+
+  @Field(() => Date)
+  abhisekhaDate: Date;
+
+  @Field(() => String)
+  abhisekhaPlace: string;
 }

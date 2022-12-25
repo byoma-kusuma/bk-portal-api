@@ -13,7 +13,7 @@ import { GqlAuthGuard } from "../auth/gql-auth.guard";
 import { UsersService } from "./users.service";
 import { User } from "./models/user.model";
 import { ChangePasswordInput } from "./dto/change-password.input";
-import { Member } from "src/app/members/entities/member.entity";
+import { Member } from "src/app/member/entities/member.entity";
 import { CreateUserInput } from "./dto/create-user.input";
 import { Role } from "src/app/roles/entities/role.model";
 

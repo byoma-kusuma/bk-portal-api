@@ -13,13 +13,14 @@ import { AuthModule } from "../app/auth/auth.module";
 import { GqlConfigService } from "../gql-config.service";
 import { RolesModule } from "../app/roles/roles.module";
 import { UsersModule } from "../app/users/users.module";
-import { MembersModule } from "../app/members/members.module";
+import { MembersModule } from "./member/members.module";
 // import { ThrottlerModule } from "@nestjs/throttler";
 import { PasswordTokenModule } from "./password-token/password-token.module";
 import { EmailModule } from "./email/email.module";
 import { CentreModule } from "./centre/centre.module";
 import { GroupsModule } from "./groups/groups.module";
 import { AddressesModule } from "./addresses/addresses.module";
+import { AbhisekhaModule } from "./abhisekha/abhisekha.module";
 
 @Module({
   imports: [
@@ -51,7 +52,8 @@ import { AddressesModule } from "./addresses/addresses.module";
     MembersModule,
     CentreModule,
     GroupsModule,
-    AddressesModule
+    AddressesModule,
+    AbhisekhaModule
   ],
   controllers: [AppController],
   providers: [AppService, AppResolver]

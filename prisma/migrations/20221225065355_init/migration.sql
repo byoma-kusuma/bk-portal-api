@@ -85,8 +85,8 @@ CREATE TABLE "Member" (
 CREATE TABLE "Address" (
     "id" SERIAL NOT NULL,
     "street" TEXT,
-    "city" TEXT NOT NULL,
-    "stateProvince" TEXT NOT NULL,
+    "city" TEXT,
+    "stateProvince" TEXT,
     "country" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -168,6 +168,7 @@ CREATE TABLE "Abhisekha" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
     "description" TEXT NOT NULL,
+    "teacher" TEXT NOT NULL,
     "isDeleted" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -225,6 +226,8 @@ CREATE TABLE "AbhisekhaResource" (
 -- CreateTable
 CREATE TABLE "MemberAbhisekha" (
     "type" TEXT NOT NULL,
+    "abhisekhaDate" TIMESTAMP(3) NOT NULL,
+    "abhisekhaPlace" TEXT NOT NULL,
     "abhishekaId" INTEGER NOT NULL,
     "memberId" INTEGER NOT NULL,
 

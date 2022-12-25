@@ -1,5 +1,5 @@
 import { InputType, Field, Int } from "@nestjs/graphql";
-import { Centre, GenderType, MembershipType } from "@prisma/client";
+import { GenderType, MembershipType } from "@prisma/client";
 import {
   IsBoolean,
   IsDate,

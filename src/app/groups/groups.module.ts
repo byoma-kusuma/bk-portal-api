@@ -1,7 +1,7 @@
 import { forwardRef, Module } from "@nestjs/common";
 import { GroupsService } from "./groups.service";
 import { GroupsResolver } from "./groups.resolver";
-import { MembersModule } from "../members/members.module";
+import { MembersModule } from "../member/members.module";
 
 @Module({
   imports: [forwardRef(() => MembersModule)],
