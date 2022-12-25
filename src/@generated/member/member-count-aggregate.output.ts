@@ -72,6 +72,9 @@ export class MemberCountAggregate {
     centreId!: number;
 
     @Field(() => Int, {nullable:false})
+    addressid!: number;
+
+    @Field(() => Int, {nullable:false})
     currentAddressId!: number;
 
     @Field(() => Int, {nullable:false})

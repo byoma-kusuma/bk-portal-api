@@ -23,6 +23,7 @@ export enum MemberScalarFieldEnum {
     photo = "photo",
     note = "note",
     centreId = "centreId",
+    addressid = "addressid",
     currentAddressId = "currentAddressId",
     permanentAddressId = "permanentAddressId",
     isDeleted = "isDeleted",

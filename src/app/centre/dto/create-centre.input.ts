@@ -1,10 +1,5 @@
 import { InputType, Field } from "@nestjs/graphql";
-import {
-  IsNumber,
-  IsOptional,
-  IsString,
-  MaxLength,
-} from "class-validator";
+import { IsNumber, IsOptional, IsString, MaxLength } from "class-validator";
 
 @InputType()
 export class CreateCentreInput {
@@ -44,5 +39,5 @@ export class CreateCentreInput {
   @IsOptional()
   @IsString()
   @MaxLength(256)
-  country?: string;
+  country: string;
 }

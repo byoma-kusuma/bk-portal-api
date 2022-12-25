@@ -107,8 +107,8 @@ model Member {
     centre   Centre? @relation(fields: [centreId], references: [id])
     centreId Int?
 
-    //address             Address?               @relation(fields: [addressid], references: [id])
-    //addressid           Int?
+    address   Address? @relation(fields: [addressid], references: [id])
+    addressid Int?
 
     currentAddress   Address? @relation(name: "currentAddress", fields: [currentAddressId], references: [id])
     currentAddressId Int?     @unique // relation scalar field (used in the `@relation` attribute above)
@@ -124,16 +124,18 @@ model Member {
     createdBy String?
 
     // Relation fields
-    user        User?
-    memberGroup MemberGroup[]
+    user            User?
+    memberGroup     MemberGroup[]
+    MemberAbhisekha MemberAbhisekha[]
+    EventMember     EventMember[]
 }
 
 model Address {
     id Int @id @default(autoincrement())
 
-    street        String
-    city          String
-    stateProvince String
+    street        String?
+    city          String?
+    stateProvince String?
     country       String
 
     memberCurrentAddress   Member? @relation(name: "currentAddress")
@@ -144,6 +146,7 @@ model Address {
     uniqueKey String?  @unique
     updatedBy String?
     createdBy String?
+    Members   Member[]
 }
 
 model PasswordHistory {
@@ -218,4 +221,122 @@ model MemberGroup {
     groupId Int
 
     @@id([memberId, groupId])
+}
+
+model Abhisekha {
+    id          Int      @id @default(autoincrement())
+    name        String
+    description String
+    isDeleted   Boolean  @default(false)
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+    uniqueKey   String?  @unique
+    updatedBy   String?
+    createdBy   String?
+
+    // Relation fields
+    memberAbhisekha   MemberAbhisekha[]
+    abhisekhaResource AbhisekhaResource[]
+    eventAbhisekha    EventAbhisekha[]
+}
+
+model Event {
+    id        Int      @id @default(autoincrement())
+    startDate DateTime
+    endDate   DateTime
+    type      String
+    isLocked  Boolean
+    isDeleted Boolean  @default(false)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    uniqueKey String?  @unique
+    updatedBy String?
+    createdBy String?
+
+    // Relation fields
+    parentEvent    Event?           @relation("eventToevent_parent_event_id", fields: [parentEventId], references: [id])
+    parentEventId  Int?
+    childEvents    Event[]          @relation("eventToevent_parent_event_id")
+    eventMember    EventMember[]
+    eventResource  EventResource[]
+    eventAbhisekha EventAbhisekha[]
+}
+
+model Resource {
+    id          Int      @id @default(autoincrement())
+    name        String
+    description String
+    url         String
+    type        String // image, video, document, etc
+    isDeleted   Boolean  @default(false)
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+    uniqueKey   String?  @unique
+    updatedBy   String?
+    createdBy   String?
+
+    // Relation fields
+    abhisekhaResource AbhisekhaResource[]
+    eventResource     EventResource[]
+}
+
+model AbhisekhaResource {
+    type String
+
+    // Relation fields
+    abhisheka   Abhisekha @relation(fields: [abhishekaId], references: [id])
+    abhishekaId Int
+    resource    Resource  @relation(fields: [resourceId], references: [id])
+    resourceId  Int
+
+    @@id([abhishekaId, resourceId])
+}
+
+model MemberAbhisekha {
+    type String
+
+    // Relation fields
+    abhisheka   Abhisekha @relation(fields: [abhishekaId], references: [id])
+    abhishekaId Int
+    member      Member    @relation(fields: [memberId], references: [id])
+    memberId    Int
+
+    @@id([memberId, abhishekaId])
+}
+
+model EventMember {
+    type String
+
+    // Relation fields
+    event       Event   @relation(fields: [eventId], references: [id])
+    eventId     Int
+    member      Member  @relation(fields: [memberId], references: [id])
+    memberId    Int
+    hasAttended Boolean
+
+    @@id([memberId, eventId])
+}
+
+model EventResource {
+    type String
+
+    // Relation fields
+    event      Event    @relation(fields: [eventId], references: [id])
+    eventId    Int
+    resource   Resource @relation(fields: [resourceId], references: [id])
+    resourceId Int
+
+    @@id([eventId, resourceId])
+}
+
+model EventAbhisekha {
+    type String
+
+    // Relation fields
+    event       Event     @relation(fields: [eventId], references: [id])
+    eventId     Int
+    abhisheka   Abhisekha @relation(fields: [abhishekaId], references: [id])
+    abhishekaId Int
+
+    @@id([eventId, abhishekaId])
 }

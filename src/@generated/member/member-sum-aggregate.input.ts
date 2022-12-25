@@ -14,6 +14,9 @@ export class MemberSumAggregateInput {
     centreId?: true;
 
     @Field(() => Boolean, {nullable:true})
+    addressid?: true;
+
+    @Field(() => Boolean, {nullable:true})
     currentAddressId?: true;
 
     @Field(() => Boolean, {nullable:true})

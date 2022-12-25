@@ -5,6 +5,8 @@ import { MembershipType } from '../prisma/membership-type.enum';
 import { GenderType } from '../prisma/gender-type.enum';
 import { UserUncheckedCreateNestedOneWithoutMemberInput } from '../user/user-unchecked-create-nested-one-without-member.input';
 import { MemberGroupUncheckedCreateNestedManyWithoutMemberInput } from '../member-group/member-group-unchecked-create-nested-many-without-member.input';
+import { MemberAbhisekhaUncheckedCreateNestedManyWithoutMemberInput } from '../member-abhisekha/member-abhisekha-unchecked-create-nested-many-without-member.input';
+import { EventMemberUncheckedCreateNestedManyWithoutMemberInput } from '../event-member/event-member-unchecked-create-nested-many-without-member.input';
 
 @InputType()
 export class MemberUncheckedCreateWithoutCentreInput {
@@ -73,6 +75,9 @@ export class MemberUncheckedCreateWithoutCentreInput {
     note?: string;
 
     @Field(() => Int, {nullable:true})
+    addressid?: number;
+
+    @Field(() => Int, {nullable:true})
     currentAddressId?: number;
 
     @Field(() => Int, {nullable:true})
@@ -101,4 +106,10 @@ export class MemberUncheckedCreateWithoutCentreInput {
 
     @Field(() => MemberGroupUncheckedCreateNestedManyWithoutMemberInput, {nullable:true})
     memberGroup?: MemberGroupUncheckedCreateNestedManyWithoutMemberInput;
+
+    @Field(() => MemberAbhisekhaUncheckedCreateNestedManyWithoutMemberInput, {nullable:true})
+    MemberAbhisekha?: MemberAbhisekhaUncheckedCreateNestedManyWithoutMemberInput;
+
+    @Field(() => EventMemberUncheckedCreateNestedManyWithoutMemberInput, {nullable:true})
+    EventMember?: EventMemberUncheckedCreateNestedManyWithoutMemberInput;
 }

@@ -7,4 +7,10 @@ export class MemberCount {
 
     @Field(() => Int, {nullable:false})
     memberGroup?: number;
+
+    @Field(() => Int, {nullable:false})
+    MemberAbhisekha?: number;
+
+    @Field(() => Int, {nullable:false})
+    EventMember?: number;
 }
