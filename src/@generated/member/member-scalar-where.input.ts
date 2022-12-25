@@ -86,6 +86,9 @@ export class MemberScalarWhereInput {
     centreId?: IntFilter;
 
     @Field(() => IntFilter, {nullable:true})
+    addressid?: IntFilter;
+
+    @Field(() => IntFilter, {nullable:true})
     currentAddressId?: IntFilter;
 
     @Field(() => IntFilter, {nullable:true})

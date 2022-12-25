@@ -10,6 +10,8 @@ import { CentreRelationFilter } from '../centre/centre-relation-filter.input';
 import { AddressRelationFilter } from '../address/address-relation-filter.input';
 import { UserRelationFilter } from '../user/user-relation-filter.input';
 import { MemberGroupListRelationFilter } from '../member-group/member-group-list-relation-filter.input';
+import { MemberAbhisekhaListRelationFilter } from '../member-abhisekha/member-abhisekha-list-relation-filter.input';
+import { EventMemberListRelationFilter } from '../event-member/event-member-list-relation-filter.input';
 
 @InputType()
 export class MemberWhereInput {
@@ -93,6 +95,12 @@ export class MemberWhereInput {
     centreId?: IntFilter;
 
     @Field(() => AddressRelationFilter, {nullable:true})
+    address?: AddressRelationFilter;
+
+    @Field(() => IntFilter, {nullable:true})
+    addressid?: IntFilter;
+
+    @Field(() => AddressRelationFilter, {nullable:true})
     currentAddress?: AddressRelationFilter;
 
     @Field(() => IntFilter, {nullable:true})
@@ -127,4 +135,10 @@ export class MemberWhereInput {
 
     @Field(() => MemberGroupListRelationFilter, {nullable:true})
     memberGroup?: MemberGroupListRelationFilter;
+
+    @Field(() => MemberAbhisekhaListRelationFilter, {nullable:true})
+    MemberAbhisekha?: MemberAbhisekhaListRelationFilter;
+
+    @Field(() => EventMemberListRelationFilter, {nullable:true})
+    EventMember?: EventMemberListRelationFilter;
 }

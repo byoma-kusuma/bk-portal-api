@@ -3,10 +3,13 @@ import { InputType } from '@nestjs/graphql';
 import { MembershipType } from '../prisma/membership-type.enum';
 import { Int } from '@nestjs/graphql';
 import { GenderType } from '../prisma/gender-type.enum';
+import { AddressCreateNestedOneWithoutMembersInput } from '../address/address-create-nested-one-without-members.input';
 import { AddressCreateNestedOneWithoutMemberCurrentAddressInput } from '../address/address-create-nested-one-without-member-current-address.input';
 import { AddressCreateNestedOneWithoutMemberPermanentAddressInput } from '../address/address-create-nested-one-without-member-permanent-address.input';
 import { UserCreateNestedOneWithoutMemberInput } from '../user/user-create-nested-one-without-member.input';
 import { MemberGroupCreateNestedManyWithoutMemberInput } from '../member-group/member-group-create-nested-many-without-member.input';
+import { MemberAbhisekhaCreateNestedManyWithoutMemberInput } from '../member-abhisekha/member-abhisekha-create-nested-many-without-member.input';
+import { EventMemberCreateNestedManyWithoutMemberInput } from '../event-member/event-member-create-nested-many-without-member.input';
 
 @InputType()
 export class MemberCreateWithoutCentreInput {
@@ -89,6 +92,9 @@ export class MemberCreateWithoutCentreInput {
     @Field(() => String, {nullable:true})
     createdBy?: string;
 
+    @Field(() => AddressCreateNestedOneWithoutMembersInput, {nullable:true})
+    address?: AddressCreateNestedOneWithoutMembersInput;
+
     @Field(() => AddressCreateNestedOneWithoutMemberCurrentAddressInput, {nullable:true})
     currentAddress?: AddressCreateNestedOneWithoutMemberCurrentAddressInput;
 
@@ -100,4 +106,10 @@ export class MemberCreateWithoutCentreInput {
 
     @Field(() => MemberGroupCreateNestedManyWithoutMemberInput, {nullable:true})
     memberGroup?: MemberGroupCreateNestedManyWithoutMemberInput;
+
+    @Field(() => MemberAbhisekhaCreateNestedManyWithoutMemberInput, {nullable:true})
+    MemberAbhisekha?: MemberAbhisekhaCreateNestedManyWithoutMemberInput;
+
+    @Field(() => EventMemberCreateNestedManyWithoutMemberInput, {nullable:true})
+    EventMember?: EventMemberCreateNestedManyWithoutMemberInput;
 }

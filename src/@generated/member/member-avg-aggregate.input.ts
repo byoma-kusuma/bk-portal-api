@@ -14,6 +14,9 @@ export class MemberAvgAggregateInput {
     centreId?: true;
 
     @Field(() => Boolean, {nullable:true})
+    addressid?: true;
+
+    @Field(() => Boolean, {nullable:true})
     currentAddressId?: true;
 
     @Field(() => Boolean, {nullable:true})

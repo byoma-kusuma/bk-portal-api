@@ -1,10 +1,7 @@
-import {
-  Injectable,
-  NotFoundException
-} from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 import { PrismaService } from "nestjs-prisma";
-import { CentreCreateInput } from "src/@generated/centre/centre-create.input";
 import { UpdateCentreInput } from "./dto/update-centre.input";
+import { CreateCentreInput } from "./dto/create-centre.input";
 
 @Injectable()
 export class CentreService {
@@ -12,9 +9,9 @@ export class CentreService {
   findUnique = this.prisma.centre.findUnique;
   findFirst = this.prisma.centre.findFirst;
 
-  constructor(private readonly prisma: PrismaService) { }
+  constructor(private readonly prisma: PrismaService) {}
 
-  async create(createCentreInput: CentreCreateInput) {
+  async create(createCentreInput: CreateCentreInput) {
     return await this.prisma.centre.create({
       data: createCentreInput
     });

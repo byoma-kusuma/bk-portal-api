@@ -15,6 +15,9 @@ export class MemberAvgOrderByAggregateInput {
     centreId?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
+    addressid?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
     currentAddressId?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})

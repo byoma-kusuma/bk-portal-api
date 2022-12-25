@@ -79,6 +79,9 @@ export class MemberGroupBy {
     centreId?: number;
 
     @Field(() => Int, {nullable:true})
+    addressid?: number;
+
+    @Field(() => Int, {nullable:true})
     currentAddressId?: number;
 
     @Field(() => Int, {nullable:true})

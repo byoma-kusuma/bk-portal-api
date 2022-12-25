@@ -5,6 +5,8 @@ import { CentreOrderByWithRelationInput } from '../centre/centre-order-by-with-r
 import { AddressOrderByWithRelationInput } from '../address/address-order-by-with-relation.input';
 import { UserOrderByWithRelationInput } from '../user/user-order-by-with-relation.input';
 import { MemberGroupOrderByRelationAggregateInput } from '../member-group/member-group-order-by-relation-aggregate.input';
+import { MemberAbhisekhaOrderByRelationAggregateInput } from '../member-abhisekha/member-abhisekha-order-by-relation-aggregate.input';
+import { EventMemberOrderByRelationAggregateInput } from '../event-member/event-member-order-by-relation-aggregate.input';
 
 @InputType()
 export class MemberOrderByWithRelationInput {
@@ -79,6 +81,12 @@ export class MemberOrderByWithRelationInput {
     centreId?: keyof typeof SortOrder;
 
     @Field(() => AddressOrderByWithRelationInput, {nullable:true})
+    address?: AddressOrderByWithRelationInput;
+
+    @Field(() => SortOrder, {nullable:true})
+    addressid?: keyof typeof SortOrder;
+
+    @Field(() => AddressOrderByWithRelationInput, {nullable:true})
     currentAddress?: AddressOrderByWithRelationInput;
 
     @Field(() => SortOrder, {nullable:true})
@@ -113,4 +121,10 @@ export class MemberOrderByWithRelationInput {
 
     @Field(() => MemberGroupOrderByRelationAggregateInput, {nullable:true})
     memberGroup?: MemberGroupOrderByRelationAggregateInput;
+
+    @Field(() => MemberAbhisekhaOrderByRelationAggregateInput, {nullable:true})
+    MemberAbhisekha?: MemberAbhisekhaOrderByRelationAggregateInput;
+
+    @Field(() => EventMemberOrderByRelationAggregateInput, {nullable:true})
+    EventMember?: EventMemberOrderByRelationAggregateInput;
 }

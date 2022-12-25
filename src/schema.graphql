@@ -2,6 +2,186 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input AbhisekhaCreateNestedOneWithoutAbhisekhaResourceInput {
+  connect: AbhisekhaWhereUniqueInput
+  connectOrCreate: AbhisekhaCreateOrConnectWithoutAbhisekhaResourceInput
+  create: AbhisekhaCreateWithoutAbhisekhaResourceInput
+}
+
+input AbhisekhaCreateNestedOneWithoutEventAbhisekhaInput {
+  connect: AbhisekhaWhereUniqueInput
+  connectOrCreate: AbhisekhaCreateOrConnectWithoutEventAbhisekhaInput
+  create: AbhisekhaCreateWithoutEventAbhisekhaInput
+}
+
+input AbhisekhaCreateNestedOneWithoutMemberAbhisekhaInput {
+  connect: AbhisekhaWhereUniqueInput
+  connectOrCreate: AbhisekhaCreateOrConnectWithoutMemberAbhisekhaInput
+  create: AbhisekhaCreateWithoutMemberAbhisekhaInput
+}
+
+input AbhisekhaCreateOrConnectWithoutAbhisekhaResourceInput {
+  create: AbhisekhaCreateWithoutAbhisekhaResourceInput!
+  where: AbhisekhaWhereUniqueInput!
+}
+
+input AbhisekhaCreateOrConnectWithoutEventAbhisekhaInput {
+  create: AbhisekhaCreateWithoutEventAbhisekhaInput!
+  where: AbhisekhaWhereUniqueInput!
+}
+
+input AbhisekhaCreateOrConnectWithoutMemberAbhisekhaInput {
+  create: AbhisekhaCreateWithoutMemberAbhisekhaInput!
+  where: AbhisekhaWhereUniqueInput!
+}
+
+input AbhisekhaCreateWithoutAbhisekhaResourceInput {
+  createdAt: DateTime
+  createdBy: String
+  description: String!
+  eventAbhisekha: EventAbhisekhaCreateNestedManyWithoutAbhishekaInput
+  isDeleted: Boolean
+  memberAbhisekha: MemberAbhisekhaCreateNestedManyWithoutAbhishekaInput
+  name: String!
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+}
+
+input AbhisekhaCreateWithoutEventAbhisekhaInput {
+  abhisekhaResource: AbhisekhaResourceCreateNestedManyWithoutAbhishekaInput
+  createdAt: DateTime
+  createdBy: String
+  description: String!
+  isDeleted: Boolean
+  memberAbhisekha: MemberAbhisekhaCreateNestedManyWithoutAbhishekaInput
+  name: String!
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+}
+
+input AbhisekhaCreateWithoutMemberAbhisekhaInput {
+  abhisekhaResource: AbhisekhaResourceCreateNestedManyWithoutAbhishekaInput
+  createdAt: DateTime
+  createdBy: String
+  description: String!
+  eventAbhisekha: EventAbhisekhaCreateNestedManyWithoutAbhishekaInput
+  isDeleted: Boolean
+  name: String!
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+}
+
+input AbhisekhaRelationFilter {
+  is: AbhisekhaWhereInput
+  isNot: AbhisekhaWhereInput
+}
+
+input AbhisekhaResourceAbhishekaIdResourceIdCompoundUniqueInput {
+  abhishekaId: Int!
+  resourceId: Int!
+}
+
+input AbhisekhaResourceCreateManyAbhishekaInput {
+  resourceId: Int!
+  type: String!
+}
+
+input AbhisekhaResourceCreateManyAbhishekaInputEnvelope {
+  data: [AbhisekhaResourceCreateManyAbhishekaInput!]!
+  skipDuplicates: Boolean
+}
+
+input AbhisekhaResourceCreateManyResourceInput {
+  abhishekaId: Int!
+  type: String!
+}
+
+input AbhisekhaResourceCreateManyResourceInputEnvelope {
+  data: [AbhisekhaResourceCreateManyResourceInput!]!
+  skipDuplicates: Boolean
+}
+
+input AbhisekhaResourceCreateNestedManyWithoutAbhishekaInput {
+  connect: [AbhisekhaResourceWhereUniqueInput!]
+  connectOrCreate: [AbhisekhaResourceCreateOrConnectWithoutAbhishekaInput!]
+  create: [AbhisekhaResourceCreateWithoutAbhishekaInput!]
+  createMany: AbhisekhaResourceCreateManyAbhishekaInputEnvelope
+}
+
+input AbhisekhaResourceCreateNestedManyWithoutResourceInput {
+  connect: [AbhisekhaResourceWhereUniqueInput!]
+  connectOrCreate: [AbhisekhaResourceCreateOrConnectWithoutResourceInput!]
+  create: [AbhisekhaResourceCreateWithoutResourceInput!]
+  createMany: AbhisekhaResourceCreateManyResourceInputEnvelope
+}
+
+input AbhisekhaResourceCreateOrConnectWithoutAbhishekaInput {
+  create: AbhisekhaResourceCreateWithoutAbhishekaInput!
+  where: AbhisekhaResourceWhereUniqueInput!
+}
+
+input AbhisekhaResourceCreateOrConnectWithoutResourceInput {
+  create: AbhisekhaResourceCreateWithoutResourceInput!
+  where: AbhisekhaResourceWhereUniqueInput!
+}
+
+input AbhisekhaResourceCreateWithoutAbhishekaInput {
+  resource: ResourceCreateNestedOneWithoutAbhisekhaResourceInput!
+  type: String!
+}
+
+input AbhisekhaResourceCreateWithoutResourceInput {
+  abhisheka: AbhisekhaCreateNestedOneWithoutAbhisekhaResourceInput!
+  type: String!
+}
+
+input AbhisekhaResourceListRelationFilter {
+  every: AbhisekhaResourceWhereInput
+  none: AbhisekhaResourceWhereInput
+  some: AbhisekhaResourceWhereInput
+}
+
+input AbhisekhaResourceWhereInput {
+  AND: [AbhisekhaResourceWhereInput!]
+  NOT: [AbhisekhaResourceWhereInput!]
+  OR: [AbhisekhaResourceWhereInput!]
+  abhisheka: AbhisekhaRelationFilter
+  abhishekaId: IntFilter
+  resource: ResourceRelationFilter
+  resourceId: IntFilter
+  type: StringFilter
+}
+
+input AbhisekhaResourceWhereUniqueInput {
+  abhishekaId_resourceId: AbhisekhaResourceAbhishekaIdResourceIdCompoundUniqueInput
+}
+
+input AbhisekhaWhereInput {
+  AND: [AbhisekhaWhereInput!]
+  NOT: [AbhisekhaWhereInput!]
+  OR: [AbhisekhaWhereInput!]
+  abhisekhaResource: AbhisekhaResourceListRelationFilter
+  createdAt: DateTimeFilter
+  createdBy: StringFilter
+  description: StringFilter
+  eventAbhisekha: EventAbhisekhaListRelationFilter
+  id: IntFilter
+  isDeleted: BoolFilter
+  memberAbhisekha: MemberAbhisekhaListRelationFilter
+  name: StringFilter
+  uniqueKey: StringFilter
+  updatedAt: DateTimeFilter
+  updatedBy: StringFilter
+}
+
+input AbhisekhaWhereUniqueInput {
+  id: Int
+  uniqueKey: String
+}
+
 type Address {
   city: String
   country: String
@@ -29,14 +209,15 @@ type Address {
 }
 
 input AddressCreateInput {
-  city: String!
+  Members: MemberCreateNestedManyWithoutAddressInput
+  city: String
   country: String!
   createdAt: DateTime
   createdBy: String
   memberCurrentAddress: MemberCreateNestedOneWithoutCurrentAddressInput
   memberPermanentAddress: MemberCreateNestedOneWithoutPermanentAddressInput
-  stateProvince: String!
-  street: String!
+  stateProvince: String
+  street: String
   uniqueKey: String
   updatedAt: DateTime
   updatedBy: String
@@ -54,6 +235,12 @@ input AddressCreateNestedOneWithoutMemberPermanentAddressInput {
   create: AddressCreateWithoutMemberPermanentAddressInput
 }
 
+input AddressCreateNestedOneWithoutMembersInput {
+  connect: AddressWhereUniqueInput
+  connectOrCreate: AddressCreateOrConnectWithoutMembersInput
+  create: AddressCreateWithoutMembersInput
+}
+
 input AddressCreateOrConnectWithoutMemberCurrentAddressInput {
   create: AddressCreateWithoutMemberCurrentAddressInput!
   where: AddressWhereUniqueInput!
@@ -64,27 +251,48 @@ input AddressCreateOrConnectWithoutMemberPermanentAddressInput {
   where: AddressWhereUniqueInput!
 }
 
+input AddressCreateOrConnectWithoutMembersInput {
+  create: AddressCreateWithoutMembersInput!
+  where: AddressWhereUniqueInput!
+}
+
 input AddressCreateWithoutMemberCurrentAddressInput {
-  city: String!
+  Members: MemberCreateNestedManyWithoutAddressInput
+  city: String
   country: String!
   createdAt: DateTime
   createdBy: String
   memberPermanentAddress: MemberCreateNestedOneWithoutPermanentAddressInput
-  stateProvince: String!
-  street: String!
+  stateProvince: String
+  street: String
   uniqueKey: String
   updatedAt: DateTime
   updatedBy: String
 }
 
 input AddressCreateWithoutMemberPermanentAddressInput {
-  city: String!
+  Members: MemberCreateNestedManyWithoutAddressInput
+  city: String
   country: String!
   createdAt: DateTime
   createdBy: String
   memberCurrentAddress: MemberCreateNestedOneWithoutCurrentAddressInput
-  stateProvince: String!
-  street: String!
+  stateProvince: String
+  street: String
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+}
+
+input AddressCreateWithoutMembersInput {
+  city: String
+  country: String!
+  createdAt: DateTime
+  createdBy: String
+  memberCurrentAddress: MemberCreateNestedOneWithoutCurrentAddressInput
+  memberPermanentAddress: MemberCreateNestedOneWithoutPermanentAddressInput
+  stateProvince: String
+  street: String
   uniqueKey: String
   updatedAt: DateTime
   updatedBy: String
@@ -97,6 +305,7 @@ input AddressRelationFilter {
 
 input AddressWhereInput {
   AND: [AddressWhereInput!]
+  Members: MemberListRelationFilter
   NOT: [AddressWhereInput!]
   OR: [AddressWhereInput!]
   city: StringFilter
@@ -289,6 +498,450 @@ input EnumUserStatusFilter {
   notIn: [UserStatus!]
 }
 
+input EventAbhisekhaCreateManyAbhishekaInput {
+  eventId: Int!
+  type: String!
+}
+
+input EventAbhisekhaCreateManyAbhishekaInputEnvelope {
+  data: [EventAbhisekhaCreateManyAbhishekaInput!]!
+  skipDuplicates: Boolean
+}
+
+input EventAbhisekhaCreateManyEventInput {
+  abhishekaId: Int!
+  type: String!
+}
+
+input EventAbhisekhaCreateManyEventInputEnvelope {
+  data: [EventAbhisekhaCreateManyEventInput!]!
+  skipDuplicates: Boolean
+}
+
+input EventAbhisekhaCreateNestedManyWithoutAbhishekaInput {
+  connect: [EventAbhisekhaWhereUniqueInput!]
+  connectOrCreate: [EventAbhisekhaCreateOrConnectWithoutAbhishekaInput!]
+  create: [EventAbhisekhaCreateWithoutAbhishekaInput!]
+  createMany: EventAbhisekhaCreateManyAbhishekaInputEnvelope
+}
+
+input EventAbhisekhaCreateNestedManyWithoutEventInput {
+  connect: [EventAbhisekhaWhereUniqueInput!]
+  connectOrCreate: [EventAbhisekhaCreateOrConnectWithoutEventInput!]
+  create: [EventAbhisekhaCreateWithoutEventInput!]
+  createMany: EventAbhisekhaCreateManyEventInputEnvelope
+}
+
+input EventAbhisekhaCreateOrConnectWithoutAbhishekaInput {
+  create: EventAbhisekhaCreateWithoutAbhishekaInput!
+  where: EventAbhisekhaWhereUniqueInput!
+}
+
+input EventAbhisekhaCreateOrConnectWithoutEventInput {
+  create: EventAbhisekhaCreateWithoutEventInput!
+  where: EventAbhisekhaWhereUniqueInput!
+}
+
+input EventAbhisekhaCreateWithoutAbhishekaInput {
+  event: EventCreateNestedOneWithoutEventAbhisekhaInput!
+  type: String!
+}
+
+input EventAbhisekhaCreateWithoutEventInput {
+  abhisheka: AbhisekhaCreateNestedOneWithoutEventAbhisekhaInput!
+  type: String!
+}
+
+input EventAbhisekhaEventIdAbhishekaIdCompoundUniqueInput {
+  abhishekaId: Int!
+  eventId: Int!
+}
+
+input EventAbhisekhaListRelationFilter {
+  every: EventAbhisekhaWhereInput
+  none: EventAbhisekhaWhereInput
+  some: EventAbhisekhaWhereInput
+}
+
+input EventAbhisekhaWhereInput {
+  AND: [EventAbhisekhaWhereInput!]
+  NOT: [EventAbhisekhaWhereInput!]
+  OR: [EventAbhisekhaWhereInput!]
+  abhisheka: AbhisekhaRelationFilter
+  abhishekaId: IntFilter
+  event: EventRelationFilter
+  eventId: IntFilter
+  type: StringFilter
+}
+
+input EventAbhisekhaWhereUniqueInput {
+  eventId_abhishekaId: EventAbhisekhaEventIdAbhishekaIdCompoundUniqueInput
+}
+
+input EventCreateManyParentEventInput {
+  createdAt: DateTime
+  createdBy: String
+  endDate: DateTime!
+  id: Int
+  isDeleted: Boolean
+  isLocked: Boolean!
+  startDate: DateTime!
+  type: String!
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+}
+
+input EventCreateManyParentEventInputEnvelope {
+  data: [EventCreateManyParentEventInput!]!
+  skipDuplicates: Boolean
+}
+
+input EventCreateNestedManyWithoutParentEventInput {
+  connect: [EventWhereUniqueInput!]
+  connectOrCreate: [EventCreateOrConnectWithoutParentEventInput!]
+  create: [EventCreateWithoutParentEventInput!]
+  createMany: EventCreateManyParentEventInputEnvelope
+}
+
+input EventCreateNestedOneWithoutChildEventsInput {
+  connect: EventWhereUniqueInput
+  connectOrCreate: EventCreateOrConnectWithoutChildEventsInput
+  create: EventCreateWithoutChildEventsInput
+}
+
+input EventCreateNestedOneWithoutEventAbhisekhaInput {
+  connect: EventWhereUniqueInput
+  connectOrCreate: EventCreateOrConnectWithoutEventAbhisekhaInput
+  create: EventCreateWithoutEventAbhisekhaInput
+}
+
+input EventCreateNestedOneWithoutEventMemberInput {
+  connect: EventWhereUniqueInput
+  connectOrCreate: EventCreateOrConnectWithoutEventMemberInput
+  create: EventCreateWithoutEventMemberInput
+}
+
+input EventCreateNestedOneWithoutEventResourceInput {
+  connect: EventWhereUniqueInput
+  connectOrCreate: EventCreateOrConnectWithoutEventResourceInput
+  create: EventCreateWithoutEventResourceInput
+}
+
+input EventCreateOrConnectWithoutChildEventsInput {
+  create: EventCreateWithoutChildEventsInput!
+  where: EventWhereUniqueInput!
+}
+
+input EventCreateOrConnectWithoutEventAbhisekhaInput {
+  create: EventCreateWithoutEventAbhisekhaInput!
+  where: EventWhereUniqueInput!
+}
+
+input EventCreateOrConnectWithoutEventMemberInput {
+  create: EventCreateWithoutEventMemberInput!
+  where: EventWhereUniqueInput!
+}
+
+input EventCreateOrConnectWithoutEventResourceInput {
+  create: EventCreateWithoutEventResourceInput!
+  where: EventWhereUniqueInput!
+}
+
+input EventCreateOrConnectWithoutParentEventInput {
+  create: EventCreateWithoutParentEventInput!
+  where: EventWhereUniqueInput!
+}
+
+input EventCreateWithoutChildEventsInput {
+  createdAt: DateTime
+  createdBy: String
+  endDate: DateTime!
+  eventAbhisekha: EventAbhisekhaCreateNestedManyWithoutEventInput
+  eventMember: EventMemberCreateNestedManyWithoutEventInput
+  eventResource: EventResourceCreateNestedManyWithoutEventInput
+  isDeleted: Boolean
+  isLocked: Boolean!
+  parentEvent: EventCreateNestedOneWithoutChildEventsInput
+  startDate: DateTime!
+  type: String!
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+}
+
+input EventCreateWithoutEventAbhisekhaInput {
+  childEvents: EventCreateNestedManyWithoutParentEventInput
+  createdAt: DateTime
+  createdBy: String
+  endDate: DateTime!
+  eventMember: EventMemberCreateNestedManyWithoutEventInput
+  eventResource: EventResourceCreateNestedManyWithoutEventInput
+  isDeleted: Boolean
+  isLocked: Boolean!
+  parentEvent: EventCreateNestedOneWithoutChildEventsInput
+  startDate: DateTime!
+  type: String!
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+}
+
+input EventCreateWithoutEventMemberInput {
+  childEvents: EventCreateNestedManyWithoutParentEventInput
+  createdAt: DateTime
+  createdBy: String
+  endDate: DateTime!
+  eventAbhisekha: EventAbhisekhaCreateNestedManyWithoutEventInput
+  eventResource: EventResourceCreateNestedManyWithoutEventInput
+  isDeleted: Boolean
+  isLocked: Boolean!
+  parentEvent: EventCreateNestedOneWithoutChildEventsInput
+  startDate: DateTime!
+  type: String!
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+}
+
+input EventCreateWithoutEventResourceInput {
+  childEvents: EventCreateNestedManyWithoutParentEventInput
+  createdAt: DateTime
+  createdBy: String
+  endDate: DateTime!
+  eventAbhisekha: EventAbhisekhaCreateNestedManyWithoutEventInput
+  eventMember: EventMemberCreateNestedManyWithoutEventInput
+  isDeleted: Boolean
+  isLocked: Boolean!
+  parentEvent: EventCreateNestedOneWithoutChildEventsInput
+  startDate: DateTime!
+  type: String!
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+}
+
+input EventCreateWithoutParentEventInput {
+  childEvents: EventCreateNestedManyWithoutParentEventInput
+  createdAt: DateTime
+  createdBy: String
+  endDate: DateTime!
+  eventAbhisekha: EventAbhisekhaCreateNestedManyWithoutEventInput
+  eventMember: EventMemberCreateNestedManyWithoutEventInput
+  eventResource: EventResourceCreateNestedManyWithoutEventInput
+  isDeleted: Boolean
+  isLocked: Boolean!
+  startDate: DateTime!
+  type: String!
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+}
+
+input EventListRelationFilter {
+  every: EventWhereInput
+  none: EventWhereInput
+  some: EventWhereInput
+}
+
+input EventMemberCreateManyEventInput {
+  hasAttended: Boolean!
+  memberId: Int!
+  type: String!
+}
+
+input EventMemberCreateManyEventInputEnvelope {
+  data: [EventMemberCreateManyEventInput!]!
+  skipDuplicates: Boolean
+}
+
+input EventMemberCreateManyMemberInput {
+  eventId: Int!
+  hasAttended: Boolean!
+  type: String!
+}
+
+input EventMemberCreateManyMemberInputEnvelope {
+  data: [EventMemberCreateManyMemberInput!]!
+  skipDuplicates: Boolean
+}
+
+input EventMemberCreateNestedManyWithoutEventInput {
+  connect: [EventMemberWhereUniqueInput!]
+  connectOrCreate: [EventMemberCreateOrConnectWithoutEventInput!]
+  create: [EventMemberCreateWithoutEventInput!]
+  createMany: EventMemberCreateManyEventInputEnvelope
+}
+
+input EventMemberCreateNestedManyWithoutMemberInput {
+  connect: [EventMemberWhereUniqueInput!]
+  connectOrCreate: [EventMemberCreateOrConnectWithoutMemberInput!]
+  create: [EventMemberCreateWithoutMemberInput!]
+  createMany: EventMemberCreateManyMemberInputEnvelope
+}
+
+input EventMemberCreateOrConnectWithoutEventInput {
+  create: EventMemberCreateWithoutEventInput!
+  where: EventMemberWhereUniqueInput!
+}
+
+input EventMemberCreateOrConnectWithoutMemberInput {
+  create: EventMemberCreateWithoutMemberInput!
+  where: EventMemberWhereUniqueInput!
+}
+
+input EventMemberCreateWithoutEventInput {
+  hasAttended: Boolean!
+  member: MemberCreateNestedOneWithoutEventMemberInput!
+  type: String!
+}
+
+input EventMemberCreateWithoutMemberInput {
+  event: EventCreateNestedOneWithoutEventMemberInput!
+  hasAttended: Boolean!
+  type: String!
+}
+
+input EventMemberListRelationFilter {
+  every: EventMemberWhereInput
+  none: EventMemberWhereInput
+  some: EventMemberWhereInput
+}
+
+input EventMemberMemberIdEventIdCompoundUniqueInput {
+  eventId: Int!
+  memberId: Int!
+}
+
+input EventMemberWhereInput {
+  AND: [EventMemberWhereInput!]
+  NOT: [EventMemberWhereInput!]
+  OR: [EventMemberWhereInput!]
+  event: EventRelationFilter
+  eventId: IntFilter
+  hasAttended: BoolFilter
+  member: MemberRelationFilter
+  memberId: IntFilter
+  type: StringFilter
+}
+
+input EventMemberWhereUniqueInput {
+  memberId_eventId: EventMemberMemberIdEventIdCompoundUniqueInput
+}
+
+input EventRelationFilter {
+  is: EventWhereInput
+  isNot: EventWhereInput
+}
+
+input EventResourceCreateManyEventInput {
+  resourceId: Int!
+  type: String!
+}
+
+input EventResourceCreateManyEventInputEnvelope {
+  data: [EventResourceCreateManyEventInput!]!
+  skipDuplicates: Boolean
+}
+
+input EventResourceCreateManyResourceInput {
+  eventId: Int!
+  type: String!
+}
+
+input EventResourceCreateManyResourceInputEnvelope {
+  data: [EventResourceCreateManyResourceInput!]!
+  skipDuplicates: Boolean
+}
+
+input EventResourceCreateNestedManyWithoutEventInput {
+  connect: [EventResourceWhereUniqueInput!]
+  connectOrCreate: [EventResourceCreateOrConnectWithoutEventInput!]
+  create: [EventResourceCreateWithoutEventInput!]
+  createMany: EventResourceCreateManyEventInputEnvelope
+}
+
+input EventResourceCreateNestedManyWithoutResourceInput {
+  connect: [EventResourceWhereUniqueInput!]
+  connectOrCreate: [EventResourceCreateOrConnectWithoutResourceInput!]
+  create: [EventResourceCreateWithoutResourceInput!]
+  createMany: EventResourceCreateManyResourceInputEnvelope
+}
+
+input EventResourceCreateOrConnectWithoutEventInput {
+  create: EventResourceCreateWithoutEventInput!
+  where: EventResourceWhereUniqueInput!
+}
+
+input EventResourceCreateOrConnectWithoutResourceInput {
+  create: EventResourceCreateWithoutResourceInput!
+  where: EventResourceWhereUniqueInput!
+}
+
+input EventResourceCreateWithoutEventInput {
+  resource: ResourceCreateNestedOneWithoutEventResourceInput!
+  type: String!
+}
+
+input EventResourceCreateWithoutResourceInput {
+  event: EventCreateNestedOneWithoutEventResourceInput!
+  type: String!
+}
+
+input EventResourceEventIdResourceIdCompoundUniqueInput {
+  eventId: Int!
+  resourceId: Int!
+}
+
+input EventResourceListRelationFilter {
+  every: EventResourceWhereInput
+  none: EventResourceWhereInput
+  some: EventResourceWhereInput
+}
+
+input EventResourceWhereInput {
+  AND: [EventResourceWhereInput!]
+  NOT: [EventResourceWhereInput!]
+  OR: [EventResourceWhereInput!]
+  event: EventRelationFilter
+  eventId: IntFilter
+  resource: ResourceRelationFilter
+  resourceId: IntFilter
+  type: StringFilter
+}
+
+input EventResourceWhereUniqueInput {
+  eventId_resourceId: EventResourceEventIdResourceIdCompoundUniqueInput
+}
+
+input EventWhereInput {
+  AND: [EventWhereInput!]
+  NOT: [EventWhereInput!]
+  OR: [EventWhereInput!]
+  childEvents: EventListRelationFilter
+  createdAt: DateTimeFilter
+  createdBy: StringFilter
+  endDate: DateTimeFilter
+  eventAbhisekha: EventAbhisekhaListRelationFilter
+  eventMember: EventMemberListRelationFilter
+  eventResource: EventResourceListRelationFilter
+  id: IntFilter
+  isDeleted: BoolFilter
+  isLocked: BoolFilter
+  parentEvent: EventRelationFilter
+  parentEventId: IntFilter
+  startDate: DateTimeFilter
+  type: StringFilter
+  uniqueKey: StringFilter
+  updatedAt: DateTimeFilter
+  updatedBy: StringFilter
+}
+
+input EventWhereUniqueInput {
+  id: Int
+  uniqueKey: String
+}
+
 enum GenderType {
   FEMALE
   MALE
@@ -450,10 +1103,147 @@ type Member {
   yearOfBirth: String
 }
 
+input MemberAbhisekhaCreateManyAbhishekaInput {
+  memberId: Int!
+  type: String!
+}
+
+input MemberAbhisekhaCreateManyAbhishekaInputEnvelope {
+  data: [MemberAbhisekhaCreateManyAbhishekaInput!]!
+  skipDuplicates: Boolean
+}
+
+input MemberAbhisekhaCreateManyMemberInput {
+  abhishekaId: Int!
+  type: String!
+}
+
+input MemberAbhisekhaCreateManyMemberInputEnvelope {
+  data: [MemberAbhisekhaCreateManyMemberInput!]!
+  skipDuplicates: Boolean
+}
+
+input MemberAbhisekhaCreateNestedManyWithoutAbhishekaInput {
+  connect: [MemberAbhisekhaWhereUniqueInput!]
+  connectOrCreate: [MemberAbhisekhaCreateOrConnectWithoutAbhishekaInput!]
+  create: [MemberAbhisekhaCreateWithoutAbhishekaInput!]
+  createMany: MemberAbhisekhaCreateManyAbhishekaInputEnvelope
+}
+
+input MemberAbhisekhaCreateNestedManyWithoutMemberInput {
+  connect: [MemberAbhisekhaWhereUniqueInput!]
+  connectOrCreate: [MemberAbhisekhaCreateOrConnectWithoutMemberInput!]
+  create: [MemberAbhisekhaCreateWithoutMemberInput!]
+  createMany: MemberAbhisekhaCreateManyMemberInputEnvelope
+}
+
+input MemberAbhisekhaCreateOrConnectWithoutAbhishekaInput {
+  create: MemberAbhisekhaCreateWithoutAbhishekaInput!
+  where: MemberAbhisekhaWhereUniqueInput!
+}
+
+input MemberAbhisekhaCreateOrConnectWithoutMemberInput {
+  create: MemberAbhisekhaCreateWithoutMemberInput!
+  where: MemberAbhisekhaWhereUniqueInput!
+}
+
+input MemberAbhisekhaCreateWithoutAbhishekaInput {
+  member: MemberCreateNestedOneWithoutMemberAbhisekhaInput!
+  type: String!
+}
+
+input MemberAbhisekhaCreateWithoutMemberInput {
+  abhisheka: AbhisekhaCreateNestedOneWithoutMemberAbhisekhaInput!
+  type: String!
+}
+
+input MemberAbhisekhaListRelationFilter {
+  every: MemberAbhisekhaWhereInput
+  none: MemberAbhisekhaWhereInput
+  some: MemberAbhisekhaWhereInput
+}
+
+input MemberAbhisekhaMemberIdAbhishekaIdCompoundUniqueInput {
+  abhishekaId: Int!
+  memberId: Int!
+}
+
+input MemberAbhisekhaWhereInput {
+  AND: [MemberAbhisekhaWhereInput!]
+  NOT: [MemberAbhisekhaWhereInput!]
+  OR: [MemberAbhisekhaWhereInput!]
+  abhisheka: AbhisekhaRelationFilter
+  abhishekaId: IntFilter
+  member: MemberRelationFilter
+  memberId: IntFilter
+  type: StringFilter
+}
+
+input MemberAbhisekhaWhereUniqueInput {
+  memberId_abhishekaId: MemberAbhisekhaMemberIdAbhishekaIdCompoundUniqueInput
+}
+
+input MemberCreateManyAddressInput {
+  active: Boolean
+  centreId: Int
+  createdAt: DateTime
+  createdBy: String
+  currentAddressId: Int
+  email: String
+  firstName: String!
+  gender: GenderType
+  id: Int
+  insta: String
+  isDeleted: Boolean
+  isMember: Boolean
+  lastName: String!
+  membershipType: MembershipType
+  messenger: String
+  middleName: String
+  note: String
+  permanentAddressId: Int
+  phoneLand: String
+  phoneMobile: String
+  phoneOther: String
+  photo: String
+  refugeName: String
+  sanghaJoinDate: DateTime
+  title: String
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+  viber: String
+  yearOfBirth: Int
+}
+
+input MemberCreateManyAddressInputEnvelope {
+  data: [MemberCreateManyAddressInput!]!
+  skipDuplicates: Boolean
+}
+
+input MemberCreateNestedManyWithoutAddressInput {
+  connect: [MemberWhereUniqueInput!]
+  connectOrCreate: [MemberCreateOrConnectWithoutAddressInput!]
+  create: [MemberCreateWithoutAddressInput!]
+  createMany: MemberCreateManyAddressInputEnvelope
+}
+
 input MemberCreateNestedOneWithoutCurrentAddressInput {
   connect: MemberWhereUniqueInput
   connectOrCreate: MemberCreateOrConnectWithoutCurrentAddressInput
   create: MemberCreateWithoutCurrentAddressInput
+}
+
+input MemberCreateNestedOneWithoutEventMemberInput {
+  connect: MemberWhereUniqueInput
+  connectOrCreate: MemberCreateOrConnectWithoutEventMemberInput
+  create: MemberCreateWithoutEventMemberInput
+}
+
+input MemberCreateNestedOneWithoutMemberAbhisekhaInput {
+  connect: MemberWhereUniqueInput
+  connectOrCreate: MemberCreateOrConnectWithoutMemberAbhisekhaInput
+  create: MemberCreateWithoutMemberAbhisekhaInput
 }
 
 input MemberCreateNestedOneWithoutPermanentAddressInput {
@@ -462,8 +1252,23 @@ input MemberCreateNestedOneWithoutPermanentAddressInput {
   create: MemberCreateWithoutPermanentAddressInput
 }
 
+input MemberCreateOrConnectWithoutAddressInput {
+  create: MemberCreateWithoutAddressInput!
+  where: MemberWhereUniqueInput!
+}
+
 input MemberCreateOrConnectWithoutCurrentAddressInput {
   create: MemberCreateWithoutCurrentAddressInput!
+  where: MemberWhereUniqueInput!
+}
+
+input MemberCreateOrConnectWithoutEventMemberInput {
+  create: MemberCreateWithoutEventMemberInput!
+  where: MemberWhereUniqueInput!
+}
+
+input MemberCreateOrConnectWithoutMemberAbhisekhaInput {
+  create: MemberCreateWithoutMemberAbhisekhaInput!
   where: MemberWhereUniqueInput!
 }
 
@@ -472,8 +1277,47 @@ input MemberCreateOrConnectWithoutPermanentAddressInput {
   where: MemberWhereUniqueInput!
 }
 
-input MemberCreateWithoutCurrentAddressInput {
+input MemberCreateWithoutAddressInput {
+  EventMember: EventMemberCreateNestedManyWithoutMemberInput
+  MemberAbhisekha: MemberAbhisekhaCreateNestedManyWithoutMemberInput
   active: Boolean
+  centre: CentreCreateNestedOneWithoutMembersInput
+  createdAt: DateTime
+  createdBy: String
+  currentAddress: AddressCreateNestedOneWithoutMemberCurrentAddressInput
+  email: String
+  firstName: String!
+  gender: GenderType
+  insta: String
+  isDeleted: Boolean
+  isMember: Boolean
+  lastName: String!
+  memberGroup: MemberGroupCreateNestedManyWithoutMemberInput
+  membershipType: MembershipType
+  messenger: String
+  middleName: String
+  note: String
+  permanentAddress: AddressCreateNestedOneWithoutMemberPermanentAddressInput
+  phoneLand: String
+  phoneMobile: String
+  phoneOther: String
+  photo: String
+  refugeName: String
+  sanghaJoinDate: DateTime
+  title: String
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+  user: UserCreateNestedOneWithoutMemberInput
+  viber: String
+  yearOfBirth: Int
+}
+
+input MemberCreateWithoutCurrentAddressInput {
+  EventMember: EventMemberCreateNestedManyWithoutMemberInput
+  MemberAbhisekha: MemberAbhisekhaCreateNestedManyWithoutMemberInput
+  active: Boolean
+  address: AddressCreateNestedOneWithoutMembersInput
   centre: CentreCreateNestedOneWithoutMembersInput
   createdAt: DateTime
   createdBy: String
@@ -505,8 +1349,83 @@ input MemberCreateWithoutCurrentAddressInput {
   yearOfBirth: Int
 }
 
-input MemberCreateWithoutPermanentAddressInput {
+input MemberCreateWithoutEventMemberInput {
+  MemberAbhisekha: MemberAbhisekhaCreateNestedManyWithoutMemberInput
   active: Boolean
+  address: AddressCreateNestedOneWithoutMembersInput
+  centre: CentreCreateNestedOneWithoutMembersInput
+  createdAt: DateTime
+  createdBy: String
+  currentAddress: AddressCreateNestedOneWithoutMemberCurrentAddressInput
+  email: String
+  firstName: String!
+  gender: GenderType
+  insta: String
+  isDeleted: Boolean
+  isMember: Boolean
+  lastName: String!
+  memberGroup: MemberGroupCreateNestedManyWithoutMemberInput
+  membershipType: MembershipType
+  messenger: String
+  middleName: String
+  note: String
+  permanentAddress: AddressCreateNestedOneWithoutMemberPermanentAddressInput
+  phoneLand: String
+  phoneMobile: String
+  phoneOther: String
+  photo: String
+  refugeName: String
+  sanghaJoinDate: DateTime
+  title: String
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+  user: UserCreateNestedOneWithoutMemberInput
+  viber: String
+  yearOfBirth: Int
+}
+
+input MemberCreateWithoutMemberAbhisekhaInput {
+  EventMember: EventMemberCreateNestedManyWithoutMemberInput
+  active: Boolean
+  address: AddressCreateNestedOneWithoutMembersInput
+  centre: CentreCreateNestedOneWithoutMembersInput
+  createdAt: DateTime
+  createdBy: String
+  currentAddress: AddressCreateNestedOneWithoutMemberCurrentAddressInput
+  email: String
+  firstName: String!
+  gender: GenderType
+  insta: String
+  isDeleted: Boolean
+  isMember: Boolean
+  lastName: String!
+  memberGroup: MemberGroupCreateNestedManyWithoutMemberInput
+  membershipType: MembershipType
+  messenger: String
+  middleName: String
+  note: String
+  permanentAddress: AddressCreateNestedOneWithoutMemberPermanentAddressInput
+  phoneLand: String
+  phoneMobile: String
+  phoneOther: String
+  photo: String
+  refugeName: String
+  sanghaJoinDate: DateTime
+  title: String
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+  user: UserCreateNestedOneWithoutMemberInput
+  viber: String
+  yearOfBirth: Int
+}
+
+input MemberCreateWithoutPermanentAddressInput {
+  EventMember: EventMemberCreateNestedManyWithoutMemberInput
+  MemberAbhisekha: MemberAbhisekhaCreateNestedManyWithoutMemberInput
+  active: Boolean
+  address: AddressCreateNestedOneWithoutMembersInput
   centre: CentreCreateNestedOneWithoutMembersInput
   createdAt: DateTime
   createdBy: String
@@ -607,9 +1526,13 @@ input MemberRelationFilter {
 
 input MemberWhereInput {
   AND: [MemberWhereInput!]
+  EventMember: EventMemberListRelationFilter
+  MemberAbhisekha: MemberAbhisekhaListRelationFilter
   NOT: [MemberWhereInput!]
   OR: [MemberWhereInput!]
   active: BoolFilter
+  address: AddressRelationFilter
+  addressid: IntFilter
   centre: CentreRelationFilter
   centreId: IntFilter
   createdAt: DateTimeFilter
@@ -806,6 +1729,85 @@ input ResetPasswordInput {
   password: String!
   token: String!
   userId: Int!
+}
+
+input ResourceCreateNestedOneWithoutAbhisekhaResourceInput {
+  connect: ResourceWhereUniqueInput
+  connectOrCreate: ResourceCreateOrConnectWithoutAbhisekhaResourceInput
+  create: ResourceCreateWithoutAbhisekhaResourceInput
+}
+
+input ResourceCreateNestedOneWithoutEventResourceInput {
+  connect: ResourceWhereUniqueInput
+  connectOrCreate: ResourceCreateOrConnectWithoutEventResourceInput
+  create: ResourceCreateWithoutEventResourceInput
+}
+
+input ResourceCreateOrConnectWithoutAbhisekhaResourceInput {
+  create: ResourceCreateWithoutAbhisekhaResourceInput!
+  where: ResourceWhereUniqueInput!
+}
+
+input ResourceCreateOrConnectWithoutEventResourceInput {
+  create: ResourceCreateWithoutEventResourceInput!
+  where: ResourceWhereUniqueInput!
+}
+
+input ResourceCreateWithoutAbhisekhaResourceInput {
+  createdAt: DateTime
+  createdBy: String
+  description: String!
+  eventResource: EventResourceCreateNestedManyWithoutResourceInput
+  isDeleted: Boolean
+  name: String!
+  type: String!
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+  url: String!
+}
+
+input ResourceCreateWithoutEventResourceInput {
+  abhisekhaResource: AbhisekhaResourceCreateNestedManyWithoutResourceInput
+  createdAt: DateTime
+  createdBy: String
+  description: String!
+  isDeleted: Boolean
+  name: String!
+  type: String!
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+  url: String!
+}
+
+input ResourceRelationFilter {
+  is: ResourceWhereInput
+  isNot: ResourceWhereInput
+}
+
+input ResourceWhereInput {
+  AND: [ResourceWhereInput!]
+  NOT: [ResourceWhereInput!]
+  OR: [ResourceWhereInput!]
+  abhisekhaResource: AbhisekhaResourceListRelationFilter
+  createdAt: DateTimeFilter
+  createdBy: StringFilter
+  description: StringFilter
+  eventResource: EventResourceListRelationFilter
+  id: IntFilter
+  isDeleted: BoolFilter
+  name: StringFilter
+  type: StringFilter
+  uniqueKey: StringFilter
+  updatedAt: DateTimeFilter
+  updatedBy: StringFilter
+  url: StringFilter
+}
+
+input ResourceWhereUniqueInput {
+  id: Int
+  uniqueKey: String
 }
 
 type ResponseStatus {

@@ -1,9 +1,5 @@
 import { InputType, Field } from "@nestjs/graphql";
-import {
-  IsOptional,
-  IsString,
-  MaxLength,
-} from "class-validator";
+import { IsOptional, IsString, MaxLength } from "class-validator";
 
 @InputType()
 export class CreateAddressInput {
@@ -29,5 +25,5 @@ export class CreateAddressInput {
   @IsOptional()
   @IsString()
   @MaxLength(256)
-  country?: string;
+  country: string;
 }

@@ -5,6 +5,8 @@ import { MembershipType } from '../prisma/membership-type.enum';
 import { GenderType } from '../prisma/gender-type.enum';
 import { UserUncheckedUpdateOneWithoutMemberInput } from '../user/user-unchecked-update-one-without-member.input';
 import { MemberGroupUncheckedUpdateManyWithoutMemberInput } from '../member-group/member-group-unchecked-update-many-without-member.input';
+import { MemberAbhisekhaUncheckedUpdateManyWithoutMemberInput } from '../member-abhisekha/member-abhisekha-unchecked-update-many-without-member.input';
+import { EventMemberUncheckedUpdateManyWithoutMemberInput } from '../event-member/event-member-unchecked-update-many-without-member.input';
 
 @InputType()
 export class MemberUncheckedUpdateWithoutCentreInput {
@@ -73,6 +75,9 @@ export class MemberUncheckedUpdateWithoutCentreInput {
     note?: string;
 
     @Field(() => Int, {nullable:true})
+    addressid?: number;
+
+    @Field(() => Int, {nullable:true})
     currentAddressId?: number;
 
     @Field(() => Int, {nullable:true})
@@ -101,4 +106,10 @@ export class MemberUncheckedUpdateWithoutCentreInput {
 
     @Field(() => MemberGroupUncheckedUpdateManyWithoutMemberInput, {nullable:true})
     memberGroup?: MemberGroupUncheckedUpdateManyWithoutMemberInput;
+
+    @Field(() => MemberAbhisekhaUncheckedUpdateManyWithoutMemberInput, {nullable:true})
+    MemberAbhisekha?: MemberAbhisekhaUncheckedUpdateManyWithoutMemberInput;
+
+    @Field(() => EventMemberUncheckedUpdateManyWithoutMemberInput, {nullable:true})
+    EventMember?: EventMemberUncheckedUpdateManyWithoutMemberInput;
 }

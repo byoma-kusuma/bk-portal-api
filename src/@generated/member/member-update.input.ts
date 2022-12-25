@@ -4,10 +4,13 @@ import { MembershipType } from '../prisma/membership-type.enum';
 import { Int } from '@nestjs/graphql';
 import { GenderType } from '../prisma/gender-type.enum';
 import { CentreUpdateOneWithoutMembersInput } from '../centre/centre-update-one-without-members.input';
+import { AddressUpdateOneWithoutMembersInput } from '../address/address-update-one-without-members.input';
 import { AddressUpdateOneWithoutMemberCurrentAddressInput } from '../address/address-update-one-without-member-current-address.input';
 import { AddressUpdateOneWithoutMemberPermanentAddressInput } from '../address/address-update-one-without-member-permanent-address.input';
 import { UserUpdateOneWithoutMemberInput } from '../user/user-update-one-without-member.input';
 import { MemberGroupUpdateManyWithoutMemberInput } from '../member-group/member-group-update-many-without-member.input';
+import { MemberAbhisekhaUpdateManyWithoutMemberInput } from '../member-abhisekha/member-abhisekha-update-many-without-member.input';
+import { EventMemberUpdateManyWithoutMemberInput } from '../event-member/event-member-update-many-without-member.input';
 
 @InputType()
 export class MemberUpdateInput {
@@ -93,6 +96,9 @@ export class MemberUpdateInput {
     @Field(() => CentreUpdateOneWithoutMembersInput, {nullable:true})
     centre?: CentreUpdateOneWithoutMembersInput;
 
+    @Field(() => AddressUpdateOneWithoutMembersInput, {nullable:true})
+    address?: AddressUpdateOneWithoutMembersInput;
+
     @Field(() => AddressUpdateOneWithoutMemberCurrentAddressInput, {nullable:true})
     currentAddress?: AddressUpdateOneWithoutMemberCurrentAddressInput;
 
@@ -104,4 +110,10 @@ export class MemberUpdateInput {
 
     @Field(() => MemberGroupUpdateManyWithoutMemberInput, {nullable:true})
     memberGroup?: MemberGroupUpdateManyWithoutMemberInput;
+
+    @Field(() => MemberAbhisekhaUpdateManyWithoutMemberInput, {nullable:true})
+    MemberAbhisekha?: MemberAbhisekhaUpdateManyWithoutMemberInput;
+
+    @Field(() => EventMemberUpdateManyWithoutMemberInput, {nullable:true})
+    EventMember?: EventMemberUpdateManyWithoutMemberInput;
 }

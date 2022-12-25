@@ -71,6 +71,9 @@ export class MemberCreateManyCentreInput {
     note?: string;
 
     @Field(() => Int, {nullable:true})
+    addressid?: number;
+
+    @Field(() => Int, {nullable:true})
     currentAddressId?: number;
 
     @Field(() => Int, {nullable:true})

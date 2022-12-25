@@ -71,6 +71,9 @@ export class MemberUncheckedUpdateManyWithoutMembersInput {
     note?: string;
 
     @Field(() => Int, {nullable:true})
+    centreId?: number;
+
+    @Field(() => Int, {nullable:true})
     currentAddressId?: number;
 
     @Field(() => Int, {nullable:true})

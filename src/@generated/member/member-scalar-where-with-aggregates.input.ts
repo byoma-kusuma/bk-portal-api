@@ -86,6 +86,9 @@ export class MemberScalarWhereWithAggregatesInput {
     centreId?: IntWithAggregatesFilter;
 
     @Field(() => IntWithAggregatesFilter, {nullable:true})
+    addressid?: IntWithAggregatesFilter;
+
+    @Field(() => IntWithAggregatesFilter, {nullable:true})
     currentAddressId?: IntWithAggregatesFilter;
 
     @Field(() => IntWithAggregatesFilter, {nullable:true})

@@ -8,6 +8,8 @@ import { Centre } from '../centre/centre.model';
 import { Address } from '../address/address.model';
 import { User } from '../user/user.model';
 import { MemberGroup } from '../member-group/member-group.model';
+import { MemberAbhisekha } from '../member-abhisekha/member-abhisekha.model';
+import { EventMember } from '../event-member/event-member.model';
 import { MemberCount } from './member-count.output';
 
 @ObjectType()
@@ -83,6 +85,12 @@ export class Member {
     centreId!: number | null;
 
     @Field(() => Address, {nullable:true})
+    address?: Address | null;
+
+    @Field(() => Int, {nullable:true})
+    addressid!: number | null;
+
+    @Field(() => Address, {nullable:true})
     currentAddress?: Address | null;
 
     @Field(() => Int, {nullable:true})
@@ -117,6 +125,12 @@ export class Member {
 
     @Field(() => [MemberGroup], {nullable:true})
     memberGroup?: Array<MemberGroup>;
+
+    @Field(() => [MemberAbhisekha], {nullable:true})
+    MemberAbhisekha?: Array<MemberAbhisekha>;
+
+    @Field(() => [EventMember], {nullable:true})
+    EventMember?: Array<EventMember>;
 
     @Field(() => MemberCount, {nullable:false})
     _count?: MemberCount;
