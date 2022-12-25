@@ -1,11 +1,13 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { CentreAffiliationType } from '../prisma/centre-affiliation-type.enum';
 import { MembershipType } from '../prisma/membership-type.enum';
+import { Int } from '@nestjs/graphql';
 import { GenderType } from '../prisma/gender-type.enum';
 import { CentreUpdateOneWithoutMembersInput } from '../centre/centre-update-one-without-members.input';
+import { AddressUpdateOneWithoutMemberCurrentAddressInput } from '../address/address-update-one-without-member-current-address.input';
+import { AddressUpdateOneWithoutMemberPermanentAddressInput } from '../address/address-update-one-without-member-permanent-address.input';
 import { UserUpdateOneWithoutMemberInput } from '../user/user-update-one-without-member.input';
-import { MemberGroupsUpdateManyWithoutMemberInput } from '../member-groups/member-groups-update-many-without-member.input';
+import { MemberGroupUpdateManyWithoutMemberInput } from '../member-group/member-group-update-many-without-member.input';
 
 @InputType()
 export class MemberUpdateInput {
@@ -32,25 +34,19 @@ export class MemberUpdateInput {
     active?: boolean;
 
     @Field(() => String, {nullable:true})
-    phonePrimary?: string;
+    phoneMobile?: string;
 
     @Field(() => String, {nullable:true})
-    phoneSecondary?: string;
+    phoneLand?: string;
 
-    @Field(() => CentreAffiliationType, {nullable:true})
-    centerAffiliation?: keyof typeof CentreAffiliationType;
+    @Field(() => String, {nullable:true})
+    phoneOther?: string;
 
     @Field(() => MembershipType, {nullable:true})
     membershipType?: keyof typeof MembershipType;
 
-    @Field(() => String, {nullable:true})
-    permanentAddress?: string;
-
-    @Field(() => String, {nullable:true})
-    currentAddress?: string;
-
-    @Field(() => Date, {nullable:true})
-    dob?: Date | string;
+    @Field(() => Int, {nullable:true})
+    yearOfBirth?: number;
 
     @Field(() => GenderType, {nullable:true})
     gender?: keyof typeof GenderType;
@@ -73,6 +69,9 @@ export class MemberUpdateInput {
     @Field(() => String, {nullable:true})
     photo?: string;
 
+    @Field(() => String, {nullable:true})
+    note?: string;
+
     @Field(() => Boolean, {nullable:true})
     isDeleted?: boolean;
 
@@ -94,9 +93,15 @@ export class MemberUpdateInput {
     @Field(() => CentreUpdateOneWithoutMembersInput, {nullable:true})
     centre?: CentreUpdateOneWithoutMembersInput;
 
+    @Field(() => AddressUpdateOneWithoutMemberCurrentAddressInput, {nullable:true})
+    currentAddress?: AddressUpdateOneWithoutMemberCurrentAddressInput;
+
+    @Field(() => AddressUpdateOneWithoutMemberPermanentAddressInput, {nullable:true})
+    permanentAddress?: AddressUpdateOneWithoutMemberPermanentAddressInput;
+
     @Field(() => UserUpdateOneWithoutMemberInput, {nullable:true})
     user?: UserUpdateOneWithoutMemberInput;
 
-    @Field(() => MemberGroupsUpdateManyWithoutMemberInput, {nullable:true})
-    memberGroups?: MemberGroupsUpdateManyWithoutMemberInput;
+    @Field(() => MemberGroupUpdateManyWithoutMemberInput, {nullable:true})
+    memberGroup?: MemberGroupUpdateManyWithoutMemberInput;
 }

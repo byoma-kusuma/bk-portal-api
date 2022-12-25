@@ -87,9 +87,9 @@ CREATE TABLE "Address" (
     "city" TEXT NOT NULL,
     "stateProvince" TEXT NOT NULL,
     "country" TEXT NOT NULL,
-    "isDeleted" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "uniqueKey" TEXT,
     "updatedBy" TEXT,
     "createdBy" TEXT,
 
@@ -153,13 +153,13 @@ CREATE TABLE "Group" (
 );
 
 -- CreateTable
-CREATE TABLE "MemberGroups" (
+CREATE TABLE "MemberGroup" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "createdBy" TEXT,
     "memberId" INTEGER NOT NULL,
     "groupId" INTEGER NOT NULL,
 
-    CONSTRAINT "MemberGroups_pkey" PRIMARY KEY ("memberId","groupId")
+    CONSTRAINT "MemberGroup_pkey" PRIMARY KEY ("memberId","groupId")
 );
 
 -- CreateIndex
@@ -185,6 +185,9 @@ CREATE UNIQUE INDEX "Member_permanentAddressId_key" ON "Member"("permanentAddres
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Member_uniqueKey_key" ON "Member"("uniqueKey");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Address_uniqueKey_key" ON "Address"("uniqueKey");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "PasswordHistory_uniqueKey_key" ON "PasswordHistory"("uniqueKey");
@@ -223,7 +226,7 @@ ALTER TABLE "PasswordHistory" ADD CONSTRAINT "PasswordHistory_userId_fkey" FOREI
 ALTER TABLE "PasswordToken" ADD CONSTRAINT "PasswordToken_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "MemberGroups" ADD CONSTRAINT "MemberGroups_memberId_fkey" FOREIGN KEY ("memberId") REFERENCES "Member"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "MemberGroup" ADD CONSTRAINT "MemberGroup_memberId_fkey" FOREIGN KEY ("memberId") REFERENCES "Member"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "MemberGroups" ADD CONSTRAINT "MemberGroups_groupId_fkey" FOREIGN KEY ("groupId") REFERENCES "Group"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "MemberGroup" ADD CONSTRAINT "MemberGroup_groupId_fkey" FOREIGN KEY ("groupId") REFERENCES "Group"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

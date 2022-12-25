@@ -30,25 +30,19 @@ export class MemberCountOrderByAggregateInput {
     active?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    phonePrimary?: keyof typeof SortOrder;
+    phoneMobile?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    phoneSecondary?: keyof typeof SortOrder;
+    phoneLand?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    centerAffiliation?: keyof typeof SortOrder;
+    phoneOther?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
     membershipType?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    permanentAddress?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
-    currentAddress?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
-    dob?: keyof typeof SortOrder;
+    yearOfBirth?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
     gender?: keyof typeof SortOrder;
@@ -72,7 +66,16 @@ export class MemberCountOrderByAggregateInput {
     photo?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
+    note?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
     centreId?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    currentAddressId?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    permanentAddressId?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
     isDeleted?: keyof typeof SortOrder;

@@ -3,10 +3,9 @@ import { InputType } from '@nestjs/graphql';
 import { IntFilter } from '../prisma/int-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
-import { EnumCentreAffiliationTypeFilter } from '../prisma/enum-centre-affiliation-type-filter.input';
 import { EnumMembershipTypeFilter } from '../prisma/enum-membership-type-filter.input';
-import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { EnumGenderTypeFilter } from '../prisma/enum-gender-type-filter.input';
+import { DateTimeFilter } from '../prisma/date-time-filter.input';
 
 @InputType()
 export class MemberScalarWhereInput {
@@ -45,25 +44,19 @@ export class MemberScalarWhereInput {
     active?: BoolFilter;
 
     @Field(() => StringFilter, {nullable:true})
-    phonePrimary?: StringFilter;
+    phoneMobile?: StringFilter;
 
     @Field(() => StringFilter, {nullable:true})
-    phoneSecondary?: StringFilter;
+    phoneLand?: StringFilter;
 
-    @Field(() => EnumCentreAffiliationTypeFilter, {nullable:true})
-    centerAffiliation?: EnumCentreAffiliationTypeFilter;
+    @Field(() => StringFilter, {nullable:true})
+    phoneOther?: StringFilter;
 
     @Field(() => EnumMembershipTypeFilter, {nullable:true})
     membershipType?: EnumMembershipTypeFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    permanentAddress?: StringFilter;
-
-    @Field(() => StringFilter, {nullable:true})
-    currentAddress?: StringFilter;
-
-    @Field(() => DateTimeFilter, {nullable:true})
-    dob?: DateTimeFilter;
+    @Field(() => IntFilter, {nullable:true})
+    yearOfBirth?: IntFilter;
 
     @Field(() => EnumGenderTypeFilter, {nullable:true})
     gender?: EnumGenderTypeFilter;
@@ -86,8 +79,17 @@ export class MemberScalarWhereInput {
     @Field(() => StringFilter, {nullable:true})
     photo?: StringFilter;
 
+    @Field(() => StringFilter, {nullable:true})
+    note?: StringFilter;
+
     @Field(() => IntFilter, {nullable:true})
     centreId?: IntFilter;
+
+    @Field(() => IntFilter, {nullable:true})
+    currentAddressId?: IntFilter;
+
+    @Field(() => IntFilter, {nullable:true})
+    permanentAddressId?: IntFilter;
 
     @Field(() => BoolFilter, {nullable:true})
     isDeleted?: BoolFilter;

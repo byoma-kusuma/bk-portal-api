@@ -39,7 +39,7 @@ export class MembersService {
       data: {
         ...createMemberArgs,
         photo: createAvatar(),
-        memberGroups: {
+        memberGroup: {
           create: filteredGroups.map((groupId) => ({
             group: { connect: { id: groupId } }
           }))

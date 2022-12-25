@@ -2,8 +2,9 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { SortOrder } from '../prisma/sort-order.enum';
 import { CentreOrderByWithRelationInput } from '../centre/centre-order-by-with-relation.input';
+import { AddressOrderByWithRelationInput } from '../address/address-order-by-with-relation.input';
 import { UserOrderByWithRelationInput } from '../user/user-order-by-with-relation.input';
-import { MemberGroupsOrderByRelationAggregateInput } from '../member-groups/member-groups-order-by-relation-aggregate.input';
+import { MemberGroupOrderByRelationAggregateInput } from '../member-group/member-group-order-by-relation-aggregate.input';
 
 @InputType()
 export class MemberOrderByWithRelationInput {
@@ -33,25 +34,19 @@ export class MemberOrderByWithRelationInput {
     active?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    phonePrimary?: keyof typeof SortOrder;
+    phoneMobile?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    phoneSecondary?: keyof typeof SortOrder;
+    phoneLand?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    centerAffiliation?: keyof typeof SortOrder;
+    phoneOther?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
     membershipType?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    permanentAddress?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
-    currentAddress?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
-    dob?: keyof typeof SortOrder;
+    yearOfBirth?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
     gender?: keyof typeof SortOrder;
@@ -74,11 +69,26 @@ export class MemberOrderByWithRelationInput {
     @Field(() => SortOrder, {nullable:true})
     photo?: keyof typeof SortOrder;
 
+    @Field(() => SortOrder, {nullable:true})
+    note?: keyof typeof SortOrder;
+
     @Field(() => CentreOrderByWithRelationInput, {nullable:true})
     centre?: CentreOrderByWithRelationInput;
 
     @Field(() => SortOrder, {nullable:true})
     centreId?: keyof typeof SortOrder;
+
+    @Field(() => AddressOrderByWithRelationInput, {nullable:true})
+    currentAddress?: AddressOrderByWithRelationInput;
+
+    @Field(() => SortOrder, {nullable:true})
+    currentAddressId?: keyof typeof SortOrder;
+
+    @Field(() => AddressOrderByWithRelationInput, {nullable:true})
+    permanentAddress?: AddressOrderByWithRelationInput;
+
+    @Field(() => SortOrder, {nullable:true})
+    permanentAddressId?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
     isDeleted?: keyof typeof SortOrder;
@@ -101,6 +111,6 @@ export class MemberOrderByWithRelationInput {
     @Field(() => UserOrderByWithRelationInput, {nullable:true})
     user?: UserOrderByWithRelationInput;
 
-    @Field(() => MemberGroupsOrderByRelationAggregateInput, {nullable:true})
-    memberGroups?: MemberGroupsOrderByRelationAggregateInput;
+    @Field(() => MemberGroupOrderByRelationAggregateInput, {nullable:true})
+    memberGroup?: MemberGroupOrderByRelationAggregateInput;
 }

@@ -9,5 +9,14 @@ export class MemberAvgOrderByAggregateInput {
     id?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
+    yearOfBirth?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
     centreId?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    currentAddressId?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    permanentAddressId?: keyof typeof SortOrder;
 }

@@ -1,6 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { MemberGroupsUpdateManyWithoutGroupInput } from '../member-groups/member-groups-update-many-without-group.input';
+import { MemberGroupUpdateManyWithoutGroupInput } from '../member-group/member-group-update-many-without-group.input';
 
 @InputType()
 export class GroupUpdateInput {
@@ -32,6 +32,6 @@ export class GroupUpdateInput {
     @Field(() => String, {nullable:true})
     createdBy?: string;
 
-    @Field(() => MemberGroupsUpdateManyWithoutGroupInput, {nullable:true})
-    memberGroups?: MemberGroupsUpdateManyWithoutGroupInput;
+    @Field(() => MemberGroupUpdateManyWithoutGroupInput, {nullable:true})
+    memberGroups?: MemberGroupUpdateManyWithoutGroupInput;
 }

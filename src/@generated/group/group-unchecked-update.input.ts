@@ -1,7 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
-import { MemberGroupsUncheckedUpdateManyWithoutGroupInput } from '../member-groups/member-groups-unchecked-update-many-without-group.input';
+import { MemberGroupUncheckedUpdateManyWithoutGroupInput } from '../member-group/member-group-unchecked-update-many-without-group.input';
 
 @InputType()
 export class GroupUncheckedUpdateInput {
@@ -36,6 +36,6 @@ export class GroupUncheckedUpdateInput {
     @Field(() => String, {nullable:true})
     createdBy?: string;
 
-    @Field(() => MemberGroupsUncheckedUpdateManyWithoutGroupInput, {nullable:true})
-    memberGroups?: MemberGroupsUncheckedUpdateManyWithoutGroupInput;
+    @Field(() => MemberGroupUncheckedUpdateManyWithoutGroupInput, {nullable:true})
+    memberGroups?: MemberGroupUncheckedUpdateManyWithoutGroupInput;
 }

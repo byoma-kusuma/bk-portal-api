@@ -1,11 +1,10 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
-import { CentreAffiliationType } from '../prisma/centre-affiliation-type.enum';
 import { MembershipType } from '../prisma/membership-type.enum';
 import { GenderType } from '../prisma/gender-type.enum';
 import { UserUncheckedCreateNestedOneWithoutMemberInput } from '../user/user-unchecked-create-nested-one-without-member.input';
-import { MemberGroupsUncheckedCreateNestedManyWithoutMemberInput } from '../member-groups/member-groups-unchecked-create-nested-many-without-member.input';
+import { MemberGroupUncheckedCreateNestedManyWithoutMemberInput } from '../member-group/member-group-unchecked-create-nested-many-without-member.input';
 
 @InputType()
 export class MemberUncheckedCreateWithoutCentreInput {
@@ -35,25 +34,19 @@ export class MemberUncheckedCreateWithoutCentreInput {
     active?: boolean;
 
     @Field(() => String, {nullable:true})
-    phonePrimary?: string;
+    phoneMobile?: string;
 
     @Field(() => String, {nullable:true})
-    phoneSecondary?: string;
+    phoneLand?: string;
 
-    @Field(() => CentreAffiliationType, {nullable:false})
-    centerAffiliation!: keyof typeof CentreAffiliationType;
+    @Field(() => String, {nullable:true})
+    phoneOther?: string;
 
     @Field(() => MembershipType, {nullable:true})
     membershipType?: keyof typeof MembershipType;
 
-    @Field(() => String, {nullable:true})
-    permanentAddress?: string;
-
-    @Field(() => String, {nullable:true})
-    currentAddress?: string;
-
-    @Field(() => Date, {nullable:true})
-    dob?: Date | string;
+    @Field(() => Int, {nullable:true})
+    yearOfBirth?: number;
 
     @Field(() => GenderType, {nullable:true})
     gender?: keyof typeof GenderType;
@@ -76,6 +69,15 @@ export class MemberUncheckedCreateWithoutCentreInput {
     @Field(() => String, {nullable:true})
     photo?: string;
 
+    @Field(() => String, {nullable:true})
+    note?: string;
+
+    @Field(() => Int, {nullable:true})
+    currentAddressId?: number;
+
+    @Field(() => Int, {nullable:true})
+    permanentAddressId?: number;
+
     @Field(() => Boolean, {nullable:true})
     isDeleted?: boolean;
 
@@ -97,6 +99,6 @@ export class MemberUncheckedCreateWithoutCentreInput {
     @Field(() => UserUncheckedCreateNestedOneWithoutMemberInput, {nullable:true})
     user?: UserUncheckedCreateNestedOneWithoutMemberInput;
 
-    @Field(() => MemberGroupsUncheckedCreateNestedManyWithoutMemberInput, {nullable:true})
-    memberGroups?: MemberGroupsUncheckedCreateNestedManyWithoutMemberInput;
+    @Field(() => MemberGroupUncheckedCreateNestedManyWithoutMemberInput, {nullable:true})
+    memberGroup?: MemberGroupUncheckedCreateNestedManyWithoutMemberInput;
 }

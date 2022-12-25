@@ -124,8 +124,8 @@ model Member {
     createdBy String?
 
     // Relation fields
-    user         User?
-    memberGroups MemberGroups[]
+    user        User?
+    memberGroup MemberGroup[]
 }
 
 model Address {
@@ -144,8 +144,6 @@ model Address {
     uniqueKey String?  @unique
     updatedBy String?
     createdBy String?
-
-    //members Member[]
 }
 
 model PasswordHistory {
@@ -205,10 +203,10 @@ model Group {
     createdBy String?
 
     // Relation fields
-    memberGroups MemberGroups[]
+    memberGroups MemberGroup[]
 }
 
-model MemberGroups {
+model MemberGroup {
     createdAt DateTime @default(now())
     createdBy String?
 
