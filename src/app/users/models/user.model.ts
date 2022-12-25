@@ -5,7 +5,7 @@ import {
   Field
 } from "@nestjs/graphql";
 import { UserStatus } from "@prisma/client";
-import { Member } from "src/app/members/entities/member.entity";
+import { Member } from "src/app/member/entities/member.entity";
 import { BaseModel } from "../../../common/models/base.model";
 import { Role } from "../../roles/entities/role.model";
 

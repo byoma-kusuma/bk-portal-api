@@ -11,7 +11,7 @@ import { GroupsService } from "./groups.service";
 import { Group } from "./entities/group.entity";
 import { CreateGroupInput } from "./dto/create-group.input";
 import { UpdateGroupInput } from "./dto/update-group.input";
-import { Member } from "../members/entities/member.entity";
+import { Member } from "../member/entities/member.entity";
 import { UseGuards } from "@nestjs/common";
 import { GqlAuthGuard } from "../auth/gql-auth.guard";
 

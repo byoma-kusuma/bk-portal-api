@@ -2,6 +2,37 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Abhisekha {
+  """Identifies the date and time when the object was created."""
+  createdAt: DateTime!
+
+  """Identifies who created the object."""
+  createdBy: String
+
+  """Name of the abhisekha"""
+  description: String!
+  id: Int!
+
+  """Identifies the date and time when the object was last deleted."""
+  isDeleted: Boolean!
+  members: [Member!]!
+
+  """Name of the abhisekha"""
+  name: String!
+
+  """Name of the abhisekha"""
+  teacher: String!
+
+  """Unique key associated with the object."""
+  uniqueKey: String
+
+  """Identifies the date and time when the object was last updated."""
+  updatedAt: DateTime!
+
+  """Identifies who made the last update to the object."""
+  updatedBy: String
+}
+
 input AbhisekhaCreateNestedOneWithoutAbhisekhaResourceInput {
   connect: AbhisekhaWhereUniqueInput
   connectOrCreate: AbhisekhaCreateOrConnectWithoutAbhisekhaResourceInput
@@ -43,6 +74,7 @@ input AbhisekhaCreateWithoutAbhisekhaResourceInput {
   isDeleted: Boolean
   memberAbhisekha: MemberAbhisekhaCreateNestedManyWithoutAbhishekaInput
   name: String!
+  teacher: String!
   uniqueKey: String
   updatedAt: DateTime
   updatedBy: String
@@ -56,6 +88,7 @@ input AbhisekhaCreateWithoutEventAbhisekhaInput {
   isDeleted: Boolean
   memberAbhisekha: MemberAbhisekhaCreateNestedManyWithoutAbhishekaInput
   name: String!
+  teacher: String!
   uniqueKey: String
   updatedAt: DateTime
   updatedBy: String
@@ -69,9 +102,24 @@ input AbhisekhaCreateWithoutMemberAbhisekhaInput {
   eventAbhisekha: EventAbhisekhaCreateNestedManyWithoutAbhishekaInput
   isDeleted: Boolean
   name: String!
+  teacher: String!
   uniqueKey: String
   updatedAt: DateTime
   updatedBy: String
+}
+
+input AbhisekhaMemberDetails {
+  """Date of abhisekha"""
+  abhisekhaDate: String!
+
+  """Place of abhisekha"""
+  abhisekhaPlace: String!
+
+  """Id of member who attended the abhisekha"""
+  memberId: Int!
+
+  """Member attending the Abhisekha type eg: Peripheral"""
+  type: String!
 }
 
 input AbhisekhaRelationFilter {
@@ -172,6 +220,7 @@ input AbhisekhaWhereInput {
   isDeleted: BoolFilter
   memberAbhisekha: MemberAbhisekhaListRelationFilter
   name: StringFilter
+  teacher: StringFilter
   uniqueKey: StringFilter
   updatedAt: DateTimeFilter
   updatedBy: StringFilter
@@ -192,9 +241,6 @@ type Address {
   """Identifies who created the object."""
   createdBy: String
   id: Int!
-
-  """Identifies the date and time when the object was last updated."""
-  isDeleted: Boolean!
   stateProvince: String
   street: String
 
@@ -410,6 +456,17 @@ input CentreWhereUniqueInput {
 input ChangePasswordInput {
   newPassword: String!
   oldPassword: String!
+}
+
+input CreateAbhisekhaInput {
+  """Name of the abhisekha"""
+  description: String!
+
+  """Name of the abhisekha"""
+  name: String!
+
+  """Name of the abhisekha"""
+  teacher: String!
 }
 
 input CreateGroupInput {
@@ -965,9 +1022,6 @@ type Group {
   createdBy: String
   description: String!
   id: Int!
-
-  """Identifies the date and time when the object was last updated."""
-  isDeleted: Boolean!
   members: [Member!]!
   name: String!
 
@@ -1071,11 +1125,9 @@ type Member {
   groups: [Group!]!
   id: Int!
   insta: String
-
-  """Identifies the date and time when the object was last updated."""
-  isDeleted: Boolean!
   isMember: Boolean!
   lastName: String!
+  memberAbhisekha: MemberAbhisekhaEntity!
   membershipType: Membership_Type
   messenger: String
   middleName: String
@@ -1104,6 +1156,8 @@ type Member {
 }
 
 input MemberAbhisekhaCreateManyAbhishekaInput {
+  abhisekhaDate: DateTime!
+  abhisekhaPlace: String!
   memberId: Int!
   type: String!
 }
@@ -1114,6 +1168,8 @@ input MemberAbhisekhaCreateManyAbhishekaInputEnvelope {
 }
 
 input MemberAbhisekhaCreateManyMemberInput {
+  abhisekhaDate: DateTime!
+  abhisekhaPlace: String!
   abhishekaId: Int!
   type: String!
 }
@@ -1148,12 +1204,22 @@ input MemberAbhisekhaCreateOrConnectWithoutMemberInput {
 }
 
 input MemberAbhisekhaCreateWithoutAbhishekaInput {
+  abhisekhaDate: DateTime!
+  abhisekhaPlace: String!
   member: MemberCreateNestedOneWithoutMemberAbhisekhaInput!
   type: String!
 }
 
 input MemberAbhisekhaCreateWithoutMemberInput {
+  abhisekhaDate: DateTime!
+  abhisekhaPlace: String!
   abhisheka: AbhisekhaCreateNestedOneWithoutMemberAbhisekhaInput!
+  type: String!
+}
+
+type MemberAbhisekhaEntity {
+  abhisekhaDate: DateTime!
+  abhisekhaPlace: String!
   type: String!
 }
 
@@ -1172,6 +1238,8 @@ input MemberAbhisekhaWhereInput {
   AND: [MemberAbhisekhaWhereInput!]
   NOT: [MemberAbhisekhaWhereInput!]
   OR: [MemberAbhisekhaWhereInput!]
+  abhisekhaDate: DateTimeFilter
+  abhisekhaPlace: StringFilter
   abhisheka: AbhisekhaRelationFilter
   abhishekaId: IntFilter
   member: MemberRelationFilter
@@ -1593,6 +1661,7 @@ enum Membership_Type {
 
 type Mutation {
   changePassword(data: ChangePasswordInput!): User!
+  createAbhisekha(createAbhisekhaInput: CreateAbhisekhaInput!): Abhisekha!
   createCentre(createAddressInput: AddressCreateInput!): Address!
   createGroup(createGroupInput: CreateGroupInput!): Group!
   createMember(createMemberInput: CreateMemberInput!): Member!
@@ -1601,6 +1670,7 @@ type Mutation {
   initiateResetPassword(resetPasswordInitiateInput: ResetPasswordInitiateInput!): ResponseStatus!
   login(data: LoginInput!): Auth!
   refreshToken(token: JWT!): Token!
+  removeAbhisekha(id: Int!): Abhisekha!
   removeAddress(id: Int!): Address!
   removeCentre(id: Int!): Centre!
   removeGroup(id: Int!): Group!
@@ -1609,6 +1679,7 @@ type Mutation {
   removeUser(id: Int!): User!
   resetPassword(resetPasswordInput: ResetPasswordInput!): ResponseStatus!
   sendEmail(sendEmailInput: SendEmailInput!): ResponseStatus!
+  updateAbhisekha(updateAbhisekhaInput: UpdateAbhisekhaInput!): Abhisekha!
   updateAddress(updateAddressInput: UpdateAddressInput!): Address!
   updateCentre(updateCentreInput: UpdateCentreInput!): Centre!
   updateGroup(updateGroupInput: UpdateGroupInput!): Group!
@@ -1704,6 +1775,8 @@ input PasswordTokenWhereUniqueInput {
 }
 
 type Query {
+  abhisekha(id: Int!): Abhisekha!
+  abhisekhas: [Abhisekha!]!
   address(id: Int!): Address!
   addresses: [Address!]!
   centre(id: Int!): Centre!
@@ -1821,9 +1894,6 @@ type Role {
   """Identifies who created the object."""
   createdBy: String
   id: Int!
-
-  """Identifies the date and time when the object was last updated."""
-  isDeleted: Boolean!
   name: String!
   type: Role_Type!
 
@@ -1932,6 +2002,21 @@ enum Type {
   SYSTEM
 }
 
+input UpdateAbhisekhaInput {
+  """AbhisekhaMember details"""
+  abhisekhaMembers: [AbhisekhaMemberDetails!]!
+
+  """Name of the abhisekha"""
+  description: String
+  id: Int!
+
+  """Name of the abhisekha"""
+  name: String
+
+  """Name of the abhisekha"""
+  teacher: String
+}
+
 input UpdateAddressInput {
   city: String
   country: String
@@ -2001,9 +2086,6 @@ type User {
   """Identifies who created the object."""
   createdBy: String
   id: Int!
-
-  """Identifies the date and time when the object was last updated."""
-  isDeleted: Boolean!
   member: Member!
   memberId: Int!
   role: Role!

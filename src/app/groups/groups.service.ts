@@ -6,7 +6,7 @@ import {
   NotFoundException
 } from "@nestjs/common";
 import { PrismaService } from "nestjs-prisma";
-import { MembersService } from "../members/members.service";
+import { MembersService } from "../member/members.service";
 import { CreateGroupInput } from "./dto/create-group.input";
 import { UpdateGroupInput } from "./dto/update-group.input";
 
@@ -93,11 +93,6 @@ export class GroupsService {
       }
     });
 
-    if (group.isDeleted) {
-      throw new InternalServerErrorException(
-        "Cannot update a deleted resource"
-      );
-    }
     return group;
   }
 
