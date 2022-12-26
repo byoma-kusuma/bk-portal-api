@@ -123,7 +123,7 @@ export class MemberOrderByWithRelationInput {
     memberGroup?: MemberGroupOrderByRelationAggregateInput;
 
     @Field(() => MemberAbhisekhaOrderByRelationAggregateInput, {nullable:true})
-    MemberAbhisekha?: MemberAbhisekhaOrderByRelationAggregateInput;
+    memberAbhisekha?: MemberAbhisekhaOrderByRelationAggregateInput;
 
     @Field(() => EventMemberOrderByRelationAggregateInput, {nullable:true})
     EventMember?: EventMemberOrderByRelationAggregateInput;

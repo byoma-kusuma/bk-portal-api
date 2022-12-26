@@ -108,7 +108,7 @@ export class MemberUncheckedCreateWithoutCentreInput {
     memberGroup?: MemberGroupUncheckedCreateNestedManyWithoutMemberInput;
 
     @Field(() => MemberAbhisekhaUncheckedCreateNestedManyWithoutMemberInput, {nullable:true})
-    MemberAbhisekha?: MemberAbhisekhaUncheckedCreateNestedManyWithoutMemberInput;
+    memberAbhisekha?: MemberAbhisekhaUncheckedCreateNestedManyWithoutMemberInput;
 
     @Field(() => EventMemberUncheckedCreateNestedManyWithoutMemberInput, {nullable:true})
     EventMember?: EventMemberUncheckedCreateNestedManyWithoutMemberInput;

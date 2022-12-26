@@ -137,7 +137,7 @@ export class MemberWhereInput {
     memberGroup?: MemberGroupListRelationFilter;
 
     @Field(() => MemberAbhisekhaListRelationFilter, {nullable:true})
-    MemberAbhisekha?: MemberAbhisekhaListRelationFilter;
+    memberAbhisekha?: MemberAbhisekhaListRelationFilter;
 
     @Field(() => EventMemberListRelationFilter, {nullable:true})
     EventMember?: EventMemberListRelationFilter;

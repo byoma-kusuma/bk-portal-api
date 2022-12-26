@@ -126,7 +126,7 @@ model Member {
     // Relation fields
     user            User?
     memberGroup     MemberGroup[]
-    MemberAbhisekha MemberAbhisekha[]
+    memberAbhisekha MemberAbhisekha[]
     EventMember     EventMember[]
 }
 

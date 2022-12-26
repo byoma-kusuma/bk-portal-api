@@ -111,7 +111,7 @@ export class MemberUncheckedUpdateInput {
     memberGroup?: MemberGroupUncheckedUpdateManyWithoutMemberInput;
 
     @Field(() => MemberAbhisekhaUncheckedUpdateManyWithoutMemberInput, {nullable:true})
-    MemberAbhisekha?: MemberAbhisekhaUncheckedUpdateManyWithoutMemberInput;
+    memberAbhisekha?: MemberAbhisekhaUncheckedUpdateManyWithoutMemberInput;
 
     @Field(() => EventMemberUncheckedUpdateManyWithoutMemberInput, {nullable:true})
     EventMember?: EventMemberUncheckedUpdateManyWithoutMemberInput;

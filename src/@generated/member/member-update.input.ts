@@ -112,7 +112,7 @@ export class MemberUpdateInput {
     memberGroup?: MemberGroupUpdateManyWithoutMemberInput;
 
     @Field(() => MemberAbhisekhaUpdateManyWithoutMemberInput, {nullable:true})
-    MemberAbhisekha?: MemberAbhisekhaUpdateManyWithoutMemberInput;
+    memberAbhisekha?: MemberAbhisekhaUpdateManyWithoutMemberInput;
 
     @Field(() => EventMemberUpdateManyWithoutMemberInput, {nullable:true})
     EventMember?: EventMemberUpdateManyWithoutMemberInput;
