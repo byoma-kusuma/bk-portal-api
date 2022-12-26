@@ -19,9 +19,11 @@ import { CurrentUser } from "src/common/decorators/currentUser.decorator";
 import { Group } from "../groups/entities/group.entity";
 import { SendEmailInput } from "./dto/send-email.input";
 import ResponseStatus from "src/common/ResponseClasses/ResponseStatus";
+import { Abhisekha } from "../abhisekha/entities/abhisekha.entity";
+import { AbhisekhaWithMemberAbhisekhaEntity } from "../memberAbhisekha/memberAbhisekha.entity";
 
 @Resolver(() => Member)
-@UseGuards(GqlAuthGuard)
+// @UseGuards(GqlAuthGuard)
 export class MembersResolver {
   constructor(private readonly membersService: MembersService) {}
 
@@ -82,7 +84,7 @@ export class MembersResolver {
 
   @ResolveField(() => [Group])
   async groups(@Parent() member: Member) {
-    const memberGroups = await this.membersService.findUnique({
+    const memberGroupRelation = await this.membersService.findUnique({
       where: { id: member.id },
       select: {
         id: true,
@@ -93,7 +95,37 @@ export class MembersResolver {
         }
       }
     });
-    if (!memberGroups) return null;
-    return memberGroups.memberGroup.map((groupRelation) => groupRelation.group);
+    if (!memberGroupRelation) return null;
+    return memberGroupRelation.memberGroup.map(
+      (groupRelation) => groupRelation.group
+    );
+  }
+
+  @ResolveField(() => [AbhisekhaWithMemberAbhisekhaEntity])
+  async abhisekhas(@Parent() member: Member) {
+    const memberAbhisekhaRelation = await this.membersService.findUnique({
+      where: { id: member.id },
+      select: {
+        id: true,
+        memberAbhisekha: {
+          select: {
+            abhisheka: true,
+            abhisekhaPlace: true,
+            abhisekhaDate: true,
+            type: true
+          }
+        }
+      }
+    });
+
+    if (!memberAbhisekhaRelation) {
+      return null;
+    }
+    return memberAbhisekhaRelation.memberAbhisekha.map((abhisekhaRelation) =>
+      (({ abhisheka, ...memberAbhisekhaRelationFields }) => ({
+        ...abhisheka,
+        memberAbhisekha: memberAbhisekhaRelationFields
+      }))(abhisekhaRelation)
+    );
   }
 }

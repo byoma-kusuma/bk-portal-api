@@ -1,4 +1,4 @@
-import { Field, Int, ObjectType, registerEnumType } from "@nestjs/graphql";
+import { Field, ObjectType, registerEnumType } from "@nestjs/graphql";
 import { GenderType, MembershipType } from "@prisma/client";
 import { BaseModel } from "src/common/models/base.model";
 import { User } from "src/app/users/models/user.model";
@@ -101,19 +101,4 @@ export class Member extends BaseModel {
 
   @Field(() => Address, { nullable: true })
   currentAddress?: Address;
-
-  @Field(() => MemberAbhisekhaEntity, { nullable: false })
-  memberAbhisekha: Pick<MemberAbhisekha, "abhisekhaDate" | "abhisekhaPlace">;
-}
-
-@ObjectType()
-export class MemberAbhisekhaEntity {
-  @Field(() => String)
-  type: string;
-
-  @Field(() => Date)
-  abhisekhaDate: Date;
-
-  @Field(() => String)
-  abhisekhaPlace: string;
 }

@@ -127,7 +127,7 @@ export class Member {
     memberGroup?: Array<MemberGroup>;
 
     @Field(() => [MemberAbhisekha], {nullable:true})
-    MemberAbhisekha?: Array<MemberAbhisekha>;
+    memberAbhisekha?: Array<MemberAbhisekha>;
 
     @Field(() => [EventMember], {nullable:true})
     EventMember?: Array<EventMember>;

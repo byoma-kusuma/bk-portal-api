@@ -15,7 +15,7 @@ type Abhisekha {
 
   """Identifies the date and time when the object was last deleted."""
   isDeleted: Boolean!
-  members: [Member!]!
+  members: [MemberWithMemberAbhisekhaEntity!]!
 
   """Name of the abhisekha"""
   name: String!
@@ -229,6 +229,38 @@ input AbhisekhaWhereInput {
 input AbhisekhaWhereUniqueInput {
   id: Int
   uniqueKey: String
+}
+
+type AbhisekhaWithMemberAbhisekhaEntity {
+  """Identifies the date and time when the object was created."""
+  createdAt: DateTime!
+
+  """Identifies who created the object."""
+  createdBy: String
+
+  """Name of the abhisekha"""
+  description: String!
+  id: Int!
+
+  """Identifies the date and time when the object was last deleted."""
+  isDeleted: Boolean!
+  memberAbhisekha: MemberAbhisekhaEntity
+  members: [MemberWithMemberAbhisekhaEntity!]!
+
+  """Name of the abhisekha"""
+  name: String!
+
+  """Name of the abhisekha"""
+  teacher: String!
+
+  """Unique key associated with the object."""
+  uniqueKey: String
+
+  """Identifies the date and time when the object was last updated."""
+  updatedAt: DateTime!
+
+  """Identifies who made the last update to the object."""
+  updatedBy: String
 }
 
 type Address {
@@ -1108,6 +1140,7 @@ input LoginInput {
 }
 
 type Member {
+  abhisekhas: [AbhisekhaWithMemberAbhisekhaEntity!]!
   active: Boolean!
   centre: Centre
   centreId: Int
@@ -1127,7 +1160,6 @@ type Member {
   insta: String
   isMember: Boolean!
   lastName: String!
-  memberAbhisekha: MemberAbhisekhaEntity!
   membershipType: Membership_Type
   messenger: String
   middleName: String
@@ -1218,9 +1250,9 @@ input MemberAbhisekhaCreateWithoutMemberInput {
 }
 
 type MemberAbhisekhaEntity {
-  abhisekhaDate: DateTime!
-  abhisekhaPlace: String!
-  type: String!
+  abhisekhaDate: DateTime
+  abhisekhaPlace: String
+  type: String
 }
 
 input MemberAbhisekhaListRelationFilter {
@@ -1347,7 +1379,6 @@ input MemberCreateOrConnectWithoutPermanentAddressInput {
 
 input MemberCreateWithoutAddressInput {
   EventMember: EventMemberCreateNestedManyWithoutMemberInput
-  MemberAbhisekha: MemberAbhisekhaCreateNestedManyWithoutMemberInput
   active: Boolean
   centre: CentreCreateNestedOneWithoutMembersInput
   createdAt: DateTime
@@ -1360,6 +1391,7 @@ input MemberCreateWithoutAddressInput {
   isDeleted: Boolean
   isMember: Boolean
   lastName: String!
+  memberAbhisekha: MemberAbhisekhaCreateNestedManyWithoutMemberInput
   memberGroup: MemberGroupCreateNestedManyWithoutMemberInput
   membershipType: MembershipType
   messenger: String
@@ -1383,7 +1415,6 @@ input MemberCreateWithoutAddressInput {
 
 input MemberCreateWithoutCurrentAddressInput {
   EventMember: EventMemberCreateNestedManyWithoutMemberInput
-  MemberAbhisekha: MemberAbhisekhaCreateNestedManyWithoutMemberInput
   active: Boolean
   address: AddressCreateNestedOneWithoutMembersInput
   centre: CentreCreateNestedOneWithoutMembersInput
@@ -1396,6 +1427,7 @@ input MemberCreateWithoutCurrentAddressInput {
   isDeleted: Boolean
   isMember: Boolean
   lastName: String!
+  memberAbhisekha: MemberAbhisekhaCreateNestedManyWithoutMemberInput
   memberGroup: MemberGroupCreateNestedManyWithoutMemberInput
   membershipType: MembershipType
   messenger: String
@@ -1418,7 +1450,6 @@ input MemberCreateWithoutCurrentAddressInput {
 }
 
 input MemberCreateWithoutEventMemberInput {
-  MemberAbhisekha: MemberAbhisekhaCreateNestedManyWithoutMemberInput
   active: Boolean
   address: AddressCreateNestedOneWithoutMembersInput
   centre: CentreCreateNestedOneWithoutMembersInput
@@ -1432,6 +1463,7 @@ input MemberCreateWithoutEventMemberInput {
   isDeleted: Boolean
   isMember: Boolean
   lastName: String!
+  memberAbhisekha: MemberAbhisekhaCreateNestedManyWithoutMemberInput
   memberGroup: MemberGroupCreateNestedManyWithoutMemberInput
   membershipType: MembershipType
   messenger: String
@@ -1491,7 +1523,6 @@ input MemberCreateWithoutMemberAbhisekhaInput {
 
 input MemberCreateWithoutPermanentAddressInput {
   EventMember: EventMemberCreateNestedManyWithoutMemberInput
-  MemberAbhisekha: MemberAbhisekhaCreateNestedManyWithoutMemberInput
   active: Boolean
   address: AddressCreateNestedOneWithoutMembersInput
   centre: CentreCreateNestedOneWithoutMembersInput
@@ -1505,6 +1536,7 @@ input MemberCreateWithoutPermanentAddressInput {
   isDeleted: Boolean
   isMember: Boolean
   lastName: String!
+  memberAbhisekha: MemberAbhisekhaCreateNestedManyWithoutMemberInput
   memberGroup: MemberGroupCreateNestedManyWithoutMemberInput
   membershipType: MembershipType
   messenger: String
@@ -1595,7 +1627,6 @@ input MemberRelationFilter {
 input MemberWhereInput {
   AND: [MemberWhereInput!]
   EventMember: EventMemberListRelationFilter
-  MemberAbhisekha: MemberAbhisekhaListRelationFilter
   NOT: [MemberWhereInput!]
   OR: [MemberWhereInput!]
   active: BoolFilter
@@ -1615,6 +1646,7 @@ input MemberWhereInput {
   isDeleted: BoolFilter
   isMember: BoolFilter
   lastName: StringFilter
+  memberAbhisekha: MemberAbhisekhaListRelationFilter
   memberGroup: MemberGroupListRelationFilter
   membershipType: EnumMembershipTypeFilter
   messenger: StringFilter
@@ -1642,6 +1674,55 @@ input MemberWhereUniqueInput {
   id: Int
   permanentAddressId: Int
   uniqueKey: String
+}
+
+type MemberWithMemberAbhisekhaEntity {
+  abhisekhas: [AbhisekhaWithMemberAbhisekhaEntity!]!
+  active: Boolean!
+  centre: Centre
+  centreId: Int
+
+  """Identifies the date and time when the object was created."""
+  createdAt: DateTime!
+
+  """Identifies who created the object."""
+  createdBy: String
+  currentAddress: Address
+  currentAddressId: Int
+  email: String
+  firstName: String!
+  gender: Gender_Type
+  groups: [Group!]!
+  id: Int!
+  insta: String
+  isMember: Boolean!
+  lastName: String!
+  memberAbhisekha: MemberAbhisekhaEntity
+  membershipType: Membership_Type
+  messenger: String
+  middleName: String
+  notes: String
+  permanentAddress: Address
+  permanentAddressId: Int
+  phoneLand: String
+  phoneMobile: String
+  phoneOther: String
+  photo: String
+  refugeName: String
+  sanghaJoinDate: DateTime
+  title: String
+
+  """Unique key associated with the object."""
+  uniqueKey: String
+
+  """Identifies the date and time when the object was last updated."""
+  updatedAt: DateTime!
+
+  """Identifies who made the last update to the object."""
+  updatedBy: String
+  user: User
+  viber: String
+  yearOfBirth: String
 }
 
 enum MembershipType {

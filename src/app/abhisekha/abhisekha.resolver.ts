@@ -11,7 +11,7 @@ import { AbhisekhaService } from "./abhisekha.service";
 import { Abhisekha } from "./entities/abhisekha.entity";
 import { CreateAbhisekhaInput } from "./dto/create-abhisekha.input";
 import { UpdateAbhisekhaInput } from "./dto/update-abhisekha.input";
-import { Member } from "../member/entities/member.entity";
+import { MemberWithMemberAbhisekhaEntity } from "../memberAbhisekha/memberAbhisekha.entity";
 
 @Resolver(() => Abhisekha)
 export class AbhisekhaResolver {
@@ -48,7 +48,7 @@ export class AbhisekhaResolver {
     return this.abhisekhaService.remove(id);
   }
 
-  @ResolveField(() => [Member])
+  @ResolveField(() => [MemberWithMemberAbhisekhaEntity])
   async members(@Parent() abhisekha: Abhisekha) {
     const abhisekhaMemberRelation = await this.abhisekhaService.findUnique({
       where: { id: abhisekha.id },
@@ -66,16 +66,11 @@ export class AbhisekhaResolver {
     });
 
     if (!abhisekhaMemberRelation) return null;
-    return abhisekhaMemberRelation.memberAbhisekha.map(
-      (memberRelation) => memberRelation
+    return abhisekhaMemberRelation.memberAbhisekha.map((memberRelation) =>
+      (({ member, ...memberAbhisekhaRelationFields }) => ({
+        ...member,
+        memberAbhisekha: memberAbhisekhaRelationFields
+      }))(memberRelation)
     );
   }
 }
-
-// @ObjectType()
-// class MemberAndMemberAbhisekha extends Member {
-//   memberAbhisekha: Pick<
-//     MemberAbhisekha,
-//     "abhisekhaDate" | "abhisekhaPlace" | "type"
-//   >;
-// }
