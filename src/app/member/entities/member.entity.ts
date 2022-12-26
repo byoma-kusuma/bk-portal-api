@@ -4,7 +4,7 @@ import { BaseModel } from "src/common/models/base.model";
 import { User } from "src/app/users/models/user.model";
 import { Centre } from "src/app/centre/entities/centre.entity";
 import { Address } from "src/app/addresses/entities/address.entity";
-import { MemberAbhisekha } from "src/@generated/member-abhisekha/member-abhisekha.model";
+import { SoftDeleteBaseModel } from "src/common/models/softdeletebase.model";
 
 registerEnumType(GenderType, {
   name: "Gender_Type",
@@ -17,7 +17,7 @@ registerEnumType(MembershipType, {
 });
 
 @ObjectType()
-export class Member extends BaseModel {
+export class Member extends SoftDeleteBaseModel {
   @Field()
   id: number;
 

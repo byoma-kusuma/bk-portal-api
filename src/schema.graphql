@@ -1054,6 +1054,9 @@ type Group {
   createdBy: String
   description: String!
   id: Int!
+
+  """Identifies the date and time when the object was last deleted."""
+  isDeleted: Boolean!
   members: [Member!]!
   name: String!
 
@@ -1158,6 +1161,9 @@ type Member {
   groups: [Group!]!
   id: Int!
   insta: String
+
+  """Identifies the date and time when the object was last deleted."""
+  isDeleted: Boolean!
   isMember: Boolean!
   lastName: String!
   membershipType: Membership_Type
@@ -1695,6 +1701,9 @@ type MemberWithMemberAbhisekhaEntity {
   groups: [Group!]!
   id: Int!
   insta: String
+
+  """Identifies the date and time when the object was last deleted."""
+  isDeleted: Boolean!
   isMember: Boolean!
   lastName: String!
   memberAbhisekha: MemberAbhisekhaEntity
@@ -1975,6 +1984,9 @@ type Role {
   """Identifies who created the object."""
   createdBy: String
   id: Int!
+
+  """Identifies the date and time when the object was last deleted."""
+  isDeleted: Boolean!
   name: String!
   type: Role_Type!
 
@@ -2167,6 +2179,9 @@ type User {
   """Identifies who created the object."""
   createdBy: String
   id: Int!
+
+  """Identifies the date and time when the object was last deleted."""
+  isDeleted: Boolean!
   member: Member!
   memberId: Int!
   role: Role!

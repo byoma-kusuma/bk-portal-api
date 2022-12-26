@@ -6,7 +6,7 @@ import {
 } from "@nestjs/graphql";
 import { UserStatus } from "@prisma/client";
 import { Member } from "src/app/member/entities/member.entity";
-import { BaseModel } from "../../../common/models/base.model";
+import { SoftDeleteBaseModel } from "src/common/models/softdeletebase.model";
 import { Role } from "../../roles/entities/role.model";
 
 registerEnumType(UserStatus, {
@@ -15,7 +15,7 @@ registerEnumType(UserStatus, {
 });
 
 @ObjectType()
-export class User extends BaseModel {
+export class User extends SoftDeleteBaseModel {
   id: number;
 
   userName: string;
