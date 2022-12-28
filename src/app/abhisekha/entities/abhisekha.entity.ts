@@ -1,6 +1,6 @@
 import { ObjectType, Field } from "@nestjs/graphql";
-import { Resource } from "src/app/resource/entities/resource.entity";
-import { SoftDeleteBaseModel } from "src/common/models/softdeletebase.model";
+import { Resource } from "../../resource/entities/resource.entity";
+import { SoftDeleteBaseModel } from "../../../common/models/softdeletebase.model";
 
 @ObjectType()
 export class Abhisekha extends SoftDeleteBaseModel {

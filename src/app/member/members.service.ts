@@ -7,7 +7,7 @@ import {
   NotFoundException
 } from "@nestjs/common";
 import { PrismaService } from "nestjs-prisma";
-import createAvatar from "src/common/utils/avatar";
+import createAvatar from "../../common/utils/avatar";
 import { EmailService } from "../email/email.service";
 import { GroupsService } from "../groups/groups.service";
 import { CreateMemberInput } from "./dto/create-member.input";

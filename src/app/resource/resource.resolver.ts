@@ -12,7 +12,7 @@ import { Resource } from "./entities/resource.entity";
 import { CreateResourceInput } from "./dto/create-resource.input";
 import { UpdateResourceInput } from "./dto/update-resource.input";
 import { EventResourceWithoutResource } from "../eventResource/eventResource.entity";
-import { ClassProperties } from "src/common/utils/extractClass";
+import { ClassProperties } from "../../common/utils/extractClass";
 import { AbhisekhaResourceWithoutResource } from "../abhisekhaResource/abhisekhaResource.entity";
 
 @Resolver(() => Resource)

@@ -14,7 +14,7 @@ import { UpdateAbhisekhaInput } from "./dto/update-abhisekha.input";
 import { MemberAbhisekhaWithoutAbhisekha } from "../memberAbhisekha/memberAbhisekha.entity";
 import { EventAbhisekhaWithoutAbhisekha } from "../eventAbhisekha/eventAbhisekha.entity";
 import { AbhisekhaResourceWithoutAbhisekha } from "../abhisekhaResource/abhisekhaResource.entity";
-import { ClassProperties } from "src/common/utils/extractClass";
+import { ClassProperties } from "../../common/utils/extractClass";
 
 @Resolver(() => Abhisekha)
 export class AbhisekhaResolver {

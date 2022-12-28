@@ -13,7 +13,7 @@ import { CreateEventInput } from "./dto/create-event.input";
 import { UpdateEventInput } from "./dto/update-event.input";
 import { Member } from "../member/entities/member.entity";
 import { EventMemberWithoutEvent } from "../eventMember/eventMember.entity";
-import { ClassProperties } from "src/common/utils/extractClass";
+import { ClassProperties } from "../../common/utils/extractClass";
 import { EventAbhisekhaWithoutEvent } from "../eventAbhisekha/eventAbhisekha.entity";
 import { EventResourceWithoutEvent } from "../eventResource/eventResource.entity";
 
