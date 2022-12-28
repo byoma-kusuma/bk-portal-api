@@ -14,5 +14,5 @@ export class CreateGroupInput {
 
   @Field(() => [Int])
   @IsNumber({}, { each: true })
-  memberIds: Array<number>;
+  memberIds?: Array<number>;
 }
