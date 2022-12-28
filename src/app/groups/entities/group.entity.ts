@@ -1,5 +1,5 @@
 import { ObjectType, Field } from "@nestjs/graphql";
-import { SoftDeleteBaseModel } from "src/common/models/softdeletebase.model";
+import { SoftDeleteBaseModel } from "../../../common/models/softdeletebase.model";
 
 @ObjectType()
 export class Group extends SoftDeleteBaseModel {

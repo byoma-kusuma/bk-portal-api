@@ -22,6 +22,7 @@ import { GroupsModule } from "./groups/groups.module";
 import { AddressesModule } from "./addresses/addresses.module";
 import { AbhisekhaModule } from "./abhisekha/abhisekha.module";
 import { EventModule } from "./event/event.module";
+import { ResourceModule } from "./resource/resource.module";
 
 @Module({
   imports: [
@@ -55,7 +56,8 @@ import { EventModule } from "./event/event.module";
     GroupsModule,
     AddressesModule,
     AbhisekhaModule,
-    EventModule
+    EventModule,
+    ResourceModule
   ],
   controllers: [AppController],
   providers: [AppService, AppResolver]

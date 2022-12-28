@@ -13,13 +13,13 @@ import { CreateMemberInput } from "./dto/create-member.input";
 import { UpdateMemberInput } from "./dto/update-member.input";
 import { GqlAuthGuard } from "src/app/auth/gql-auth.guard";
 import { UseGuards } from "@nestjs/common";
-import { User } from "src/app/users/models/user.model";
-import { Centre } from "src/app/centre/entities/centre.entity";
-import { CurrentUser } from "src/common/decorators/currentUser.decorator";
+import { User } from "../../app/users/models/user.model";
+import { Centre } from "../../app/centre/entities/centre.entity";
+import { CurrentUser } from "../../common/decorators/currentUser.decorator";
 import { SendEmailInput } from "./dto/send-email.input";
-import ResponseStatus from "src/common/ResponseClasses/ResponseStatus";
+import ResponseStatus from "../../common/ResponseClasses/ResponseStatus";
 import { MemberAbhisekhaWithoutMember } from "../memberAbhisekha/memberAbhisekha.entity";
-import { ClassProperties } from "src/common/utils/extractClass";
+import { ClassProperties } from "../../common/utils/extractClass";
 import { EventMemberWithoutMember } from "../eventMember/eventMember.entity";
 import { MemberGroupWithoutMember } from "../memberGroup/memberGroup.entity";
 

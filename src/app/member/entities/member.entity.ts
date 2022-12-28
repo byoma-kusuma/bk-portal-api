@@ -1,10 +1,10 @@
 import { Field, ObjectType, registerEnumType } from "@nestjs/graphql";
 import { GenderType, MembershipType } from "@prisma/client";
-import { User } from "src/app/users/models/user.model";
-import { Centre } from "src/app/centre/entities/centre.entity";
-import { Address } from "src/app/addresses/entities/address.entity";
-import { SoftDeleteBaseModel } from "src/common/models/softdeletebase.model";
-import { Event } from "src/app/event/entities/event.entity";
+import { User } from "../../users/models/user.model";
+import { Centre } from "../../centre/entities/centre.entity";
+import { Address } from "../../addresses/entities/address.entity";
+import { SoftDeleteBaseModel } from "../../../common/models/softdeletebase.model";
+import { Event } from "../../event/entities/event.entity";
 
 registerEnumType(GenderType, {
   name: "Gender_Type",

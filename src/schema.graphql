@@ -206,6 +206,12 @@ input AbhisekhaResourceWhereUniqueInput {
   abhishekaId_resourceId: AbhisekhaResourceAbhishekaIdResourceIdCompoundUniqueInput
 }
 
+type AbhisekhaResourceWithoutResource {
+  abhisheka: Abhisekha!
+  abhishekaId: Int!
+  resourceId: Int!
+}
+
 input AbhisekhaWhereInput {
   AND: [AbhisekhaWhereInput!]
   NOT: [AbhisekhaWhereInput!]
@@ -522,6 +528,11 @@ input CreateMemberInput {
   title: String
   viber: String
   yearOfBirth: Int
+}
+
+input CreateResourceInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
 }
 
 input CreateRoleInput {
@@ -1089,6 +1100,13 @@ input EventResourceWhereUniqueInput {
 type EventResourceWithoutEvent {
   eventId: Int!
   resource: Resource!
+  resourceId: Int!
+  type: String!
+}
+
+type EventResourceWithoutResource {
+  event: Event!
+  eventId: Int!
   resourceId: Int!
   type: String!
 }
@@ -1824,6 +1842,7 @@ type Mutation {
   createEvent(createEventInput: CreateEventInput!): Event!
   createGroup(createGroupInput: CreateGroupInput!): Group!
   createMember(createMemberInput: CreateMemberInput!): Member!
+  createResource(createResourceInput: CreateResourceInput!): Resource!
   createRole(createRoleInput: CreateRoleInput!): Role!
   createUser(createUserInput: CreateUserInput!): User!
   initiateResetPassword(resetPasswordInitiateInput: ResetPasswordInitiateInput!): ResponseStatus!
@@ -1835,6 +1854,7 @@ type Mutation {
   removeEvent(id: Int!): Event!
   removeGroup(id: Int!): Group!
   removeMember(id: Int!): Member!
+  removeResource(id: Int!): Resource!
   removeRole(id: Int!): Role!
   removeUser(id: Int!): User!
   resetPassword(resetPasswordInput: ResetPasswordInput!): ResponseStatus!
@@ -1845,6 +1865,7 @@ type Mutation {
   updateEvent(updateEventInput: UpdateEventInput!): Event!
   updateGroup(updateGroupInput: UpdateGroupInput!): Group!
   updateMember(updateMemberInput: UpdateMemberInput!): Member!
+  updateResource(updateResourceInput: UpdateResourceInput!): Resource!
   updateRole(updateRoleInput: UpdateRoleInput!): Role!
 }
 
@@ -1950,6 +1971,7 @@ type Query {
   me: User!
   member(id: Int!): Member!
   members: [Member!]!
+  resource(id: Int!): Resource!
   role(where: RoleWhereInput): Role!
   roles(where: RoleWhereInput): [Role!]!
   user(id: Int!): User!
@@ -1967,6 +1989,8 @@ input ResetPasswordInput {
 }
 
 type Resource {
+  abhisekhas: [AbhisekhaResourceWithoutResource!]!
+
   """Identifies the date and time when the object was created."""
   createdAt: DateTime!
 
@@ -1975,6 +1999,7 @@ type Resource {
 
   """Description of the resource"""
   description: String!
+  events: [EventResourceWithoutResource!]!
   id: Int!
 
   """Identifies the date and time when the object was last deleted."""
@@ -2312,6 +2337,12 @@ input UpdateMemberInput {
   title: String
   viber: String
   yearOfBirth: Int
+}
+
+input UpdateResourceInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
 }
 
 input UpdateRoleInput {

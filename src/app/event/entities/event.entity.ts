@@ -1,8 +1,8 @@
 import { ObjectType, Field } from "@nestjs/graphql";
-import { EventAbhisekhaWithoutEvent } from "src/app/eventAbhisekha/eventAbhisekha.entity";
-import { EventMemberWithoutEvent } from "src/app/eventMember/eventMember.entity";
-import { EventResourceWithoutEvent } from "src/app/eventResource/eventResource.entity";
-import { SoftDeleteBaseModel } from "src/common/models/softdeletebase.model";
+import { EventAbhisekhaWithoutEvent } from "../../eventAbhisekha/eventAbhisekha.entity";
+import { EventMemberWithoutEvent } from "../../eventMember/eventMember.entity";
+import { EventResourceWithoutEvent } from "../../eventResource/eventResource.entity";
+import { SoftDeleteBaseModel } from "../../../common/models/softdeletebase.model";
 
 @ObjectType()
 export class Event extends SoftDeleteBaseModel {

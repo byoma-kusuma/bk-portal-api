@@ -1,5 +1,5 @@
 import { InputType, Field, Int } from "@nestjs/graphql";
-import { SoftDeleteBaseModel } from "src/common/models/softdeletebase.model";
+import { SoftDeleteBaseModel } from "../../../common/models/softdeletebase.model";
 
 @InputType()
 export class CreateEventInput extends SoftDeleteBaseModel {

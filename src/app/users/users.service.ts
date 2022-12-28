@@ -8,9 +8,9 @@ import { PasswordService } from "../auth/password.service";
 import { ChangePasswordInput } from "./dto/change-password.input";
 import { PrismaService } from "nestjs-prisma";
 import { Member, UserStatus } from "@prisma/client";
-import { SystemRoleTypes } from "src/common/constants/global-constants";
+import { SystemRoleTypes } from "../../common/constants/global-constants";
 import { v4 as uuidv4 } from "uuid";
-import createAvatar from "src/common/utils/avatar";
+import createAvatar from "../../common/utils/avatar";
 
 @Injectable()
 export class UsersService {
