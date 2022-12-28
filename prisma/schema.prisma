@@ -104,6 +104,22 @@ model Member {
     photo          String?
     note           String?
 
+    isDeleted Boolean  @default(false)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    uniqueKey String?  @unique
+    updatedBy String?
+    createdBy String?
+
+    // Relation fields
+    user User?
+
+    memberGroup MemberGroup[]
+
+    memberAbhisekha MemberAbhisekha[]
+
+    eventMember EventMember[]
+
     centre   Centre? @relation(fields: [centreId], references: [id])
     centreId Int?
 
@@ -115,19 +131,6 @@ model Member {
 
     permanentAddress   Address? @relation(name: "permanentAddress", fields: [permanentAddressId], references: [id])
     permanentAddressId Int?     @unique // relation scalar field (used in the `@relation` attribute above)
-
-    isDeleted Boolean  @default(false)
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-    uniqueKey String?  @unique
-    updatedBy String?
-    createdBy String?
-
-    // Relation fields
-    user            User?
-    memberGroup     MemberGroup[]
-    memberAbhisekha MemberAbhisekha[]
-    EventMember     EventMember[]
 }
 
 model Address {
@@ -245,6 +248,7 @@ model Event {
     id        Int      @id @default(autoincrement())
     startDate DateTime
     endDate   DateTime
+    notes     String?
     type      String
     isLocked  Boolean
     isDeleted Boolean  @default(false)
@@ -282,8 +286,6 @@ model Resource {
 }
 
 model AbhisekhaResource {
-    type String
-
     // Relation fields
     abhisheka   Abhisekha @relation(fields: [abhishekaId], references: [id])
     abhishekaId Int
@@ -308,14 +310,14 @@ model MemberAbhisekha {
 }
 
 model EventMember {
-    type String
+    type        String
+    hasAttended Boolean
 
     // Relation fields
-    event       Event   @relation(fields: [eventId], references: [id])
-    eventId     Int
-    member      Member  @relation(fields: [memberId], references: [id])
-    memberId    Int
-    hasAttended Boolean
+    event    Event  @relation(fields: [eventId], references: [id])
+    eventId  Int
+    member   Member @relation(fields: [memberId], references: [id])
+    memberId Int
 
     @@id([memberId, eventId])
 }

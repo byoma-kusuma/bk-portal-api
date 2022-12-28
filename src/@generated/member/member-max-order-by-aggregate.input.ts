@@ -69,18 +69,6 @@ export class MemberMaxOrderByAggregateInput {
     note?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    centreId?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
-    addressid?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
-    currentAddressId?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
-    permanentAddressId?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
     isDeleted?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
@@ -97,4 +85,16 @@ export class MemberMaxOrderByAggregateInput {
 
     @Field(() => SortOrder, {nullable:true})
     createdBy?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    centreId?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    addressid?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    currentAddressId?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    permanentAddressId?: keyof typeof SortOrder;
 }

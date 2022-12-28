@@ -67,16 +67,16 @@ CREATE TABLE "Member" (
     "insta" TEXT,
     "photo" TEXT,
     "note" TEXT,
-    "centreId" INTEGER,
-    "addressid" INTEGER,
-    "currentAddressId" INTEGER,
-    "permanentAddressId" INTEGER,
     "isDeleted" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "uniqueKey" TEXT,
     "updatedBy" TEXT,
     "createdBy" TEXT,
+    "centreId" INTEGER,
+    "addressid" INTEGER,
+    "currentAddressId" INTEGER,
+    "permanentAddressId" INTEGER,
 
     CONSTRAINT "Member_pkey" PRIMARY KEY ("id")
 );
@@ -184,6 +184,7 @@ CREATE TABLE "Event" (
     "id" SERIAL NOT NULL,
     "startDate" TIMESTAMP(3) NOT NULL,
     "endDate" TIMESTAMP(3) NOT NULL,
+    "notes" TEXT,
     "type" TEXT NOT NULL,
     "isLocked" BOOLEAN NOT NULL,
     "isDeleted" BOOLEAN NOT NULL DEFAULT false,
@@ -278,13 +279,13 @@ CREATE UNIQUE INDEX "Role_name_key" ON "Role"("name");
 CREATE UNIQUE INDEX "Role_uniqueKey_key" ON "Role"("uniqueKey");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "Member_uniqueKey_key" ON "Member"("uniqueKey");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Member_currentAddressId_key" ON "Member"("currentAddressId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Member_permanentAddressId_key" ON "Member"("permanentAddressId");
-
--- CreateIndex
-CREATE UNIQUE INDEX "Member_uniqueKey_key" ON "Member"("uniqueKey");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Address_uniqueKey_key" ON "Address"("uniqueKey");

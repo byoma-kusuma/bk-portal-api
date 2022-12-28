@@ -1,34 +1,47 @@
-import { Field, ObjectType } from "@nestjs/graphql";
-import { MemberAbhisekha } from "@prisma/client";
+import { Field } from "@nestjs/graphql";
+import { ObjectType } from "@nestjs/graphql";
+import { Int } from "@nestjs/graphql";
 import { Abhisekha } from "../abhisekha/entities/abhisekha.entity";
 import { Member } from "../member/entities/member.entity";
 
 @ObjectType()
-export class MemberWithMemberAbhisekhaEntity extends Member {
-  @Field(() => MemberAbhisekhaEntity, { nullable: true })
-  memberAbhisekha: Pick<
-    MemberAbhisekha,
-    "abhisekhaDate" | "abhisekhaPlace" | "type"
-  >;
-}
-
-@ObjectType()
-export class AbhisekhaWithMemberAbhisekhaEntity extends Abhisekha {
-  @Field(() => MemberAbhisekhaEntity, { nullable: true })
-  memberAbhisekha: Pick<
-    MemberAbhisekha,
-    "abhisekhaDate" | "abhisekhaPlace" | "type"
-  >;
-}
-
-@ObjectType()
-export class MemberAbhisekhaEntity {
-  @Field(() => String, { nullable: true })
+export class MemberAbhisekhaWithoutAbhisekha {
+  @Field(() => String, { nullable: false })
   type: string;
 
-  @Field(() => Date, { nullable: true })
+  @Field(() => Date, { nullable: false })
   abhisekhaDate: Date;
 
-  @Field(() => String, { nullable: true })
+  @Field(() => String, { nullable: false })
   abhisekhaPlace: string;
+
+  @Field(() => Int, { nullable: false })
+  abhishekaId: number;
+
+  @Field(() => Member, { nullable: false })
+  member?: Member;
+
+  @Field(() => Int, { nullable: false })
+  memberId: number;
+}
+
+@ObjectType()
+export class MemberAbhisekhaWithoutMember {
+  @Field(() => String, { nullable: false })
+  type: string;
+
+  @Field(() => Date, { nullable: false })
+  abhisekhaDate: Date;
+
+  @Field(() => String, { nullable: false })
+  abhisekhaPlace: string;
+
+  @Field(() => Abhisekha, { nullable: false })
+  abhisheka?: Abhisekha;
+
+  @Field(() => Int, { nullable: false })
+  abhishekaId: number;
+
+  @Field(() => Int, { nullable: false })
+  memberId: number;
 }

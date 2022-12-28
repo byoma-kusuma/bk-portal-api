@@ -16,11 +16,12 @@ import { UseGuards } from "@nestjs/common";
 import { User } from "src/app/users/models/user.model";
 import { Centre } from "src/app/centre/entities/centre.entity";
 import { CurrentUser } from "src/common/decorators/currentUser.decorator";
-import { Group } from "../groups/entities/group.entity";
 import { SendEmailInput } from "./dto/send-email.input";
 import ResponseStatus from "src/common/ResponseClasses/ResponseStatus";
-import { Abhisekha } from "../abhisekha/entities/abhisekha.entity";
-import { AbhisekhaWithMemberAbhisekhaEntity } from "../memberAbhisekha/memberAbhisekha.entity";
+import { MemberAbhisekhaWithoutMember } from "../memberAbhisekha/memberAbhisekha.entity";
+import { ClassProperties } from "src/common/utils/extractClass";
+import { EventMemberWithoutMember } from "../eventMember/eventMember.entity";
+import { MemberGroupWithoutMember } from "../memberGroup/memberGroup.entity";
 
 @Resolver(() => Member)
 // @UseGuards(GqlAuthGuard)
@@ -82,38 +83,33 @@ export class MembersResolver {
     return centre;
   }
 
-  @ResolveField(() => [Group])
+  @ResolveField(() => [MemberGroupWithoutMember])
   async groups(@Parent() member: Member) {
     const memberGroupRelation = await this.membersService.findUnique({
       where: { id: member.id },
       select: {
         id: true,
         memberGroup: {
-          select: {
-            group: true
-          }
+          select: ClassProperties.extractPrismaSelectFields(
+            MemberAbhisekhaWithoutMember
+          )
         }
       }
     });
     if (!memberGroupRelation) return null;
-    return memberGroupRelation.memberGroup.map(
-      (groupRelation) => groupRelation.group
-    );
+    return memberGroupRelation.memberGroup;
   }
 
-  @ResolveField(() => [AbhisekhaWithMemberAbhisekhaEntity])
+  @ResolveField(() => [MemberAbhisekhaWithoutMember])
   async abhisekhas(@Parent() member: Member) {
     const memberAbhisekhaRelation = await this.membersService.findUnique({
       where: { id: member.id },
       select: {
         id: true,
         memberAbhisekha: {
-          select: {
-            abhisheka: true,
-            abhisekhaPlace: true,
-            abhisekhaDate: true,
-            type: true
-          }
+          select: ClassProperties.extractPrismaSelectFields(
+            MemberAbhisekhaWithoutMember
+          )
         }
       }
     });
@@ -121,11 +117,27 @@ export class MembersResolver {
     if (!memberAbhisekhaRelation) {
       return null;
     }
-    return memberAbhisekhaRelation.memberAbhisekha.map((abhisekhaRelation) =>
-      (({ abhisheka, ...memberAbhisekhaRelationFields }) => ({
-        ...abhisheka,
-        memberAbhisekha: memberAbhisekhaRelationFields
-      }))(abhisekhaRelation)
-    );
+    return memberAbhisekhaRelation.memberAbhisekha;
+  }
+
+  @ResolveField(() => [EventMemberWithoutMember])
+  async events(@Parent() member: Member) {
+    const memberEventRelation = await this.membersService.findUnique({
+      where: {
+        id: member.id
+      },
+      select: {
+        id: true,
+        eventMember: ClassProperties.extractPrismaSelectFields(
+          EventMemberWithoutMember
+        )
+      }
+    });
+
+    if (!memberEventRelation) {
+      return null;
+    }
+
+    return memberEventRelation.eventMember;
   }
 }

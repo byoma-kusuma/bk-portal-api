@@ -1,6 +1,6 @@
 import { CreateAbhisekhaInput } from "./create-abhisekha.input";
 import { InputType, Field, Int, PartialType } from "@nestjs/graphql";
-import { IsArray, ValidateNested } from "class-validator";
+import { IsArray, IsNumber, IsOptional, ValidateNested } from "class-validator";
 
 @InputType()
 export class UpdateAbhisekhaInput extends PartialType(CreateAbhisekhaInput) {
@@ -12,7 +12,13 @@ export class UpdateAbhisekhaInput extends PartialType(CreateAbhisekhaInput) {
   })
   @IsArray()
   @ValidateNested({ each: true })
-  abhisekhaMembers: Array<AbhisekhaMemberDetails>;
+  @IsOptional()
+  abhisekhaMemberDetails?: Array<AbhisekhaMemberDetails>;
+
+  @Field(() => [Int], { description: "Relevant resources for the abhisekha" })
+  @IsNumber({}, { each: true })
+  @IsOptional()
+  resourceIds?: Array<number>;
 }
 
 @InputType()

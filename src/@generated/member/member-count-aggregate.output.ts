@@ -69,18 +69,6 @@ export class MemberCountAggregate {
     note!: number;
 
     @Field(() => Int, {nullable:false})
-    centreId!: number;
-
-    @Field(() => Int, {nullable:false})
-    addressid!: number;
-
-    @Field(() => Int, {nullable:false})
-    currentAddressId!: number;
-
-    @Field(() => Int, {nullable:false})
-    permanentAddressId!: number;
-
-    @Field(() => Int, {nullable:false})
     isDeleted!: number;
 
     @Field(() => Int, {nullable:false})
@@ -97,6 +85,18 @@ export class MemberCountAggregate {
 
     @Field(() => Int, {nullable:false})
     createdBy!: number;
+
+    @Field(() => Int, {nullable:false})
+    centreId!: number;
+
+    @Field(() => Int, {nullable:false})
+    addressid!: number;
+
+    @Field(() => Int, {nullable:false})
+    currentAddressId!: number;
+
+    @Field(() => Int, {nullable:false})
+    permanentAddressId!: number;
 
     @Field(() => Int, {nullable:false})
     _all!: number;

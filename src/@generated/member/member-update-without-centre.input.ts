@@ -3,13 +3,13 @@ import { InputType } from '@nestjs/graphql';
 import { MembershipType } from '../prisma/membership-type.enum';
 import { Int } from '@nestjs/graphql';
 import { GenderType } from '../prisma/gender-type.enum';
-import { AddressUpdateOneWithoutMembersInput } from '../address/address-update-one-without-members.input';
-import { AddressUpdateOneWithoutMemberCurrentAddressInput } from '../address/address-update-one-without-member-current-address.input';
-import { AddressUpdateOneWithoutMemberPermanentAddressInput } from '../address/address-update-one-without-member-permanent-address.input';
 import { UserUpdateOneWithoutMemberInput } from '../user/user-update-one-without-member.input';
 import { MemberGroupUpdateManyWithoutMemberInput } from '../member-group/member-group-update-many-without-member.input';
 import { MemberAbhisekhaUpdateManyWithoutMemberInput } from '../member-abhisekha/member-abhisekha-update-many-without-member.input';
 import { EventMemberUpdateManyWithoutMemberInput } from '../event-member/event-member-update-many-without-member.input';
+import { AddressUpdateOneWithoutMembersInput } from '../address/address-update-one-without-members.input';
+import { AddressUpdateOneWithoutMemberCurrentAddressInput } from '../address/address-update-one-without-member-current-address.input';
+import { AddressUpdateOneWithoutMemberPermanentAddressInput } from '../address/address-update-one-without-member-permanent-address.input';
 
 @InputType()
 export class MemberUpdateWithoutCentreInput {
@@ -92,15 +92,6 @@ export class MemberUpdateWithoutCentreInput {
     @Field(() => String, {nullable:true})
     createdBy?: string;
 
-    @Field(() => AddressUpdateOneWithoutMembersInput, {nullable:true})
-    address?: AddressUpdateOneWithoutMembersInput;
-
-    @Field(() => AddressUpdateOneWithoutMemberCurrentAddressInput, {nullable:true})
-    currentAddress?: AddressUpdateOneWithoutMemberCurrentAddressInput;
-
-    @Field(() => AddressUpdateOneWithoutMemberPermanentAddressInput, {nullable:true})
-    permanentAddress?: AddressUpdateOneWithoutMemberPermanentAddressInput;
-
     @Field(() => UserUpdateOneWithoutMemberInput, {nullable:true})
     user?: UserUpdateOneWithoutMemberInput;
 
@@ -111,5 +102,14 @@ export class MemberUpdateWithoutCentreInput {
     memberAbhisekha?: MemberAbhisekhaUpdateManyWithoutMemberInput;
 
     @Field(() => EventMemberUpdateManyWithoutMemberInput, {nullable:true})
-    EventMember?: EventMemberUpdateManyWithoutMemberInput;
+    eventMember?: EventMemberUpdateManyWithoutMemberInput;
+
+    @Field(() => AddressUpdateOneWithoutMembersInput, {nullable:true})
+    address?: AddressUpdateOneWithoutMembersInput;
+
+    @Field(() => AddressUpdateOneWithoutMemberCurrentAddressInput, {nullable:true})
+    currentAddress?: AddressUpdateOneWithoutMemberCurrentAddressInput;
+
+    @Field(() => AddressUpdateOneWithoutMemberPermanentAddressInput, {nullable:true})
+    permanentAddress?: AddressUpdateOneWithoutMemberPermanentAddressInput;
 }

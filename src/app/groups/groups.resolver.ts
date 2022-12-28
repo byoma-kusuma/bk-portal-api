@@ -11,9 +11,10 @@ import { GroupsService } from "./groups.service";
 import { Group } from "./entities/group.entity";
 import { CreateGroupInput } from "./dto/create-group.input";
 import { UpdateGroupInput } from "./dto/update-group.input";
-import { Member } from "../member/entities/member.entity";
 import { UseGuards } from "@nestjs/common";
 import { GqlAuthGuard } from "../auth/gql-auth.guard";
+import { MemberGroupWithoutGroup } from "../memberGroup/memberGroup.entity";
+import { ClassProperties } from "src/common/utils/extractClass";
 
 @Resolver(() => Group)
 @UseGuards(GqlAuthGuard)
@@ -45,23 +46,29 @@ export class GroupsResolver {
     return this.groupsService.remove(id);
   }
 
-  @ResolveField(() => [Member])
+  @ResolveField(() => [MemberGroupWithoutGroup])
   async members(@Parent() group: Group) {
-    const groupMembers = await this.groupsService.findUnique({
+    const groupMemberRelation = await this.groupsService.findUnique({
       where: { id: group.id },
       select: {
         id: true,
         memberGroups: {
-          select: {
-            member: true
-          }
+          where: {
+            member: {
+              isDeleted: false
+            }
+          },
+          select: ClassProperties.extractPrismaSelectFields(
+            MemberGroupWithoutGroup
+          )
         }
       }
     });
 
-    if (!groupMembers) return null;
-    return groupMembers.memberGroups.map(
-      (memberRelation) => memberRelation.member
-    );
+    if (!groupMemberRelation) {
+      return null;
+    }
+
+    return groupMemberRelation.memberGroups;
   }
 }

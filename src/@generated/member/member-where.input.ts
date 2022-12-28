@@ -6,12 +6,12 @@ import { BoolFilter } from '../prisma/bool-filter.input';
 import { EnumMembershipTypeFilter } from '../prisma/enum-membership-type-filter.input';
 import { EnumGenderTypeFilter } from '../prisma/enum-gender-type-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
-import { CentreRelationFilter } from '../centre/centre-relation-filter.input';
-import { AddressRelationFilter } from '../address/address-relation-filter.input';
 import { UserRelationFilter } from '../user/user-relation-filter.input';
 import { MemberGroupListRelationFilter } from '../member-group/member-group-list-relation-filter.input';
 import { MemberAbhisekhaListRelationFilter } from '../member-abhisekha/member-abhisekha-list-relation-filter.input';
 import { EventMemberListRelationFilter } from '../event-member/event-member-list-relation-filter.input';
+import { CentreRelationFilter } from '../centre/centre-relation-filter.input';
+import { AddressRelationFilter } from '../address/address-relation-filter.input';
 
 @InputType()
 export class MemberWhereInput {
@@ -88,30 +88,6 @@ export class MemberWhereInput {
     @Field(() => StringFilter, {nullable:true})
     note?: StringFilter;
 
-    @Field(() => CentreRelationFilter, {nullable:true})
-    centre?: CentreRelationFilter;
-
-    @Field(() => IntFilter, {nullable:true})
-    centreId?: IntFilter;
-
-    @Field(() => AddressRelationFilter, {nullable:true})
-    address?: AddressRelationFilter;
-
-    @Field(() => IntFilter, {nullable:true})
-    addressid?: IntFilter;
-
-    @Field(() => AddressRelationFilter, {nullable:true})
-    currentAddress?: AddressRelationFilter;
-
-    @Field(() => IntFilter, {nullable:true})
-    currentAddressId?: IntFilter;
-
-    @Field(() => AddressRelationFilter, {nullable:true})
-    permanentAddress?: AddressRelationFilter;
-
-    @Field(() => IntFilter, {nullable:true})
-    permanentAddressId?: IntFilter;
-
     @Field(() => BoolFilter, {nullable:true})
     isDeleted?: BoolFilter;
 
@@ -140,5 +116,29 @@ export class MemberWhereInput {
     memberAbhisekha?: MemberAbhisekhaListRelationFilter;
 
     @Field(() => EventMemberListRelationFilter, {nullable:true})
-    EventMember?: EventMemberListRelationFilter;
+    eventMember?: EventMemberListRelationFilter;
+
+    @Field(() => CentreRelationFilter, {nullable:true})
+    centre?: CentreRelationFilter;
+
+    @Field(() => IntFilter, {nullable:true})
+    centreId?: IntFilter;
+
+    @Field(() => AddressRelationFilter, {nullable:true})
+    address?: AddressRelationFilter;
+
+    @Field(() => IntFilter, {nullable:true})
+    addressid?: IntFilter;
+
+    @Field(() => AddressRelationFilter, {nullable:true})
+    currentAddress?: AddressRelationFilter;
+
+    @Field(() => IntFilter, {nullable:true})
+    currentAddressId?: IntFilter;
+
+    @Field(() => AddressRelationFilter, {nullable:true})
+    permanentAddress?: AddressRelationFilter;
+
+    @Field(() => IntFilter, {nullable:true})
+    permanentAddressId?: IntFilter;
 }

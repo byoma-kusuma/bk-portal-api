@@ -12,5 +12,5 @@ export class MemberCount {
     memberAbhisekha?: number;
 
     @Field(() => Int, {nullable:false})
-    EventMember?: number;
+    eventMember?: number;
 }

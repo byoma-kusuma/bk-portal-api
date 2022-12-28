@@ -1,10 +1,10 @@
 import { Field, ObjectType, registerEnumType } from "@nestjs/graphql";
 import { GenderType, MembershipType } from "@prisma/client";
-import { BaseModel } from "src/common/models/base.model";
 import { User } from "src/app/users/models/user.model";
 import { Centre } from "src/app/centre/entities/centre.entity";
 import { Address } from "src/app/addresses/entities/address.entity";
 import { SoftDeleteBaseModel } from "src/common/models/softdeletebase.model";
+import { Event } from "src/app/event/entities/event.entity";
 
 registerEnumType(GenderType, {
   name: "Gender_Type",
@@ -101,4 +101,7 @@ export class Member extends SoftDeleteBaseModel {
 
   @Field(() => Address, { nullable: true })
   currentAddress?: Address;
+
+  @Field(() => [Event], { nullable: true })
+  events?: Array<Event>;
 }
