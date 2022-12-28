@@ -1,26 +1,54 @@
-import { Injectable } from '@nestjs/common';
-import { CreateEventInput } from './dto/create-event.input';
-import { UpdateEventInput } from './dto/update-event.input';
+import { Injectable } from "@nestjs/common";
+import { PrismaService } from "nestjs-prisma";
+import { CreateEventInput } from "./dto/create-event.input";
+import { UpdateEventInput } from "./dto/update-event.input";
 
 @Injectable()
 export class EventService {
+  findUnique = this.prismaService.event.findUnique;
+
+  constructor(private readonly prismaService: PrismaService) {}
+
   create(createEventInput: CreateEventInput) {
-    return 'This action adds a new event';
+    return this.prismaService.event.create({
+      data: createEventInput
+    });
   }
 
   findAll() {
-    return `This action returns all event`;
+    return this.prismaService.event.findMany({
+      where: {
+        isDeleted: false
+      }
+    });
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} event`;
+    return this.prismaService.event.findFirst({
+      where: {
+        isDeleted: false,
+        id
+      }
+    });
   }
 
   update(id: number, updateEventInput: UpdateEventInput) {
-    return `This action updates a #${id} event`;
+    return this.prismaService.event.update({
+      where: {
+        id
+      },
+      data: updateEventInput
+    });
   }
 
   remove(id: number) {
-    return `This action removes a #${id} event`;
+    return this.prismaService.event.update({
+      where: {
+        id
+      },
+      data: {
+        isDeleted: true
+      }
+    });
   }
 }

@@ -11,7 +11,10 @@ import { AbhisekhaService } from "./abhisekha.service";
 import { Abhisekha } from "./entities/abhisekha.entity";
 import { CreateAbhisekhaInput } from "./dto/create-abhisekha.input";
 import { UpdateAbhisekhaInput } from "./dto/update-abhisekha.input";
-import { MemberWithMemberAbhisekhaEntity } from "../memberAbhisekha/memberAbhisekha.entity";
+import { MemberAbhisekhaWithoutAbhisekha } from "../memberAbhisekha/memberAbhisekha.entity";
+import { EventAbhisekhaWithoutAbhisekha } from "../eventAbhisekha/eventAbhisekha.entity";
+import { AbhisekhaResourceWithoutAbhisekha } from "../abhisekhaResource/abhisekhaResource.entity";
+import { ClassProperties } from "src/common/utils/extractClass";
 
 @Resolver(() => Abhisekha)
 export class AbhisekhaResolver {
@@ -48,29 +51,82 @@ export class AbhisekhaResolver {
     return this.abhisekhaService.remove(id);
   }
 
-  @ResolveField(() => [MemberWithMemberAbhisekhaEntity])
+  @ResolveField(() => [MemberAbhisekhaWithoutAbhisekha])
   async members(@Parent() abhisekha: Abhisekha) {
     const abhisekhaMemberRelation = await this.abhisekhaService.findUnique({
       where: { id: abhisekha.id },
       select: {
         id: true,
         memberAbhisekha: {
-          select: {
-            member: true,
-            abhisekhaDate: true,
-            abhisekhaPlace: true,
-            type: true
-          }
+          where: {
+            member: {
+              isDeleted: false
+            }
+          },
+          select: ClassProperties.extractPrismaSelectFields(
+            MemberAbhisekhaWithoutAbhisekha
+          )
         }
       }
     });
 
-    if (!abhisekhaMemberRelation) return null;
-    return abhisekhaMemberRelation.memberAbhisekha.map((memberRelation) =>
-      (({ member, ...memberAbhisekhaRelationFields }) => ({
-        ...member,
-        memberAbhisekha: memberAbhisekhaRelationFields
-      }))(memberRelation)
-    );
+    if (!abhisekhaMemberRelation) {
+      return null;
+    }
+
+    return abhisekhaMemberRelation.memberAbhisekha;
+  }
+
+  @ResolveField(() => [AbhisekhaResourceWithoutAbhisekha])
+  async resources(@Parent() abhisekha: Abhisekha) {
+    const abhisekhaResourceRelation = await this.abhisekhaService.findUnique({
+      where: {
+        id: abhisekha.id
+      },
+      select: {
+        id: true,
+        abhisekhaResource: {
+          where: {
+            resource: {
+              isDeleted: false
+            }
+          },
+          select: ClassProperties.extractPrismaSelectFields(
+            AbhisekhaResourceWithoutAbhisekha
+          )
+        }
+      }
+    });
+
+    if (!abhisekhaResourceRelation) {
+      return null;
+    }
+
+    return abhisekhaResourceRelation.abhisekhaResource;
+  }
+
+  @ResolveField(() => [EventAbhisekhaWithoutAbhisekha])
+  async events(@Parent() abhisekha: Abhisekha) {
+    const abhisekhaEventRelation = await this.abhisekhaService.findUnique({
+      where: { id: abhisekha.id },
+      select: {
+        eventAbhisekha: {
+          where: {
+            event: {
+              isDeleted: false
+            }
+          },
+          select: ClassProperties.extractPrismaSelectFields(
+            EventAbhisekhaWithoutAbhisekha
+          )
+        }
+      }
+    });
+
+    if (!abhisekhaEventRelation) {
+      return null;
+    }
+
+    return abhisekhaEventRelation.eventAbhisekha;
   }
 }

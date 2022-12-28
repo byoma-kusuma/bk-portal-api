@@ -75,18 +75,6 @@ export class MemberGroupBy {
     @Field(() => String, {nullable:true})
     note?: string;
 
-    @Field(() => Int, {nullable:true})
-    centreId?: number;
-
-    @Field(() => Int, {nullable:true})
-    addressid?: number;
-
-    @Field(() => Int, {nullable:true})
-    currentAddressId?: number;
-
-    @Field(() => Int, {nullable:true})
-    permanentAddressId?: number;
-
     @Field(() => Boolean, {nullable:false})
     isDeleted!: boolean;
 
@@ -104,6 +92,18 @@ export class MemberGroupBy {
 
     @Field(() => String, {nullable:true})
     createdBy?: string;
+
+    @Field(() => Int, {nullable:true})
+    centreId?: number;
+
+    @Field(() => Int, {nullable:true})
+    addressid?: number;
+
+    @Field(() => Int, {nullable:true})
+    currentAddressId?: number;
+
+    @Field(() => Int, {nullable:true})
+    permanentAddressId?: number;
 
     @Field(() => MemberCountAggregate, {nullable:true})
     _count?: MemberCountAggregate;

@@ -74,15 +74,6 @@ export class MemberUncheckedCreateWithoutCentreInput {
     @Field(() => String, {nullable:true})
     note?: string;
 
-    @Field(() => Int, {nullable:true})
-    addressid?: number;
-
-    @Field(() => Int, {nullable:true})
-    currentAddressId?: number;
-
-    @Field(() => Int, {nullable:true})
-    permanentAddressId?: number;
-
     @Field(() => Boolean, {nullable:true})
     isDeleted?: boolean;
 
@@ -101,6 +92,15 @@ export class MemberUncheckedCreateWithoutCentreInput {
     @Field(() => String, {nullable:true})
     createdBy?: string;
 
+    @Field(() => Int, {nullable:true})
+    addressid?: number;
+
+    @Field(() => Int, {nullable:true})
+    currentAddressId?: number;
+
+    @Field(() => Int, {nullable:true})
+    permanentAddressId?: number;
+
     @Field(() => UserUncheckedCreateNestedOneWithoutMemberInput, {nullable:true})
     user?: UserUncheckedCreateNestedOneWithoutMemberInput;
 
@@ -111,5 +111,5 @@ export class MemberUncheckedCreateWithoutCentreInput {
     memberAbhisekha?: MemberAbhisekhaUncheckedCreateNestedManyWithoutMemberInput;
 
     @Field(() => EventMemberUncheckedCreateNestedManyWithoutMemberInput, {nullable:true})
-    EventMember?: EventMemberUncheckedCreateNestedManyWithoutMemberInput;
+    eventMember?: EventMemberUncheckedCreateNestedManyWithoutMemberInput;
 }

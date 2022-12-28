@@ -82,18 +82,6 @@ export class MemberScalarWhereInput {
     @Field(() => StringFilter, {nullable:true})
     note?: StringFilter;
 
-    @Field(() => IntFilter, {nullable:true})
-    centreId?: IntFilter;
-
-    @Field(() => IntFilter, {nullable:true})
-    addressid?: IntFilter;
-
-    @Field(() => IntFilter, {nullable:true})
-    currentAddressId?: IntFilter;
-
-    @Field(() => IntFilter, {nullable:true})
-    permanentAddressId?: IntFilter;
-
     @Field(() => BoolFilter, {nullable:true})
     isDeleted?: BoolFilter;
 
@@ -111,4 +99,16 @@ export class MemberScalarWhereInput {
 
     @Field(() => StringFilter, {nullable:true})
     createdBy?: StringFilter;
+
+    @Field(() => IntFilter, {nullable:true})
+    centreId?: IntFilter;
+
+    @Field(() => IntFilter, {nullable:true})
+    addressid?: IntFilter;
+
+    @Field(() => IntFilter, {nullable:true})
+    currentAddressId?: IntFilter;
+
+    @Field(() => IntFilter, {nullable:true})
+    permanentAddressId?: IntFilter;
 }

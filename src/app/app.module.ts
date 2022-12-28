@@ -21,6 +21,7 @@ import { CentreModule } from "./centre/centre.module";
 import { GroupsModule } from "./groups/groups.module";
 import { AddressesModule } from "./addresses/addresses.module";
 import { AbhisekhaModule } from "./abhisekha/abhisekha.module";
+import { EventModule } from "./event/event.module";
 
 @Module({
   imports: [
@@ -53,7 +54,8 @@ import { AbhisekhaModule } from "./abhisekha/abhisekha.module";
     CentreModule,
     GroupsModule,
     AddressesModule,
-    AbhisekhaModule
+    AbhisekhaModule,
+    EventModule
   ],
   controllers: [AppController],
   providers: [AppService, AppResolver]

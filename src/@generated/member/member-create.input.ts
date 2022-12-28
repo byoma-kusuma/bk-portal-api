@@ -3,14 +3,14 @@ import { InputType } from '@nestjs/graphql';
 import { MembershipType } from '../prisma/membership-type.enum';
 import { Int } from '@nestjs/graphql';
 import { GenderType } from '../prisma/gender-type.enum';
-import { CentreCreateNestedOneWithoutMembersInput } from '../centre/centre-create-nested-one-without-members.input';
-import { AddressCreateNestedOneWithoutMembersInput } from '../address/address-create-nested-one-without-members.input';
-import { AddressCreateNestedOneWithoutMemberCurrentAddressInput } from '../address/address-create-nested-one-without-member-current-address.input';
-import { AddressCreateNestedOneWithoutMemberPermanentAddressInput } from '../address/address-create-nested-one-without-member-permanent-address.input';
 import { UserCreateNestedOneWithoutMemberInput } from '../user/user-create-nested-one-without-member.input';
 import { MemberGroupCreateNestedManyWithoutMemberInput } from '../member-group/member-group-create-nested-many-without-member.input';
 import { MemberAbhisekhaCreateNestedManyWithoutMemberInput } from '../member-abhisekha/member-abhisekha-create-nested-many-without-member.input';
 import { EventMemberCreateNestedManyWithoutMemberInput } from '../event-member/event-member-create-nested-many-without-member.input';
+import { CentreCreateNestedOneWithoutMembersInput } from '../centre/centre-create-nested-one-without-members.input';
+import { AddressCreateNestedOneWithoutMembersInput } from '../address/address-create-nested-one-without-members.input';
+import { AddressCreateNestedOneWithoutMemberCurrentAddressInput } from '../address/address-create-nested-one-without-member-current-address.input';
+import { AddressCreateNestedOneWithoutMemberPermanentAddressInput } from '../address/address-create-nested-one-without-member-permanent-address.input';
 
 @InputType()
 export class MemberCreateInput {
@@ -93,6 +93,18 @@ export class MemberCreateInput {
     @Field(() => String, {nullable:true})
     createdBy?: string;
 
+    @Field(() => UserCreateNestedOneWithoutMemberInput, {nullable:true})
+    user?: UserCreateNestedOneWithoutMemberInput;
+
+    @Field(() => MemberGroupCreateNestedManyWithoutMemberInput, {nullable:true})
+    memberGroup?: MemberGroupCreateNestedManyWithoutMemberInput;
+
+    @Field(() => MemberAbhisekhaCreateNestedManyWithoutMemberInput, {nullable:true})
+    memberAbhisekha?: MemberAbhisekhaCreateNestedManyWithoutMemberInput;
+
+    @Field(() => EventMemberCreateNestedManyWithoutMemberInput, {nullable:true})
+    eventMember?: EventMemberCreateNestedManyWithoutMemberInput;
+
     @Field(() => CentreCreateNestedOneWithoutMembersInput, {nullable:true})
     centre?: CentreCreateNestedOneWithoutMembersInput;
 
@@ -104,16 +116,4 @@ export class MemberCreateInput {
 
     @Field(() => AddressCreateNestedOneWithoutMemberPermanentAddressInput, {nullable:true})
     permanentAddress?: AddressCreateNestedOneWithoutMemberPermanentAddressInput;
-
-    @Field(() => UserCreateNestedOneWithoutMemberInput, {nullable:true})
-    user?: UserCreateNestedOneWithoutMemberInput;
-
-    @Field(() => MemberGroupCreateNestedManyWithoutMemberInput, {nullable:true})
-    memberGroup?: MemberGroupCreateNestedManyWithoutMemberInput;
-
-    @Field(() => MemberAbhisekhaCreateNestedManyWithoutMemberInput, {nullable:true})
-    memberAbhisekha?: MemberAbhisekhaCreateNestedManyWithoutMemberInput;
-
-    @Field(() => EventMemberCreateNestedManyWithoutMemberInput, {nullable:true})
-    EventMember?: EventMemberCreateNestedManyWithoutMemberInput;
 }

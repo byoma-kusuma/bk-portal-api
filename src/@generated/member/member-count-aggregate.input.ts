@@ -68,18 +68,6 @@ export class MemberCountAggregateInput {
     note?: true;
 
     @Field(() => Boolean, {nullable:true})
-    centreId?: true;
-
-    @Field(() => Boolean, {nullable:true})
-    addressid?: true;
-
-    @Field(() => Boolean, {nullable:true})
-    currentAddressId?: true;
-
-    @Field(() => Boolean, {nullable:true})
-    permanentAddressId?: true;
-
-    @Field(() => Boolean, {nullable:true})
     isDeleted?: true;
 
     @Field(() => Boolean, {nullable:true})
@@ -96,6 +84,18 @@ export class MemberCountAggregateInput {
 
     @Field(() => Boolean, {nullable:true})
     createdBy?: true;
+
+    @Field(() => Boolean, {nullable:true})
+    centreId?: true;
+
+    @Field(() => Boolean, {nullable:true})
+    addressid?: true;
+
+    @Field(() => Boolean, {nullable:true})
+    currentAddressId?: true;
+
+    @Field(() => Boolean, {nullable:true})
+    permanentAddressId?: true;
 
     @Field(() => Boolean, {nullable:true})
     _all?: true;

@@ -11,14 +11,18 @@ type Abhisekha {
 
   """Name of the abhisekha"""
   description: String!
+  events: [EventAbhisekhaWithoutAbhisekha!]!
   id: Int!
 
   """Identifies the date and time when the object was last deleted."""
   isDeleted: Boolean!
-  members: [MemberWithMemberAbhisekhaEntity!]!
+  members: [MemberAbhisekhaWithoutAbhisekha!]!
 
   """Name of the abhisekha"""
   name: String!
+
+  """Resources for the abhisekha"""
+  resources: [Resource!]!
 
   """Name of the abhisekha"""
   teacher: String!
@@ -134,7 +138,6 @@ input AbhisekhaResourceAbhishekaIdResourceIdCompoundUniqueInput {
 
 input AbhisekhaResourceCreateManyAbhishekaInput {
   resourceId: Int!
-  type: String!
 }
 
 input AbhisekhaResourceCreateManyAbhishekaInputEnvelope {
@@ -144,7 +147,6 @@ input AbhisekhaResourceCreateManyAbhishekaInputEnvelope {
 
 input AbhisekhaResourceCreateManyResourceInput {
   abhishekaId: Int!
-  type: String!
 }
 
 input AbhisekhaResourceCreateManyResourceInputEnvelope {
@@ -178,12 +180,10 @@ input AbhisekhaResourceCreateOrConnectWithoutResourceInput {
 
 input AbhisekhaResourceCreateWithoutAbhishekaInput {
   resource: ResourceCreateNestedOneWithoutAbhisekhaResourceInput!
-  type: String!
 }
 
 input AbhisekhaResourceCreateWithoutResourceInput {
   abhisheka: AbhisekhaCreateNestedOneWithoutAbhisekhaResourceInput!
-  type: String!
 }
 
 input AbhisekhaResourceListRelationFilter {
@@ -200,7 +200,6 @@ input AbhisekhaResourceWhereInput {
   abhishekaId: IntFilter
   resource: ResourceRelationFilter
   resourceId: IntFilter
-  type: StringFilter
 }
 
 input AbhisekhaResourceWhereUniqueInput {
@@ -229,38 +228,6 @@ input AbhisekhaWhereInput {
 input AbhisekhaWhereUniqueInput {
   id: Int
   uniqueKey: String
-}
-
-type AbhisekhaWithMemberAbhisekhaEntity {
-  """Identifies the date and time when the object was created."""
-  createdAt: DateTime!
-
-  """Identifies who created the object."""
-  createdBy: String
-
-  """Name of the abhisekha"""
-  description: String!
-  id: Int!
-
-  """Identifies the date and time when the object was last deleted."""
-  isDeleted: Boolean!
-  memberAbhisekha: MemberAbhisekhaEntity
-  members: [MemberWithMemberAbhisekhaEntity!]!
-
-  """Name of the abhisekha"""
-  name: String!
-
-  """Name of the abhisekha"""
-  teacher: String!
-
-  """Unique key associated with the object."""
-  uniqueKey: String
-
-  """Identifies the date and time when the object was last updated."""
-  updatedAt: DateTime!
-
-  """Identifies who made the last update to the object."""
-  updatedBy: String
 }
 
 type Address {
@@ -501,6 +468,28 @@ input CreateAbhisekhaInput {
   teacher: String!
 }
 
+input CreateEventInput {
+  """Event end date"""
+  endDate: DateTime!
+
+  """Details of members attending the event"""
+  eventMemberDetails: [EventMemberDetails!]!
+
+  """
+  After the event ends or at a certain specific time, the event is locked and event related details cannot be updated/deleted
+  """
+  isLocked: Boolean!
+
+  """Some notes related to the event"""
+  notes: String!
+
+  """Event start date"""
+  startDate: DateTime!
+
+  """Type of the event"""
+  type: String!
+}
+
 input CreateGroupInput {
   description: String!
   memberIds: [Int!]!
@@ -587,6 +576,66 @@ input EnumUserStatusFilter {
   notIn: [UserStatus!]
 }
 
+type Event {
+  abhisekhas: [EventAbhisekhaWithoutEvent!]!
+
+  """The child events of this event, if this event is a parent event."""
+  childEvents: [Event!]!
+
+  """Identifies the date and time when the object was created."""
+  createdAt: DateTime!
+
+  """Identifies who created the object."""
+  createdBy: String
+
+  """Event end date"""
+  endDate: DateTime!
+
+  """The event Abhisekhas for this event."""
+  eventAbhisekha: [EventAbhisekhaWithoutEvent!]!
+
+  """The event members for this event."""
+  eventMember: [EventMemberWithoutEvent!]!
+
+  """The event resources for this event."""
+  eventResource: [EventResourceWithoutEvent!]!
+  id: Int!
+
+  """Identifies the date and time when the object was last deleted."""
+  isDeleted: Boolean!
+
+  """
+  After the event ends or at a certain specific time, the event is locked and event related details cannot be updated/deleted
+  """
+  isLocked: Boolean!
+  members: [EventMemberWithoutEvent!]!
+
+  """Some notes related to the event"""
+  notes: String
+
+  """The parent event, if this event is a child event."""
+  parentEvent: Event
+
+  """The ID of the parent event, if this event is a child event."""
+  parentEventId: Int
+  resources: [EventResourceWithoutEvent!]!
+
+  """Event start date"""
+  startDate: DateTime!
+
+  """Type of the event"""
+  type: String!
+
+  """Unique key associated with the object."""
+  uniqueKey: String
+
+  """Identifies the date and time when the object was last updated."""
+  updatedAt: DateTime!
+
+  """Identifies who made the last update to the object."""
+  updatedBy: String
+}
+
 input EventAbhisekhaCreateManyAbhishekaInput {
   eventId: Int!
   type: String!
@@ -667,6 +716,20 @@ input EventAbhisekhaWhereUniqueInput {
   eventId_abhishekaId: EventAbhisekhaEventIdAbhishekaIdCompoundUniqueInput
 }
 
+type EventAbhisekhaWithoutAbhisekha {
+  abhishekaId: Int!
+  event: Event!
+  eventId: Int!
+  type: String!
+}
+
+type EventAbhisekhaWithoutEvent {
+  abhisheka: Abhisekha!
+  abhishekaId: Int!
+  eventId: Int!
+  type: String!
+}
+
 input EventCreateManyParentEventInput {
   createdAt: DateTime
   createdBy: String
@@ -674,6 +737,7 @@ input EventCreateManyParentEventInput {
   id: Int
   isDeleted: Boolean
   isLocked: Boolean!
+  notes: String
   startDate: DateTime!
   type: String!
   uniqueKey: String
@@ -751,6 +815,7 @@ input EventCreateWithoutChildEventsInput {
   eventResource: EventResourceCreateNestedManyWithoutEventInput
   isDeleted: Boolean
   isLocked: Boolean!
+  notes: String
   parentEvent: EventCreateNestedOneWithoutChildEventsInput
   startDate: DateTime!
   type: String!
@@ -768,6 +833,7 @@ input EventCreateWithoutEventAbhisekhaInput {
   eventResource: EventResourceCreateNestedManyWithoutEventInput
   isDeleted: Boolean
   isLocked: Boolean!
+  notes: String
   parentEvent: EventCreateNestedOneWithoutChildEventsInput
   startDate: DateTime!
   type: String!
@@ -785,6 +851,7 @@ input EventCreateWithoutEventMemberInput {
   eventResource: EventResourceCreateNestedManyWithoutEventInput
   isDeleted: Boolean
   isLocked: Boolean!
+  notes: String
   parentEvent: EventCreateNestedOneWithoutChildEventsInput
   startDate: DateTime!
   type: String!
@@ -802,6 +869,7 @@ input EventCreateWithoutEventResourceInput {
   eventMember: EventMemberCreateNestedManyWithoutEventInput
   isDeleted: Boolean
   isLocked: Boolean!
+  notes: String
   parentEvent: EventCreateNestedOneWithoutChildEventsInput
   startDate: DateTime!
   type: String!
@@ -820,6 +888,7 @@ input EventCreateWithoutParentEventInput {
   eventResource: EventResourceCreateNestedManyWithoutEventInput
   isDeleted: Boolean
   isLocked: Boolean!
+  notes: String
   startDate: DateTime!
   type: String!
   uniqueKey: String
@@ -891,6 +960,12 @@ input EventMemberCreateWithoutMemberInput {
   type: String!
 }
 
+input EventMemberDetails {
+  hasAttended: Boolean!
+  memberId: Int!
+  type: String!
+}
+
 input EventMemberListRelationFilter {
   every: EventMemberWhereInput
   none: EventMemberWhereInput
@@ -916,6 +991,14 @@ input EventMemberWhereInput {
 
 input EventMemberWhereUniqueInput {
   memberId_eventId: EventMemberMemberIdEventIdCompoundUniqueInput
+}
+
+type EventMemberWithoutEvent {
+  eventId: Int!
+  hasAttended: Boolean!
+  member: Member!
+  memberId: Int!
+  type: String!
 }
 
 input EventRelationFilter {
@@ -1003,6 +1086,13 @@ input EventResourceWhereUniqueInput {
   eventId_resourceId: EventResourceEventIdResourceIdCompoundUniqueInput
 }
 
+type EventResourceWithoutEvent {
+  eventId: Int!
+  resource: Resource!
+  resourceId: Int!
+  type: String!
+}
+
 input EventWhereInput {
   AND: [EventWhereInput!]
   NOT: [EventWhereInput!]
@@ -1017,6 +1107,7 @@ input EventWhereInput {
   id: IntFilter
   isDeleted: BoolFilter
   isLocked: BoolFilter
+  notes: StringFilter
   parentEvent: EventRelationFilter
   parentEventId: IntFilter
   startDate: DateTimeFilter
@@ -1057,7 +1148,7 @@ type Group {
 
   """Identifies the date and time when the object was last deleted."""
   isDeleted: Boolean!
-  members: [Member!]!
+  members: [MemberGroupWithoutGroup!]!
   name: String!
 
   """Unique key associated with the object."""
@@ -1143,7 +1234,7 @@ input LoginInput {
 }
 
 type Member {
-  abhisekhas: [AbhisekhaWithMemberAbhisekhaEntity!]!
+  abhisekhas: [MemberAbhisekhaWithoutMember!]!
   active: Boolean!
   centre: Centre
   centreId: Int
@@ -1156,9 +1247,10 @@ type Member {
   currentAddress: Address
   currentAddressId: Int
   email: String
+  events: [Event!]
   firstName: String!
   gender: Gender_Type
-  groups: [Group!]!
+  groups: [MemberGroupWithoutMember!]!
   id: Int!
   insta: String
 
@@ -1255,12 +1347,6 @@ input MemberAbhisekhaCreateWithoutMemberInput {
   type: String!
 }
 
-type MemberAbhisekhaEntity {
-  abhisekhaDate: DateTime
-  abhisekhaPlace: String
-  type: String
-}
-
 input MemberAbhisekhaListRelationFilter {
   every: MemberAbhisekhaWhereInput
   none: MemberAbhisekhaWhereInput
@@ -1287,6 +1373,24 @@ input MemberAbhisekhaWhereInput {
 
 input MemberAbhisekhaWhereUniqueInput {
   memberId_abhishekaId: MemberAbhisekhaMemberIdAbhishekaIdCompoundUniqueInput
+}
+
+type MemberAbhisekhaWithoutAbhisekha {
+  abhisekhaDate: DateTime!
+  abhisekhaPlace: String!
+  abhishekaId: Int!
+  member: Member!
+  memberId: Int!
+  type: String!
+}
+
+type MemberAbhisekhaWithoutMember {
+  abhisekhaDate: DateTime!
+  abhisekhaPlace: String!
+  abhisheka: Abhisekha!
+  abhishekaId: Int!
+  memberId: Int!
+  type: String!
 }
 
 input MemberCreateManyAddressInput {
@@ -1384,13 +1488,13 @@ input MemberCreateOrConnectWithoutPermanentAddressInput {
 }
 
 input MemberCreateWithoutAddressInput {
-  EventMember: EventMemberCreateNestedManyWithoutMemberInput
   active: Boolean
   centre: CentreCreateNestedOneWithoutMembersInput
   createdAt: DateTime
   createdBy: String
   currentAddress: AddressCreateNestedOneWithoutMemberCurrentAddressInput
   email: String
+  eventMember: EventMemberCreateNestedManyWithoutMemberInput
   firstName: String!
   gender: GenderType
   insta: String
@@ -1420,13 +1524,13 @@ input MemberCreateWithoutAddressInput {
 }
 
 input MemberCreateWithoutCurrentAddressInput {
-  EventMember: EventMemberCreateNestedManyWithoutMemberInput
   active: Boolean
   address: AddressCreateNestedOneWithoutMembersInput
   centre: CentreCreateNestedOneWithoutMembersInput
   createdAt: DateTime
   createdBy: String
   email: String
+  eventMember: EventMemberCreateNestedManyWithoutMemberInput
   firstName: String!
   gender: GenderType
   insta: String
@@ -1492,7 +1596,6 @@ input MemberCreateWithoutEventMemberInput {
 }
 
 input MemberCreateWithoutMemberAbhisekhaInput {
-  EventMember: EventMemberCreateNestedManyWithoutMemberInput
   active: Boolean
   address: AddressCreateNestedOneWithoutMembersInput
   centre: CentreCreateNestedOneWithoutMembersInput
@@ -1500,6 +1603,7 @@ input MemberCreateWithoutMemberAbhisekhaInput {
   createdBy: String
   currentAddress: AddressCreateNestedOneWithoutMemberCurrentAddressInput
   email: String
+  eventMember: EventMemberCreateNestedManyWithoutMemberInput
   firstName: String!
   gender: GenderType
   insta: String
@@ -1528,7 +1632,6 @@ input MemberCreateWithoutMemberAbhisekhaInput {
 }
 
 input MemberCreateWithoutPermanentAddressInput {
-  EventMember: EventMemberCreateNestedManyWithoutMemberInput
   active: Boolean
   address: AddressCreateNestedOneWithoutMembersInput
   centre: CentreCreateNestedOneWithoutMembersInput
@@ -1536,6 +1639,7 @@ input MemberCreateWithoutPermanentAddressInput {
   createdBy: String
   currentAddress: AddressCreateNestedOneWithoutMemberCurrentAddressInput
   email: String
+  eventMember: EventMemberCreateNestedManyWithoutMemberInput
   firstName: String!
   gender: GenderType
   insta: String
@@ -1619,6 +1723,22 @@ input MemberGroupWhereUniqueInput {
   memberId_groupId: MemberGroupMemberIdGroupIdCompoundUniqueInput
 }
 
+type MemberGroupWithoutGroup {
+  createdAt: DateTime!
+  createdBy: String
+  groupId: Int!
+  member: Member!
+  memberId: Int!
+}
+
+type MemberGroupWithoutMember {
+  createdAt: DateTime!
+  createdBy: String
+  group: Group!
+  groupId: Int!
+  memberId: Int!
+}
+
 input MemberListRelationFilter {
   every: MemberWhereInput
   none: MemberWhereInput
@@ -1632,7 +1752,6 @@ input MemberRelationFilter {
 
 input MemberWhereInput {
   AND: [MemberWhereInput!]
-  EventMember: EventMemberListRelationFilter
   NOT: [MemberWhereInput!]
   OR: [MemberWhereInput!]
   active: BoolFilter
@@ -1645,6 +1764,7 @@ input MemberWhereInput {
   currentAddress: AddressRelationFilter
   currentAddressId: IntFilter
   email: StringFilter
+  eventMember: EventMemberListRelationFilter
   firstName: StringFilter
   gender: EnumGenderTypeFilter
   id: IntFilter
@@ -1682,58 +1802,6 @@ input MemberWhereUniqueInput {
   uniqueKey: String
 }
 
-type MemberWithMemberAbhisekhaEntity {
-  abhisekhas: [AbhisekhaWithMemberAbhisekhaEntity!]!
-  active: Boolean!
-  centre: Centre
-  centreId: Int
-
-  """Identifies the date and time when the object was created."""
-  createdAt: DateTime!
-
-  """Identifies who created the object."""
-  createdBy: String
-  currentAddress: Address
-  currentAddressId: Int
-  email: String
-  firstName: String!
-  gender: Gender_Type
-  groups: [Group!]!
-  id: Int!
-  insta: String
-
-  """Identifies the date and time when the object was last deleted."""
-  isDeleted: Boolean!
-  isMember: Boolean!
-  lastName: String!
-  memberAbhisekha: MemberAbhisekhaEntity
-  membershipType: Membership_Type
-  messenger: String
-  middleName: String
-  notes: String
-  permanentAddress: Address
-  permanentAddressId: Int
-  phoneLand: String
-  phoneMobile: String
-  phoneOther: String
-  photo: String
-  refugeName: String
-  sanghaJoinDate: DateTime
-  title: String
-
-  """Unique key associated with the object."""
-  uniqueKey: String
-
-  """Identifies the date and time when the object was last updated."""
-  updatedAt: DateTime!
-
-  """Identifies who made the last update to the object."""
-  updatedBy: String
-  user: User
-  viber: String
-  yearOfBirth: String
-}
-
 enum MembershipType {
   BoardMember
   GeneralMember
@@ -1753,6 +1821,7 @@ type Mutation {
   changePassword(data: ChangePasswordInput!): User!
   createAbhisekha(createAbhisekhaInput: CreateAbhisekhaInput!): Abhisekha!
   createCentre(createAddressInput: AddressCreateInput!): Address!
+  createEvent(createEventInput: CreateEventInput!): Event!
   createGroup(createGroupInput: CreateGroupInput!): Group!
   createMember(createMemberInput: CreateMemberInput!): Member!
   createRole(createRoleInput: CreateRoleInput!): Role!
@@ -1763,6 +1832,7 @@ type Mutation {
   removeAbhisekha(id: Int!): Abhisekha!
   removeAddress(id: Int!): Address!
   removeCentre(id: Int!): Centre!
+  removeEvent(id: Int!): Event!
   removeGroup(id: Int!): Group!
   removeMember(id: Int!): Member!
   removeRole(id: Int!): Role!
@@ -1772,6 +1842,7 @@ type Mutation {
   updateAbhisekha(updateAbhisekhaInput: UpdateAbhisekhaInput!): Abhisekha!
   updateAddress(updateAddressInput: UpdateAddressInput!): Address!
   updateCentre(updateCentreInput: UpdateCentreInput!): Centre!
+  updateEvent(updateEventInput: UpdateEventInput!): Event!
   updateGroup(updateGroupInput: UpdateGroupInput!): Group!
   updateMember(updateMemberInput: UpdateMemberInput!): Member!
   updateRole(updateRoleInput: UpdateRoleInput!): Role!
@@ -1871,6 +1942,7 @@ type Query {
   addresses: [Address!]!
   centre(id: Int!): Centre!
   centres: [Centre!]!
+  event(id: Int!): Event!
   group(id: Int!): Group!
   groups: [Group!]!
   hello(name: String!): String!
@@ -1892,6 +1964,39 @@ input ResetPasswordInput {
   password: String!
   token: String!
   userId: Int!
+}
+
+type Resource {
+  """Identifies the date and time when the object was created."""
+  createdAt: DateTime!
+
+  """Identifies who created the object."""
+  createdBy: String
+
+  """Description of the resource"""
+  description: String!
+  id: Int!
+
+  """Identifies the date and time when the object was last deleted."""
+  isDeleted: Boolean!
+
+  """Name of the resource"""
+  name: String!
+
+  """Type of the resource"""
+  type: String!
+
+  """Unique key associated with the object."""
+  uniqueKey: String
+
+  """Identifies the date and time when the object was last updated."""
+  updatedAt: DateTime!
+
+  """Identifies who made the last update to the object."""
+  updatedBy: String
+
+  """Url containing the resource data"""
+  url: String!
 }
 
 input ResourceCreateNestedOneWithoutAbhisekhaResourceInput {
@@ -2097,7 +2202,7 @@ enum Type {
 
 input UpdateAbhisekhaInput {
   """AbhisekhaMember details"""
-  abhisekhaMembers: [AbhisekhaMemberDetails!]!
+  abhisekhaMemberDetails: [AbhisekhaMemberDetails!]
 
   """Name of the abhisekha"""
   description: String
@@ -2105,6 +2210,9 @@ input UpdateAbhisekhaInput {
 
   """Name of the abhisekha"""
   name: String
+
+  """Relevant resources for the abhisekha"""
+  resourceIds: [Int!]
 
   """Name of the abhisekha"""
   teacher: String
@@ -2127,6 +2235,47 @@ input UpdateCentreInput {
   name: String
   stateProvince: String
   streetAddress: String
+}
+
+input UpdateEventInput {
+  """Identifies the date and time when the object was created."""
+  createdAt: DateTime
+
+  """Identifies who created the object."""
+  createdBy: String
+
+  """Event end date"""
+  endDate: DateTime
+
+  """Details of members attending the event"""
+  eventMemberDetails: [EventMemberDetails!]
+  id: Int!
+
+  """Identifies the date and time when the object was last deleted."""
+  isDeleted: Boolean
+
+  """
+  After the event ends or at a certain specific time, the event is locked and event related details cannot be updated/deleted
+  """
+  isLocked: Boolean
+
+  """Some notes related to the event"""
+  notes: String
+
+  """Event start date"""
+  startDate: DateTime
+
+  """Type of the event"""
+  type: String
+
+  """Unique key associated with the object."""
+  uniqueKey: String
+
+  """Identifies the date and time when the object was last updated."""
+  updatedAt: DateTime
+
+  """Identifies who made the last update to the object."""
+  updatedBy: String
 }
 
 input UpdateGroupInput {
