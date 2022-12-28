@@ -29,7 +29,7 @@ export class Event extends SoftDeleteBaseModel {
   })
   type: string;
 
-  @Field((type) => Event, {
+  @Field(() => Event, {
     description: "The parent event, if this event is a child event.",
     nullable: true
   })
@@ -41,7 +41,7 @@ export class Event extends SoftDeleteBaseModel {
   })
   parentEventId?: number;
 
-  @Field((type) => [Event], {
+  @Field(() => [Event], {
     description:
       "The child events of this event, if this event is a parent event."
   })

@@ -96,7 +96,10 @@ export class MembersResolver {
         }
       }
     });
-    if (!memberGroupRelation) return null;
+
+    if (!memberGroupRelation) {
+      return null;
+    }
     return memberGroupRelation.memberGroup;
   }
 
@@ -117,6 +120,7 @@ export class MembersResolver {
     if (!memberAbhisekhaRelation) {
       return null;
     }
+
     return memberAbhisekhaRelation.memberAbhisekha;
   }
 

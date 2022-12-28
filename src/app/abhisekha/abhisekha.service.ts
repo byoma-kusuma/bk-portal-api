@@ -12,8 +12,8 @@ export class AbhisekhaService {
 
   /**
    * @param  {CreateAbhisekhaInput} createAbhisekhaInput
-   * This function can create data in:
-   * 1) Abhisekha Table
+   * Modifies data in following tables:
+   * 1) Abhisekha (create)
    */
   create(createAbhisekhaInput: CreateAbhisekhaInput) {
     return this.prismaService.abhisekha.create({
@@ -40,10 +40,10 @@ export class AbhisekhaService {
   /**
    * @param  {number} id
    * @param  {UpdateAbhisekhaInput} updateAbhisekhaInput
-   * This function can update:
-   * 1) Abhisekha Table
-   * 2) AbhisekhaResource Table
-   * 3) MemberAbhisekha Table
+   * Modifies data in following tables:
+   * 1) Abhisekha (update)
+   * 2) AbhisekhaResource (create, update, delete)
+   * 3) MemberAbhisekha (create, update, delete)
    */
   async update(id: number, updateAbhisekhaInput: UpdateAbhisekhaInput) {
     const { abhisekhaMemberDetails, resourceIds, ...updateAbhisekhaArgs } =
@@ -52,15 +52,8 @@ export class AbhisekhaService {
     const abhisekha = await this.prismaService.abhisekha.update({
       where: { id },
       data: {
-        /*
-          - arguments passed in to update the root abhisekha table
-        */
         ...updateAbhisekhaArgs,
-        /*
-          - arguments to update the resources connected to the abhisekha
-          - update only if resourceIds is received
-         */
-        ...(Array.isArray(resourceIds)
+        ...(resourceIds
           ? {
               abhisekhaResource: {
                 upsert: resourceIds.map((resourceId) => ({
@@ -88,11 +81,7 @@ export class AbhisekhaService {
               }
             }
           : {}),
-        /*
-          - arguments to update the members (memberAbhisekha) table rows associated with the abhisekha
-          - update only if abhisekhaMemberDetails is received
-         */
-        ...(Array.isArray(abhisekhaMemberDetails)
+        ...(abhisekhaMemberDetails
           ? {
               memberAbhisekha: {
                 upsert: abhisekhaMemberDetails.map(
