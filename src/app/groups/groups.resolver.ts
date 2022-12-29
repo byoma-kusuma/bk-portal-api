@@ -17,7 +17,7 @@ import { MemberGroupWithoutGroup } from "../memberGroup/memberGroup.entity";
 import { ClassProperties } from "src/common/utils/extractClass";
 
 @Resolver(() => Group)
-@UseGuards(GqlAuthGuard)
+// @UseGuards(GqlAuthGuard)
 export class GroupsResolver {
   constructor(private readonly groupsService: GroupsService) {}
 
@@ -47,7 +47,7 @@ export class GroupsResolver {
   }
 
   @ResolveField(() => [MemberGroupWithoutGroup])
-  async members(@Parent() group: Group) {
+  async groupMembers(@Parent() group: Group) {
     const groupMemberRelation = await this.groupsService.findUnique({
       where: { id: group.id },
       select: {
@@ -58,9 +58,13 @@ export class GroupsResolver {
               isDeleted: false
             }
           },
-          select: ClassProperties.extractPrismaSelectFields(
-            MemberGroupWithoutGroup
-          )
+          select: {
+            member: true,
+            memberId: true,
+            groupId: true,
+            createdAt: true,
+            createdBy: true
+          }
         }
       }
     });

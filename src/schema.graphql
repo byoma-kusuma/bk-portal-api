@@ -3,6 +3,10 @@
 # ------------------------------------------------------
 
 type Abhisekha {
+  abhisekhaEvents: [EventAbhisekhaWithoutAbhisekha!]!
+  abhisekhaMembers: [MemberAbhisekhaWithoutAbhisekha!]!
+  abhisekhaResources: [AbhisekhaResourceWithoutAbhisekha!]!
+
   """Identifies the date and time when the object was created."""
   createdAt: DateTime!
 
@@ -11,12 +15,10 @@ type Abhisekha {
 
   """Name of the abhisekha"""
   description: String!
-  events: [EventAbhisekhaWithoutAbhisekha!]!
   id: Int!
 
   """Identifies the date and time when the object was last deleted."""
   isDeleted: Boolean!
-  members: [MemberAbhisekhaWithoutAbhisekha!]!
 
   """Name of the abhisekha"""
   name: String!
@@ -204,6 +206,12 @@ input AbhisekhaResourceWhereInput {
 
 input AbhisekhaResourceWhereUniqueInput {
   abhishekaId_resourceId: AbhisekhaResourceAbhishekaIdResourceIdCompoundUniqueInput
+}
+
+type AbhisekhaResourceWithoutAbhisekha {
+  abhishekaId: Int!
+  resource: Resource!
+  resourceId: Int!
 }
 
 type AbhisekhaResourceWithoutResource {
@@ -498,7 +506,7 @@ input CreateEventInput {
 
 input CreateGroupInput {
   description: String!
-  memberIds: [Int!]!
+  memberIds: [Int!]
   name: String!
   visible: Boolean!
 }
@@ -514,6 +522,7 @@ input CreateMemberInput {
   insta: String
   isMember: Boolean!
   lastName: String!
+  memberAbhisekhaDetails: [MemberAbhisekhaDetails!]
   membershipType: String
   messenger: String
   middleName: String
@@ -588,8 +597,6 @@ input EnumUserStatusFilter {
 }
 
 type Event {
-  abhisekhas: [EventAbhisekhaWithoutEvent!]!
-
   """The child events of this event, if this event is a parent event."""
   childEvents: [Event!]!
 
@@ -604,12 +611,15 @@ type Event {
 
   """The event Abhisekhas for this event."""
   eventAbhisekha: [EventAbhisekhaWithoutEvent!]!
+  eventAbhisekhas: [EventAbhisekhaWithoutEvent!]!
 
   """The event members for this event."""
   eventMember: [EventMemberWithoutEvent!]!
+  eventMembers: [EventMemberWithoutEvent!]!
 
   """The event resources for this event."""
   eventResource: [EventResourceWithoutEvent!]!
+  eventResources: [EventResourceWithoutEvent!]!
   id: Int!
 
   """Identifies the date and time when the object was last deleted."""
@@ -619,7 +629,6 @@ type Event {
   After the event ends or at a certain specific time, the event is locked and event related details cannot be updated/deleted
   """
   isLocked: Boolean!
-  members: [EventMemberWithoutEvent!]!
 
   """Some notes related to the event"""
   notes: String
@@ -629,7 +638,6 @@ type Event {
 
   """The ID of the parent event, if this event is a child event."""
   parentEventId: Int
-  resources: [EventResourceWithoutEvent!]!
 
   """Event start date"""
   startDate: DateTime!
@@ -1012,6 +1020,14 @@ type EventMemberWithoutEvent {
   type: String!
 }
 
+type EventMemberWithoutMember {
+  event: Event!
+  eventId: Int!
+  hasAttended: Boolean!
+  memberId: Int!
+  type: String!
+}
+
 input EventRelationFilter {
   is: EventWhereInput
   isNot: EventWhereInput
@@ -1162,11 +1178,11 @@ type Group {
   """Identifies who created the object."""
   createdBy: String
   description: String!
+  groupMembers: [MemberGroupWithoutGroup!]!
   id: Int!
 
   """Identifies the date and time when the object was last deleted."""
   isDeleted: Boolean!
-  members: [MemberGroupWithoutGroup!]!
   name: String!
 
   """Unique key associated with the object."""
@@ -1252,7 +1268,6 @@ input LoginInput {
 }
 
 type Member {
-  abhisekhas: [MemberAbhisekhaWithoutMember!]!
   active: Boolean!
   centre: Centre
   centreId: Int
@@ -1268,7 +1283,6 @@ type Member {
   events: [Event!]
   firstName: String!
   gender: Gender_Type
-  groups: [MemberGroupWithoutMember!]!
   id: Int!
   insta: String
 
@@ -1276,6 +1290,9 @@ type Member {
   isDeleted: Boolean!
   isMember: Boolean!
   lastName: String!
+  memberAbhisekhas: [MemberAbhisekhaWithoutMember!]!
+  memberEvents: [EventMemberWithoutMember!]!
+  memberGroups: [MemberGroupWithoutMember!]!
   membershipType: Membership_Type
   messenger: String
   middleName: String
@@ -1362,6 +1379,20 @@ input MemberAbhisekhaCreateWithoutMemberInput {
   abhisekhaDate: DateTime!
   abhisekhaPlace: String!
   abhisheka: AbhisekhaCreateNestedOneWithoutMemberAbhisekhaInput!
+  type: String!
+}
+
+input MemberAbhisekhaDetails {
+  """Date of abhisekha"""
+  abhisekhaDate: String!
+
+  """Id of member who attended the abhisekha"""
+  abhisekhaId: Int!
+
+  """Place of abhisekha"""
+  abhisekhaPlace: String!
+
+  """Member attending the Abhisekha type eg: Peripheral"""
   type: String!
 }
 
@@ -1745,7 +1776,7 @@ type MemberGroupWithoutGroup {
   createdAt: DateTime!
   createdBy: String
   groupId: Int!
-  member: Member!
+  member: Member
   memberId: Int!
 }
 
@@ -1989,8 +2020,6 @@ input ResetPasswordInput {
 }
 
 type Resource {
-  abhisekhas: [AbhisekhaResourceWithoutResource!]!
-
   """Identifies the date and time when the object was created."""
   createdAt: DateTime!
 
@@ -1999,7 +2028,6 @@ type Resource {
 
   """Description of the resource"""
   description: String!
-  events: [EventResourceWithoutResource!]!
   id: Int!
 
   """Identifies the date and time when the object was last deleted."""
@@ -2007,6 +2035,8 @@ type Resource {
 
   """Name of the resource"""
   name: String!
+  resourceAbhisekhas: [AbhisekhaResourceWithoutResource!]!
+  resourceEvents: [EventResourceWithoutResource!]!
 
   """Type of the resource"""
   type: String!
@@ -2304,26 +2334,27 @@ input UpdateEventInput {
 }
 
 input UpdateGroupInput {
-  description: String!
+  description: String
   id: Int!
-  memberIds: [Int!]!
-  name: String!
-  visible: Boolean!
+  memberIds: [Int!]
+  name: String
+  visible: Boolean
 }
 
 input UpdateMemberInput {
-  active: Boolean!
+  active: Boolean
   centreId: Int
   currentAddressId: Int
   email: String
-  firstName: String!
-  gender: Gender_Type
+  firstName: String
+  gender: String
   groupIds: [Int!]
   id: Int!
   insta: String
-  isMember: Boolean!
-  lastName: String!
-  membershipType: Membership_Type
+  isMember: Boolean
+  lastName: String
+  memberAbhisekhaDetails: [MemberAbhisekhaDetails!]
+  membershipType: String
   messenger: String
   middleName: String
   note: String

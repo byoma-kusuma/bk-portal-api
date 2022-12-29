@@ -21,7 +21,15 @@ import ResponseStatus from "../../common/ResponseClasses/ResponseStatus";
 import { MemberAbhisekhaWithoutMember } from "../memberAbhisekha/memberAbhisekha.entity";
 import { ClassProperties } from "../../common/utils/extractClass";
 import { EventMemberWithoutMember } from "../eventMember/eventMember.entity";
-import { MemberGroupWithoutMember } from "../memberGroup/memberGroup.entity";
+import {
+  MemberGroupWithoutMember,
+  Test
+} from "../memberGroup/memberGroup.entity";
+import {
+  getFromContainer,
+  getMetadataStorage,
+  MetadataStorage
+} from "class-validator";
 
 @Resolver(() => Member)
 // @UseGuards(GqlAuthGuard)
@@ -84,15 +92,24 @@ export class MembersResolver {
   }
 
   @ResolveField(() => [MemberGroupWithoutMember])
-  async groups(@Parent() member: Member) {
+  async memberGroups(@Parent() member: Member) {
     const memberGroupRelation = await this.membersService.findUnique({
       where: { id: member.id },
       select: {
         id: true,
         memberGroup: {
-          select: ClassProperties.extractPrismaSelectFields(
-            MemberAbhisekhaWithoutMember
-          )
+          where: {
+            group: {
+              isDeleted: false
+            }
+          },
+          select: {
+            memberId: true,
+            groupId: true,
+            createdAt: true,
+            createdBy: true,
+            group: true
+          }
         }
       }
     });
@@ -104,15 +121,25 @@ export class MembersResolver {
   }
 
   @ResolveField(() => [MemberAbhisekhaWithoutMember])
-  async abhisekhas(@Parent() member: Member) {
+  async memberAbhisekhas(@Parent() member: Member) {
     const memberAbhisekhaRelation = await this.membersService.findUnique({
       where: { id: member.id },
       select: {
         id: true,
         memberAbhisekha: {
-          select: ClassProperties.extractPrismaSelectFields(
-            MemberAbhisekhaWithoutMember
-          )
+          where: {
+            abhisheka: {
+              isDeleted: false
+            }
+          },
+          select: {
+            abhisekhaDate: true,
+            abhisekhaPlace: true,
+            abhisheka: true,
+            type: true,
+            memberId: true,
+            abhishekaId: true
+          }
         }
       }
     });
@@ -125,16 +152,26 @@ export class MembersResolver {
   }
 
   @ResolveField(() => [EventMemberWithoutMember])
-  async events(@Parent() member: Member) {
+  async memberEvents(@Parent() member: Member) {
     const memberEventRelation = await this.membersService.findUnique({
       where: {
         id: member.id
       },
       select: {
         id: true,
-        eventMember: ClassProperties.extractPrismaSelectFields(
-          EventMemberWithoutMember
-        )
+        eventMember: {
+          where: {
+            event: {
+              isDeleted: false
+            }
+          },
+          select: {
+            event: true,
+            eventId: true,
+            memberId: true,
+            hasAttended: true
+          }
+        }
       }
     });
 

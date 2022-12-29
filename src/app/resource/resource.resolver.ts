@@ -52,16 +52,26 @@ export class ResourceResolver {
   }
 
   @ResolveField(() => [EventResourceWithoutResource])
-  async events(@Parent() resource: Resource) {
+  async resourceEvents(@Parent() resource: Resource) {
     const memberEventRelation = await this.resourceService.findUnique({
       where: {
         id: resource.id
       },
       select: {
         id: true,
-        eventResource: ClassProperties.extractPrismaSelectFields(
-          EventResourceWithoutResource
-        )
+        eventResource: {
+          where: {
+            event: {
+              isDeleted: false
+            }
+          },
+          select: {
+            event: true,
+            eventId: true,
+            resourceId: true,
+            type: true
+          }
+        }
       }
     });
 
@@ -73,16 +83,25 @@ export class ResourceResolver {
   }
 
   @ResolveField(() => [AbhisekhaResourceWithoutResource])
-  async abhisekhas(@Parent() resource: Resource) {
+  async resourceAbhisekhas(@Parent() resource: Resource) {
     const memberEventRelation = await this.resourceService.findUnique({
       where: {
         id: resource.id
       },
       select: {
         id: true,
-        abhisekhaResource: ClassProperties.extractPrismaSelectFields(
-          AbhisekhaResourceWithoutResource
-        )
+        abhisekhaResource: {
+          where: {
+            abhisheka: {
+              isDeleted: true
+            }
+          },
+          select: {
+            abhisheka: true,
+            abhishekaId: true,
+            resourceId: true
+          }
+        }
       }
     });
 

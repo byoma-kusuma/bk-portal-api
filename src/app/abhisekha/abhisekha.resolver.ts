@@ -14,7 +14,6 @@ import { UpdateAbhisekhaInput } from "./dto/update-abhisekha.input";
 import { MemberAbhisekhaWithoutAbhisekha } from "../memberAbhisekha/memberAbhisekha.entity";
 import { EventAbhisekhaWithoutAbhisekha } from "../eventAbhisekha/eventAbhisekha.entity";
 import { AbhisekhaResourceWithoutAbhisekha } from "../abhisekhaResource/abhisekhaResource.entity";
-import { ClassProperties } from "../../common/utils/extractClass";
 
 @Resolver(() => Abhisekha)
 export class AbhisekhaResolver {
@@ -52,7 +51,7 @@ export class AbhisekhaResolver {
   }
 
   @ResolveField(() => [MemberAbhisekhaWithoutAbhisekha])
-  async members(@Parent() abhisekha: Abhisekha) {
+  async abhisekhaMembers(@Parent() abhisekha: Abhisekha) {
     const abhisekhaMemberRelation = await this.abhisekhaService.findUnique({
       where: { id: abhisekha.id },
       select: {
@@ -63,9 +62,14 @@ export class AbhisekhaResolver {
               isDeleted: false
             }
           },
-          select: ClassProperties.extractPrismaSelectFields(
-            MemberAbhisekhaWithoutAbhisekha
-          )
+          select: {
+            member: true,
+            abhisekhaDate: true,
+            abhisekhaPlace: true,
+            abhishekaId: true,
+            memberId: true,
+            type: true
+          }
         }
       }
     });
@@ -78,7 +82,7 @@ export class AbhisekhaResolver {
   }
 
   @ResolveField(() => [AbhisekhaResourceWithoutAbhisekha])
-  async resources(@Parent() abhisekha: Abhisekha) {
+  async abhisekhaResources(@Parent() abhisekha: Abhisekha) {
     const abhisekhaResourceRelation = await this.abhisekhaService.findUnique({
       where: {
         id: abhisekha.id
@@ -91,9 +95,11 @@ export class AbhisekhaResolver {
               isDeleted: false
             }
           },
-          select: ClassProperties.extractPrismaSelectFields(
-            AbhisekhaResourceWithoutAbhisekha
-          )
+          select: {
+            resource: true,
+            resourceId: true,
+            abhishekaId: true
+          }
         }
       }
     });
@@ -106,7 +112,7 @@ export class AbhisekhaResolver {
   }
 
   @ResolveField(() => [EventAbhisekhaWithoutAbhisekha])
-  async events(@Parent() abhisekha: Abhisekha) {
+  async abhisekhaEvents(@Parent() abhisekha: Abhisekha) {
     const abhisekhaEventRelation = await this.abhisekhaService.findUnique({
       where: { id: abhisekha.id },
       select: {
@@ -116,9 +122,12 @@ export class AbhisekhaResolver {
               isDeleted: false
             }
           },
-          select: ClassProperties.extractPrismaSelectFields(
-            EventAbhisekhaWithoutAbhisekha
-          )
+          select: {
+            event: true,
+            eventId: true,
+            abhishekaId: true,
+            type: true
+          }
         }
       }
     });
