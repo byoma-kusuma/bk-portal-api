@@ -12,7 +12,6 @@ import { Event } from "./entities/event.entity";
 import { CreateEventInput } from "./dto/create-event.input";
 import { UpdateEventInput } from "./dto/update-event.input";
 import { EventMemberWithoutEvent } from "../eventMember/eventMember.entity";
-import { ClassProperties } from "../../common/utils/extractClass";
 import { EventAbhisekhaWithoutEvent } from "../eventAbhisekha/eventAbhisekha.entity";
 import { EventResourceWithoutEvent } from "../eventResource/eventResource.entity";
 
@@ -46,7 +45,7 @@ export class EventResolver {
   }
 
   @ResolveField(() => [EventMemberWithoutEvent])
-  async members(@Parent() event: Event) {
+  async eventMembers(@Parent() event: Event) {
     const eventMemberRelation = await this.eventService.findUnique({
       where: { id: event.id },
       select: {
@@ -57,9 +56,12 @@ export class EventResolver {
               isDeleted: false
             }
           },
-          select: ClassProperties.extractPrismaSelectFields(
-            EventMemberWithoutEvent
-          )
+          select: {
+            member: true,
+            memberId: true,
+            eventId: true,
+            hasAttended: true
+          }
         }
       }
     });
@@ -72,7 +74,7 @@ export class EventResolver {
   }
 
   @ResolveField(() => [EventAbhisekhaWithoutEvent])
-  async abhisekhas(@Parent() event: Event) {
+  async eventAbhisekhas(@Parent() event: Event) {
     const eventAbhisekhaRelation = await this.eventService.findUnique({
       where: { id: event.id },
       select: {
@@ -83,9 +85,11 @@ export class EventResolver {
               isDeleted: false
             }
           },
-          select: ClassProperties.extractPrismaSelectFields(
-            EventAbhisekhaWithoutEvent
-          )
+          select: {
+            abhisheka: true,
+            abhishekaId: true,
+            eventId: true
+          }
         }
       }
     });
@@ -98,7 +102,7 @@ export class EventResolver {
   }
 
   @ResolveField(() => [EventResourceWithoutEvent])
-  async resources(@Parent() event: Event) {
+  async eventResources(@Parent() event: Event) {
     const eventResourceRelation = await this.eventService.findUnique({
       where: { id: event.id },
       select: {
@@ -109,9 +113,11 @@ export class EventResolver {
               isDeleted: false
             }
           },
-          select: ClassProperties.extractPrismaSelectFields(
-            EventResourceWithoutEvent
-          )
+          select: {
+            resource: true,
+            resourceId: true,
+            eventId: true
+          }
         }
       }
     });

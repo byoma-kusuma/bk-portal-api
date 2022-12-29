@@ -4,6 +4,11 @@ import { Int } from "@nestjs/graphql";
 import { Group } from "../groups/entities/group.entity";
 import { Member } from "../member/entities/member.entity";
 
+export class Test {
+  @Field()
+  amogh: string;
+}
+
 @ObjectType()
 export class MemberGroupWithoutMember {
   @Field(() => Date, { nullable: false })
@@ -30,7 +35,7 @@ export class MemberGroupWithoutGroup {
   @Field(() => String, { nullable: true })
   createdBy!: string | null;
 
-  @Field(() => Member, { nullable: false })
+  @Field(() => Member, { nullable: true })
   member?: Member;
 
   @Field(() => Int, { nullable: false })

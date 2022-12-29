@@ -1,5 +1,6 @@
 import { ObjectType, Field, Int } from "@nestjs/graphql";
 import { Member } from "../member/entities/member.entity";
+import { Event } from "../event/entities/event.entity";
 
 @ObjectType()
 export class EventMemberWithoutEvent {
