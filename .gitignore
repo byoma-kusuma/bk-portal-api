@@ -2,8 +2,14 @@ node_modules/
 dist/
 prisma/*.db
 coverage/
+test-report.xml
+schema.dbml
 
 .DS_Store
 
+**/@generated/
+src/@generated/
+
 .env
 .env.encoded*
+.env.*

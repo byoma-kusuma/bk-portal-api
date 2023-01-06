@@ -25,6 +25,10 @@ const config: Config = {
     expiresIn: process.env.NODE_ENV === "development" ? "12h" : "15m",
     refreshIn: "1d",
     bcryptSaltOrRound: 10
+  },
+  email: {
+    from: process.env.EMAIL_USER ?? "",
+    connectionString: process.env.CONNECTION_STRING ?? ""
   }
 };
 
