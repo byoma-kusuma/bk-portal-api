@@ -1,7 +1,7 @@
 import { PrismaModule } from "nestjs-prisma";
 
 import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
-import { CacheModule, Module } from "@nestjs/common";
+import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { GraphQLModule } from "@nestjs/graphql";
 
@@ -14,19 +14,20 @@ import { GqlConfigService } from "../gql-config.service";
 import { RolesModule } from "../app/roles/roles.module";
 import { UsersModule } from "../app/users/users.module";
 import { MembersModule } from "../app/members/members.module";
-import { ThrottlerModule } from "@nestjs/throttler";
+// import { ThrottlerModule } from "@nestjs/throttler";
 import { PasswordTokenModule } from "./password-token/password-token.module";
 import { EmailModule } from "./email/email.module";
 import { CentreModule } from "./centre/centre.module";
 import { GroupsModule } from "./groups/groups.module";
+import { AddressesModule } from "./addresses/addresses.module";
 
 @Module({
   imports: [
-    CacheModule.register(),
-    ThrottlerModule.forRoot({
-      ttl: 20,
-      limit: 20
-    }),
+    // CacheModule.register(),
+    // ThrottlerModule.forRoot({
+    //   ttl: 20,
+    //   limit: 20
+    // }),
     ConfigModule.forRoot({ isGlobal: true, load: [config] }),
     PrismaModule.forRootAsync({
       isGlobal: true,
@@ -49,7 +50,8 @@ import { GroupsModule } from "./groups/groups.module";
     EmailModule,
     MembersModule,
     CentreModule,
-    GroupsModule
+    GroupsModule,
+    AddressesModule
   ],
   controllers: [AppController],
   providers: [AppService, AppResolver]

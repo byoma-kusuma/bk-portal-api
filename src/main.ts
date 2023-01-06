@@ -1,6 +1,7 @@
 import { ValidationPipe } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { NestFactory } from "@nestjs/core";
+import { NestExpressApplication } from "@nestjs/platform-express";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import { PrismaService } from "nestjs-prisma";
 import { AppModule } from "./app/app.module";
@@ -12,8 +13,9 @@ import type {
 } from "./common/configs/config.interface";
 import { HttpExceptionFilter } from "./common/exceptions/HttpExceptionFilter";
 
-async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+export default async function bootstrap() {
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  app.set("trust proxy", true);
 
   // Validation
   app.useGlobalPipes(new ValidationPipe());
@@ -55,5 +57,7 @@ async function bootstrap() {
   }
 
   await app.listen(nestConfig?.port || 7200);
+  return app;
 }
+
 bootstrap();

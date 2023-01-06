@@ -73,7 +73,6 @@ async function main() {
       lastName: "Simpson",
       email: "lisa@simpson.com",
       isMember: true,
-      centerAffiliation: "Nepal",
       photo: createAvatar(),
       centreId: nepalCentre.id,
       user: {
@@ -99,7 +98,6 @@ async function main() {
       lastName: "Simpson",
       email: "bart@simpson.com",
       isMember: true,
-      centerAffiliation: "Nepal",
       photo: createAvatar(),
       centreId: ukCentre.id,
       user: {

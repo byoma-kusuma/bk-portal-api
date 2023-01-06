@@ -15,5 +15,6 @@
   "testEnvironment": "node",
   "collectCoverageFrom": ["**/*.(t|j)s"],
   "collectCoverage": true,
-  "modulePathIgnorePatterns": ["@generated"]
+  "modulePathIgnorePatterns": ["@generated"],
+  "testResultsProcessor": "jest-sonar-reporter"
 }
