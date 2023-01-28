@@ -7,6 +7,7 @@ import { GenderType } from '../prisma/gender-type.enum';
 import { User } from '../user/user.model';
 import { MemberGroup } from '../member-group/member-group.model';
 import { MemberAbhisekha } from '../member-abhisekha/member-abhisekha.model';
+import { MemberResource } from '../member-resource/member-resource.model';
 import { EventMember } from '../event-member/event-member.model';
 import { Centre } from '../centre/centre.model';
 import { Address } from '../address/address.model';
@@ -104,6 +105,9 @@ export class Member {
 
     @Field(() => [MemberAbhisekha], {nullable:true})
     memberAbhisekha?: Array<MemberAbhisekha>;
+
+    @Field(() => [MemberResource], {nullable:true})
+    memberResource?: Array<MemberResource>;
 
     @Field(() => [EventMember], {nullable:true})
     eventMember?: Array<EventMember>;

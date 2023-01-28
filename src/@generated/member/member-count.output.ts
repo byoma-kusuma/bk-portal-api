@@ -12,5 +12,8 @@ export class MemberCount {
     memberAbhisekha?: number;
 
     @Field(() => Int, {nullable:false})
+    memberResource?: number;
+
+    @Field(() => Int, {nullable:false})
     eventMember?: number;
 }

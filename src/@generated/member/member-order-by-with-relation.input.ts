@@ -4,6 +4,7 @@ import { SortOrder } from '../prisma/sort-order.enum';
 import { UserOrderByWithRelationInput } from '../user/user-order-by-with-relation.input';
 import { MemberGroupOrderByRelationAggregateInput } from '../member-group/member-group-order-by-relation-aggregate.input';
 import { MemberAbhisekhaOrderByRelationAggregateInput } from '../member-abhisekha/member-abhisekha-order-by-relation-aggregate.input';
+import { MemberResourceOrderByRelationAggregateInput } from '../member-resource/member-resource-order-by-relation-aggregate.input';
 import { EventMemberOrderByRelationAggregateInput } from '../event-member/event-member-order-by-relation-aggregate.input';
 import { CentreOrderByWithRelationInput } from '../centre/centre-order-by-with-relation.input';
 import { AddressOrderByWithRelationInput } from '../address/address-order-by-with-relation.input';
@@ -100,6 +101,9 @@ export class MemberOrderByWithRelationInput {
 
     @Field(() => MemberAbhisekhaOrderByRelationAggregateInput, {nullable:true})
     memberAbhisekha?: MemberAbhisekhaOrderByRelationAggregateInput;
+
+    @Field(() => MemberResourceOrderByRelationAggregateInput, {nullable:true})
+    memberResource?: MemberResourceOrderByRelationAggregateInput;
 
     @Field(() => EventMemberOrderByRelationAggregateInput, {nullable:true})
     eventMember?: EventMemberOrderByRelationAggregateInput;

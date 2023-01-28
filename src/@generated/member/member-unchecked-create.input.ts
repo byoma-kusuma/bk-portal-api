@@ -6,6 +6,7 @@ import { GenderType } from '../prisma/gender-type.enum';
 import { UserUncheckedCreateNestedOneWithoutMemberInput } from '../user/user-unchecked-create-nested-one-without-member.input';
 import { MemberGroupUncheckedCreateNestedManyWithoutMemberInput } from '../member-group/member-group-unchecked-create-nested-many-without-member.input';
 import { MemberAbhisekhaUncheckedCreateNestedManyWithoutMemberInput } from '../member-abhisekha/member-abhisekha-unchecked-create-nested-many-without-member.input';
+import { MemberResourceUncheckedCreateNestedManyWithoutMemberInput } from '../member-resource/member-resource-unchecked-create-nested-many-without-member.input';
 import { EventMemberUncheckedCreateNestedManyWithoutMemberInput } from '../event-member/event-member-unchecked-create-nested-many-without-member.input';
 
 @InputType()
@@ -112,6 +113,9 @@ export class MemberUncheckedCreateInput {
 
     @Field(() => MemberAbhisekhaUncheckedCreateNestedManyWithoutMemberInput, {nullable:true})
     memberAbhisekha?: MemberAbhisekhaUncheckedCreateNestedManyWithoutMemberInput;
+
+    @Field(() => MemberResourceUncheckedCreateNestedManyWithoutMemberInput, {nullable:true})
+    memberResource?: MemberResourceUncheckedCreateNestedManyWithoutMemberInput;
 
     @Field(() => EventMemberUncheckedCreateNestedManyWithoutMemberInput, {nullable:true})
     eventMember?: EventMemberUncheckedCreateNestedManyWithoutMemberInput;

@@ -9,6 +9,7 @@ import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { UserRelationFilter } from '../user/user-relation-filter.input';
 import { MemberGroupListRelationFilter } from '../member-group/member-group-list-relation-filter.input';
 import { MemberAbhisekhaListRelationFilter } from '../member-abhisekha/member-abhisekha-list-relation-filter.input';
+import { MemberResourceListRelationFilter } from '../member-resource/member-resource-list-relation-filter.input';
 import { EventMemberListRelationFilter } from '../event-member/event-member-list-relation-filter.input';
 import { CentreRelationFilter } from '../centre/centre-relation-filter.input';
 import { AddressRelationFilter } from '../address/address-relation-filter.input';
@@ -114,6 +115,9 @@ export class MemberWhereInput {
 
     @Field(() => MemberAbhisekhaListRelationFilter, {nullable:true})
     memberAbhisekha?: MemberAbhisekhaListRelationFilter;
+
+    @Field(() => MemberResourceListRelationFilter, {nullable:true})
+    memberResource?: MemberResourceListRelationFilter;
 
     @Field(() => EventMemberListRelationFilter, {nullable:true})
     eventMember?: EventMemberListRelationFilter;

@@ -5,6 +5,7 @@ import { Int } from '@nestjs/graphql';
 import { GenderType } from '../prisma/gender-type.enum';
 import { MemberGroupCreateNestedManyWithoutMemberInput } from '../member-group/member-group-create-nested-many-without-member.input';
 import { MemberAbhisekhaCreateNestedManyWithoutMemberInput } from '../member-abhisekha/member-abhisekha-create-nested-many-without-member.input';
+import { MemberResourceCreateNestedManyWithoutMemberInput } from '../member-resource/member-resource-create-nested-many-without-member.input';
 import { EventMemberCreateNestedManyWithoutMemberInput } from '../event-member/event-member-create-nested-many-without-member.input';
 import { CentreCreateNestedOneWithoutMembersInput } from '../centre/centre-create-nested-one-without-members.input';
 import { AddressCreateNestedOneWithoutMembersInput } from '../address/address-create-nested-one-without-members.input';
@@ -97,6 +98,9 @@ export class MemberCreateWithoutUserInput {
 
     @Field(() => MemberAbhisekhaCreateNestedManyWithoutMemberInput, {nullable:true})
     memberAbhisekha?: MemberAbhisekhaCreateNestedManyWithoutMemberInput;
+
+    @Field(() => MemberResourceCreateNestedManyWithoutMemberInput, {nullable:true})
+    memberResource?: MemberResourceCreateNestedManyWithoutMemberInput;
 
     @Field(() => EventMemberCreateNestedManyWithoutMemberInput, {nullable:true})
     eventMember?: EventMemberCreateNestedManyWithoutMemberInput;

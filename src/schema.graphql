@@ -1295,6 +1295,7 @@ type Member {
   memberAbhisekhas: [MemberAbhisekhaWithoutMember!]!
   memberEvents: [EventMemberWithoutMember!]!
   memberGroups: [MemberGroupWithoutMember!]!
+  memberResources: [MemberResourceWithoutMember!]!
   membershipType: Membership_Type
   messenger: String
   middleName: String
@@ -1507,6 +1508,12 @@ input MemberCreateNestedOneWithoutMemberAbhisekhaInput {
   create: MemberCreateWithoutMemberAbhisekhaInput
 }
 
+input MemberCreateNestedOneWithoutMemberResourceInput {
+  connect: MemberWhereUniqueInput
+  connectOrCreate: MemberCreateOrConnectWithoutMemberResourceInput
+  create: MemberCreateWithoutMemberResourceInput
+}
+
 input MemberCreateNestedOneWithoutPermanentAddressInput {
   connect: MemberWhereUniqueInput
   connectOrCreate: MemberCreateOrConnectWithoutPermanentAddressInput
@@ -1533,6 +1540,11 @@ input MemberCreateOrConnectWithoutMemberAbhisekhaInput {
   where: MemberWhereUniqueInput!
 }
 
+input MemberCreateOrConnectWithoutMemberResourceInput {
+  create: MemberCreateWithoutMemberResourceInput!
+  where: MemberWhereUniqueInput!
+}
+
 input MemberCreateOrConnectWithoutPermanentAddressInput {
   create: MemberCreateWithoutPermanentAddressInput!
   where: MemberWhereUniqueInput!
@@ -1554,6 +1566,7 @@ input MemberCreateWithoutAddressInput {
   lastName: String!
   memberAbhisekha: MemberAbhisekhaCreateNestedManyWithoutMemberInput
   memberGroup: MemberGroupCreateNestedManyWithoutMemberInput
+  memberResource: MemberResourceCreateNestedManyWithoutMemberInput
   membershipType: MembershipType
   messenger: String
   middleName: String
@@ -1590,6 +1603,7 @@ input MemberCreateWithoutCurrentAddressInput {
   lastName: String!
   memberAbhisekha: MemberAbhisekhaCreateNestedManyWithoutMemberInput
   memberGroup: MemberGroupCreateNestedManyWithoutMemberInput
+  memberResource: MemberResourceCreateNestedManyWithoutMemberInput
   membershipType: MembershipType
   messenger: String
   middleName: String
@@ -1626,6 +1640,7 @@ input MemberCreateWithoutEventMemberInput {
   lastName: String!
   memberAbhisekha: MemberAbhisekhaCreateNestedManyWithoutMemberInput
   memberGroup: MemberGroupCreateNestedManyWithoutMemberInput
+  memberResource: MemberResourceCreateNestedManyWithoutMemberInput
   membershipType: MembershipType
   messenger: String
   middleName: String
@@ -1661,6 +1676,44 @@ input MemberCreateWithoutMemberAbhisekhaInput {
   isDeleted: Boolean
   isMember: Boolean
   lastName: String!
+  memberGroup: MemberGroupCreateNestedManyWithoutMemberInput
+  memberResource: MemberResourceCreateNestedManyWithoutMemberInput
+  membershipType: MembershipType
+  messenger: String
+  middleName: String
+  note: String
+  permanentAddress: AddressCreateNestedOneWithoutMemberPermanentAddressInput
+  phoneLand: String
+  phoneMobile: String
+  phoneOther: String
+  photo: String
+  refugeName: String
+  sanghaJoinDate: DateTime
+  title: String
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+  user: UserCreateNestedOneWithoutMemberInput
+  viber: String
+  yearOfBirth: Int
+}
+
+input MemberCreateWithoutMemberResourceInput {
+  active: Boolean
+  address: AddressCreateNestedOneWithoutMembersInput
+  centre: CentreCreateNestedOneWithoutMembersInput
+  createdAt: DateTime
+  createdBy: String
+  currentAddress: AddressCreateNestedOneWithoutMemberCurrentAddressInput
+  email: String
+  eventMember: EventMemberCreateNestedManyWithoutMemberInput
+  firstName: String!
+  gender: GenderType
+  insta: String
+  isDeleted: Boolean
+  isMember: Boolean
+  lastName: String!
+  memberAbhisekha: MemberAbhisekhaCreateNestedManyWithoutMemberInput
   memberGroup: MemberGroupCreateNestedManyWithoutMemberInput
   membershipType: MembershipType
   messenger: String
@@ -1699,6 +1752,7 @@ input MemberCreateWithoutPermanentAddressInput {
   lastName: String!
   memberAbhisekha: MemberAbhisekhaCreateNestedManyWithoutMemberInput
   memberGroup: MemberGroupCreateNestedManyWithoutMemberInput
+  memberResource: MemberResourceCreateNestedManyWithoutMemberInput
   membershipType: MembershipType
   messenger: String
   middleName: String
@@ -1801,6 +1855,100 @@ input MemberRelationFilter {
   isNot: MemberWhereInput
 }
 
+input MemberResourceCreateManyMemberInput {
+  resourceId: Int!
+  type: String!
+}
+
+input MemberResourceCreateManyMemberInputEnvelope {
+  data: [MemberResourceCreateManyMemberInput!]!
+  skipDuplicates: Boolean
+}
+
+input MemberResourceCreateManyResourceInput {
+  memberId: Int!
+  type: String!
+}
+
+input MemberResourceCreateManyResourceInputEnvelope {
+  data: [MemberResourceCreateManyResourceInput!]!
+  skipDuplicates: Boolean
+}
+
+input MemberResourceCreateNestedManyWithoutMemberInput {
+  connect: [MemberResourceWhereUniqueInput!]
+  connectOrCreate: [MemberResourceCreateOrConnectWithoutMemberInput!]
+  create: [MemberResourceCreateWithoutMemberInput!]
+  createMany: MemberResourceCreateManyMemberInputEnvelope
+}
+
+input MemberResourceCreateNestedManyWithoutResourceInput {
+  connect: [MemberResourceWhereUniqueInput!]
+  connectOrCreate: [MemberResourceCreateOrConnectWithoutResourceInput!]
+  create: [MemberResourceCreateWithoutResourceInput!]
+  createMany: MemberResourceCreateManyResourceInputEnvelope
+}
+
+input MemberResourceCreateOrConnectWithoutMemberInput {
+  create: MemberResourceCreateWithoutMemberInput!
+  where: MemberResourceWhereUniqueInput!
+}
+
+input MemberResourceCreateOrConnectWithoutResourceInput {
+  create: MemberResourceCreateWithoutResourceInput!
+  where: MemberResourceWhereUniqueInput!
+}
+
+input MemberResourceCreateWithoutMemberInput {
+  resource: ResourceCreateNestedOneWithoutMemberResourceInput!
+  type: String!
+}
+
+input MemberResourceCreateWithoutResourceInput {
+  member: MemberCreateNestedOneWithoutMemberResourceInput!
+  type: String!
+}
+
+input MemberResourceListRelationFilter {
+  every: MemberResourceWhereInput
+  none: MemberResourceWhereInput
+  some: MemberResourceWhereInput
+}
+
+input MemberResourceMemberIdResourceIdCompoundUniqueInput {
+  memberId: Int!
+  resourceId: Int!
+}
+
+input MemberResourceWhereInput {
+  AND: [MemberResourceWhereInput!]
+  NOT: [MemberResourceWhereInput!]
+  OR: [MemberResourceWhereInput!]
+  member: MemberRelationFilter
+  memberId: IntFilter
+  resource: ResourceRelationFilter
+  resourceId: IntFilter
+  type: StringFilter
+}
+
+input MemberResourceWhereUniqueInput {
+  memberId_resourceId: MemberResourceMemberIdResourceIdCompoundUniqueInput
+}
+
+type MemberResourceWithoutMember {
+  memberId: Int!
+  resource: Resource!
+  resourceId: Int!
+  type: String!
+}
+
+type MemberResourceWithoutResource {
+  member: Event!
+  memberId: Int!
+  resourceId: Int!
+  type: String!
+}
+
 input MemberWhereInput {
   AND: [MemberWhereInput!]
   NOT: [MemberWhereInput!]
@@ -1825,6 +1973,7 @@ input MemberWhereInput {
   lastName: StringFilter
   memberAbhisekha: MemberAbhisekhaListRelationFilter
   memberGroup: MemberGroupListRelationFilter
+  memberResource: MemberResourceListRelationFilter
   membershipType: EnumMembershipTypeFilter
   messenger: StringFilter
   middleName: StringFilter
@@ -2039,6 +2188,7 @@ type Resource {
   name: String!
   resourceAbhisekhas: [AbhisekhaResourceWithoutResource!]!
   resourceEvents: [EventResourceWithoutResource!]!
+  resourceMembers: [MemberResourceWithoutResource!]!
 
   """Type of the resource"""
   type: String!
@@ -2068,6 +2218,12 @@ input ResourceCreateNestedOneWithoutEventResourceInput {
   create: ResourceCreateWithoutEventResourceInput
 }
 
+input ResourceCreateNestedOneWithoutMemberResourceInput {
+  connect: ResourceWhereUniqueInput
+  connectOrCreate: ResourceCreateOrConnectWithoutMemberResourceInput
+  create: ResourceCreateWithoutMemberResourceInput
+}
+
 input ResourceCreateOrConnectWithoutAbhisekhaResourceInput {
   create: ResourceCreateWithoutAbhisekhaResourceInput!
   where: ResourceWhereUniqueInput!
@@ -2078,12 +2234,18 @@ input ResourceCreateOrConnectWithoutEventResourceInput {
   where: ResourceWhereUniqueInput!
 }
 
+input ResourceCreateOrConnectWithoutMemberResourceInput {
+  create: ResourceCreateWithoutMemberResourceInput!
+  where: ResourceWhereUniqueInput!
+}
+
 input ResourceCreateWithoutAbhisekhaResourceInput {
   createdAt: DateTime
   createdBy: String
   description: String!
   eventResource: EventResourceCreateNestedManyWithoutResourceInput
   isDeleted: Boolean
+  memberResource: MemberResourceCreateNestedManyWithoutResourceInput
   name: String!
   type: String!
   uniqueKey: String
@@ -2097,6 +2259,22 @@ input ResourceCreateWithoutEventResourceInput {
   createdAt: DateTime
   createdBy: String
   description: String!
+  isDeleted: Boolean
+  memberResource: MemberResourceCreateNestedManyWithoutResourceInput
+  name: String!
+  type: String!
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+  url: String!
+}
+
+input ResourceCreateWithoutMemberResourceInput {
+  abhisekhaResource: AbhisekhaResourceCreateNestedManyWithoutResourceInput
+  createdAt: DateTime
+  createdBy: String
+  description: String!
+  eventResource: EventResourceCreateNestedManyWithoutResourceInput
   isDeleted: Boolean
   name: String!
   type: String!
@@ -2122,6 +2300,7 @@ input ResourceWhereInput {
   eventResource: EventResourceListRelationFilter
   id: IntFilter
   isDeleted: BoolFilter
+  memberResource: MemberResourceListRelationFilter
   name: StringFilter
   type: StringFilter
   uniqueKey: StringFilter

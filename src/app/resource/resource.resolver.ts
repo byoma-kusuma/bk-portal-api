@@ -13,6 +13,7 @@ import { CreateResourceInput } from "./dto/create-resource.input";
 import { UpdateResourceInput } from "./dto/update-resource.input";
 import { EventResourceWithoutResource } from "../eventResource/eventResource.entity";
 import { AbhisekhaResourceWithoutResource } from "../abhisekhaResource/abhisekhaResource.entity";
+import { MemberResourceWithoutResource } from "../memberResource/memberResource.entity";
 
 @Resolver(() => Resource)
 export class ResourceResolver {
@@ -109,5 +110,36 @@ export class ResourceResolver {
     }
 
     return memberEventRelation.abhisekhaResource;
+  }
+
+  @ResolveField(() => [MemberResourceWithoutResource])
+  async resourceMembers(@Parent() resource: Resource) {
+    const memberResourceRelation = await this.resourceService.findUnique({
+      where: {
+        id: resource.id
+      },
+      select: {
+        id: true,
+        memberResource: {
+          where: {
+            member: {
+              isDeleted: false
+            }
+          },
+          select: {
+            member: true,
+            memberId: true,
+            resourceId: true,
+            type: true
+          }
+        }
+      }
+    });
+
+    if (!memberResourceRelation) {
+      return null;
+    }
+
+    return memberResourceRelation.memberResource;
   }
 }

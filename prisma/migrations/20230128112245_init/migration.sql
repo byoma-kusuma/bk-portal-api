@@ -217,7 +217,6 @@ CREATE TABLE "Resource" (
 
 -- CreateTable
 CREATE TABLE "AbhisekhaResource" (
-    "type" TEXT NOT NULL,
     "abhishekaId" INTEGER NOT NULL,
     "resourceId" INTEGER NOT NULL,
 
@@ -238,9 +237,9 @@ CREATE TABLE "MemberAbhisekha" (
 -- CreateTable
 CREATE TABLE "EventMember" (
     "type" TEXT NOT NULL,
+    "hasAttended" BOOLEAN NOT NULL,
     "eventId" INTEGER NOT NULL,
     "memberId" INTEGER NOT NULL,
-    "hasAttended" BOOLEAN NOT NULL,
 
     CONSTRAINT "EventMember_pkey" PRIMARY KEY ("memberId","eventId")
 );
@@ -252,6 +251,15 @@ CREATE TABLE "EventResource" (
     "resourceId" INTEGER NOT NULL,
 
     CONSTRAINT "EventResource_pkey" PRIMARY KEY ("eventId","resourceId")
+);
+
+-- CreateTable
+CREATE TABLE "MemberResource" (
+    "type" TEXT NOT NULL,
+    "memberId" INTEGER NOT NULL,
+    "resourceId" INTEGER NOT NULL,
+
+    CONSTRAINT "MemberResource_pkey" PRIMARY KEY ("memberId","resourceId")
 );
 
 -- CreateTable
@@ -370,6 +378,12 @@ ALTER TABLE "EventResource" ADD CONSTRAINT "EventResource_eventId_fkey" FOREIGN 
 
 -- AddForeignKey
 ALTER TABLE "EventResource" ADD CONSTRAINT "EventResource_resourceId_fkey" FOREIGN KEY ("resourceId") REFERENCES "Resource"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "MemberResource" ADD CONSTRAINT "MemberResource_memberId_fkey" FOREIGN KEY ("memberId") REFERENCES "Member"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "MemberResource" ADD CONSTRAINT "MemberResource_resourceId_fkey" FOREIGN KEY ("resourceId") REFERENCES "Resource"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "EventAbhisekha" ADD CONSTRAINT "EventAbhisekha_eventId_fkey" FOREIGN KEY ("eventId") REFERENCES "Event"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
