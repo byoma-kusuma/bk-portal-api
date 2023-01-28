@@ -13,10 +13,10 @@ export class EventAbhisekhaWithoutEvent {
   eventId: number;
 
   @Field(() => Abhisekha, { nullable: false })
-  abhisheka?: Abhisekha;
+  abhisekha?: Abhisekha;
 
   @Field(() => Int, { nullable: false })
-  abhishekaId: number;
+  abhisekhaId: number;
 }
 
 @ObjectType()
@@ -28,7 +28,7 @@ export class EventAbhisekhaWithoutAbhisekha {
   eventId: number;
 
   @Field(() => Int, { nullable: false })
-  abhishekaId: number;
+  abhisekhaId: number;
 
   @Field(() => Event, { nullable: false })
   event?: Event;

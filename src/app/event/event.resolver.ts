@@ -81,13 +81,13 @@ export class EventResolver {
         id: true,
         eventAbhisekha: {
           where: {
-            abhisheka: {
+            abhisekha: {
               isDeleted: false
             }
           },
           select: {
-            abhisheka: true,
-            abhishekaId: true,
+            abhisekha: true,
+            abhisekhaId: true,
             eventId: true
           }
         }

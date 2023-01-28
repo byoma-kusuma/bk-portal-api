@@ -248,6 +248,7 @@ model Abhisekha {
 
 model Event {
     id        Int      @id @default(autoincrement())
+    name      String
     startDate DateTime
     endDate   DateTime
     notes     String?
@@ -285,17 +286,17 @@ model Resource {
     // Relation fields
     abhisekhaResource AbhisekhaResource[]
     eventResource     EventResource[]
-    memberResource  MemberResource[]
+    memberResource    MemberResource[]
 }
 
 model AbhisekhaResource {
     // Relation fields
-    abhisheka   Abhisekha @relation(fields: [abhishekaId], references: [id])
-    abhishekaId Int
+    abhisekha   Abhisekha @relation(fields: [abhisekhaId], references: [id])
+    abhisekhaId Int
     resource    Resource  @relation(fields: [resourceId], references: [id])
     resourceId  Int
 
-    @@id([abhishekaId, resourceId])
+    @@id([abhisekhaId, resourceId])
 }
 
 model MemberAbhisekha {
@@ -304,12 +305,12 @@ model MemberAbhisekha {
     abhisekhaPlace String
 
     // Relation fields
-    abhisheka   Abhisekha @relation(fields: [abhishekaId], references: [id])
-    abhishekaId Int
+    abhisekha   Abhisekha @relation(fields: [abhisekhaId], references: [id])
+    abhisekhaId Int
     member      Member    @relation(fields: [memberId], references: [id])
     memberId    Int
 
-    @@id([memberId, abhishekaId])
+    @@id([memberId, abhisekhaId])
 }
 
 model EventMember {
@@ -341,8 +342,8 @@ model MemberResource {
     type String
 
     // Relation fields
-    member      Member    @relation(fields: [memberId], references: [id])
-    memberId    Int
+    member     Member   @relation(fields: [memberId], references: [id])
+    memberId   Int
     resource   Resource @relation(fields: [resourceId], references: [id])
     resourceId Int
 
@@ -355,8 +356,8 @@ model EventAbhisekha {
     // Relation fields
     event       Event     @relation(fields: [eventId], references: [id])
     eventId     Int
-    abhisheka   Abhisekha @relation(fields: [abhishekaId], references: [id])
-    abhishekaId Int
+    abhisekha   Abhisekha @relation(fields: [abhisekhaId], references: [id])
+    abhisekhaId Int
 
-    @@id([eventId, abhishekaId])
+    @@id([eventId, abhisekhaId])
 }

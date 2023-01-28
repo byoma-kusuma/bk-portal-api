@@ -6,6 +6,9 @@ import { SoftDeleteBaseModel } from "../../../common/models/softdeletebase.model
 
 @ObjectType()
 export class Event extends SoftDeleteBaseModel {
+  @Field(() => String)
+  name: string;
+
   @Field(() => Date, { description: "Event start date" })
   startDate: Date;
 

@@ -58,8 +58,8 @@ export class AbhisekhaService {
               abhisekhaResource: {
                 upsert: resourceIds.map((resourceId) => ({
                   where: {
-                    abhishekaId_resourceId: {
-                      abhishekaId: id,
+                    abhisekhaId_resourceId: {
+                      abhisekhaId: id,
                       resourceId
                     }
                   },
@@ -73,7 +73,7 @@ export class AbhisekhaService {
                   }
                 })),
                 deleteMany: {
-                  abhishekaId: id,
+                  abhisekhaId: id,
                   resourceId: {
                     notIn: resourceIds
                   }
@@ -87,9 +87,9 @@ export class AbhisekhaService {
                 upsert: abhisekhaMemberDetails.map(
                   ({ memberId, type, abhisekhaDate, abhisekhaPlace }) => ({
                     where: {
-                      memberId_abhishekaId: {
+                      memberId_abhisekhaId: {
                         memberId,
-                        abhishekaId: id
+                        abhisekhaId: id
                       }
                     },
                     update: {
@@ -110,7 +110,7 @@ export class AbhisekhaService {
                   })
                 ),
                 deleteMany: {
-                  abhishekaId: id,
+                  abhisekhaId: id,
                   memberId: {
                     notIn: abhisekhaMemberDetails.map((el) => el.memberId)
                   }

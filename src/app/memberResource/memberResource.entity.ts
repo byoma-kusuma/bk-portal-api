@@ -2,7 +2,7 @@ import { Field } from "@nestjs/graphql";
 import { ObjectType } from "@nestjs/graphql";
 import { Int } from "@nestjs/graphql";
 import { Resource } from "../resource/entities/resource.entity";
-import { Event } from "../event/entities/event.entity";
+import { Member } from "../member/entities/member.entity";
 
 @ObjectType()
 export class MemberResourceWithoutMember {
@@ -24,8 +24,8 @@ export class MemberResourceWithoutResource {
   @Field(() => String, { nullable: false })
   type: string;
 
-  @Field(() => Event, { nullable: false })
-  member?: Event;
+  @Field(() => Member, { nullable: false })
+  member?: Member;
 
   @Field(() => Int, { nullable: false })
   memberId: number;

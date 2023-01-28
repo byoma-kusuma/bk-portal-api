@@ -7,7 +7,7 @@ import { Resource } from "../resource/entities/resource.entity";
 @ObjectType()
 export class AbhisekhaResourceWithoutAbhisekha {
   @Field(() => Int, { nullable: false })
-  abhishekaId!: number;
+  abhisekhaId!: number;
 
   @Field(() => Resource, { nullable: false })
   resource?: Resource;
@@ -19,10 +19,10 @@ export class AbhisekhaResourceWithoutAbhisekha {
 @ObjectType()
 export class AbhisekhaResourceWithoutResource {
   @Field(() => Abhisekha, { nullable: false })
-  abhisheka?: Abhisekha;
+  abhisekha?: Abhisekha;
 
   @Field(() => Int, { nullable: false })
-  abhishekaId!: number;
+  abhisekhaId!: number;
 
   @Field(() => Int, { nullable: false })
   resourceId!: number;

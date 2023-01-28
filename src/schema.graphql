@@ -76,9 +76,9 @@ input AbhisekhaCreateWithoutAbhisekhaResourceInput {
   createdAt: DateTime
   createdBy: String
   description: String!
-  eventAbhisekha: EventAbhisekhaCreateNestedManyWithoutAbhishekaInput
+  eventAbhisekha: EventAbhisekhaCreateNestedManyWithoutAbhisekhaInput
   isDeleted: Boolean
-  memberAbhisekha: MemberAbhisekhaCreateNestedManyWithoutAbhishekaInput
+  memberAbhisekha: MemberAbhisekhaCreateNestedManyWithoutAbhisekhaInput
   name: String!
   teacher: String!
   uniqueKey: String
@@ -87,12 +87,12 @@ input AbhisekhaCreateWithoutAbhisekhaResourceInput {
 }
 
 input AbhisekhaCreateWithoutEventAbhisekhaInput {
-  abhisekhaResource: AbhisekhaResourceCreateNestedManyWithoutAbhishekaInput
+  abhisekhaResource: AbhisekhaResourceCreateNestedManyWithoutAbhisekhaInput
   createdAt: DateTime
   createdBy: String
   description: String!
   isDeleted: Boolean
-  memberAbhisekha: MemberAbhisekhaCreateNestedManyWithoutAbhishekaInput
+  memberAbhisekha: MemberAbhisekhaCreateNestedManyWithoutAbhisekhaInput
   name: String!
   teacher: String!
   uniqueKey: String
@@ -101,11 +101,11 @@ input AbhisekhaCreateWithoutEventAbhisekhaInput {
 }
 
 input AbhisekhaCreateWithoutMemberAbhisekhaInput {
-  abhisekhaResource: AbhisekhaResourceCreateNestedManyWithoutAbhishekaInput
+  abhisekhaResource: AbhisekhaResourceCreateNestedManyWithoutAbhisekhaInput
   createdAt: DateTime
   createdBy: String
   description: String!
-  eventAbhisekha: EventAbhisekhaCreateNestedManyWithoutAbhishekaInput
+  eventAbhisekha: EventAbhisekhaCreateNestedManyWithoutAbhisekhaInput
   isDeleted: Boolean
   name: String!
   teacher: String!
@@ -133,22 +133,22 @@ input AbhisekhaRelationFilter {
   isNot: AbhisekhaWhereInput
 }
 
-input AbhisekhaResourceAbhishekaIdResourceIdCompoundUniqueInput {
-  abhishekaId: Int!
+input AbhisekhaResourceAbhisekhaIdResourceIdCompoundUniqueInput {
+  abhisekhaId: Int!
   resourceId: Int!
 }
 
-input AbhisekhaResourceCreateManyAbhishekaInput {
+input AbhisekhaResourceCreateManyAbhisekhaInput {
   resourceId: Int!
 }
 
-input AbhisekhaResourceCreateManyAbhishekaInputEnvelope {
-  data: [AbhisekhaResourceCreateManyAbhishekaInput!]!
+input AbhisekhaResourceCreateManyAbhisekhaInputEnvelope {
+  data: [AbhisekhaResourceCreateManyAbhisekhaInput!]!
   skipDuplicates: Boolean
 }
 
 input AbhisekhaResourceCreateManyResourceInput {
-  abhishekaId: Int!
+  abhisekhaId: Int!
 }
 
 input AbhisekhaResourceCreateManyResourceInputEnvelope {
@@ -156,11 +156,11 @@ input AbhisekhaResourceCreateManyResourceInputEnvelope {
   skipDuplicates: Boolean
 }
 
-input AbhisekhaResourceCreateNestedManyWithoutAbhishekaInput {
+input AbhisekhaResourceCreateNestedManyWithoutAbhisekhaInput {
   connect: [AbhisekhaResourceWhereUniqueInput!]
-  connectOrCreate: [AbhisekhaResourceCreateOrConnectWithoutAbhishekaInput!]
-  create: [AbhisekhaResourceCreateWithoutAbhishekaInput!]
-  createMany: AbhisekhaResourceCreateManyAbhishekaInputEnvelope
+  connectOrCreate: [AbhisekhaResourceCreateOrConnectWithoutAbhisekhaInput!]
+  create: [AbhisekhaResourceCreateWithoutAbhisekhaInput!]
+  createMany: AbhisekhaResourceCreateManyAbhisekhaInputEnvelope
 }
 
 input AbhisekhaResourceCreateNestedManyWithoutResourceInput {
@@ -170,8 +170,8 @@ input AbhisekhaResourceCreateNestedManyWithoutResourceInput {
   createMany: AbhisekhaResourceCreateManyResourceInputEnvelope
 }
 
-input AbhisekhaResourceCreateOrConnectWithoutAbhishekaInput {
-  create: AbhisekhaResourceCreateWithoutAbhishekaInput!
+input AbhisekhaResourceCreateOrConnectWithoutAbhisekhaInput {
+  create: AbhisekhaResourceCreateWithoutAbhisekhaInput!
   where: AbhisekhaResourceWhereUniqueInput!
 }
 
@@ -180,12 +180,12 @@ input AbhisekhaResourceCreateOrConnectWithoutResourceInput {
   where: AbhisekhaResourceWhereUniqueInput!
 }
 
-input AbhisekhaResourceCreateWithoutAbhishekaInput {
+input AbhisekhaResourceCreateWithoutAbhisekhaInput {
   resource: ResourceCreateNestedOneWithoutAbhisekhaResourceInput!
 }
 
 input AbhisekhaResourceCreateWithoutResourceInput {
-  abhisheka: AbhisekhaCreateNestedOneWithoutAbhisekhaResourceInput!
+  abhisekha: AbhisekhaCreateNestedOneWithoutAbhisekhaResourceInput!
 }
 
 input AbhisekhaResourceListRelationFilter {
@@ -198,25 +198,25 @@ input AbhisekhaResourceWhereInput {
   AND: [AbhisekhaResourceWhereInput!]
   NOT: [AbhisekhaResourceWhereInput!]
   OR: [AbhisekhaResourceWhereInput!]
-  abhisheka: AbhisekhaRelationFilter
-  abhishekaId: IntFilter
+  abhisekha: AbhisekhaRelationFilter
+  abhisekhaId: IntFilter
   resource: ResourceRelationFilter
   resourceId: IntFilter
 }
 
 input AbhisekhaResourceWhereUniqueInput {
-  abhishekaId_resourceId: AbhisekhaResourceAbhishekaIdResourceIdCompoundUniqueInput
+  abhisekhaId_resourceId: AbhisekhaResourceAbhisekhaIdResourceIdCompoundUniqueInput
 }
 
 type AbhisekhaResourceWithoutAbhisekha {
-  abhishekaId: Int!
+  abhisekhaId: Int!
   resource: Resource!
   resourceId: Int!
 }
 
 type AbhisekhaResourceWithoutResource {
-  abhisheka: Abhisekha!
-  abhishekaId: Int!
+  abhisekha: Abhisekha!
+  abhisekhaId: Int!
   resourceId: Int!
 }
 
@@ -493,6 +493,7 @@ input CreateEventInput {
   After the event ends or at a certain specific time, the event is locked and event related details cannot be updated/deleted
   """
   isLocked: Boolean!
+  name: String!
 
   """Some notes related to the event"""
   notes: String!
@@ -631,6 +632,7 @@ type Event {
   After the event ends or at a certain specific time, the event is locked and event related details cannot be updated/deleted
   """
   isLocked: Boolean!
+  name: String!
 
   """Some notes related to the event"""
   notes: String
@@ -657,18 +659,18 @@ type Event {
   updatedBy: String
 }
 
-input EventAbhisekhaCreateManyAbhishekaInput {
+input EventAbhisekhaCreateManyAbhisekhaInput {
   eventId: Int!
   type: String!
 }
 
-input EventAbhisekhaCreateManyAbhishekaInputEnvelope {
-  data: [EventAbhisekhaCreateManyAbhishekaInput!]!
+input EventAbhisekhaCreateManyAbhisekhaInputEnvelope {
+  data: [EventAbhisekhaCreateManyAbhisekhaInput!]!
   skipDuplicates: Boolean
 }
 
 input EventAbhisekhaCreateManyEventInput {
-  abhishekaId: Int!
+  abhisekhaId: Int!
   type: String!
 }
 
@@ -677,11 +679,11 @@ input EventAbhisekhaCreateManyEventInputEnvelope {
   skipDuplicates: Boolean
 }
 
-input EventAbhisekhaCreateNestedManyWithoutAbhishekaInput {
+input EventAbhisekhaCreateNestedManyWithoutAbhisekhaInput {
   connect: [EventAbhisekhaWhereUniqueInput!]
-  connectOrCreate: [EventAbhisekhaCreateOrConnectWithoutAbhishekaInput!]
-  create: [EventAbhisekhaCreateWithoutAbhishekaInput!]
-  createMany: EventAbhisekhaCreateManyAbhishekaInputEnvelope
+  connectOrCreate: [EventAbhisekhaCreateOrConnectWithoutAbhisekhaInput!]
+  create: [EventAbhisekhaCreateWithoutAbhisekhaInput!]
+  createMany: EventAbhisekhaCreateManyAbhisekhaInputEnvelope
 }
 
 input EventAbhisekhaCreateNestedManyWithoutEventInput {
@@ -691,8 +693,8 @@ input EventAbhisekhaCreateNestedManyWithoutEventInput {
   createMany: EventAbhisekhaCreateManyEventInputEnvelope
 }
 
-input EventAbhisekhaCreateOrConnectWithoutAbhishekaInput {
-  create: EventAbhisekhaCreateWithoutAbhishekaInput!
+input EventAbhisekhaCreateOrConnectWithoutAbhisekhaInput {
+  create: EventAbhisekhaCreateWithoutAbhisekhaInput!
   where: EventAbhisekhaWhereUniqueInput!
 }
 
@@ -701,18 +703,18 @@ input EventAbhisekhaCreateOrConnectWithoutEventInput {
   where: EventAbhisekhaWhereUniqueInput!
 }
 
-input EventAbhisekhaCreateWithoutAbhishekaInput {
+input EventAbhisekhaCreateWithoutAbhisekhaInput {
   event: EventCreateNestedOneWithoutEventAbhisekhaInput!
   type: String!
 }
 
 input EventAbhisekhaCreateWithoutEventInput {
-  abhisheka: AbhisekhaCreateNestedOneWithoutEventAbhisekhaInput!
+  abhisekha: AbhisekhaCreateNestedOneWithoutEventAbhisekhaInput!
   type: String!
 }
 
-input EventAbhisekhaEventIdAbhishekaIdCompoundUniqueInput {
-  abhishekaId: Int!
+input EventAbhisekhaEventIdAbhisekhaIdCompoundUniqueInput {
+  abhisekhaId: Int!
   eventId: Int!
 }
 
@@ -726,27 +728,27 @@ input EventAbhisekhaWhereInput {
   AND: [EventAbhisekhaWhereInput!]
   NOT: [EventAbhisekhaWhereInput!]
   OR: [EventAbhisekhaWhereInput!]
-  abhisheka: AbhisekhaRelationFilter
-  abhishekaId: IntFilter
+  abhisekha: AbhisekhaRelationFilter
+  abhisekhaId: IntFilter
   event: EventRelationFilter
   eventId: IntFilter
   type: StringFilter
 }
 
 input EventAbhisekhaWhereUniqueInput {
-  eventId_abhishekaId: EventAbhisekhaEventIdAbhishekaIdCompoundUniqueInput
+  eventId_abhisekhaId: EventAbhisekhaEventIdAbhisekhaIdCompoundUniqueInput
 }
 
 type EventAbhisekhaWithoutAbhisekha {
-  abhishekaId: Int!
+  abhisekhaId: Int!
   event: Event!
   eventId: Int!
   type: String!
 }
 
 type EventAbhisekhaWithoutEvent {
-  abhisheka: Abhisekha!
-  abhishekaId: Int!
+  abhisekha: Abhisekha!
+  abhisekhaId: Int!
   eventId: Int!
   type: String!
 }
@@ -758,6 +760,7 @@ input EventCreateManyParentEventInput {
   id: Int
   isDeleted: Boolean
   isLocked: Boolean!
+  name: String!
   notes: String
   startDate: DateTime!
   type: String!
@@ -836,6 +839,7 @@ input EventCreateWithoutChildEventsInput {
   eventResource: EventResourceCreateNestedManyWithoutEventInput
   isDeleted: Boolean
   isLocked: Boolean!
+  name: String!
   notes: String
   parentEvent: EventCreateNestedOneWithoutChildEventsInput
   startDate: DateTime!
@@ -854,6 +858,7 @@ input EventCreateWithoutEventAbhisekhaInput {
   eventResource: EventResourceCreateNestedManyWithoutEventInput
   isDeleted: Boolean
   isLocked: Boolean!
+  name: String!
   notes: String
   parentEvent: EventCreateNestedOneWithoutChildEventsInput
   startDate: DateTime!
@@ -872,6 +877,7 @@ input EventCreateWithoutEventMemberInput {
   eventResource: EventResourceCreateNestedManyWithoutEventInput
   isDeleted: Boolean
   isLocked: Boolean!
+  name: String!
   notes: String
   parentEvent: EventCreateNestedOneWithoutChildEventsInput
   startDate: DateTime!
@@ -890,6 +896,7 @@ input EventCreateWithoutEventResourceInput {
   eventMember: EventMemberCreateNestedManyWithoutEventInput
   isDeleted: Boolean
   isLocked: Boolean!
+  name: String!
   notes: String
   parentEvent: EventCreateNestedOneWithoutChildEventsInput
   startDate: DateTime!
@@ -909,6 +916,7 @@ input EventCreateWithoutParentEventInput {
   eventResource: EventResourceCreateNestedManyWithoutEventInput
   isDeleted: Boolean
   isLocked: Boolean!
+  name: String!
   notes: String
   startDate: DateTime!
   type: String!
@@ -1143,6 +1151,7 @@ input EventWhereInput {
   id: IntFilter
   isDeleted: BoolFilter
   isLocked: BoolFilter
+  name: StringFilter
   notes: StringFilter
   parentEvent: EventRelationFilter
   parentEventId: IntFilter
@@ -1323,22 +1332,22 @@ type Member {
   yearOfBirth: Int
 }
 
-input MemberAbhisekhaCreateManyAbhishekaInput {
+input MemberAbhisekhaCreateManyAbhisekhaInput {
   abhisekhaDate: DateTime!
   abhisekhaPlace: String!
   memberId: Int!
   type: String!
 }
 
-input MemberAbhisekhaCreateManyAbhishekaInputEnvelope {
-  data: [MemberAbhisekhaCreateManyAbhishekaInput!]!
+input MemberAbhisekhaCreateManyAbhisekhaInputEnvelope {
+  data: [MemberAbhisekhaCreateManyAbhisekhaInput!]!
   skipDuplicates: Boolean
 }
 
 input MemberAbhisekhaCreateManyMemberInput {
   abhisekhaDate: DateTime!
+  abhisekhaId: Int!
   abhisekhaPlace: String!
-  abhishekaId: Int!
   type: String!
 }
 
@@ -1347,11 +1356,11 @@ input MemberAbhisekhaCreateManyMemberInputEnvelope {
   skipDuplicates: Boolean
 }
 
-input MemberAbhisekhaCreateNestedManyWithoutAbhishekaInput {
+input MemberAbhisekhaCreateNestedManyWithoutAbhisekhaInput {
   connect: [MemberAbhisekhaWhereUniqueInput!]
-  connectOrCreate: [MemberAbhisekhaCreateOrConnectWithoutAbhishekaInput!]
-  create: [MemberAbhisekhaCreateWithoutAbhishekaInput!]
-  createMany: MemberAbhisekhaCreateManyAbhishekaInputEnvelope
+  connectOrCreate: [MemberAbhisekhaCreateOrConnectWithoutAbhisekhaInput!]
+  create: [MemberAbhisekhaCreateWithoutAbhisekhaInput!]
+  createMany: MemberAbhisekhaCreateManyAbhisekhaInputEnvelope
 }
 
 input MemberAbhisekhaCreateNestedManyWithoutMemberInput {
@@ -1361,8 +1370,8 @@ input MemberAbhisekhaCreateNestedManyWithoutMemberInput {
   createMany: MemberAbhisekhaCreateManyMemberInputEnvelope
 }
 
-input MemberAbhisekhaCreateOrConnectWithoutAbhishekaInput {
-  create: MemberAbhisekhaCreateWithoutAbhishekaInput!
+input MemberAbhisekhaCreateOrConnectWithoutAbhisekhaInput {
+  create: MemberAbhisekhaCreateWithoutAbhisekhaInput!
   where: MemberAbhisekhaWhereUniqueInput!
 }
 
@@ -1371,7 +1380,7 @@ input MemberAbhisekhaCreateOrConnectWithoutMemberInput {
   where: MemberAbhisekhaWhereUniqueInput!
 }
 
-input MemberAbhisekhaCreateWithoutAbhishekaInput {
+input MemberAbhisekhaCreateWithoutAbhisekhaInput {
   abhisekhaDate: DateTime!
   abhisekhaPlace: String!
   member: MemberCreateNestedOneWithoutMemberAbhisekhaInput!
@@ -1379,9 +1388,9 @@ input MemberAbhisekhaCreateWithoutAbhishekaInput {
 }
 
 input MemberAbhisekhaCreateWithoutMemberInput {
+  abhisekha: AbhisekhaCreateNestedOneWithoutMemberAbhisekhaInput!
   abhisekhaDate: DateTime!
   abhisekhaPlace: String!
-  abhisheka: AbhisekhaCreateNestedOneWithoutMemberAbhisekhaInput!
   type: String!
 }
 
@@ -1405,8 +1414,8 @@ input MemberAbhisekhaListRelationFilter {
   some: MemberAbhisekhaWhereInput
 }
 
-input MemberAbhisekhaMemberIdAbhishekaIdCompoundUniqueInput {
-  abhishekaId: Int!
+input MemberAbhisekhaMemberIdAbhisekhaIdCompoundUniqueInput {
+  abhisekhaId: Int!
   memberId: Int!
 }
 
@@ -1414,33 +1423,33 @@ input MemberAbhisekhaWhereInput {
   AND: [MemberAbhisekhaWhereInput!]
   NOT: [MemberAbhisekhaWhereInput!]
   OR: [MemberAbhisekhaWhereInput!]
+  abhisekha: AbhisekhaRelationFilter
   abhisekhaDate: DateTimeFilter
+  abhisekhaId: IntFilter
   abhisekhaPlace: StringFilter
-  abhisheka: AbhisekhaRelationFilter
-  abhishekaId: IntFilter
   member: MemberRelationFilter
   memberId: IntFilter
   type: StringFilter
 }
 
 input MemberAbhisekhaWhereUniqueInput {
-  memberId_abhishekaId: MemberAbhisekhaMemberIdAbhishekaIdCompoundUniqueInput
+  memberId_abhisekhaId: MemberAbhisekhaMemberIdAbhisekhaIdCompoundUniqueInput
 }
 
 type MemberAbhisekhaWithoutAbhisekha {
   abhisekhaDate: DateTime!
+  abhisekhaId: Int!
   abhisekhaPlace: String!
-  abhishekaId: Int!
   member: Member!
   memberId: Int!
   type: String!
 }
 
 type MemberAbhisekhaWithoutMember {
+  abhisekha: Abhisekha!
   abhisekhaDate: DateTime!
+  abhisekhaId: Int!
   abhisekhaPlace: String!
-  abhisheka: Abhisekha!
-  abhishekaId: Int!
   memberId: Int!
   type: String!
 }
@@ -1943,7 +1952,7 @@ type MemberResourceWithoutMember {
 }
 
 type MemberResourceWithoutResource {
-  member: Event!
+  member: Member!
   memberId: Int!
   resourceId: Int!
   type: String!
@@ -2154,6 +2163,7 @@ type Query {
   member(id: Int!): Member!
   members: [Member!]!
   resource(id: Int!): Resource!
+  resources: [Resource!]!
   role(where: RoleWhereInput): Role!
   roles(where: RoleWhereInput): [Role!]!
   user(id: Int!): User!
@@ -2494,6 +2504,7 @@ input UpdateEventInput {
   After the event ends or at a certain specific time, the event is locked and event related details cannot be updated/deleted
   """
   isLocked: Boolean
+  name: String
 
   """Some notes related to the event"""
   notes: String

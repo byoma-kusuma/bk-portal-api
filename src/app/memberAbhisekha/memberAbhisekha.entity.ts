@@ -16,7 +16,7 @@ export class MemberAbhisekhaWithoutAbhisekha {
   abhisekhaPlace: string;
 
   @Field(() => Int, { nullable: false })
-  abhishekaId: number;
+  abhisekhaId: number;
 
   @Field(() => Member, { nullable: false })
   member?: Member;
@@ -37,10 +37,10 @@ export class MemberAbhisekhaWithoutMember {
   abhisekhaPlace: string;
 
   @Field(() => Abhisekha, { nullable: false })
-  abhisheka?: Abhisekha;
+  abhisekha?: Abhisekha;
 
   @Field(() => Int, { nullable: false })
-  abhishekaId: number;
+  abhisekhaId: number;
 
   @Field(() => Int, { nullable: false })
   memberId: number;
