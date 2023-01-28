@@ -540,8 +540,10 @@ input CreateMemberInput {
 }
 
 input CreateResourceInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  description: String!
+  name: String!
+  type: String!
+  url: String!
 }
 
 input CreateRoleInput {
@@ -2371,9 +2373,11 @@ input UpdateMemberInput {
 }
 
 input UpdateResourceInput {
-  """Example field (placeholder)"""
-  exampleField: Int
+  description: String
   id: Int!
+  name: String
+  type: String
+  url: String
 }
 
 input UpdateRoleInput {

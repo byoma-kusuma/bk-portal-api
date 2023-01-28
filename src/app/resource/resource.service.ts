@@ -10,22 +10,41 @@ export class ResourceService {
   constructor(private readonly prismaService: PrismaService) {}
 
   create(createResourceInput: CreateResourceInput) {
-    return "This action adds a new resource";
+    return this.prismaService.resource.create({
+      data: createResourceInput
+    });
   }
 
   findAll() {
-    return `This action returns all resource`;
+    return this.prismaService.resource.findMany({
+      where: {
+        isDeleted: false
+      }
+    });
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} resource`;
+    return this.prismaService.resource.findFirst({
+      where: {
+        isDeleted: false,
+        id
+      }
+    });
   }
 
   update(id: number, updateResourceInput: UpdateResourceInput) {
-    return `This action updates a #${id} resource`;
+    return this.prismaService.resource.update({
+      data: updateResourceInput,
+      where: { id }
+    });
   }
 
   remove(id: number) {
-    return `This action removes a #${id} resource`;
+    return this.prismaService.resource.update({
+      where: { id },
+      data: {
+        isDeleted: true
+      }
+    });
   }
 }
