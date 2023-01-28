@@ -30,6 +30,7 @@ import {
   getMetadataStorage,
   MetadataStorage
 } from "class-validator";
+import { MemberResourceWithoutMember } from "../memberResource/memberResource.entity";
 
 @Resolver(() => Member)
 // @UseGuards(GqlAuthGuard)
@@ -181,4 +182,33 @@ export class MembersResolver {
 
     return memberEventRelation.eventMember;
   }
+
+  @ResolveField(() => [MemberResourceWithoutMember])
+  async memberResources(@Parent() member: Member) {
+    const memberResourceRelation = await this.membersService.findUnique({
+      where: { id: member.id },
+      select: {
+        id: true,
+        memberResource: {
+          where: {
+            resource: {
+              isDeleted: false
+            }
+          },
+          select: {
+            resource: true,
+            resourceId: true,
+            memberId: true
+          }
+        }
+      }
+    });
+
+    if (!memberResourceRelation) {
+      return null;
+    }
+
+    return memberResourceRelation.memberResource;
+  }
+
 }

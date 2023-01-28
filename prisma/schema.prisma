@@ -118,6 +118,8 @@ model Member {
 
     memberAbhisekha MemberAbhisekha[]
 
+    memberResource MemberResource[]
+
     eventMember EventMember[]
 
     centre   Centre? @relation(fields: [centreId], references: [id])
@@ -283,6 +285,7 @@ model Resource {
     // Relation fields
     abhisekhaResource AbhisekhaResource[]
     eventResource     EventResource[]
+    memberResource  MemberResource[]
 }
 
 model AbhisekhaResource {
@@ -332,6 +335,18 @@ model EventResource {
     resourceId Int
 
     @@id([eventId, resourceId])
+}
+
+model MemberResource {
+    type String
+
+    // Relation fields
+    member      Member    @relation(fields: [memberId], references: [id])
+    memberId    Int
+    resource   Resource @relation(fields: [resourceId], references: [id])
+    resourceId Int
+
+    @@id([memberId, resourceId])
 }
 
 model EventAbhisekha {

@@ -5,6 +5,7 @@ import { Int } from '@nestjs/graphql';
 import { GenderType } from '../prisma/gender-type.enum';
 import { MemberGroupUpdateManyWithoutMemberInput } from '../member-group/member-group-update-many-without-member.input';
 import { MemberAbhisekhaUpdateManyWithoutMemberInput } from '../member-abhisekha/member-abhisekha-update-many-without-member.input';
+import { MemberResourceUpdateManyWithoutMemberInput } from '../member-resource/member-resource-update-many-without-member.input';
 import { EventMemberUpdateManyWithoutMemberInput } from '../event-member/event-member-update-many-without-member.input';
 import { CentreUpdateOneWithoutMembersInput } from '../centre/centre-update-one-without-members.input';
 import { AddressUpdateOneWithoutMembersInput } from '../address/address-update-one-without-members.input';
@@ -97,6 +98,9 @@ export class MemberUpdateWithoutUserInput {
 
     @Field(() => MemberAbhisekhaUpdateManyWithoutMemberInput, {nullable:true})
     memberAbhisekha?: MemberAbhisekhaUpdateManyWithoutMemberInput;
+
+    @Field(() => MemberResourceUpdateManyWithoutMemberInput, {nullable:true})
+    memberResource?: MemberResourceUpdateManyWithoutMemberInput;
 
     @Field(() => EventMemberUpdateManyWithoutMemberInput, {nullable:true})
     eventMember?: EventMemberUpdateManyWithoutMemberInput;
