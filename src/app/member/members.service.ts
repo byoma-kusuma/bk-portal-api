@@ -54,7 +54,7 @@ export class MembersService {
               memberAbhisekha: {
                 create: memberAbhisekhaDetails.map(
                   ({ abhisekhaDate, abhisekhaPlace, abhisekhaId, type }) => ({
-                    abhisheka: { connect: { id: abhisekhaId } },
+                    abhisekha: { connect: { id: abhisekhaId } },
                     type,
                     abhisekhaDate,
                     abhisekhaPlace
@@ -123,9 +123,9 @@ export class MembersService {
                 upsert: memberAbhisekhaDetails.map(
                   ({ abhisekhaDate, abhisekhaId, abhisekhaPlace, type }) => ({
                     where: {
-                      memberId_abhishekaId: {
+                      memberId_abhisekhaId: {
                         memberId: id,
-                        abhishekaId: abhisekhaId
+                        abhisekhaId: abhisekhaId
                       }
                     },
                     update: {
@@ -134,7 +134,7 @@ export class MembersService {
                       type
                     },
                     create: {
-                      abhisheka: {
+                      abhisekha: {
                         connect: {
                           id: abhisekhaId
                         }
@@ -147,7 +147,7 @@ export class MembersService {
                 ),
                 deleteMany: {
                   memberId: id,
-                  abhishekaId: {
+                  abhisekhaId: {
                     notIn: memberAbhisekhaDetails.map(
                       ({ abhisekhaId }) => abhisekhaId
                     )

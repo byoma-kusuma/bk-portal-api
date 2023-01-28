@@ -66,7 +66,7 @@ export class AbhisekhaResolver {
             member: true,
             abhisekhaDate: true,
             abhisekhaPlace: true,
-            abhishekaId: true,
+            abhisekhaId: true,
             memberId: true,
             type: true
           }
@@ -98,7 +98,7 @@ export class AbhisekhaResolver {
           select: {
             resource: true,
             resourceId: true,
-            abhishekaId: true
+            abhisekhaId: true
           }
         }
       }
@@ -125,7 +125,7 @@ export class AbhisekhaResolver {
           select: {
             event: true,
             eventId: true,
-            abhishekaId: true,
+            abhisekhaId: true,
             type: true
           }
         }

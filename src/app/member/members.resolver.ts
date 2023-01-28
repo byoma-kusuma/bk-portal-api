@@ -129,17 +129,17 @@ export class MembersResolver {
         id: true,
         memberAbhisekha: {
           where: {
-            abhisheka: {
+            abhisekha: {
               isDeleted: false
             }
           },
           select: {
             abhisekhaDate: true,
             abhisekhaPlace: true,
-            abhisheka: true,
+            abhisekha: true,
             type: true,
             memberId: true,
-            abhishekaId: true
+            abhisekhaId: true
           }
         }
       }
@@ -210,5 +210,4 @@ export class MembersResolver {
 
     return memberResourceRelation.memberResource;
   }
-
 }

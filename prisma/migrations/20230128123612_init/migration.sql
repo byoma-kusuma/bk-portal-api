@@ -182,6 +182,7 @@ CREATE TABLE "Abhisekha" (
 -- CreateTable
 CREATE TABLE "Event" (
     "id" SERIAL NOT NULL,
+    "name" TEXT NOT NULL,
     "startDate" TIMESTAMP(3) NOT NULL,
     "endDate" TIMESTAMP(3) NOT NULL,
     "notes" TEXT,
@@ -217,10 +218,10 @@ CREATE TABLE "Resource" (
 
 -- CreateTable
 CREATE TABLE "AbhisekhaResource" (
-    "abhishekaId" INTEGER NOT NULL,
+    "abhisekhaId" INTEGER NOT NULL,
     "resourceId" INTEGER NOT NULL,
 
-    CONSTRAINT "AbhisekhaResource_pkey" PRIMARY KEY ("abhishekaId","resourceId")
+    CONSTRAINT "AbhisekhaResource_pkey" PRIMARY KEY ("abhisekhaId","resourceId")
 );
 
 -- CreateTable
@@ -228,10 +229,10 @@ CREATE TABLE "MemberAbhisekha" (
     "type" TEXT NOT NULL,
     "abhisekhaDate" TIMESTAMP(3) NOT NULL,
     "abhisekhaPlace" TEXT NOT NULL,
-    "abhishekaId" INTEGER NOT NULL,
+    "abhisekhaId" INTEGER NOT NULL,
     "memberId" INTEGER NOT NULL,
 
-    CONSTRAINT "MemberAbhisekha_pkey" PRIMARY KEY ("memberId","abhishekaId")
+    CONSTRAINT "MemberAbhisekha_pkey" PRIMARY KEY ("memberId","abhisekhaId")
 );
 
 -- CreateTable
@@ -266,9 +267,9 @@ CREATE TABLE "MemberResource" (
 CREATE TABLE "EventAbhisekha" (
     "type" TEXT NOT NULL,
     "eventId" INTEGER NOT NULL,
-    "abhishekaId" INTEGER NOT NULL,
+    "abhisekhaId" INTEGER NOT NULL,
 
-    CONSTRAINT "EventAbhisekha_pkey" PRIMARY KEY ("eventId","abhishekaId")
+    CONSTRAINT "EventAbhisekha_pkey" PRIMARY KEY ("eventId","abhisekhaId")
 );
 
 -- CreateIndex
@@ -356,13 +357,13 @@ ALTER TABLE "MemberGroup" ADD CONSTRAINT "MemberGroup_groupId_fkey" FOREIGN KEY 
 ALTER TABLE "Event" ADD CONSTRAINT "Event_parentEventId_fkey" FOREIGN KEY ("parentEventId") REFERENCES "Event"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "AbhisekhaResource" ADD CONSTRAINT "AbhisekhaResource_abhishekaId_fkey" FOREIGN KEY ("abhishekaId") REFERENCES "Abhisekha"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "AbhisekhaResource" ADD CONSTRAINT "AbhisekhaResource_abhisekhaId_fkey" FOREIGN KEY ("abhisekhaId") REFERENCES "Abhisekha"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "AbhisekhaResource" ADD CONSTRAINT "AbhisekhaResource_resourceId_fkey" FOREIGN KEY ("resourceId") REFERENCES "Resource"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "MemberAbhisekha" ADD CONSTRAINT "MemberAbhisekha_abhishekaId_fkey" FOREIGN KEY ("abhishekaId") REFERENCES "Abhisekha"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "MemberAbhisekha" ADD CONSTRAINT "MemberAbhisekha_abhisekhaId_fkey" FOREIGN KEY ("abhisekhaId") REFERENCES "Abhisekha"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "MemberAbhisekha" ADD CONSTRAINT "MemberAbhisekha_memberId_fkey" FOREIGN KEY ("memberId") REFERENCES "Member"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -389,4 +390,4 @@ ALTER TABLE "MemberResource" ADD CONSTRAINT "MemberResource_resourceId_fkey" FOR
 ALTER TABLE "EventAbhisekha" ADD CONSTRAINT "EventAbhisekha_eventId_fkey" FOREIGN KEY ("eventId") REFERENCES "Event"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "EventAbhisekha" ADD CONSTRAINT "EventAbhisekha_abhishekaId_fkey" FOREIGN KEY ("abhishekaId") REFERENCES "Abhisekha"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "EventAbhisekha" ADD CONSTRAINT "EventAbhisekha_abhisekhaId_fkey" FOREIGN KEY ("abhisekhaId") REFERENCES "Abhisekha"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

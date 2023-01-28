@@ -26,7 +26,7 @@ export class ResourceResolver {
     return this.resourceService.create(createResourceInput);
   }
 
-  @Query(() => [Resource], { name: "resource" })
+  @Query(() => [Resource], { name: "resources" })
   findAll() {
     return this.resourceService.findAll();
   }
@@ -92,13 +92,13 @@ export class ResourceResolver {
         id: true,
         abhisekhaResource: {
           where: {
-            abhisheka: {
+            abhisekha: {
               isDeleted: true
             }
           },
           select: {
-            abhisheka: true,
-            abhishekaId: true,
+            abhisekha: true,
+            abhisekhaId: true,
             resourceId: true
           }
         }
