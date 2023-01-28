@@ -14,8 +14,11 @@ import { UpdateEventInput } from "./dto/update-event.input";
 import { EventMemberWithoutEvent } from "../eventMember/eventMember.entity";
 import { EventAbhisekhaWithoutEvent } from "../eventAbhisekha/eventAbhisekha.entity";
 import { EventResourceWithoutEvent } from "../eventResource/eventResource.entity";
+import { UseGuards } from "@nestjs/common";
+import { GqlAuthGuard } from "../auth/gql-auth.guard";
 
 @Resolver(() => Event)
+@UseGuards(GqlAuthGuard)
 export class EventResolver {
   constructor(private readonly eventService: EventService) {}
 

@@ -14,10 +14,9 @@ import { UpdateGroupInput } from "./dto/update-group.input";
 import { UseGuards } from "@nestjs/common";
 import { GqlAuthGuard } from "../auth/gql-auth.guard";
 import { MemberGroupWithoutGroup } from "../memberGroup/memberGroup.entity";
-import { ClassProperties } from "src/common/utils/extractClass";
 
 @Resolver(() => Group)
-// @UseGuards(GqlAuthGuard)
+@UseGuards(GqlAuthGuard)
 export class GroupsResolver {
   constructor(private readonly groupsService: GroupsService) {}
 

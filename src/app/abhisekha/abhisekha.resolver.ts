@@ -14,8 +14,11 @@ import { UpdateAbhisekhaInput } from "./dto/update-abhisekha.input";
 import { MemberAbhisekhaWithoutAbhisekha } from "../memberAbhisekha/memberAbhisekha.entity";
 import { EventAbhisekhaWithoutAbhisekha } from "../eventAbhisekha/eventAbhisekha.entity";
 import { AbhisekhaResourceWithoutAbhisekha } from "../abhisekhaResource/abhisekhaResource.entity";
+import { UseGuards } from "@nestjs/common";
+import { GqlAuthGuard } from "../auth/gql-auth.guard";
 
 @Resolver(() => Abhisekha)
+@UseGuards(GqlAuthGuard)
 export class AbhisekhaResolver {
   constructor(private readonly abhisekhaService: AbhisekhaService) {}
 

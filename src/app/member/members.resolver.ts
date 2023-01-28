@@ -19,21 +19,12 @@ import { CurrentUser } from "../../common/decorators/currentUser.decorator";
 import { SendEmailInput } from "./dto/send-email.input";
 import ResponseStatus from "../../common/ResponseClasses/ResponseStatus";
 import { MemberAbhisekhaWithoutMember } from "../memberAbhisekha/memberAbhisekha.entity";
-import { ClassProperties } from "../../common/utils/extractClass";
 import { EventMemberWithoutMember } from "../eventMember/eventMember.entity";
-import {
-  MemberGroupWithoutMember,
-  Test
-} from "../memberGroup/memberGroup.entity";
-import {
-  getFromContainer,
-  getMetadataStorage,
-  MetadataStorage
-} from "class-validator";
+import { MemberGroupWithoutMember } from "../memberGroup/memberGroup.entity";
 import { MemberResourceWithoutMember } from "../memberResource/memberResource.entity";
 
 @Resolver(() => Member)
-// @UseGuards(GqlAuthGuard)
+@UseGuards(GqlAuthGuard)
 export class MembersResolver {
   constructor(private readonly membersService: MembersService) {}
 
