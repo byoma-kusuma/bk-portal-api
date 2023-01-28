@@ -14,8 +14,11 @@ import { UpdateResourceInput } from "./dto/update-resource.input";
 import { EventResourceWithoutResource } from "../eventResource/eventResource.entity";
 import { AbhisekhaResourceWithoutResource } from "../abhisekhaResource/abhisekhaResource.entity";
 import { MemberResourceWithoutResource } from "../memberResource/memberResource.entity";
+import { UseGuards } from "@nestjs/common";
+import { GqlAuthGuard } from "../auth/gql-auth.guard";
 
 @Resolver(() => Resource)
+@UseGuards(GqlAuthGuard)
 export class ResourceResolver {
   constructor(private readonly resourceService: ResourceService) {}
 
