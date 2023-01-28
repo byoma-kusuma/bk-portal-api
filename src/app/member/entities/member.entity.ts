@@ -1,4 +1,4 @@
-import { Field, ObjectType, registerEnumType } from "@nestjs/graphql";
+import { Field, Int, ObjectType, registerEnumType } from "@nestjs/graphql";
 import { GenderType, MembershipType } from "@prisma/client";
 import { User } from "../../users/models/user.model";
 import { Centre } from "../../centre/entities/centre.entity";
@@ -18,22 +18,22 @@ registerEnumType(MembershipType, {
 
 @ObjectType()
 export class Member extends SoftDeleteBaseModel {
-  @Field()
+  @Field(() => Int)
   id: number;
 
-  @Field(() => String, { nullable: true })
+  @Field({ nullable: true })
   email?: string;
 
-  @Field(() => String)
+  @Field()
   firstName: string;
 
-  @Field(() => String)
+  @Field()
   lastName: string;
 
-  @Field(() => String, { nullable: true })
+  @Field({ nullable: true })
   middleName?: string;
 
-  @Field(() => String, { nullable: true })
+  @Field({ nullable: true })
   title?: string;
 
   @Field(() => Boolean)
@@ -42,64 +42,64 @@ export class Member extends SoftDeleteBaseModel {
   @Field(() => Boolean)
   active: boolean;
 
-  @Field(() => String, { nullable: true })
+  @Field({ nullable: true })
   phoneMobile?: string;
 
-  @Field(() => String, { nullable: true })
+  @Field({ nullable: true })
   phoneLand?: string;
 
-  @Field(() => String, { nullable: true })
+  @Field({ nullable: true })
   phoneOther?: string;
 
   @Field(() => MembershipType, { nullable: true })
   membershipType?: MembershipType;
 
-  @Field(() => String, { nullable: true })
-  yearOfBirth?: string;
+  @Field(() => Int, { nullable: true })
+  yearOfBirth?: number;
 
   @Field(() => GenderType, { nullable: true })
   gender?: GenderType;
 
-  @Field(() => Date, { nullable: true })
+  @Field({ nullable: true })
   sanghaJoinDate?: Date;
 
-  @Field(() => String, { nullable: true })
+  @Field({ nullable: true })
   refugeName?: string;
 
-  @Field(() => String, { nullable: true })
+  @Field({ nullable: true })
   viber?: string;
 
-  @Field(() => String, { nullable: true })
+  @Field({ nullable: true })
   messenger?: string;
 
-  @Field(() => String, { nullable: true })
+  @Field({ nullable: true })
   insta?: string;
 
-  @Field(() => String, { nullable: true })
+  @Field({ nullable: true })
   photo?: string;
 
-  @Field(() => String, { nullable: true })
+  @Field({ nullable: true })
   notes?: string;
 
   @Field(() => User, { nullable: true })
   user?: User;
 
-  @Field(() => Centre, { nullable: true })
+  @Field({ nullable: true })
   centre?: Centre;
 
-  @Field(() => Number, { nullable: true })
+  @Field(() => Int, { nullable: true })
   centreId?: number;
 
-  @Field(() => Number, { nullable: true })
+  @Field(() => Int, { nullable: true })
   permanentAddressId?: number;
 
-  @Field(() => Address, { nullable: true })
+  @Field({ nullable: true })
   permanentAddress?: Address;
 
-  @Field(() => Number, { nullable: true })
+  @Field(() => Int, { nullable: true })
   currentAddressId?: number;
 
-  @Field(() => Address, { nullable: true })
+  @Field({ nullable: true })
   currentAddress?: Address;
 
   @Field(() => [Event], { nullable: true })

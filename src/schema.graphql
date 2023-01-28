@@ -1317,7 +1317,7 @@ type Member {
   updatedBy: String
   user: User
   viber: String
-  yearOfBirth: String
+  yearOfBirth: Int
 }
 
 input MemberAbhisekhaCreateManyAbhishekaInput {
@@ -1776,7 +1776,7 @@ type MemberGroupWithoutGroup {
   createdAt: DateTime!
   createdBy: String
   groupId: Int!
-  member: Member
+  member: Member!
   memberId: Int!
 }
 

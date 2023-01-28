@@ -35,7 +35,7 @@ export class MemberGroupWithoutGroup {
   @Field(() => String, { nullable: true })
   createdBy!: string | null;
 
-  @Field(() => Member, { nullable: true })
+  @Field(() => Member, { nullable: false })
   member?: Member;
 
   @Field(() => Int, { nullable: false })
