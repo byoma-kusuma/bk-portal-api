@@ -6,6 +6,7 @@ import {
   IsDate,
   IsEmail,
   IsEnum,
+  IsMobilePhone,
   IsNumber,
   IsOptional,
   IsPhoneNumber,
@@ -56,7 +57,7 @@ export class CreateMemberInput {
 
   @Field({ nullable: true })
   @IsString()
-  @IsPhoneNumber()
+  @IsMobilePhone()
   @IsOptional()
   phoneMobile?: string;
 
