@@ -87,7 +87,7 @@ export class ResourceResolver {
 
   @ResolveField(() => [AbhisekhaResourceWithoutResource])
   async resourceAbhisekhas(@Parent() resource: Resource) {
-    const memberEventRelation = await this.resourceService.findUnique({
+    const abhisekhaResourceRelation = await this.resourceService.findUnique({
       where: {
         id: resource.id
       },
@@ -96,7 +96,7 @@ export class ResourceResolver {
         abhisekhaResource: {
           where: {
             abhisekha: {
-              isDeleted: true
+              isDeleted: false
             }
           },
           select: {
@@ -108,11 +108,11 @@ export class ResourceResolver {
       }
     });
 
-    if (!memberEventRelation) {
+    if (!abhisekhaResourceRelation) {
       return null;
     }
 
-    return memberEventRelation.abhisekhaResource;
+    return abhisekhaResourceRelation.abhisekhaResource;
   }
 
   @ResolveField(() => [MemberResourceWithoutResource])
