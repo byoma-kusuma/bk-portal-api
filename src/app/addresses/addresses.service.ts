@@ -18,7 +18,7 @@ export class AddressService {
   }
 
   async findAll() {
-    return await this.prisma.address.findMany({});
+    return await this.prisma.address.findMany();
   }
 
   async findOne(id: number) {
