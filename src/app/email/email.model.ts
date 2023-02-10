@@ -4,6 +4,6 @@ export interface EmailModel {
   subject: string;
   text?: string;
   html?: string;
-  bcc?: string;
-  cc?: string;
+  bCC?: string | string[];
+  cC?: string | string[];
 }
