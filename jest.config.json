@@ -10,7 +10,7 @@
       "isolatedModules": true
     }
   },
-  "coverageReporters": ["json-summary", "text", "lcov"],
+  "coverageReporters": ["json-summary", "html", "text"],
   "coverageDirectory": "../coverage",
   "testEnvironment": "node",
   "collectCoverageFrom": ["**/*.(t|j)s"],

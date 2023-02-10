@@ -55,6 +55,7 @@
     "sonar": "ts-node sonar-scanner.ts"
   },
   "dependencies": {
+    "@azure/communication-email": "^1.0.0-beta.1",
     "@azure/functions": "^1.0.3",
     "@devoxa/prisma-relay-cursor-connection": "2.0.3",
     "@golevelup/ts-jest": "^0.3.4",

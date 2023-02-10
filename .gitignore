@@ -3,11 +3,15 @@ dist/
 prisma/*.db
 coverage/
 test-report.xml
+schema.dbml
 
 .DS_Store
 
+**/@generated/
+src/@generated/**
+src/schema.graphql
+
 .env
+.env.encoded*
 .env.*
 
-src/@generated
-src/schema.graphql

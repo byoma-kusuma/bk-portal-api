@@ -4,6 +4,7 @@ export interface Config {
   swagger: SwaggerConfig;
   graphql: GraphqlConfig;
   security: SecurityConfig;
+  email: EmailConfig;
 }
 
 export interface NestConfig {
@@ -34,4 +35,9 @@ export interface SecurityConfig {
   expiresIn: string;
   refreshIn: string;
   bcryptSaltOrRound: string | number;
+}
+
+export interface EmailConfig {
+  from: string;
+  connectionString: string;
 }
