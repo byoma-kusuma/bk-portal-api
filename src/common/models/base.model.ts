@@ -17,12 +17,6 @@ export abstract class BaseModel {
   updatedAt: Date;
 
   @Field({
-    description:
-      "Identifies the date and time when the object was last updated."
-  })
-  isDeleted: boolean;
-
-  @Field({
     description: "Unique key associated with the object."
   })
   uniqueKey?: string;

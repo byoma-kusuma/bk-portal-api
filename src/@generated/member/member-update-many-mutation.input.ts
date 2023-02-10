@@ -1,7 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { CentreAffiliationType } from '../prisma/centre-affiliation-type.enum';
 import { MembershipType } from '../prisma/membership-type.enum';
+import { Int } from '@nestjs/graphql';
 import { GenderType } from '../prisma/gender-type.enum';
 
 @InputType()
@@ -29,25 +29,19 @@ export class MemberUpdateManyMutationInput {
     active?: boolean;
 
     @Field(() => String, {nullable:true})
-    phonePrimary?: string;
+    phoneMobile?: string;
 
     @Field(() => String, {nullable:true})
-    phoneSecondary?: string;
+    phoneLand?: string;
 
-    @Field(() => CentreAffiliationType, {nullable:true})
-    centerAffiliation?: keyof typeof CentreAffiliationType;
+    @Field(() => String, {nullable:true})
+    phoneOther?: string;
 
     @Field(() => MembershipType, {nullable:true})
     membershipType?: keyof typeof MembershipType;
 
-    @Field(() => String, {nullable:true})
-    permanentAddress?: string;
-
-    @Field(() => String, {nullable:true})
-    currentAddress?: string;
-
-    @Field(() => Date, {nullable:true})
-    dob?: Date | string;
+    @Field(() => Int, {nullable:true})
+    yearOfBirth?: number;
 
     @Field(() => GenderType, {nullable:true})
     gender?: keyof typeof GenderType;
@@ -69,6 +63,9 @@ export class MemberUpdateManyMutationInput {
 
     @Field(() => String, {nullable:true})
     photo?: string;
+
+    @Field(() => String, {nullable:true})
+    note?: string;
 
     @Field(() => Boolean, {nullable:true})
     isDeleted?: boolean;

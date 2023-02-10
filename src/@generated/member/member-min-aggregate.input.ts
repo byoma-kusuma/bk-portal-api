@@ -29,25 +29,19 @@ export class MemberMinAggregateInput {
     active?: true;
 
     @Field(() => Boolean, {nullable:true})
-    phonePrimary?: true;
+    phoneMobile?: true;
 
     @Field(() => Boolean, {nullable:true})
-    phoneSecondary?: true;
+    phoneLand?: true;
 
     @Field(() => Boolean, {nullable:true})
-    centerAffiliation?: true;
+    phoneOther?: true;
 
     @Field(() => Boolean, {nullable:true})
     membershipType?: true;
 
     @Field(() => Boolean, {nullable:true})
-    permanentAddress?: true;
-
-    @Field(() => Boolean, {nullable:true})
-    currentAddress?: true;
-
-    @Field(() => Boolean, {nullable:true})
-    dob?: true;
+    yearOfBirth?: true;
 
     @Field(() => Boolean, {nullable:true})
     gender?: true;
@@ -71,7 +65,7 @@ export class MemberMinAggregateInput {
     photo?: true;
 
     @Field(() => Boolean, {nullable:true})
-    centreId?: true;
+    note?: true;
 
     @Field(() => Boolean, {nullable:true})
     isDeleted?: true;
@@ -90,4 +84,16 @@ export class MemberMinAggregateInput {
 
     @Field(() => Boolean, {nullable:true})
     createdBy?: true;
+
+    @Field(() => Boolean, {nullable:true})
+    centreId?: true;
+
+    @Field(() => Boolean, {nullable:true})
+    addressid?: true;
+
+    @Field(() => Boolean, {nullable:true})
+    currentAddressId?: true;
+
+    @Field(() => Boolean, {nullable:true})
+    permanentAddressId?: true;
 }

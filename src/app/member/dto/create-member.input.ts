@@ -1,10 +1,12 @@
 import { InputType, Field, Int } from "@nestjs/graphql";
-import { Centre, GenderType, MembershipType } from "@prisma/client";
+import { GenderType, MembershipType } from "@prisma/client";
 import {
+  IsArray,
   IsBoolean,
   IsDate,
   IsEmail,
   IsEnum,
+  IsMobilePhone,
   IsNumber,
   IsOptional,
   IsPhoneNumber,
@@ -12,7 +14,8 @@ import {
   IsUrl,
   MaxDate,
   MaxLength,
-  MinLength
+  MinLength,
+  ValidateNested
 } from "class-validator";
 
 @InputType()
@@ -54,7 +57,7 @@ export class CreateMemberInput {
 
   @Field({ nullable: true })
   @IsString()
-  @IsPhoneNumber()
+  @IsMobilePhone()
   @IsOptional()
   phoneMobile?: string;
 
@@ -133,11 +136,6 @@ export class CreateMemberInput {
   @MaxLength(3000)
   note?: string;
 
-  @Field(() => [Int], { nullable: true })
-  @IsNumber({}, { each: true })
-  @IsOptional()
-  groupIds?: Array<number>;
-
   @Field({ nullable: true })
   @IsOptional()
   currentAddressId?: number;
@@ -145,4 +143,35 @@ export class CreateMemberInput {
   @Field({ nullable: true })
   @IsOptional()
   permanentAddressId?: number;
+
+  @IsArray()
+  @ValidateNested({ each: true })
+  @IsOptional()
+  memberAbhisekhaDetails?: Array<MemberAbhisekhaDetails>;
+
+  @Field(() => [Int], { nullable: true })
+  @IsNumber({}, { each: true })
+  @IsOptional()
+  groupIds?: Array<number>;
+}
+
+@InputType()
+class MemberAbhisekhaDetails {
+  @Field(() => Int, { description: "Id of member who attended the abhisekha" })
+  abhisekhaId: number;
+
+  @Field(() => String, {
+    description: "Member attending the Abhisekha type eg: Peripheral"
+  })
+  type: string;
+
+  @Field(() => String, {
+    description: "Place of abhisekha"
+  })
+  abhisekhaPlace: string;
+
+  @Field(() => String, {
+    description: "Date of abhisekha"
+  })
+  abhisekhaDate: Date;
 }

@@ -1,10 +1,12 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
-import { CentreAffiliationType } from '../prisma/centre-affiliation-type.enum';
 import { MembershipType } from '../prisma/membership-type.enum';
 import { GenderType } from '../prisma/gender-type.enum';
-import { MemberGroupsUncheckedUpdateManyWithoutMemberInput } from '../member-groups/member-groups-unchecked-update-many-without-member.input';
+import { MemberGroupUncheckedUpdateManyWithoutMemberInput } from '../member-group/member-group-unchecked-update-many-without-member.input';
+import { MemberAbhisekhaUncheckedUpdateManyWithoutMemberInput } from '../member-abhisekha/member-abhisekha-unchecked-update-many-without-member.input';
+import { MemberResourceUncheckedUpdateManyWithoutMemberInput } from '../member-resource/member-resource-unchecked-update-many-without-member.input';
+import { EventMemberUncheckedUpdateManyWithoutMemberInput } from '../event-member/event-member-unchecked-update-many-without-member.input';
 
 @InputType()
 export class MemberUncheckedUpdateWithoutUserInput {
@@ -34,25 +36,19 @@ export class MemberUncheckedUpdateWithoutUserInput {
     active?: boolean;
 
     @Field(() => String, {nullable:true})
-    phonePrimary?: string;
+    phoneMobile?: string;
 
     @Field(() => String, {nullable:true})
-    phoneSecondary?: string;
+    phoneLand?: string;
 
-    @Field(() => CentreAffiliationType, {nullable:true})
-    centerAffiliation?: keyof typeof CentreAffiliationType;
+    @Field(() => String, {nullable:true})
+    phoneOther?: string;
 
     @Field(() => MembershipType, {nullable:true})
     membershipType?: keyof typeof MembershipType;
 
-    @Field(() => String, {nullable:true})
-    permanentAddress?: string;
-
-    @Field(() => String, {nullable:true})
-    currentAddress?: string;
-
-    @Field(() => Date, {nullable:true})
-    dob?: Date | string;
+    @Field(() => Int, {nullable:true})
+    yearOfBirth?: number;
 
     @Field(() => GenderType, {nullable:true})
     gender?: keyof typeof GenderType;
@@ -75,8 +71,8 @@ export class MemberUncheckedUpdateWithoutUserInput {
     @Field(() => String, {nullable:true})
     photo?: string;
 
-    @Field(() => Int, {nullable:true})
-    centreId?: number;
+    @Field(() => String, {nullable:true})
+    note?: string;
 
     @Field(() => Boolean, {nullable:true})
     isDeleted?: boolean;
@@ -96,6 +92,27 @@ export class MemberUncheckedUpdateWithoutUserInput {
     @Field(() => String, {nullable:true})
     createdBy?: string;
 
-    @Field(() => MemberGroupsUncheckedUpdateManyWithoutMemberInput, {nullable:true})
-    memberGroups?: MemberGroupsUncheckedUpdateManyWithoutMemberInput;
+    @Field(() => Int, {nullable:true})
+    centreId?: number;
+
+    @Field(() => Int, {nullable:true})
+    addressid?: number;
+
+    @Field(() => Int, {nullable:true})
+    currentAddressId?: number;
+
+    @Field(() => Int, {nullable:true})
+    permanentAddressId?: number;
+
+    @Field(() => MemberGroupUncheckedUpdateManyWithoutMemberInput, {nullable:true})
+    memberGroup?: MemberGroupUncheckedUpdateManyWithoutMemberInput;
+
+    @Field(() => MemberAbhisekhaUncheckedUpdateManyWithoutMemberInput, {nullable:true})
+    memberAbhisekha?: MemberAbhisekhaUncheckedUpdateManyWithoutMemberInput;
+
+    @Field(() => MemberResourceUncheckedUpdateManyWithoutMemberInput, {nullable:true})
+    memberResource?: MemberResourceUncheckedUpdateManyWithoutMemberInput;
+
+    @Field(() => EventMemberUncheckedUpdateManyWithoutMemberInput, {nullable:true})
+    eventMember?: EventMemberUncheckedUpdateManyWithoutMemberInput;
 }

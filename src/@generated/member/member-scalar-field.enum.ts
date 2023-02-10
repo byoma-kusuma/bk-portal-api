@@ -9,13 +9,11 @@ export enum MemberScalarFieldEnum {
     title = "title",
     isMember = "isMember",
     active = "active",
-    phonePrimary = "phonePrimary",
-    phoneSecondary = "phoneSecondary",
-    centerAffiliation = "centerAffiliation",
+    phoneMobile = "phoneMobile",
+    phoneLand = "phoneLand",
+    phoneOther = "phoneOther",
     membershipType = "membershipType",
-    permanentAddress = "permanentAddress",
-    currentAddress = "currentAddress",
-    dob = "dob",
+    yearOfBirth = "yearOfBirth",
     gender = "gender",
     sanghaJoinDate = "sanghaJoinDate",
     refugeName = "refugeName",
@@ -23,13 +21,17 @@ export enum MemberScalarFieldEnum {
     messenger = "messenger",
     insta = "insta",
     photo = "photo",
-    centreId = "centreId",
+    note = "note",
     isDeleted = "isDeleted",
     createdAt = "createdAt",
     updatedAt = "updatedAt",
     uniqueKey = "uniqueKey",
     updatedBy = "updatedBy",
-    createdBy = "createdBy"
+    createdBy = "createdBy",
+    centreId = "centreId",
+    addressid = "addressid",
+    currentAddressId = "currentAddressId",
+    permanentAddressId = "permanentAddressId"
 }
 
 

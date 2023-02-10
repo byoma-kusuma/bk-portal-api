@@ -1,8 +1,8 @@
 import { ObjectType, Field } from "@nestjs/graphql";
-import { BaseModel } from "src/common/models/base.model";
+import { SoftDeleteBaseModel } from "../../../common/models/softdeletebase.model";
 
 @ObjectType()
-export class Group extends BaseModel {
+export class Group extends SoftDeleteBaseModel {
   @Field(() => String, { nullable: false })
   name: string;
 

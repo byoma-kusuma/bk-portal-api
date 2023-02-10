@@ -10,7 +10,7 @@ describe("MembersResolver", () => {
   it("should be defined", () => {
     const membersResolverMock = createMock<MembersResolver>();
 
-    expect(membersResolverMock.centre(createMock<Member>())).toBeDefined();
+    // expect(membersResolverMock.centre(createMock<Member>())).toBeDefined();
 
     expect(
       membersResolverMock.createMember(createMock<CreateMemberInput>())

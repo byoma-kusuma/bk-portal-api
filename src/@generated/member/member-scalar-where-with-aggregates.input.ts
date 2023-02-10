@@ -3,10 +3,9 @@ import { InputType } from '@nestjs/graphql';
 import { IntWithAggregatesFilter } from '../prisma/int-with-aggregates-filter.input';
 import { StringWithAggregatesFilter } from '../prisma/string-with-aggregates-filter.input';
 import { BoolWithAggregatesFilter } from '../prisma/bool-with-aggregates-filter.input';
-import { EnumCentreAffiliationTypeWithAggregatesFilter } from '../prisma/enum-centre-affiliation-type-with-aggregates-filter.input';
 import { EnumMembershipTypeWithAggregatesFilter } from '../prisma/enum-membership-type-with-aggregates-filter.input';
-import { DateTimeWithAggregatesFilter } from '../prisma/date-time-with-aggregates-filter.input';
 import { EnumGenderTypeWithAggregatesFilter } from '../prisma/enum-gender-type-with-aggregates-filter.input';
+import { DateTimeWithAggregatesFilter } from '../prisma/date-time-with-aggregates-filter.input';
 
 @InputType()
 export class MemberScalarWhereWithAggregatesInput {
@@ -45,25 +44,19 @@ export class MemberScalarWhereWithAggregatesInput {
     active?: BoolWithAggregatesFilter;
 
     @Field(() => StringWithAggregatesFilter, {nullable:true})
-    phonePrimary?: StringWithAggregatesFilter;
+    phoneMobile?: StringWithAggregatesFilter;
 
     @Field(() => StringWithAggregatesFilter, {nullable:true})
-    phoneSecondary?: StringWithAggregatesFilter;
+    phoneLand?: StringWithAggregatesFilter;
 
-    @Field(() => EnumCentreAffiliationTypeWithAggregatesFilter, {nullable:true})
-    centerAffiliation?: EnumCentreAffiliationTypeWithAggregatesFilter;
+    @Field(() => StringWithAggregatesFilter, {nullable:true})
+    phoneOther?: StringWithAggregatesFilter;
 
     @Field(() => EnumMembershipTypeWithAggregatesFilter, {nullable:true})
     membershipType?: EnumMembershipTypeWithAggregatesFilter;
 
-    @Field(() => StringWithAggregatesFilter, {nullable:true})
-    permanentAddress?: StringWithAggregatesFilter;
-
-    @Field(() => StringWithAggregatesFilter, {nullable:true})
-    currentAddress?: StringWithAggregatesFilter;
-
-    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
-    dob?: DateTimeWithAggregatesFilter;
+    @Field(() => IntWithAggregatesFilter, {nullable:true})
+    yearOfBirth?: IntWithAggregatesFilter;
 
     @Field(() => EnumGenderTypeWithAggregatesFilter, {nullable:true})
     gender?: EnumGenderTypeWithAggregatesFilter;
@@ -86,8 +79,8 @@ export class MemberScalarWhereWithAggregatesInput {
     @Field(() => StringWithAggregatesFilter, {nullable:true})
     photo?: StringWithAggregatesFilter;
 
-    @Field(() => IntWithAggregatesFilter, {nullable:true})
-    centreId?: IntWithAggregatesFilter;
+    @Field(() => StringWithAggregatesFilter, {nullable:true})
+    note?: StringWithAggregatesFilter;
 
     @Field(() => BoolWithAggregatesFilter, {nullable:true})
     isDeleted?: BoolWithAggregatesFilter;
@@ -106,4 +99,16 @@ export class MemberScalarWhereWithAggregatesInput {
 
     @Field(() => StringWithAggregatesFilter, {nullable:true})
     createdBy?: StringWithAggregatesFilter;
+
+    @Field(() => IntWithAggregatesFilter, {nullable:true})
+    centreId?: IntWithAggregatesFilter;
+
+    @Field(() => IntWithAggregatesFilter, {nullable:true})
+    addressid?: IntWithAggregatesFilter;
+
+    @Field(() => IntWithAggregatesFilter, {nullable:true})
+    currentAddressId?: IntWithAggregatesFilter;
+
+    @Field(() => IntWithAggregatesFilter, {nullable:true})
+    permanentAddressId?: IntWithAggregatesFilter;
 }

@@ -10,4 +10,10 @@ export class MemberWhereUniqueInput {
 
     @Field(() => String, {nullable:true})
     uniqueKey?: string;
+
+    @Field(() => Int, {nullable:true})
+    currentAddressId?: number;
+
+    @Field(() => Int, {nullable:true})
+    permanentAddressId?: number;
 }

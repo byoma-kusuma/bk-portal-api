@@ -1,5 +1,4 @@
 import {
-  ForbiddenException,
   forwardRef,
   Inject,
   Injectable,
@@ -7,7 +6,7 @@ import {
   NotFoundException
 } from "@nestjs/common";
 import { PrismaService } from "nestjs-prisma";
-import createAvatar from "src/common/utils/avatar";
+import createAvatar from "../../common/utils/avatar";
 import { EmailService } from "../email/email.service";
 import { GroupsService } from "../groups/groups.service";
 import { CreateMemberInput } from "./dto/create-member.input";
@@ -16,9 +15,7 @@ import { UpdateMemberInput } from "./dto/update-member.input";
 
 @Injectable()
 export class MembersService {
-  findMany = this.prisma.member.findMany;
   findUnique = this.prisma.member.findUnique;
-  findFirst = this.prisma.member.findFirst;
 
   constructor(
     private readonly prisma: PrismaService,
@@ -28,22 +25,44 @@ export class MembersService {
     private readonly emailService: EmailService
   ) {}
 
+  /**
+   * @param  {CreateMemberInput} createMemberInput
+   * Modifies in following tables:
+   * 1) Member (create)
+   * 2) MemberGroup (create)
+   * 3) MemberAbhisekha (create)
+   */
   async create(createMemberInput: CreateMemberInput) {
-    const { groupIds, ...createMemberArgs } = createMemberInput;
-
-    const filteredGroups = await this.groupService.filterValidGroups(
-      groupIds || []
-    );
+    const { groupIds, memberAbhisekhaDetails, ...createMemberArgs } =
+      createMemberInput;
 
     const member = this.prisma.member.create({
       data: {
         ...createMemberArgs,
         photo: createAvatar(),
-        memberGroups: {
-          create: filteredGroups.map((groupId) => ({
-            group: { connect: { id: groupId } }
-          }))
-        }
+        ...(groupIds
+          ? {
+              memberGroup: {
+                create: groupIds.map((groupId) => ({
+                  group: { connect: { id: groupId } }
+                }))
+              }
+            }
+          : {}),
+        ...(memberAbhisekhaDetails
+          ? {
+              memberAbhisekha: {
+                create: memberAbhisekhaDetails.map(
+                  ({ abhisekhaDate, abhisekhaPlace, abhisekhaId, type }) => ({
+                    abhisekha: { connect: { id: abhisekhaId } },
+                    type,
+                    abhisekhaDate,
+                    abhisekhaPlace
+                  })
+                )
+              }
+            }
+          : {})
       }
     });
 
@@ -61,52 +80,82 @@ export class MembersService {
   async findOne(id: number) {
     const member = await this.prisma.member.findFirst({
       where: {
-        id
+        id,
+        isDeleted: false
       }
     });
 
-    if (!member) {
-      throw new NotFoundException(`Member with id: '${id}' not found`);
-    }
-    if (member.isDeleted) {
-      throw new NotFoundException("Trying to access a deleted member");
-    }
     return member;
   }
-
+  /**
+   * @param  {number} id
+   * @param  {UpdateMemberInput} updateMemberInput
+   * Modifies in following tables
+   * 1) Member (update)
+   * 2) MemberGroup (update, create, delete)
+   * 3) MemberAbhisekha (update, create, delete)
+   */
   async update(id: number, updateMemberInput: UpdateMemberInput) {
-    const { groupIds, ...updateMemberArgs } = updateMemberInput;
-
-    const filteredGroups = await this.groupService.filterValidGroups(
-      groupIds || []
-    );
-
-    const member = await this.prisma.member.findUnique({ where: { id } });
-
-    if (!member || member.isDeleted) {
-      throw new ForbiddenException(
-        "Member not found or this member has already been deleted!"
-      );
-    }
+    const { groupIds, memberAbhisekhaDetails, ...updateMemberArgs } =
+      updateMemberInput;
 
     return this.prisma.member.update({
       data: {
         ...updateMemberArgs,
         ...(groupIds && {
           groups: {
-            upsert: filteredGroups.map((groupId) => ({
+            upsert: groupIds.map((groupId) => ({
               where: {
-                memberId_groupId: { memberId: member.id, groupId }
+                memberId_groupId: { memberId: id, groupId }
               },
               update: {},
               create: { group: { connect: { id: groupId } } }
             })),
             deleteMany: {
-              memberId: member.id,
-              groupId: { notIn: filteredGroups }
+              memberId: id,
+              groupId: { notIn: groupIds }
             }
           }
-        })
+        }),
+        ...(memberAbhisekhaDetails
+          ? {
+              memberAbhisekha: {
+                upsert: memberAbhisekhaDetails.map(
+                  ({ abhisekhaDate, abhisekhaId, abhisekhaPlace, type }) => ({
+                    where: {
+                      memberId_abhisekhaId: {
+                        memberId: id,
+                        abhisekhaId: abhisekhaId
+                      }
+                    },
+                    update: {
+                      abhisekhaDate,
+                      abhisekhaPlace,
+                      type
+                    },
+                    create: {
+                      abhisekha: {
+                        connect: {
+                          id: abhisekhaId
+                        }
+                      },
+                      abhisekhaDate,
+                      abhisekhaPlace,
+                      type
+                    }
+                  })
+                ),
+                deleteMany: {
+                  memberId: id,
+                  abhisekhaId: {
+                    notIn: memberAbhisekhaDetails.map(
+                      ({ abhisekhaId }) => abhisekhaId
+                    )
+                  }
+                }
+              }
+            }
+          : {})
       },
       where: {
         id

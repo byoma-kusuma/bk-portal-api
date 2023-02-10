@@ -30,25 +30,19 @@ export class MemberCountAggregate {
     active!: number;
 
     @Field(() => Int, {nullable:false})
-    phonePrimary!: number;
+    phoneMobile!: number;
 
     @Field(() => Int, {nullable:false})
-    phoneSecondary!: number;
+    phoneLand!: number;
 
     @Field(() => Int, {nullable:false})
-    centerAffiliation!: number;
+    phoneOther!: number;
 
     @Field(() => Int, {nullable:false})
     membershipType!: number;
 
     @Field(() => Int, {nullable:false})
-    permanentAddress!: number;
-
-    @Field(() => Int, {nullable:false})
-    currentAddress!: number;
-
-    @Field(() => Int, {nullable:false})
-    dob!: number;
+    yearOfBirth!: number;
 
     @Field(() => Int, {nullable:false})
     gender!: number;
@@ -72,7 +66,7 @@ export class MemberCountAggregate {
     photo!: number;
 
     @Field(() => Int, {nullable:false})
-    centreId!: number;
+    note!: number;
 
     @Field(() => Int, {nullable:false})
     isDeleted!: number;
@@ -91,6 +85,18 @@ export class MemberCountAggregate {
 
     @Field(() => Int, {nullable:false})
     createdBy!: number;
+
+    @Field(() => Int, {nullable:false})
+    centreId!: number;
+
+    @Field(() => Int, {nullable:false})
+    addressid!: number;
+
+    @Field(() => Int, {nullable:false})
+    currentAddressId!: number;
+
+    @Field(() => Int, {nullable:false})
+    permanentAddressId!: number;
 
     @Field(() => Int, {nullable:false})
     _all!: number;

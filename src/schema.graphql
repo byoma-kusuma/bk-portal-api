@@ -2,6 +2,428 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Abhisekha {
+  abhisekhaEvents: [EventAbhisekhaWithoutAbhisekha!]!
+  abhisekhaMembers: [MemberAbhisekhaWithoutAbhisekha!]!
+  abhisekhaResources: [AbhisekhaResourceWithoutAbhisekha!]!
+
+  """
+  Identifies the date and time when the object was created.
+  """
+  createdAt: DateTime!
+
+  """
+  Identifies who created the object.
+  """
+  createdBy: String
+
+  """
+  Name of the abhisekha
+  """
+  description: String!
+  id: Int!
+
+  """
+  Identifies the date and time when the object was last deleted.
+  """
+  isDeleted: Boolean!
+
+  """
+  Name of the abhisekha
+  """
+  name: String!
+
+  """
+  Resources for the abhisekha
+  """
+  resources: [Resource!]!
+
+  """
+  Name of the abhisekha
+  """
+  teacher: String!
+
+  """
+  Unique key associated with the object.
+  """
+  uniqueKey: String
+
+  """
+  Identifies the date and time when the object was last updated.
+  """
+  updatedAt: DateTime!
+
+  """
+  Identifies who made the last update to the object.
+  """
+  updatedBy: String
+}
+
+input AbhisekhaCreateNestedOneWithoutAbhisekhaResourceInput {
+  connect: AbhisekhaWhereUniqueInput
+  connectOrCreate: AbhisekhaCreateOrConnectWithoutAbhisekhaResourceInput
+  create: AbhisekhaCreateWithoutAbhisekhaResourceInput
+}
+
+input AbhisekhaCreateNestedOneWithoutEventAbhisekhaInput {
+  connect: AbhisekhaWhereUniqueInput
+  connectOrCreate: AbhisekhaCreateOrConnectWithoutEventAbhisekhaInput
+  create: AbhisekhaCreateWithoutEventAbhisekhaInput
+}
+
+input AbhisekhaCreateNestedOneWithoutMemberAbhisekhaInput {
+  connect: AbhisekhaWhereUniqueInput
+  connectOrCreate: AbhisekhaCreateOrConnectWithoutMemberAbhisekhaInput
+  create: AbhisekhaCreateWithoutMemberAbhisekhaInput
+}
+
+input AbhisekhaCreateOrConnectWithoutAbhisekhaResourceInput {
+  create: AbhisekhaCreateWithoutAbhisekhaResourceInput!
+  where: AbhisekhaWhereUniqueInput!
+}
+
+input AbhisekhaCreateOrConnectWithoutEventAbhisekhaInput {
+  create: AbhisekhaCreateWithoutEventAbhisekhaInput!
+  where: AbhisekhaWhereUniqueInput!
+}
+
+input AbhisekhaCreateOrConnectWithoutMemberAbhisekhaInput {
+  create: AbhisekhaCreateWithoutMemberAbhisekhaInput!
+  where: AbhisekhaWhereUniqueInput!
+}
+
+input AbhisekhaCreateWithoutAbhisekhaResourceInput {
+  createdAt: DateTime
+  createdBy: String
+  description: String!
+  eventAbhisekha: EventAbhisekhaCreateNestedManyWithoutAbhisekhaInput
+  isDeleted: Boolean
+  memberAbhisekha: MemberAbhisekhaCreateNestedManyWithoutAbhisekhaInput
+  name: String!
+  teacher: String!
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+}
+
+input AbhisekhaCreateWithoutEventAbhisekhaInput {
+  abhisekhaResource: AbhisekhaResourceCreateNestedManyWithoutAbhisekhaInput
+  createdAt: DateTime
+  createdBy: String
+  description: String!
+  isDeleted: Boolean
+  memberAbhisekha: MemberAbhisekhaCreateNestedManyWithoutAbhisekhaInput
+  name: String!
+  teacher: String!
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+}
+
+input AbhisekhaCreateWithoutMemberAbhisekhaInput {
+  abhisekhaResource: AbhisekhaResourceCreateNestedManyWithoutAbhisekhaInput
+  createdAt: DateTime
+  createdBy: String
+  description: String!
+  eventAbhisekha: EventAbhisekhaCreateNestedManyWithoutAbhisekhaInput
+  isDeleted: Boolean
+  name: String!
+  teacher: String!
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+}
+
+input AbhisekhaMemberDetails {
+  """
+  Date of abhisekha
+  """
+  abhisekhaDate: String!
+
+  """
+  Place of abhisekha
+  """
+  abhisekhaPlace: String!
+
+  """
+  Id of member who attended the abhisekha
+  """
+  memberId: Int!
+
+  """
+  Member attending the Abhisekha type eg: Peripheral
+  """
+  type: String!
+}
+
+input AbhisekhaRelationFilter {
+  is: AbhisekhaWhereInput
+  isNot: AbhisekhaWhereInput
+}
+
+input AbhisekhaResourceAbhisekhaIdResourceIdCompoundUniqueInput {
+  abhisekhaId: Int!
+  resourceId: Int!
+}
+
+input AbhisekhaResourceCreateManyAbhisekhaInput {
+  resourceId: Int!
+}
+
+input AbhisekhaResourceCreateManyAbhisekhaInputEnvelope {
+  data: [AbhisekhaResourceCreateManyAbhisekhaInput!]!
+  skipDuplicates: Boolean
+}
+
+input AbhisekhaResourceCreateManyResourceInput {
+  abhisekhaId: Int!
+}
+
+input AbhisekhaResourceCreateManyResourceInputEnvelope {
+  data: [AbhisekhaResourceCreateManyResourceInput!]!
+  skipDuplicates: Boolean
+}
+
+input AbhisekhaResourceCreateNestedManyWithoutAbhisekhaInput {
+  connect: [AbhisekhaResourceWhereUniqueInput!]
+  connectOrCreate: [AbhisekhaResourceCreateOrConnectWithoutAbhisekhaInput!]
+  create: [AbhisekhaResourceCreateWithoutAbhisekhaInput!]
+  createMany: AbhisekhaResourceCreateManyAbhisekhaInputEnvelope
+}
+
+input AbhisekhaResourceCreateNestedManyWithoutResourceInput {
+  connect: [AbhisekhaResourceWhereUniqueInput!]
+  connectOrCreate: [AbhisekhaResourceCreateOrConnectWithoutResourceInput!]
+  create: [AbhisekhaResourceCreateWithoutResourceInput!]
+  createMany: AbhisekhaResourceCreateManyResourceInputEnvelope
+}
+
+input AbhisekhaResourceCreateOrConnectWithoutAbhisekhaInput {
+  create: AbhisekhaResourceCreateWithoutAbhisekhaInput!
+  where: AbhisekhaResourceWhereUniqueInput!
+}
+
+input AbhisekhaResourceCreateOrConnectWithoutResourceInput {
+  create: AbhisekhaResourceCreateWithoutResourceInput!
+  where: AbhisekhaResourceWhereUniqueInput!
+}
+
+input AbhisekhaResourceCreateWithoutAbhisekhaInput {
+  resource: ResourceCreateNestedOneWithoutAbhisekhaResourceInput!
+}
+
+input AbhisekhaResourceCreateWithoutResourceInput {
+  abhisekha: AbhisekhaCreateNestedOneWithoutAbhisekhaResourceInput!
+}
+
+input AbhisekhaResourceListRelationFilter {
+  every: AbhisekhaResourceWhereInput
+  none: AbhisekhaResourceWhereInput
+  some: AbhisekhaResourceWhereInput
+}
+
+input AbhisekhaResourceWhereInput {
+  AND: [AbhisekhaResourceWhereInput!]
+  NOT: [AbhisekhaResourceWhereInput!]
+  OR: [AbhisekhaResourceWhereInput!]
+  abhisekha: AbhisekhaRelationFilter
+  abhisekhaId: IntFilter
+  resource: ResourceRelationFilter
+  resourceId: IntFilter
+}
+
+input AbhisekhaResourceWhereUniqueInput {
+  abhisekhaId_resourceId: AbhisekhaResourceAbhisekhaIdResourceIdCompoundUniqueInput
+}
+
+type AbhisekhaResourceWithoutAbhisekha {
+  abhisekhaId: Int!
+  resource: Resource!
+  resourceId: Int!
+}
+
+type AbhisekhaResourceWithoutResource {
+  abhisekha: Abhisekha!
+  abhisekhaId: Int!
+  resourceId: Int!
+}
+
+input AbhisekhaWhereInput {
+  AND: [AbhisekhaWhereInput!]
+  NOT: [AbhisekhaWhereInput!]
+  OR: [AbhisekhaWhereInput!]
+  abhisekhaResource: AbhisekhaResourceListRelationFilter
+  createdAt: DateTimeFilter
+  createdBy: StringFilter
+  description: StringFilter
+  eventAbhisekha: EventAbhisekhaListRelationFilter
+  id: IntFilter
+  isDeleted: BoolFilter
+  memberAbhisekha: MemberAbhisekhaListRelationFilter
+  name: StringFilter
+  teacher: StringFilter
+  uniqueKey: StringFilter
+  updatedAt: DateTimeFilter
+  updatedBy: StringFilter
+}
+
+input AbhisekhaWhereUniqueInput {
+  id: Int
+  uniqueKey: String
+}
+
+type Address {
+  city: String
+  country: String
+
+  """
+  Identifies the date and time when the object was created.
+  """
+  createdAt: DateTime!
+
+  """
+  Identifies who created the object.
+  """
+  createdBy: String
+  id: Int!
+  stateProvince: String
+  street: String
+
+  """
+  Unique key associated with the object.
+  """
+  uniqueKey: String
+
+  """
+  Identifies the date and time when the object was last updated.
+  """
+  updatedAt: DateTime!
+
+  """
+  Identifies who made the last update to the object.
+  """
+  updatedBy: String
+}
+
+input AddressCreateInput {
+  Members: MemberCreateNestedManyWithoutAddressInput
+  city: String
+  country: String!
+  createdAt: DateTime
+  createdBy: String
+  memberCurrentAddress: MemberCreateNestedOneWithoutCurrentAddressInput
+  memberPermanentAddress: MemberCreateNestedOneWithoutPermanentAddressInput
+  stateProvince: String
+  street: String
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+}
+
+input AddressCreateNestedOneWithoutMemberCurrentAddressInput {
+  connect: AddressWhereUniqueInput
+  connectOrCreate: AddressCreateOrConnectWithoutMemberCurrentAddressInput
+  create: AddressCreateWithoutMemberCurrentAddressInput
+}
+
+input AddressCreateNestedOneWithoutMemberPermanentAddressInput {
+  connect: AddressWhereUniqueInput
+  connectOrCreate: AddressCreateOrConnectWithoutMemberPermanentAddressInput
+  create: AddressCreateWithoutMemberPermanentAddressInput
+}
+
+input AddressCreateNestedOneWithoutMembersInput {
+  connect: AddressWhereUniqueInput
+  connectOrCreate: AddressCreateOrConnectWithoutMembersInput
+  create: AddressCreateWithoutMembersInput
+}
+
+input AddressCreateOrConnectWithoutMemberCurrentAddressInput {
+  create: AddressCreateWithoutMemberCurrentAddressInput!
+  where: AddressWhereUniqueInput!
+}
+
+input AddressCreateOrConnectWithoutMemberPermanentAddressInput {
+  create: AddressCreateWithoutMemberPermanentAddressInput!
+  where: AddressWhereUniqueInput!
+}
+
+input AddressCreateOrConnectWithoutMembersInput {
+  create: AddressCreateWithoutMembersInput!
+  where: AddressWhereUniqueInput!
+}
+
+input AddressCreateWithoutMemberCurrentAddressInput {
+  Members: MemberCreateNestedManyWithoutAddressInput
+  city: String
+  country: String!
+  createdAt: DateTime
+  createdBy: String
+  memberPermanentAddress: MemberCreateNestedOneWithoutPermanentAddressInput
+  stateProvince: String
+  street: String
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+}
+
+input AddressCreateWithoutMemberPermanentAddressInput {
+  Members: MemberCreateNestedManyWithoutAddressInput
+  city: String
+  country: String!
+  createdAt: DateTime
+  createdBy: String
+  memberCurrentAddress: MemberCreateNestedOneWithoutCurrentAddressInput
+  stateProvince: String
+  street: String
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+}
+
+input AddressCreateWithoutMembersInput {
+  city: String
+  country: String!
+  createdAt: DateTime
+  createdBy: String
+  memberCurrentAddress: MemberCreateNestedOneWithoutCurrentAddressInput
+  memberPermanentAddress: MemberCreateNestedOneWithoutPermanentAddressInput
+  stateProvince: String
+  street: String
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+}
+
+input AddressRelationFilter {
+  is: AddressWhereInput
+  isNot: AddressWhereInput
+}
+
+input AddressWhereInput {
+  AND: [AddressWhereInput!]
+  Members: MemberListRelationFilter
+  NOT: [AddressWhereInput!]
+  OR: [AddressWhereInput!]
+  city: StringFilter
+  country: StringFilter
+  createdAt: DateTimeFilter
+  createdBy: StringFilter
+  id: IntFilter
+  memberCurrentAddress: MemberRelationFilter
+  memberPermanentAddress: MemberRelationFilter
+  stateProvince: StringFilter
+  street: StringFilter
+  uniqueKey: StringFilter
+  updatedAt: DateTimeFilter
+  updatedBy: StringFilter
+}
+
+input AddressWhereUniqueInput {
+  id: Int
+  uniqueKey: String
+}
+
 type Auth {
   """
   JWT access token
@@ -96,19 +518,59 @@ input ChangePasswordInput {
   oldPassword: String!
 }
 
-input CreateCentreInput {
-  city: String
-  country: String
-  displaySequence: Int!
-  displayText: String!
+input CreateAbhisekhaInput {
+  """
+  Name of the abhisekha
+  """
+  description: String!
+
+  """
+  Name of the abhisekha
+  """
   name: String!
-  stateProvince: String
-  streetAddress: String
+
+  """
+  Name of the abhisekha
+  """
+  teacher: String!
+}
+
+input CreateEventInput {
+  """
+  Event end date
+  """
+  endDate: DateTime!
+
+  """
+  Details of members attending the event
+  """
+  eventMemberDetails: [EventMemberDetails!]!
+
+  """
+  After the event ends or at a certain specific time, the event is locked and event related details cannot be updated/deleted
+  """
+  isLocked: Boolean!
+  name: String!
+
+  """
+  Some notes related to the event
+  """
+  notes: String!
+
+  """
+  Event start date
+  """
+  startDate: DateTime!
+
+  """
+  Type of the event
+  """
+  type: String!
 }
 
 input CreateGroupInput {
   description: String!
-  memberIds: [Int!]!
+  memberIds: [Int!]
   name: String!
   visible: Boolean!
 }
@@ -126,6 +588,7 @@ input CreateMemberInput {
   insta: String
   isMember: Boolean!
   lastName: String!
+  memberAbhisekhaDetails: [MemberAbhisekhaDetails!]
   membershipType: String
   messenger: String
   middleName: String
@@ -137,6 +600,13 @@ input CreateMemberInput {
   sanghaJoinDate: DateTime
   title: String
   viber: String
+}
+
+input CreateResourceInput {
+  description: String!
+  name: String!
+  type: String!
+  url: String!
 }
 
 input CreateRoleInput {
@@ -198,6 +668,606 @@ input EnumUserStatusFilter {
   notIn: [UserStatus!]
 }
 
+type Event {
+  """
+  The child events of this event, if this event is a parent event.
+  """
+  childEvents: [Event!]!
+
+  """
+  Identifies the date and time when the object was created.
+  """
+  createdAt: DateTime!
+
+  """
+  Identifies who created the object.
+  """
+  createdBy: String
+
+  """
+  Event end date
+  """
+  endDate: DateTime!
+
+  """
+  The event Abhisekhas for this event.
+  """
+  eventAbhisekha: [EventAbhisekhaWithoutEvent!]!
+  eventAbhisekhas: [EventAbhisekhaWithoutEvent!]!
+
+  """
+  The event members for this event.
+  """
+  eventMember: [EventMemberWithoutEvent!]!
+  eventMembers: [EventMemberWithoutEvent!]!
+
+  """
+  The event resources for this event.
+  """
+  eventResource: [EventResourceWithoutEvent!]!
+  eventResources: [EventResourceWithoutEvent!]!
+  id: Int!
+
+  """
+  Identifies the date and time when the object was last deleted.
+  """
+  isDeleted: Boolean!
+
+  """
+  After the event ends or at a certain specific time, the event is locked and event related details cannot be updated/deleted
+  """
+  isLocked: Boolean!
+  name: String!
+
+  """
+  Some notes related to the event
+  """
+  notes: String
+
+  """
+  The parent event, if this event is a child event.
+  """
+  parentEvent: Event
+
+  """
+  The ID of the parent event, if this event is a child event.
+  """
+  parentEventId: Int
+
+  """
+  Event start date
+  """
+  startDate: DateTime!
+
+  """
+  Type of the event
+  """
+  type: String!
+
+  """
+  Unique key associated with the object.
+  """
+  uniqueKey: String
+
+  """
+  Identifies the date and time when the object was last updated.
+  """
+  updatedAt: DateTime!
+
+  """
+  Identifies who made the last update to the object.
+  """
+  updatedBy: String
+}
+
+input EventAbhisekhaCreateManyAbhisekhaInput {
+  eventId: Int!
+  type: String!
+}
+
+input EventAbhisekhaCreateManyAbhisekhaInputEnvelope {
+  data: [EventAbhisekhaCreateManyAbhisekhaInput!]!
+  skipDuplicates: Boolean
+}
+
+input EventAbhisekhaCreateManyEventInput {
+  abhisekhaId: Int!
+  type: String!
+}
+
+input EventAbhisekhaCreateManyEventInputEnvelope {
+  data: [EventAbhisekhaCreateManyEventInput!]!
+  skipDuplicates: Boolean
+}
+
+input EventAbhisekhaCreateNestedManyWithoutAbhisekhaInput {
+  connect: [EventAbhisekhaWhereUniqueInput!]
+  connectOrCreate: [EventAbhisekhaCreateOrConnectWithoutAbhisekhaInput!]
+  create: [EventAbhisekhaCreateWithoutAbhisekhaInput!]
+  createMany: EventAbhisekhaCreateManyAbhisekhaInputEnvelope
+}
+
+input EventAbhisekhaCreateNestedManyWithoutEventInput {
+  connect: [EventAbhisekhaWhereUniqueInput!]
+  connectOrCreate: [EventAbhisekhaCreateOrConnectWithoutEventInput!]
+  create: [EventAbhisekhaCreateWithoutEventInput!]
+  createMany: EventAbhisekhaCreateManyEventInputEnvelope
+}
+
+input EventAbhisekhaCreateOrConnectWithoutAbhisekhaInput {
+  create: EventAbhisekhaCreateWithoutAbhisekhaInput!
+  where: EventAbhisekhaWhereUniqueInput!
+}
+
+input EventAbhisekhaCreateOrConnectWithoutEventInput {
+  create: EventAbhisekhaCreateWithoutEventInput!
+  where: EventAbhisekhaWhereUniqueInput!
+}
+
+input EventAbhisekhaCreateWithoutAbhisekhaInput {
+  event: EventCreateNestedOneWithoutEventAbhisekhaInput!
+  type: String!
+}
+
+input EventAbhisekhaCreateWithoutEventInput {
+  abhisekha: AbhisekhaCreateNestedOneWithoutEventAbhisekhaInput!
+  type: String!
+}
+
+input EventAbhisekhaEventIdAbhisekhaIdCompoundUniqueInput {
+  abhisekhaId: Int!
+  eventId: Int!
+}
+
+input EventAbhisekhaListRelationFilter {
+  every: EventAbhisekhaWhereInput
+  none: EventAbhisekhaWhereInput
+  some: EventAbhisekhaWhereInput
+}
+
+input EventAbhisekhaWhereInput {
+  AND: [EventAbhisekhaWhereInput!]
+  NOT: [EventAbhisekhaWhereInput!]
+  OR: [EventAbhisekhaWhereInput!]
+  abhisekha: AbhisekhaRelationFilter
+  abhisekhaId: IntFilter
+  event: EventRelationFilter
+  eventId: IntFilter
+  type: StringFilter
+}
+
+input EventAbhisekhaWhereUniqueInput {
+  eventId_abhisekhaId: EventAbhisekhaEventIdAbhisekhaIdCompoundUniqueInput
+}
+
+type EventAbhisekhaWithoutAbhisekha {
+  abhisekhaId: Int!
+  event: Event!
+  eventId: Int!
+  type: String!
+}
+
+type EventAbhisekhaWithoutEvent {
+  abhisekha: Abhisekha!
+  abhisekhaId: Int!
+  eventId: Int!
+  type: String!
+}
+
+input EventCreateManyParentEventInput {
+  createdAt: DateTime
+  createdBy: String
+  endDate: DateTime!
+  id: Int
+  isDeleted: Boolean
+  isLocked: Boolean!
+  name: String!
+  notes: String
+  startDate: DateTime!
+  type: String!
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+}
+
+input EventCreateManyParentEventInputEnvelope {
+  data: [EventCreateManyParentEventInput!]!
+  skipDuplicates: Boolean
+}
+
+input EventCreateNestedManyWithoutParentEventInput {
+  connect: [EventWhereUniqueInput!]
+  connectOrCreate: [EventCreateOrConnectWithoutParentEventInput!]
+  create: [EventCreateWithoutParentEventInput!]
+  createMany: EventCreateManyParentEventInputEnvelope
+}
+
+input EventCreateNestedOneWithoutChildEventsInput {
+  connect: EventWhereUniqueInput
+  connectOrCreate: EventCreateOrConnectWithoutChildEventsInput
+  create: EventCreateWithoutChildEventsInput
+}
+
+input EventCreateNestedOneWithoutEventAbhisekhaInput {
+  connect: EventWhereUniqueInput
+  connectOrCreate: EventCreateOrConnectWithoutEventAbhisekhaInput
+  create: EventCreateWithoutEventAbhisekhaInput
+}
+
+input EventCreateNestedOneWithoutEventMemberInput {
+  connect: EventWhereUniqueInput
+  connectOrCreate: EventCreateOrConnectWithoutEventMemberInput
+  create: EventCreateWithoutEventMemberInput
+}
+
+input EventCreateNestedOneWithoutEventResourceInput {
+  connect: EventWhereUniqueInput
+  connectOrCreate: EventCreateOrConnectWithoutEventResourceInput
+  create: EventCreateWithoutEventResourceInput
+}
+
+input EventCreateOrConnectWithoutChildEventsInput {
+  create: EventCreateWithoutChildEventsInput!
+  where: EventWhereUniqueInput!
+}
+
+input EventCreateOrConnectWithoutEventAbhisekhaInput {
+  create: EventCreateWithoutEventAbhisekhaInput!
+  where: EventWhereUniqueInput!
+}
+
+input EventCreateOrConnectWithoutEventMemberInput {
+  create: EventCreateWithoutEventMemberInput!
+  where: EventWhereUniqueInput!
+}
+
+input EventCreateOrConnectWithoutEventResourceInput {
+  create: EventCreateWithoutEventResourceInput!
+  where: EventWhereUniqueInput!
+}
+
+input EventCreateOrConnectWithoutParentEventInput {
+  create: EventCreateWithoutParentEventInput!
+  where: EventWhereUniqueInput!
+}
+
+input EventCreateWithoutChildEventsInput {
+  createdAt: DateTime
+  createdBy: String
+  endDate: DateTime!
+  eventAbhisekha: EventAbhisekhaCreateNestedManyWithoutEventInput
+  eventMember: EventMemberCreateNestedManyWithoutEventInput
+  eventResource: EventResourceCreateNestedManyWithoutEventInput
+  isDeleted: Boolean
+  isLocked: Boolean!
+  name: String!
+  notes: String
+  parentEvent: EventCreateNestedOneWithoutChildEventsInput
+  startDate: DateTime!
+  type: String!
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+}
+
+input EventCreateWithoutEventAbhisekhaInput {
+  childEvents: EventCreateNestedManyWithoutParentEventInput
+  createdAt: DateTime
+  createdBy: String
+  endDate: DateTime!
+  eventMember: EventMemberCreateNestedManyWithoutEventInput
+  eventResource: EventResourceCreateNestedManyWithoutEventInput
+  isDeleted: Boolean
+  isLocked: Boolean!
+  name: String!
+  notes: String
+  parentEvent: EventCreateNestedOneWithoutChildEventsInput
+  startDate: DateTime!
+  type: String!
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+}
+
+input EventCreateWithoutEventMemberInput {
+  childEvents: EventCreateNestedManyWithoutParentEventInput
+  createdAt: DateTime
+  createdBy: String
+  endDate: DateTime!
+  eventAbhisekha: EventAbhisekhaCreateNestedManyWithoutEventInput
+  eventResource: EventResourceCreateNestedManyWithoutEventInput
+  isDeleted: Boolean
+  isLocked: Boolean!
+  name: String!
+  notes: String
+  parentEvent: EventCreateNestedOneWithoutChildEventsInput
+  startDate: DateTime!
+  type: String!
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+}
+
+input EventCreateWithoutEventResourceInput {
+  childEvents: EventCreateNestedManyWithoutParentEventInput
+  createdAt: DateTime
+  createdBy: String
+  endDate: DateTime!
+  eventAbhisekha: EventAbhisekhaCreateNestedManyWithoutEventInput
+  eventMember: EventMemberCreateNestedManyWithoutEventInput
+  isDeleted: Boolean
+  isLocked: Boolean!
+  name: String!
+  notes: String
+  parentEvent: EventCreateNestedOneWithoutChildEventsInput
+  startDate: DateTime!
+  type: String!
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+}
+
+input EventCreateWithoutParentEventInput {
+  childEvents: EventCreateNestedManyWithoutParentEventInput
+  createdAt: DateTime
+  createdBy: String
+  endDate: DateTime!
+  eventAbhisekha: EventAbhisekhaCreateNestedManyWithoutEventInput
+  eventMember: EventMemberCreateNestedManyWithoutEventInput
+  eventResource: EventResourceCreateNestedManyWithoutEventInput
+  isDeleted: Boolean
+  isLocked: Boolean!
+  name: String!
+  notes: String
+  startDate: DateTime!
+  type: String!
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+}
+
+input EventListRelationFilter {
+  every: EventWhereInput
+  none: EventWhereInput
+  some: EventWhereInput
+}
+
+input EventMemberCreateManyEventInput {
+  hasAttended: Boolean!
+  memberId: Int!
+  type: String!
+}
+
+input EventMemberCreateManyEventInputEnvelope {
+  data: [EventMemberCreateManyEventInput!]!
+  skipDuplicates: Boolean
+}
+
+input EventMemberCreateManyMemberInput {
+  eventId: Int!
+  hasAttended: Boolean!
+  type: String!
+}
+
+input EventMemberCreateManyMemberInputEnvelope {
+  data: [EventMemberCreateManyMemberInput!]!
+  skipDuplicates: Boolean
+}
+
+input EventMemberCreateNestedManyWithoutEventInput {
+  connect: [EventMemberWhereUniqueInput!]
+  connectOrCreate: [EventMemberCreateOrConnectWithoutEventInput!]
+  create: [EventMemberCreateWithoutEventInput!]
+  createMany: EventMemberCreateManyEventInputEnvelope
+}
+
+input EventMemberCreateNestedManyWithoutMemberInput {
+  connect: [EventMemberWhereUniqueInput!]
+  connectOrCreate: [EventMemberCreateOrConnectWithoutMemberInput!]
+  create: [EventMemberCreateWithoutMemberInput!]
+  createMany: EventMemberCreateManyMemberInputEnvelope
+}
+
+input EventMemberCreateOrConnectWithoutEventInput {
+  create: EventMemberCreateWithoutEventInput!
+  where: EventMemberWhereUniqueInput!
+}
+
+input EventMemberCreateOrConnectWithoutMemberInput {
+  create: EventMemberCreateWithoutMemberInput!
+  where: EventMemberWhereUniqueInput!
+}
+
+input EventMemberCreateWithoutEventInput {
+  hasAttended: Boolean!
+  member: MemberCreateNestedOneWithoutEventMemberInput!
+  type: String!
+}
+
+input EventMemberCreateWithoutMemberInput {
+  event: EventCreateNestedOneWithoutEventMemberInput!
+  hasAttended: Boolean!
+  type: String!
+}
+
+input EventMemberDetails {
+  hasAttended: Boolean!
+  memberId: Int!
+  type: String!
+}
+
+input EventMemberListRelationFilter {
+  every: EventMemberWhereInput
+  none: EventMemberWhereInput
+  some: EventMemberWhereInput
+}
+
+input EventMemberMemberIdEventIdCompoundUniqueInput {
+  eventId: Int!
+  memberId: Int!
+}
+
+input EventMemberWhereInput {
+  AND: [EventMemberWhereInput!]
+  NOT: [EventMemberWhereInput!]
+  OR: [EventMemberWhereInput!]
+  event: EventRelationFilter
+  eventId: IntFilter
+  hasAttended: BoolFilter
+  member: MemberRelationFilter
+  memberId: IntFilter
+  type: StringFilter
+}
+
+input EventMemberWhereUniqueInput {
+  memberId_eventId: EventMemberMemberIdEventIdCompoundUniqueInput
+}
+
+type EventMemberWithoutEvent {
+  eventId: Int!
+  hasAttended: Boolean!
+  member: Member!
+  memberId: Int!
+  type: String!
+}
+
+type EventMemberWithoutMember {
+  event: Event!
+  eventId: Int!
+  hasAttended: Boolean!
+  memberId: Int!
+  type: String!
+}
+
+input EventRelationFilter {
+  is: EventWhereInput
+  isNot: EventWhereInput
+}
+
+input EventResourceCreateManyEventInput {
+  resourceId: Int!
+  type: String!
+}
+
+input EventResourceCreateManyEventInputEnvelope {
+  data: [EventResourceCreateManyEventInput!]!
+  skipDuplicates: Boolean
+}
+
+input EventResourceCreateManyResourceInput {
+  eventId: Int!
+  type: String!
+}
+
+input EventResourceCreateManyResourceInputEnvelope {
+  data: [EventResourceCreateManyResourceInput!]!
+  skipDuplicates: Boolean
+}
+
+input EventResourceCreateNestedManyWithoutEventInput {
+  connect: [EventResourceWhereUniqueInput!]
+  connectOrCreate: [EventResourceCreateOrConnectWithoutEventInput!]
+  create: [EventResourceCreateWithoutEventInput!]
+  createMany: EventResourceCreateManyEventInputEnvelope
+}
+
+input EventResourceCreateNestedManyWithoutResourceInput {
+  connect: [EventResourceWhereUniqueInput!]
+  connectOrCreate: [EventResourceCreateOrConnectWithoutResourceInput!]
+  create: [EventResourceCreateWithoutResourceInput!]
+  createMany: EventResourceCreateManyResourceInputEnvelope
+}
+
+input EventResourceCreateOrConnectWithoutEventInput {
+  create: EventResourceCreateWithoutEventInput!
+  where: EventResourceWhereUniqueInput!
+}
+
+input EventResourceCreateOrConnectWithoutResourceInput {
+  create: EventResourceCreateWithoutResourceInput!
+  where: EventResourceWhereUniqueInput!
+}
+
+input EventResourceCreateWithoutEventInput {
+  resource: ResourceCreateNestedOneWithoutEventResourceInput!
+  type: String!
+}
+
+input EventResourceCreateWithoutResourceInput {
+  event: EventCreateNestedOneWithoutEventResourceInput!
+  type: String!
+}
+
+input EventResourceEventIdResourceIdCompoundUniqueInput {
+  eventId: Int!
+  resourceId: Int!
+}
+
+input EventResourceListRelationFilter {
+  every: EventResourceWhereInput
+  none: EventResourceWhereInput
+  some: EventResourceWhereInput
+}
+
+input EventResourceWhereInput {
+  AND: [EventResourceWhereInput!]
+  NOT: [EventResourceWhereInput!]
+  OR: [EventResourceWhereInput!]
+  event: EventRelationFilter
+  eventId: IntFilter
+  resource: ResourceRelationFilter
+  resourceId: IntFilter
+  type: StringFilter
+}
+
+input EventResourceWhereUniqueInput {
+  eventId_resourceId: EventResourceEventIdResourceIdCompoundUniqueInput
+}
+
+type EventResourceWithoutEvent {
+  eventId: Int!
+  resource: Resource!
+  resourceId: Int!
+  type: String!
+}
+
+type EventResourceWithoutResource {
+  event: Event!
+  eventId: Int!
+  resourceId: Int!
+  type: String!
+}
+
+input EventWhereInput {
+  AND: [EventWhereInput!]
+  NOT: [EventWhereInput!]
+  OR: [EventWhereInput!]
+  childEvents: EventListRelationFilter
+  createdAt: DateTimeFilter
+  createdBy: StringFilter
+  endDate: DateTimeFilter
+  eventAbhisekha: EventAbhisekhaListRelationFilter
+  eventMember: EventMemberListRelationFilter
+  eventResource: EventResourceListRelationFilter
+  id: IntFilter
+  isDeleted: BoolFilter
+  isLocked: BoolFilter
+  name: StringFilter
+  notes: StringFilter
+  parentEvent: EventRelationFilter
+  parentEventId: IntFilter
+  startDate: DateTimeFilter
+  type: StringFilter
+  uniqueKey: StringFilter
+  updatedAt: DateTimeFilter
+  updatedBy: StringFilter
+}
+
+input EventWhereUniqueInput {
+  id: Int
+  uniqueKey: String
+}
+
 enum GenderType {
   FEMALE
   MALE
@@ -226,13 +1296,13 @@ type Group {
   """
   createdBy: String
   description: String!
+  groupMembers: [MemberGroupWithoutGroup!]!
   id: Int!
 
   """
-  Identifies the date and time when the object was last updated.
+  Identifies the date and time when the object was last deleted.
   """
   isDeleted: Boolean!
-  members: [Member!]!
   name: String!
 
   """
@@ -252,6 +1322,29 @@ type Group {
   visible: Boolean!
 }
 
+input GroupCreateNestedOneWithoutMemberGroupsInput {
+  connect: GroupWhereUniqueInput
+  connectOrCreate: GroupCreateOrConnectWithoutMemberGroupsInput
+  create: GroupCreateWithoutMemberGroupsInput
+}
+
+input GroupCreateOrConnectWithoutMemberGroupsInput {
+  create: GroupCreateWithoutMemberGroupsInput!
+  where: GroupWhereUniqueInput!
+}
+
+input GroupCreateWithoutMemberGroupsInput {
+  createdAt: DateTime
+  createdBy: String
+  description: String!
+  isDeleted: Boolean
+  name: String!
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+  visible: Boolean!
+}
+
 input GroupRelationFilter {
   is: GroupWhereInput
   isNot: GroupWhereInput
@@ -266,12 +1359,17 @@ input GroupWhereInput {
   description: StringFilter
   id: IntFilter
   isDeleted: BoolFilter
-  memberGroups: MemberGroupsListRelationFilter
+  memberGroups: MemberGroupListRelationFilter
   name: StringFilter
   uniqueKey: StringFilter
   updatedAt: DateTimeFilter
   updatedBy: StringFilter
   visible: BoolFilter
+}
+
+input GroupWhereUniqueInput {
+  id: Int
+  uniqueKey: String
 }
 
 input IntFilter {
@@ -297,7 +1395,6 @@ input LoginInput {
 
 type Member {
   active: Boolean!
-  centerAffiliation: CentreAffiliation_Type!
   centre: Centre
   centreId: Int
 
@@ -310,27 +1407,34 @@ type Member {
   Identifies who created the object.
   """
   createdBy: String
-  currentAddress: String
-  dob: DateTime
+  currentAddress: Address
+  currentAddressId: Int
   email: String
+  events: [Event!]
   firstName: String!
   gender: Gender_Type
-  groups: [Group!]!
   id: Int!
   insta: String
 
   """
-  Identifies the date and time when the object was last updated.
+  Identifies the date and time when the object was last deleted.
   """
   isDeleted: Boolean!
   isMember: Boolean!
   lastName: String!
+  memberAbhisekhas: [MemberAbhisekhaWithoutMember!]!
+  memberEvents: [EventMemberWithoutMember!]!
+  memberGroups: [MemberGroupWithoutMember!]!
+  memberResources: [MemberResourceWithoutMember!]!
   membershipType: Membership_Type
   messenger: String
   middleName: String
-  permanentAddress: String
-  phonePrimary: String
-  phoneSecondary: String
+  notes: String
+  permanentAddress: Address
+  permanentAddressId: Int
+  phoneLand: String
+  phoneMobile: String
+  phoneOther: String
   photo: String
   refugeName: String
   sanghaJoinDate: DateTime
@@ -352,24 +1456,536 @@ type Member {
   updatedBy: String
   user: User
   viber: String
+  yearOfBirth: Int
 }
 
-input MemberGroupsListRelationFilter {
-  every: MemberGroupsWhereInput
-  none: MemberGroupsWhereInput
-  some: MemberGroupsWhereInput
+input MemberAbhisekhaCreateManyAbhisekhaInput {
+  abhisekhaDate: DateTime!
+  abhisekhaPlace: String!
+  memberId: Int!
+  type: String!
 }
 
-input MemberGroupsWhereInput {
-  AND: [MemberGroupsWhereInput!]
-  NOT: [MemberGroupsWhereInput!]
-  OR: [MemberGroupsWhereInput!]
+input MemberAbhisekhaCreateManyAbhisekhaInputEnvelope {
+  data: [MemberAbhisekhaCreateManyAbhisekhaInput!]!
+  skipDuplicates: Boolean
+}
+
+input MemberAbhisekhaCreateManyMemberInput {
+  abhisekhaDate: DateTime!
+  abhisekhaId: Int!
+  abhisekhaPlace: String!
+  type: String!
+}
+
+input MemberAbhisekhaCreateManyMemberInputEnvelope {
+  data: [MemberAbhisekhaCreateManyMemberInput!]!
+  skipDuplicates: Boolean
+}
+
+input MemberAbhisekhaCreateNestedManyWithoutAbhisekhaInput {
+  connect: [MemberAbhisekhaWhereUniqueInput!]
+  connectOrCreate: [MemberAbhisekhaCreateOrConnectWithoutAbhisekhaInput!]
+  create: [MemberAbhisekhaCreateWithoutAbhisekhaInput!]
+  createMany: MemberAbhisekhaCreateManyAbhisekhaInputEnvelope
+}
+
+input MemberAbhisekhaCreateNestedManyWithoutMemberInput {
+  connect: [MemberAbhisekhaWhereUniqueInput!]
+  connectOrCreate: [MemberAbhisekhaCreateOrConnectWithoutMemberInput!]
+  create: [MemberAbhisekhaCreateWithoutMemberInput!]
+  createMany: MemberAbhisekhaCreateManyMemberInputEnvelope
+}
+
+input MemberAbhisekhaCreateOrConnectWithoutAbhisekhaInput {
+  create: MemberAbhisekhaCreateWithoutAbhisekhaInput!
+  where: MemberAbhisekhaWhereUniqueInput!
+}
+
+input MemberAbhisekhaCreateOrConnectWithoutMemberInput {
+  create: MemberAbhisekhaCreateWithoutMemberInput!
+  where: MemberAbhisekhaWhereUniqueInput!
+}
+
+input MemberAbhisekhaCreateWithoutAbhisekhaInput {
+  abhisekhaDate: DateTime!
+  abhisekhaPlace: String!
+  member: MemberCreateNestedOneWithoutMemberAbhisekhaInput!
+  type: String!
+}
+
+input MemberAbhisekhaCreateWithoutMemberInput {
+  abhisekha: AbhisekhaCreateNestedOneWithoutMemberAbhisekhaInput!
+  abhisekhaDate: DateTime!
+  abhisekhaPlace: String!
+  type: String!
+}
+
+input MemberAbhisekhaDetails {
+  """
+  Date of abhisekha
+  """
+  abhisekhaDate: String!
+
+  """
+  Id of member who attended the abhisekha
+  """
+  abhisekhaId: Int!
+
+  """
+  Place of abhisekha
+  """
+  abhisekhaPlace: String!
+
+  """
+  Member attending the Abhisekha type eg: Peripheral
+  """
+  type: String!
+}
+
+input MemberAbhisekhaListRelationFilter {
+  every: MemberAbhisekhaWhereInput
+  none: MemberAbhisekhaWhereInput
+  some: MemberAbhisekhaWhereInput
+}
+
+input MemberAbhisekhaMemberIdAbhisekhaIdCompoundUniqueInput {
+  abhisekhaId: Int!
+  memberId: Int!
+}
+
+input MemberAbhisekhaWhereInput {
+  AND: [MemberAbhisekhaWhereInput!]
+  NOT: [MemberAbhisekhaWhereInput!]
+  OR: [MemberAbhisekhaWhereInput!]
+  abhisekha: AbhisekhaRelationFilter
+  abhisekhaDate: DateTimeFilter
+  abhisekhaId: IntFilter
+  abhisekhaPlace: StringFilter
+  member: MemberRelationFilter
+  memberId: IntFilter
+  type: StringFilter
+}
+
+input MemberAbhisekhaWhereUniqueInput {
+  memberId_abhisekhaId: MemberAbhisekhaMemberIdAbhisekhaIdCompoundUniqueInput
+}
+
+type MemberAbhisekhaWithoutAbhisekha {
+  abhisekhaDate: DateTime!
+  abhisekhaId: Int!
+  abhisekhaPlace: String!
+  member: Member!
+  memberId: Int!
+  type: String!
+}
+
+type MemberAbhisekhaWithoutMember {
+  abhisekha: Abhisekha!
+  abhisekhaDate: DateTime!
+  abhisekhaId: Int!
+  abhisekhaPlace: String!
+  memberId: Int!
+  type: String!
+}
+
+input MemberCreateManyAddressInput {
+  active: Boolean
+  centreId: Int
+  createdAt: DateTime
+  createdBy: String
+  currentAddressId: Int
+  email: String
+  firstName: String!
+  gender: GenderType
+  id: Int
+  insta: String
+  isDeleted: Boolean
+  isMember: Boolean
+  lastName: String!
+  membershipType: MembershipType
+  messenger: String
+  middleName: String
+  note: String
+  permanentAddressId: Int
+  phoneLand: String
+  phoneMobile: String
+  phoneOther: String
+  photo: String
+  refugeName: String
+  sanghaJoinDate: DateTime
+  title: String
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+  viber: String
+  yearOfBirth: Int
+}
+
+input MemberCreateManyAddressInputEnvelope {
+  data: [MemberCreateManyAddressInput!]!
+  skipDuplicates: Boolean
+}
+
+input MemberCreateNestedManyWithoutAddressInput {
+  connect: [MemberWhereUniqueInput!]
+  connectOrCreate: [MemberCreateOrConnectWithoutAddressInput!]
+  create: [MemberCreateWithoutAddressInput!]
+  createMany: MemberCreateManyAddressInputEnvelope
+}
+
+input MemberCreateNestedOneWithoutCurrentAddressInput {
+  connect: MemberWhereUniqueInput
+  connectOrCreate: MemberCreateOrConnectWithoutCurrentAddressInput
+  create: MemberCreateWithoutCurrentAddressInput
+}
+
+input MemberCreateNestedOneWithoutEventMemberInput {
+  connect: MemberWhereUniqueInput
+  connectOrCreate: MemberCreateOrConnectWithoutEventMemberInput
+  create: MemberCreateWithoutEventMemberInput
+}
+
+input MemberCreateNestedOneWithoutMemberAbhisekhaInput {
+  connect: MemberWhereUniqueInput
+  connectOrCreate: MemberCreateOrConnectWithoutMemberAbhisekhaInput
+  create: MemberCreateWithoutMemberAbhisekhaInput
+}
+
+input MemberCreateNestedOneWithoutMemberResourceInput {
+  connect: MemberWhereUniqueInput
+  connectOrCreate: MemberCreateOrConnectWithoutMemberResourceInput
+  create: MemberCreateWithoutMemberResourceInput
+}
+
+input MemberCreateNestedOneWithoutPermanentAddressInput {
+  connect: MemberWhereUniqueInput
+  connectOrCreate: MemberCreateOrConnectWithoutPermanentAddressInput
+  create: MemberCreateWithoutPermanentAddressInput
+}
+
+input MemberCreateOrConnectWithoutAddressInput {
+  create: MemberCreateWithoutAddressInput!
+  where: MemberWhereUniqueInput!
+}
+
+input MemberCreateOrConnectWithoutCurrentAddressInput {
+  create: MemberCreateWithoutCurrentAddressInput!
+  where: MemberWhereUniqueInput!
+}
+
+input MemberCreateOrConnectWithoutEventMemberInput {
+  create: MemberCreateWithoutEventMemberInput!
+  where: MemberWhereUniqueInput!
+}
+
+input MemberCreateOrConnectWithoutMemberAbhisekhaInput {
+  create: MemberCreateWithoutMemberAbhisekhaInput!
+  where: MemberWhereUniqueInput!
+}
+
+input MemberCreateOrConnectWithoutMemberResourceInput {
+  create: MemberCreateWithoutMemberResourceInput!
+  where: MemberWhereUniqueInput!
+}
+
+input MemberCreateOrConnectWithoutPermanentAddressInput {
+  create: MemberCreateWithoutPermanentAddressInput!
+  where: MemberWhereUniqueInput!
+}
+
+input MemberCreateWithoutAddressInput {
+  active: Boolean
+  centre: CentreCreateNestedOneWithoutMembersInput
+  createdAt: DateTime
+  createdBy: String
+  currentAddress: AddressCreateNestedOneWithoutMemberCurrentAddressInput
+  email: String
+  eventMember: EventMemberCreateNestedManyWithoutMemberInput
+  firstName: String!
+  gender: GenderType
+  insta: String
+  isDeleted: Boolean
+  isMember: Boolean
+  lastName: String!
+  memberAbhisekha: MemberAbhisekhaCreateNestedManyWithoutMemberInput
+  memberGroup: MemberGroupCreateNestedManyWithoutMemberInput
+  memberResource: MemberResourceCreateNestedManyWithoutMemberInput
+  membershipType: MembershipType
+  messenger: String
+  middleName: String
+  note: String
+  permanentAddress: AddressCreateNestedOneWithoutMemberPermanentAddressInput
+  phoneLand: String
+  phoneMobile: String
+  phoneOther: String
+  photo: String
+  refugeName: String
+  sanghaJoinDate: DateTime
+  title: String
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+  user: UserCreateNestedOneWithoutMemberInput
+  viber: String
+  yearOfBirth: Int
+}
+
+input MemberCreateWithoutCurrentAddressInput {
+  active: Boolean
+  address: AddressCreateNestedOneWithoutMembersInput
+  centre: CentreCreateNestedOneWithoutMembersInput
+  createdAt: DateTime
+  createdBy: String
+  email: String
+  eventMember: EventMemberCreateNestedManyWithoutMemberInput
+  firstName: String!
+  gender: GenderType
+  insta: String
+  isDeleted: Boolean
+  isMember: Boolean
+  lastName: String!
+  memberAbhisekha: MemberAbhisekhaCreateNestedManyWithoutMemberInput
+  memberGroup: MemberGroupCreateNestedManyWithoutMemberInput
+  memberResource: MemberResourceCreateNestedManyWithoutMemberInput
+  membershipType: MembershipType
+  messenger: String
+  middleName: String
+  note: String
+  permanentAddress: AddressCreateNestedOneWithoutMemberPermanentAddressInput
+  phoneLand: String
+  phoneMobile: String
+  phoneOther: String
+  photo: String
+  refugeName: String
+  sanghaJoinDate: DateTime
+  title: String
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+  user: UserCreateNestedOneWithoutMemberInput
+  viber: String
+  yearOfBirth: Int
+}
+
+input MemberCreateWithoutEventMemberInput {
+  active: Boolean
+  address: AddressCreateNestedOneWithoutMembersInput
+  centre: CentreCreateNestedOneWithoutMembersInput
+  createdAt: DateTime
+  createdBy: String
+  currentAddress: AddressCreateNestedOneWithoutMemberCurrentAddressInput
+  email: String
+  firstName: String!
+  gender: GenderType
+  insta: String
+  isDeleted: Boolean
+  isMember: Boolean
+  lastName: String!
+  memberAbhisekha: MemberAbhisekhaCreateNestedManyWithoutMemberInput
+  memberGroup: MemberGroupCreateNestedManyWithoutMemberInput
+  memberResource: MemberResourceCreateNestedManyWithoutMemberInput
+  membershipType: MembershipType
+  messenger: String
+  middleName: String
+  note: String
+  permanentAddress: AddressCreateNestedOneWithoutMemberPermanentAddressInput
+  phoneLand: String
+  phoneMobile: String
+  phoneOther: String
+  photo: String
+  refugeName: String
+  sanghaJoinDate: DateTime
+  title: String
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+  user: UserCreateNestedOneWithoutMemberInput
+  viber: String
+  yearOfBirth: Int
+}
+
+input MemberCreateWithoutMemberAbhisekhaInput {
+  active: Boolean
+  address: AddressCreateNestedOneWithoutMembersInput
+  centre: CentreCreateNestedOneWithoutMembersInput
+  createdAt: DateTime
+  createdBy: String
+  currentAddress: AddressCreateNestedOneWithoutMemberCurrentAddressInput
+  email: String
+  eventMember: EventMemberCreateNestedManyWithoutMemberInput
+  firstName: String!
+  gender: GenderType
+  insta: String
+  isDeleted: Boolean
+  isMember: Boolean
+  lastName: String!
+  memberGroup: MemberGroupCreateNestedManyWithoutMemberInput
+  memberResource: MemberResourceCreateNestedManyWithoutMemberInput
+  membershipType: MembershipType
+  messenger: String
+  middleName: String
+  note: String
+  permanentAddress: AddressCreateNestedOneWithoutMemberPermanentAddressInput
+  phoneLand: String
+  phoneMobile: String
+  phoneOther: String
+  photo: String
+  refugeName: String
+  sanghaJoinDate: DateTime
+  title: String
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+  user: UserCreateNestedOneWithoutMemberInput
+  viber: String
+  yearOfBirth: Int
+}
+
+input MemberCreateWithoutMemberResourceInput {
+  active: Boolean
+  address: AddressCreateNestedOneWithoutMembersInput
+  centre: CentreCreateNestedOneWithoutMembersInput
+  createdAt: DateTime
+  createdBy: String
+  currentAddress: AddressCreateNestedOneWithoutMemberCurrentAddressInput
+  email: String
+  eventMember: EventMemberCreateNestedManyWithoutMemberInput
+  firstName: String!
+  gender: GenderType
+  insta: String
+  isDeleted: Boolean
+  isMember: Boolean
+  lastName: String!
+  memberAbhisekha: MemberAbhisekhaCreateNestedManyWithoutMemberInput
+  memberGroup: MemberGroupCreateNestedManyWithoutMemberInput
+  membershipType: MembershipType
+  messenger: String
+  middleName: String
+  note: String
+  permanentAddress: AddressCreateNestedOneWithoutMemberPermanentAddressInput
+  phoneLand: String
+  phoneMobile: String
+  phoneOther: String
+  photo: String
+  refugeName: String
+  sanghaJoinDate: DateTime
+  title: String
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+  user: UserCreateNestedOneWithoutMemberInput
+  viber: String
+  yearOfBirth: Int
+}
+
+input MemberCreateWithoutPermanentAddressInput {
+  active: Boolean
+  address: AddressCreateNestedOneWithoutMembersInput
+  centre: CentreCreateNestedOneWithoutMembersInput
+  createdAt: DateTime
+  createdBy: String
+  currentAddress: AddressCreateNestedOneWithoutMemberCurrentAddressInput
+  email: String
+  eventMember: EventMemberCreateNestedManyWithoutMemberInput
+  firstName: String!
+  gender: GenderType
+  insta: String
+  isDeleted: Boolean
+  isMember: Boolean
+  lastName: String!
+  memberAbhisekha: MemberAbhisekhaCreateNestedManyWithoutMemberInput
+  memberGroup: MemberGroupCreateNestedManyWithoutMemberInput
+  memberResource: MemberResourceCreateNestedManyWithoutMemberInput
+  membershipType: MembershipType
+  messenger: String
+  middleName: String
+  note: String
+  phoneLand: String
+  phoneMobile: String
+  phoneOther: String
+  photo: String
+  refugeName: String
+  sanghaJoinDate: DateTime
+  title: String
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+  user: UserCreateNestedOneWithoutMemberInput
+  viber: String
+  yearOfBirth: Int
+}
+
+input MemberGroupCreateManyMemberInput {
+  createdAt: DateTime
+  createdBy: String
+  groupId: Int!
+}
+
+input MemberGroupCreateManyMemberInputEnvelope {
+  data: [MemberGroupCreateManyMemberInput!]!
+  skipDuplicates: Boolean
+}
+
+input MemberGroupCreateNestedManyWithoutMemberInput {
+  connect: [MemberGroupWhereUniqueInput!]
+  connectOrCreate: [MemberGroupCreateOrConnectWithoutMemberInput!]
+  create: [MemberGroupCreateWithoutMemberInput!]
+  createMany: MemberGroupCreateManyMemberInputEnvelope
+}
+
+input MemberGroupCreateOrConnectWithoutMemberInput {
+  create: MemberGroupCreateWithoutMemberInput!
+  where: MemberGroupWhereUniqueInput!
+}
+
+input MemberGroupCreateWithoutMemberInput {
+  createdAt: DateTime
+  createdBy: String
+  group: GroupCreateNestedOneWithoutMemberGroupsInput!
+}
+
+input MemberGroupListRelationFilter {
+  every: MemberGroupWhereInput
+  none: MemberGroupWhereInput
+  some: MemberGroupWhereInput
+}
+
+input MemberGroupMemberIdGroupIdCompoundUniqueInput {
+  groupId: Int!
+  memberId: Int!
+}
+
+input MemberGroupWhereInput {
+  AND: [MemberGroupWhereInput!]
+  NOT: [MemberGroupWhereInput!]
+  OR: [MemberGroupWhereInput!]
   createdAt: DateTimeFilter
   createdBy: StringFilter
   group: GroupRelationFilter
   groupId: IntFilter
   member: MemberRelationFilter
   memberId: IntFilter
+}
+
+input MemberGroupWhereUniqueInput {
+  memberId_groupId: MemberGroupMemberIdGroupIdCompoundUniqueInput
+}
+
+type MemberGroupWithoutGroup {
+  createdAt: DateTime!
+  createdBy: String
+  groupId: Int!
+  member: Member!
+  memberId: Int!
+}
+
+type MemberGroupWithoutMember {
+  createdAt: DateTime!
+  createdBy: String
+  group: Group!
+  groupId: Int!
+  memberId: Int!
 }
 
 input MemberListRelationFilter {
@@ -383,12 +1999,107 @@ input MemberRelationFilter {
   isNot: MemberWhereInput
 }
 
+input MemberResourceCreateManyMemberInput {
+  resourceId: Int!
+  type: String!
+}
+
+input MemberResourceCreateManyMemberInputEnvelope {
+  data: [MemberResourceCreateManyMemberInput!]!
+  skipDuplicates: Boolean
+}
+
+input MemberResourceCreateManyResourceInput {
+  memberId: Int!
+  type: String!
+}
+
+input MemberResourceCreateManyResourceInputEnvelope {
+  data: [MemberResourceCreateManyResourceInput!]!
+  skipDuplicates: Boolean
+}
+
+input MemberResourceCreateNestedManyWithoutMemberInput {
+  connect: [MemberResourceWhereUniqueInput!]
+  connectOrCreate: [MemberResourceCreateOrConnectWithoutMemberInput!]
+  create: [MemberResourceCreateWithoutMemberInput!]
+  createMany: MemberResourceCreateManyMemberInputEnvelope
+}
+
+input MemberResourceCreateNestedManyWithoutResourceInput {
+  connect: [MemberResourceWhereUniqueInput!]
+  connectOrCreate: [MemberResourceCreateOrConnectWithoutResourceInput!]
+  create: [MemberResourceCreateWithoutResourceInput!]
+  createMany: MemberResourceCreateManyResourceInputEnvelope
+}
+
+input MemberResourceCreateOrConnectWithoutMemberInput {
+  create: MemberResourceCreateWithoutMemberInput!
+  where: MemberResourceWhereUniqueInput!
+}
+
+input MemberResourceCreateOrConnectWithoutResourceInput {
+  create: MemberResourceCreateWithoutResourceInput!
+  where: MemberResourceWhereUniqueInput!
+}
+
+input MemberResourceCreateWithoutMemberInput {
+  resource: ResourceCreateNestedOneWithoutMemberResourceInput!
+  type: String!
+}
+
+input MemberResourceCreateWithoutResourceInput {
+  member: MemberCreateNestedOneWithoutMemberResourceInput!
+  type: String!
+}
+
+input MemberResourceListRelationFilter {
+  every: MemberResourceWhereInput
+  none: MemberResourceWhereInput
+  some: MemberResourceWhereInput
+}
+
+input MemberResourceMemberIdResourceIdCompoundUniqueInput {
+  memberId: Int!
+  resourceId: Int!
+}
+
+input MemberResourceWhereInput {
+  AND: [MemberResourceWhereInput!]
+  NOT: [MemberResourceWhereInput!]
+  OR: [MemberResourceWhereInput!]
+  member: MemberRelationFilter
+  memberId: IntFilter
+  resource: ResourceRelationFilter
+  resourceId: IntFilter
+  type: StringFilter
+}
+
+input MemberResourceWhereUniqueInput {
+  memberId_resourceId: MemberResourceMemberIdResourceIdCompoundUniqueInput
+}
+
+type MemberResourceWithoutMember {
+  memberId: Int!
+  resource: Resource!
+  resourceId: Int!
+  type: String!
+}
+
+type MemberResourceWithoutResource {
+  member: Member!
+  memberId: Int!
+  resourceId: Int!
+  type: String!
+}
+
 input MemberWhereInput {
   AND: [MemberWhereInput!]
   NOT: [MemberWhereInput!]
   OR: [MemberWhereInput!]
   active: BoolFilter
-  centerAffiliation: EnumCentreAffiliationTypeFilter
+  address: AddressRelationFilter
+  addressid: IntFilter
   centre: CentreRelationFilter
   centreId: IntFilter
   createdAt: DateTimeFilter
@@ -396,6 +2107,7 @@ input MemberWhereInput {
   currentAddress: StringFilter
   dob: DateTimeFilter
   email: StringFilter
+  eventMember: EventMemberListRelationFilter
   firstName: StringFilter
   gender: EnumGenderTypeFilter
   id: IntFilter
@@ -403,7 +2115,9 @@ input MemberWhereInput {
   isDeleted: BoolFilter
   isMember: BoolFilter
   lastName: StringFilter
-  memberGroups: MemberGroupsListRelationFilter
+  memberAbhisekha: MemberAbhisekhaListRelationFilter
+  memberGroup: MemberGroupListRelationFilter
+  memberResource: MemberResourceListRelationFilter
   membershipType: EnumMembershipTypeFilter
   messenger: StringFilter
   middleName: StringFilter
@@ -440,9 +2154,12 @@ enum Membership_Type {
 
 type Mutation {
   changePassword(data: ChangePasswordInput!): User!
-  createCentre(createCentreInput: CreateCentreInput!): Centre!
+  createAbhisekha(createAbhisekhaInput: CreateAbhisekhaInput!): Abhisekha!
+  createCentre(createAddressInput: AddressCreateInput!): Address!
+  createEvent(createEventInput: CreateEventInput!): Event!
   createGroup(createGroupInput: CreateGroupInput!): Group!
   createMember(createMemberInput: CreateMemberInput!): Member!
+  createResource(createResourceInput: CreateResourceInput!): Resource!
   createRole(createRoleInput: CreateRoleInput!): Role!
   createUser(createUserInput: CreateUserInput!): User!
   initiateResetPassword(
@@ -450,16 +2167,24 @@ type Mutation {
   ): ResponseStatus!
   login(data: LoginInput!): Auth!
   refreshToken(token: JWT!): Token!
+  removeAbhisekha(id: Int!): Abhisekha!
+  removeAddress(id: Int!): Address!
   removeCentre(id: Int!): Centre!
+  removeEvent(id: Int!): Event!
   removeGroup(id: Int!): Group!
   removeMember(id: Int!): Member!
+  removeResource(id: Int!): Resource!
   removeRole(id: Int!): Role!
   removeUser(id: Int!): User!
   resetPassword(resetPasswordInput: ResetPasswordInput!): ResponseStatus!
   sendEmail(sendEmailInput: SendEmailInput!): ResponseStatus!
+  updateAbhisekha(updateAbhisekhaInput: UpdateAbhisekhaInput!): Abhisekha!
+  updateAddress(updateAddressInput: UpdateAddressInput!): Address!
   updateCentre(updateCentreInput: UpdateCentreInput!): Centre!
+  updateEvent(updateEventInput: UpdateEventInput!): Event!
   updateGroup(updateGroupInput: UpdateGroupInput!): Group!
   updateMember(updateMemberInput: UpdateMemberInput!): Member!
+  updateResource(updateResourceInput: UpdateResourceInput!): Resource!
   updateRole(updateRoleInput: UpdateRoleInput!): Role!
 }
 
@@ -502,8 +2227,13 @@ input PasswordTokenWhereInput {
 }
 
 type Query {
+  abhisekha(id: Int!): Abhisekha!
+  abhisekhas: [Abhisekha!]!
+  address(id: Int!): Address!
+  addresses: [Address!]!
   centre(id: Int!): Centre!
   centres: [Centre!]!
+  event(id: Int!): Event!
   group(id: Int!): Group!
   groups: [Group!]!
   hello(name: String!): String!
@@ -511,6 +2241,8 @@ type Query {
   me: User!
   member(id: Int!): Member!
   members: [Member!]!
+  resource(id: Int!): Resource!
+  resources: [Resource!]!
   role(where: RoleWhereInput): Role!
   roles(where: RoleWhereInput): [Role!]!
   user(id: Int!): User!
@@ -525,6 +2257,170 @@ input ResetPasswordInput {
   password: String!
   token: String!
   userId: Int!
+}
+
+type Resource {
+  """
+  Identifies the date and time when the object was created.
+  """
+  createdAt: DateTime!
+
+  """
+  Identifies who created the object.
+  """
+  createdBy: String
+
+  """
+  Description of the resource
+  """
+  description: String!
+  id: Int!
+
+  """
+  Identifies the date and time when the object was last deleted.
+  """
+  isDeleted: Boolean!
+
+  """
+  Name of the resource
+  """
+  name: String!
+  resourceAbhisekhas: [AbhisekhaResourceWithoutResource!]!
+  resourceEvents: [EventResourceWithoutResource!]!
+  resourceMembers: [MemberResourceWithoutResource!]!
+
+  """
+  Type of the resource
+  """
+  type: String!
+
+  """
+  Unique key associated with the object.
+  """
+  uniqueKey: String
+
+  """
+  Identifies the date and time when the object was last updated.
+  """
+  updatedAt: DateTime!
+
+  """
+  Identifies who made the last update to the object.
+  """
+  updatedBy: String
+
+  """
+  Url containing the resource data
+  """
+  url: String!
+}
+
+input ResourceCreateNestedOneWithoutAbhisekhaResourceInput {
+  connect: ResourceWhereUniqueInput
+  connectOrCreate: ResourceCreateOrConnectWithoutAbhisekhaResourceInput
+  create: ResourceCreateWithoutAbhisekhaResourceInput
+}
+
+input ResourceCreateNestedOneWithoutEventResourceInput {
+  connect: ResourceWhereUniqueInput
+  connectOrCreate: ResourceCreateOrConnectWithoutEventResourceInput
+  create: ResourceCreateWithoutEventResourceInput
+}
+
+input ResourceCreateNestedOneWithoutMemberResourceInput {
+  connect: ResourceWhereUniqueInput
+  connectOrCreate: ResourceCreateOrConnectWithoutMemberResourceInput
+  create: ResourceCreateWithoutMemberResourceInput
+}
+
+input ResourceCreateOrConnectWithoutAbhisekhaResourceInput {
+  create: ResourceCreateWithoutAbhisekhaResourceInput!
+  where: ResourceWhereUniqueInput!
+}
+
+input ResourceCreateOrConnectWithoutEventResourceInput {
+  create: ResourceCreateWithoutEventResourceInput!
+  where: ResourceWhereUniqueInput!
+}
+
+input ResourceCreateOrConnectWithoutMemberResourceInput {
+  create: ResourceCreateWithoutMemberResourceInput!
+  where: ResourceWhereUniqueInput!
+}
+
+input ResourceCreateWithoutAbhisekhaResourceInput {
+  createdAt: DateTime
+  createdBy: String
+  description: String!
+  eventResource: EventResourceCreateNestedManyWithoutResourceInput
+  isDeleted: Boolean
+  memberResource: MemberResourceCreateNestedManyWithoutResourceInput
+  name: String!
+  type: String!
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+  url: String!
+}
+
+input ResourceCreateWithoutEventResourceInput {
+  abhisekhaResource: AbhisekhaResourceCreateNestedManyWithoutResourceInput
+  createdAt: DateTime
+  createdBy: String
+  description: String!
+  isDeleted: Boolean
+  memberResource: MemberResourceCreateNestedManyWithoutResourceInput
+  name: String!
+  type: String!
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+  url: String!
+}
+
+input ResourceCreateWithoutMemberResourceInput {
+  abhisekhaResource: AbhisekhaResourceCreateNestedManyWithoutResourceInput
+  createdAt: DateTime
+  createdBy: String
+  description: String!
+  eventResource: EventResourceCreateNestedManyWithoutResourceInput
+  isDeleted: Boolean
+  name: String!
+  type: String!
+  uniqueKey: String
+  updatedAt: DateTime
+  updatedBy: String
+  url: String!
+}
+
+input ResourceRelationFilter {
+  is: ResourceWhereInput
+  isNot: ResourceWhereInput
+}
+
+input ResourceWhereInput {
+  AND: [ResourceWhereInput!]
+  NOT: [ResourceWhereInput!]
+  OR: [ResourceWhereInput!]
+  abhisekhaResource: AbhisekhaResourceListRelationFilter
+  createdAt: DateTimeFilter
+  createdBy: StringFilter
+  description: StringFilter
+  eventResource: EventResourceListRelationFilter
+  id: IntFilter
+  isDeleted: BoolFilter
+  memberResource: MemberResourceListRelationFilter
+  name: StringFilter
+  type: StringFilter
+  uniqueKey: StringFilter
+  updatedAt: DateTimeFilter
+  updatedBy: StringFilter
+  url: StringFilter
+}
+
+input ResourceWhereUniqueInput {
+  id: Int
+  uniqueKey: String
 }
 
 type ResponseStatus {
@@ -544,7 +2440,7 @@ type Role {
   id: Int!
 
   """
-  Identifies the date and time when the object was last updated.
+  Identifies the date and time when the object was last deleted.
   """
   isDeleted: Boolean!
   name: String!
@@ -586,6 +2482,12 @@ input RoleWhereInput {
   updatedAt: DateTimeFilter
   updatedBy: StringFilter
   users: UserListRelationFilter
+}
+
+input RoleWhereUniqueInput {
+  id: Int
+  name: String
+  uniqueKey: String
 }
 
 """
@@ -641,6 +2543,42 @@ enum Type {
   SYSTEM
 }
 
+input UpdateAbhisekhaInput {
+  """
+  AbhisekhaMember details
+  """
+  abhisekhaMemberDetails: [AbhisekhaMemberDetails!]
+
+  """
+  Name of the abhisekha
+  """
+  description: String
+  id: Int!
+
+  """
+  Name of the abhisekha
+  """
+  name: String
+
+  """
+  Relevant resources for the abhisekha
+  """
+  resourceIds: [Int!]
+
+  """
+  Name of the abhisekha
+  """
+  teacher: String
+}
+
+input UpdateAddressInput {
+  city: String
+  country: String
+  id: Int!
+  stateProvince: String
+  street: String
+}
+
 input UpdateCentreInput {
   city: String
   country: String
@@ -652,28 +2590,92 @@ input UpdateCentreInput {
   streetAddress: String
 }
 
-input UpdateGroupInput {
-  description: String!
+input UpdateEventInput {
+  """
+  Identifies the date and time when the object was created.
+  """
+  createdAt: DateTime
+
+  """
+  Identifies who created the object.
+  """
+  createdBy: String
+
+  """
+  Event end date
+  """
+  endDate: DateTime
+
+  """
+  Details of members attending the event
+  """
+  eventMemberDetails: [EventMemberDetails!]
   id: Int!
-  memberIds: [Int!]!
-  name: String!
-  visible: Boolean!
+
+  """
+  Identifies the date and time when the object was last deleted.
+  """
+  isDeleted: Boolean
+
+  """
+  After the event ends or at a certain specific time, the event is locked and event related details cannot be updated/deleted
+  """
+  isLocked: Boolean
+  name: String
+
+  """
+  Some notes related to the event
+  """
+  notes: String
+
+  """
+  Event start date
+  """
+  startDate: DateTime
+
+  """
+  Type of the event
+  """
+  type: String
+
+  """
+  Unique key associated with the object.
+  """
+  uniqueKey: String
+
+  """
+  Identifies the date and time when the object was last updated.
+  """
+  updatedAt: DateTime
+
+  """
+  Identifies who made the last update to the object.
+  """
+  updatedBy: String
+}
+
+input UpdateGroupInput {
+  description: String
+  id: Int!
+  memberIds: [Int!]
+  name: String
+  visible: Boolean
 }
 
 input UpdateMemberInput {
-  active: Boolean!
-  centerAffiliation: String!
+  active: Boolean
   centreId: Int
   currentAddress: String
   dob: DateTime
   email: String
-  firstName: String!
+  firstName: String
   gender: String
   groupIds: [Int!]
   id: Int!
   insta: String
-  isMember: Boolean!
-  lastName: String!
+  isMember: Boolean
+  lastName: String
+  memberAbhisekhaDetails: [MemberAbhisekhaDetails!]
   membershipType: String
   messenger: String
   middleName: String
@@ -685,6 +2687,14 @@ input UpdateMemberInput {
   sanghaJoinDate: DateTime
   title: String
   viber: String
+}
+
+input UpdateResourceInput {
+  description: String
+  id: Int!
+  name: String
+  type: String
+  url: String
 }
 
 input UpdateRoleInput {
@@ -707,7 +2717,7 @@ type User {
   id: Int!
 
   """
-  Identifies the date and time when the object was last updated.
+  Identifies the date and time when the object was last deleted.
   """
   isDeleted: Boolean!
   member: Member!

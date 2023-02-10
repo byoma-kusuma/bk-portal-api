@@ -9,5 +9,17 @@ export class MemberSumAggregate {
     id?: number;
 
     @Field(() => Int, {nullable:true})
+    yearOfBirth?: number;
+
+    @Field(() => Int, {nullable:true})
     centreId?: number;
+
+    @Field(() => Int, {nullable:true})
+    addressid?: number;
+
+    @Field(() => Int, {nullable:true})
+    currentAddressId?: number;
+
+    @Field(() => Int, {nullable:true})
+    permanentAddressId?: number;
 }

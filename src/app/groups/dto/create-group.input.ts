@@ -1,5 +1,5 @@
 import { InputType, Field, Int } from "@nestjs/graphql";
-import { IsNumber } from "class-validator";
+import { IsNumber, IsOptional } from "class-validator";
 
 @InputType()
 export class CreateGroupInput {
@@ -14,5 +14,6 @@ export class CreateGroupInput {
 
   @Field(() => [Int])
   @IsNumber({}, { each: true })
-  memberIds: Array<number>;
+  @IsOptional()
+  memberIds?: Array<number>;
 }

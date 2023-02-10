@@ -6,5 +6,14 @@ import { Int } from '@nestjs/graphql';
 export class MemberCount {
 
     @Field(() => Int, {nullable:false})
-    memberGroups?: number;
+    memberGroup?: number;
+
+    @Field(() => Int, {nullable:false})
+    memberAbhisekha?: number;
+
+    @Field(() => Int, {nullable:false})
+    memberResource?: number;
+
+    @Field(() => Int, {nullable:false})
+    eventMember?: number;
 }

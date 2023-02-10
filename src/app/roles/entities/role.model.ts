@@ -1,10 +1,10 @@
-import { ObjectType, Field, Int, registerEnumType } from "@nestjs/graphql";
+import { ObjectType, Field, registerEnumType } from "@nestjs/graphql";
 import { Type } from "@prisma/client";
-import { BaseModel } from "../../../common/models/base.model";
+import { SoftDeleteBaseModel } from "../../../common/models/softdeletebase.model";
 import { User } from "../../users/models/user.model";
 
 @ObjectType()
-export class Role extends BaseModel {
+export class Role extends SoftDeleteBaseModel {
   users: User[];
   name: string;
 

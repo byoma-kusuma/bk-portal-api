@@ -1,10 +1,16 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { CentreAffiliationType } from '../prisma/centre-affiliation-type.enum';
 import { MembershipType } from '../prisma/membership-type.enum';
+import { Int } from '@nestjs/graphql';
 import { GenderType } from '../prisma/gender-type.enum';
+import { MemberGroupCreateNestedManyWithoutMemberInput } from '../member-group/member-group-create-nested-many-without-member.input';
+import { MemberAbhisekhaCreateNestedManyWithoutMemberInput } from '../member-abhisekha/member-abhisekha-create-nested-many-without-member.input';
+import { MemberResourceCreateNestedManyWithoutMemberInput } from '../member-resource/member-resource-create-nested-many-without-member.input';
+import { EventMemberCreateNestedManyWithoutMemberInput } from '../event-member/event-member-create-nested-many-without-member.input';
 import { CentreCreateNestedOneWithoutMembersInput } from '../centre/centre-create-nested-one-without-members.input';
-import { MemberGroupsCreateNestedManyWithoutMemberInput } from '../member-groups/member-groups-create-nested-many-without-member.input';
+import { AddressCreateNestedOneWithoutMembersInput } from '../address/address-create-nested-one-without-members.input';
+import { AddressCreateNestedOneWithoutMemberCurrentAddressInput } from '../address/address-create-nested-one-without-member-current-address.input';
+import { AddressCreateNestedOneWithoutMemberPermanentAddressInput } from '../address/address-create-nested-one-without-member-permanent-address.input';
 
 @InputType()
 export class MemberCreateWithoutUserInput {
@@ -31,25 +37,19 @@ export class MemberCreateWithoutUserInput {
     active?: boolean;
 
     @Field(() => String, {nullable:true})
-    phonePrimary?: string;
+    phoneMobile?: string;
 
     @Field(() => String, {nullable:true})
-    phoneSecondary?: string;
+    phoneLand?: string;
 
-    @Field(() => CentreAffiliationType, {nullable:false})
-    centerAffiliation!: keyof typeof CentreAffiliationType;
+    @Field(() => String, {nullable:true})
+    phoneOther?: string;
 
     @Field(() => MembershipType, {nullable:true})
     membershipType?: keyof typeof MembershipType;
 
-    @Field(() => String, {nullable:true})
-    permanentAddress?: string;
-
-    @Field(() => String, {nullable:true})
-    currentAddress?: string;
-
-    @Field(() => Date, {nullable:true})
-    dob?: Date | string;
+    @Field(() => Int, {nullable:true})
+    yearOfBirth?: number;
 
     @Field(() => GenderType, {nullable:true})
     gender?: keyof typeof GenderType;
@@ -72,6 +72,9 @@ export class MemberCreateWithoutUserInput {
     @Field(() => String, {nullable:true})
     photo?: string;
 
+    @Field(() => String, {nullable:true})
+    note?: string;
+
     @Field(() => Boolean, {nullable:true})
     isDeleted?: boolean;
 
@@ -90,9 +93,27 @@ export class MemberCreateWithoutUserInput {
     @Field(() => String, {nullable:true})
     createdBy?: string;
 
+    @Field(() => MemberGroupCreateNestedManyWithoutMemberInput, {nullable:true})
+    memberGroup?: MemberGroupCreateNestedManyWithoutMemberInput;
+
+    @Field(() => MemberAbhisekhaCreateNestedManyWithoutMemberInput, {nullable:true})
+    memberAbhisekha?: MemberAbhisekhaCreateNestedManyWithoutMemberInput;
+
+    @Field(() => MemberResourceCreateNestedManyWithoutMemberInput, {nullable:true})
+    memberResource?: MemberResourceCreateNestedManyWithoutMemberInput;
+
+    @Field(() => EventMemberCreateNestedManyWithoutMemberInput, {nullable:true})
+    eventMember?: EventMemberCreateNestedManyWithoutMemberInput;
+
     @Field(() => CentreCreateNestedOneWithoutMembersInput, {nullable:true})
     centre?: CentreCreateNestedOneWithoutMembersInput;
 
-    @Field(() => MemberGroupsCreateNestedManyWithoutMemberInput, {nullable:true})
-    memberGroups?: MemberGroupsCreateNestedManyWithoutMemberInput;
+    @Field(() => AddressCreateNestedOneWithoutMembersInput, {nullable:true})
+    address?: AddressCreateNestedOneWithoutMembersInput;
+
+    @Field(() => AddressCreateNestedOneWithoutMemberCurrentAddressInput, {nullable:true})
+    currentAddress?: AddressCreateNestedOneWithoutMemberCurrentAddressInput;
+
+    @Field(() => AddressCreateNestedOneWithoutMemberPermanentAddressInput, {nullable:true})
+    permanentAddress?: AddressCreateNestedOneWithoutMemberPermanentAddressInput;
 }
