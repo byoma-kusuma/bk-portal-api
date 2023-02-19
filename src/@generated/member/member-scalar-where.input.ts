@@ -82,6 +82,9 @@ export class MemberScalarWhereInput {
     @Field(() => StringFilter, {nullable:true})
     note?: StringFilter;
 
+    @Field(() => StringFilter, {nullable:true})
+    tempAddress?: StringFilter;
+
     @Field(() => BoolFilter, {nullable:true})
     isDeleted?: BoolFilter;
 
