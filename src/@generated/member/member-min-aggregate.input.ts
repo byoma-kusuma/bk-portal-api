@@ -68,6 +68,9 @@ export class MemberMinAggregateInput {
     note?: true;
 
     @Field(() => Boolean, {nullable:true})
+    tempAddress?: true;
+
+    @Field(() => Boolean, {nullable:true})
     isDeleted?: true;
 
     @Field(() => Boolean, {nullable:true})

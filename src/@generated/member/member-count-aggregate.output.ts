@@ -69,6 +69,9 @@ export class MemberCountAggregate {
     note!: number;
 
     @Field(() => Int, {nullable:false})
+    tempAddress!: number;
+
+    @Field(() => Int, {nullable:false})
     isDeleted!: number;
 
     @Field(() => Int, {nullable:false})

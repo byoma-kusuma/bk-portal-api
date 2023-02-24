@@ -103,6 +103,7 @@ model Member {
     insta          String?
     photo          String?
     note           String?
+    tempAddress    String?
 
     isDeleted Boolean  @default(false)
     createdAt DateTime @default(now())

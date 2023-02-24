@@ -75,6 +75,9 @@ export class MemberGroupBy {
     @Field(() => String, {nullable:true})
     note?: string;
 
+    @Field(() => String, {nullable:true})
+    tempAddress?: string;
+
     @Field(() => Boolean, {nullable:false})
     isDeleted!: boolean;
 

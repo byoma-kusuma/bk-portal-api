@@ -90,6 +90,12 @@ export class Member extends SoftDeleteBaseModel {
   @Field(() => Int, { nullable: true })
   centreId?: number;
 
+  @Field(() => String, { nullable: true })
+  tempAddress?: string;
+
+  @Field(() => String, { nullable: true })
+  note?: string;
+
   @Field(() => Int, { nullable: true })
   permanentAddressId?: number;
 
