@@ -64,13 +64,11 @@ export class CreateMemberInput {
   @Field({ nullable: true })
   @IsString()
   @IsOptional()
-  @IsPhoneNumber()
   phoneLand?: string;
 
   @Field({ nullable: true })
   @IsString()
   @IsOptional()
-  @IsPhoneNumber()
   phoneOther?: string;
 
   @Field({ nullable: true })
@@ -105,7 +103,6 @@ export class CreateMemberInput {
 
   @Field({ nullable: true })
   @IsString()
-  @IsPhoneNumber()
   @IsOptional()
   @MaxLength(256)
   viber?: string;
@@ -143,6 +140,10 @@ export class CreateMemberInput {
   @Field({ nullable: true })
   @IsOptional()
   permanentAddressId?: number;
+
+  @Field({ nullable: true })
+  @IsOptional()
+  tempAddress?: string;
 
   @IsArray()
   @ValidateNested({ each: true })
