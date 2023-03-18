@@ -22,7 +22,6 @@ export enum MemberScalarFieldEnum {
     insta = "insta",
     photo = "photo",
     note = "note",
-    tempAddress = "tempAddress",
     isDeleted = "isDeleted",
     createdAt = "createdAt",
     updatedAt = "updatedAt",

@@ -76,9 +76,6 @@ export class MemberOrderByWithRelationInput {
     note?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    tempAddress?: keyof typeof SortOrder;
-
-    @Field(() => SortOrder, {nullable:true})
     isDeleted?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})

@@ -103,7 +103,6 @@ model Member {
     insta          String?
     photo          String?
     note           String?
-    tempAddress    String?
 
     isDeleted Boolean  @default(false)
     createdAt DateTime @default(now())
@@ -142,7 +141,7 @@ model Address {
     street        String?
     city          String?
     stateProvince String?
-    country       String
+    country       String?
 
     memberCurrentAddress   Member? @relation(name: "currentAddress")
     memberPermanentAddress Member? @relation(name: "permanentAddress")
