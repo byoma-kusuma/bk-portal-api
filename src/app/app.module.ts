@@ -23,6 +23,8 @@ import { AddressesModule } from "./addresses/addresses.module";
 import { AbhisekhaModule } from "./abhisekha/abhisekha.module";
 import { EventModule } from "./event/event.module";
 import { ResourceModule } from "./resource/resource.module";
+import { ReportsController } from "./reports/reports.controller";
+import { ReportsService } from "./reports/reports.service";
 
 @Module({
   imports: [
@@ -59,7 +61,7 @@ import { ResourceModule } from "./resource/resource.module";
     EventModule,
     ResourceModule
   ],
-  controllers: [AppController],
-  providers: [AppService, AppResolver]
+  controllers: [AppController, ReportsController],
+  providers: [AppService, AppResolver, ReportsService]
 })
 export class AppModule {}

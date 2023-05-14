@@ -79,9 +79,6 @@ export class Member {
     @Field(() => String, {nullable:true})
     note!: string | null;
 
-    @Field(() => String, {nullable:true})
-    tempAddress!: string | null;
-
     @Field(() => Boolean, {nullable:false,defaultValue:false})
     isDeleted!: boolean;
 

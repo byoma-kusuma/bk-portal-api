@@ -67,9 +67,6 @@ export class MemberUpdateManyMutationInput {
     @Field(() => String, {nullable:true})
     note?: string;
 
-    @Field(() => String, {nullable:true})
-    tempAddress?: string;
-
     @Field(() => Boolean, {nullable:true})
     isDeleted?: boolean;
 
