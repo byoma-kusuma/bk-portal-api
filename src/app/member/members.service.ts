@@ -33,13 +33,46 @@ export class MembersService {
    * 3) MemberAbhisekha (create)
    */
   async create(createMemberInput: CreateMemberInput) {
-    const { groupIds, memberAbhisekhaDetails, ...createMemberArgs } =
-      createMemberInput;
+    const {
+      groupIds,
+      memberAbhisekhaDetails,
+      currentStreetAddress,
+      permanentStreetAddress,
+      currentCity,
+      permanentCity,
+      currentStateProvince,
+      permanentStateProvince,
+      currentCountry,
+      permanentCountry,
+      centreId,
+      ...createMemberArgs
+    } = createMemberInput;
 
     const member = this.prisma.member.create({
       data: {
         ...createMemberArgs,
         photo: createAvatar(),
+        centre: {
+          connect: {
+            id: centreId
+          }
+        },
+        currentAddress: {
+          create: {
+            country: currentCountry,
+            street: currentStreetAddress,
+            city: currentCity,
+            stateProvince: currentStateProvince
+          }
+        },
+        permanentAddress: {
+          create: {
+            country: permanentCountry,
+            street: permanentStreetAddress,
+            city: permanentCity,
+            stateProvince: permanentStateProvince
+          }
+        },
         ...(groupIds
           ? {
               memberGroup: {
@@ -96,12 +129,46 @@ export class MembersService {
    * 3) MemberAbhisekha (update, create, delete)
    */
   async update(id: number, updateMemberInput: UpdateMemberInput) {
-    const { groupIds, memberAbhisekhaDetails, ...updateMemberArgs } =
-      updateMemberInput;
+    const {
+      groupIds,
+      memberAbhisekhaDetails,
+      currentStreetAddress,
+      permanentStreetAddress,
+      currentCity,
+      permanentCity,
+      currentStateProvince,
+      permanentStateProvince,
+      currentCountry,
+      permanentCountry,
+      centreId,
+      id: _,
+      ...updateMemberArgs
+    } = updateMemberInput;
 
     return this.prisma.member.update({
       data: {
         ...updateMemberArgs,
+        centre: {
+          connect: {
+            id: centreId
+          }
+        },
+        currentAddress: {
+          update: {
+            country: currentCountry,
+            street: currentStreetAddress,
+            city: currentCity,
+            stateProvince: currentStateProvince
+          }
+        },
+        permanentAddress: {
+          create: {
+            country: permanentCountry,
+            street: permanentStreetAddress,
+            city: permanentCity,
+            stateProvince: permanentStateProvince
+          }
+        },
         ...(groupIds && {
           groups: {
             upsert: groupIds.map((groupId) => ({

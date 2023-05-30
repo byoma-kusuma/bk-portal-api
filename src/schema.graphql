@@ -270,7 +270,7 @@ type Address {
 input AddressCreateInput {
   Members: MemberCreateNestedManyWithoutAddressInput
   city: String
-  country: String!
+  country: String
   createdAt: DateTime
   createdBy: String
   memberCurrentAddress: MemberCreateNestedOneWithoutCurrentAddressInput
@@ -318,7 +318,7 @@ input AddressCreateOrConnectWithoutMembersInput {
 input AddressCreateWithoutMemberCurrentAddressInput {
   Members: MemberCreateNestedManyWithoutAddressInput
   city: String
-  country: String!
+  country: String
   createdAt: DateTime
   createdBy: String
   memberPermanentAddress: MemberCreateNestedOneWithoutPermanentAddressInput
@@ -332,7 +332,7 @@ input AddressCreateWithoutMemberCurrentAddressInput {
 input AddressCreateWithoutMemberPermanentAddressInput {
   Members: MemberCreateNestedManyWithoutAddressInput
   city: String
-  country: String!
+  country: String
   createdAt: DateTime
   createdBy: String
   memberCurrentAddress: MemberCreateNestedOneWithoutCurrentAddressInput
@@ -345,7 +345,7 @@ input AddressCreateWithoutMemberPermanentAddressInput {
 
 input AddressCreateWithoutMembersInput {
   city: String
-  country: String!
+  country: String
   createdAt: DateTime
   createdBy: String
   memberCurrentAddress: MemberCreateNestedOneWithoutCurrentAddressInput
@@ -515,7 +515,10 @@ input CreateGroupInput {
 input CreateMemberInput {
   active: Boolean!
   centreId: Int
-  currentAddressId: Int
+  currentCity: String
+  currentCountry: String
+  currentStateProvince: String
+  currentStreetAddress: String
   email: String
   firstName: String!
   gender: String
@@ -528,14 +531,16 @@ input CreateMemberInput {
   messenger: String
   middleName: String
   note: String
-  permanentAddressId: Int
+  permanentCity: String
+  permanentCountry: String
+  permanentStateProvince: String
+  permanentStreetAddress: String
   phoneLand: String
   phoneMobile: String
   phoneOther: String
   photo: String
   refugeName: String
   sanghaJoinDate: DateTime
-  tempAddress: String
   title: String
   viber: String
   yearOfBirth: Int
@@ -1319,7 +1324,6 @@ type Member {
   photo: String
   refugeName: String
   sanghaJoinDate: DateTime
-  tempAddress: String
   title: String
 
   """Unique key associated with the object."""
@@ -1482,7 +1486,6 @@ input MemberCreateManyAddressInput {
   photo: String
   refugeName: String
   sanghaJoinDate: DateTime
-  tempAddress: String
   title: String
   uniqueKey: String
   updatedAt: DateTime
@@ -1591,7 +1594,6 @@ input MemberCreateWithoutAddressInput {
   photo: String
   refugeName: String
   sanghaJoinDate: DateTime
-  tempAddress: String
   title: String
   uniqueKey: String
   updatedAt: DateTime
@@ -1629,7 +1631,6 @@ input MemberCreateWithoutCurrentAddressInput {
   photo: String
   refugeName: String
   sanghaJoinDate: DateTime
-  tempAddress: String
   title: String
   uniqueKey: String
   updatedAt: DateTime
@@ -1667,7 +1668,6 @@ input MemberCreateWithoutEventMemberInput {
   photo: String
   refugeName: String
   sanghaJoinDate: DateTime
-  tempAddress: String
   title: String
   uniqueKey: String
   updatedAt: DateTime
@@ -1705,7 +1705,6 @@ input MemberCreateWithoutMemberAbhisekhaInput {
   photo: String
   refugeName: String
   sanghaJoinDate: DateTime
-  tempAddress: String
   title: String
   uniqueKey: String
   updatedAt: DateTime
@@ -1743,7 +1742,6 @@ input MemberCreateWithoutMemberResourceInput {
   photo: String
   refugeName: String
   sanghaJoinDate: DateTime
-  tempAddress: String
   title: String
   uniqueKey: String
   updatedAt: DateTime
@@ -1781,7 +1779,6 @@ input MemberCreateWithoutPermanentAddressInput {
   photo: String
   refugeName: String
   sanghaJoinDate: DateTime
-  tempAddress: String
   title: String
   uniqueKey: String
   updatedAt: DateTime
@@ -2005,7 +2002,6 @@ input MemberWhereInput {
   photo: StringFilter
   refugeName: StringFilter
   sanghaJoinDate: DateTimeFilter
-  tempAddress: StringFilter
   title: StringFilter
   uniqueKey: StringFilter
   updatedAt: DateTimeFilter
@@ -2547,7 +2543,10 @@ input UpdateGroupInput {
 input UpdateMemberInput {
   active: Boolean
   centreId: Int
-  currentAddressId: Int
+  currentCity: String
+  currentCountry: String
+  currentStateProvince: String
+  currentStreetAddress: String
   email: String
   firstName: String
   gender: String
@@ -2561,14 +2560,16 @@ input UpdateMemberInput {
   messenger: String
   middleName: String
   note: String
-  permanentAddressId: Int
+  permanentCity: String
+  permanentCountry: String
+  permanentStateProvince: String
+  permanentStreetAddress: String
   phoneLand: String
   phoneMobile: String
   phoneOther: String
   photo: String
   refugeName: String
   sanghaJoinDate: DateTime
-  tempAddress: String
   title: String
   viber: String
   yearOfBirth: Int

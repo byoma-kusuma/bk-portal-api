@@ -25,5 +25,5 @@ export class CreateAddressInput {
   @IsOptional()
   @IsString()
   @MaxLength(256)
-  country: string;
+  country?: string;
 }

@@ -6,15 +6,12 @@ import {
   IsDate,
   IsEmail,
   IsEnum,
-  IsMobilePhone,
   IsNumber,
   IsOptional,
-  IsPhoneNumber,
   IsString,
   IsUrl,
   MaxDate,
   MaxLength,
-  MinLength,
   ValidateNested
 } from "class-validator";
 
@@ -57,7 +54,6 @@ export class CreateMemberInput {
 
   @Field({ nullable: true })
   @IsString()
-  @IsMobilePhone()
   @IsOptional()
   phoneMobile?: string;
 
@@ -115,7 +111,6 @@ export class CreateMemberInput {
 
   @Field({ nullable: true })
   @IsString()
-  @MinLength(2)
   @IsOptional()
   @MaxLength(256)
   insta?: string;
@@ -128,22 +123,41 @@ export class CreateMemberInput {
 
   @Field({ nullable: true })
   @IsString()
-  @MinLength(2)
   @IsOptional()
   @MaxLength(3000)
   note?: string;
 
   @Field({ nullable: true })
   @IsOptional()
-  currentAddressId?: number;
+  currentStreetAddress?: string;
 
   @Field({ nullable: true })
   @IsOptional()
-  permanentAddressId?: number;
+  permanentStreetAddress?: string;
 
   @Field({ nullable: true })
   @IsOptional()
-  tempAddress?: string;
+  currentCity?: string;
+
+  @Field({ nullable: true })
+  @IsOptional()
+  permanentCity?: string;
+
+  @Field({ nullable: true })
+  @IsOptional()
+  currentStateProvince?: string;
+
+  @Field({ nullable: true })
+  @IsOptional()
+  permanentStateProvince?: string;
+
+  @Field({ nullable: true })
+  @IsOptional()
+  currentCountry?: string;
+
+  @Field({ nullable: true })
+  @IsOptional()
+  permanentCountry?: string;
 
   @IsArray()
   @ValidateNested({ each: true })

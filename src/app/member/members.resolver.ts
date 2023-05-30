@@ -22,6 +22,7 @@ import { MemberAbhisekhaWithoutMember } from "../memberAbhisekha/memberAbhisekha
 import { EventMemberWithoutMember } from "../eventMember/eventMember.entity";
 import { MemberGroupWithoutMember } from "../memberGroup/memberGroup.entity";
 import { MemberResourceWithoutMember } from "../memberResource/memberResource.entity";
+import { Address } from "../addresses/entities/address.entity";
 
 @Resolver(() => Member)
 @UseGuards(GqlAuthGuard)
@@ -172,6 +173,22 @@ export class MembersResolver {
     }
 
     return memberEventRelation.eventMember;
+  }
+
+  @ResolveField(() => [Address])
+  async currentAddress(@Parent() member: Member) {
+    const currentAddress = await this.membersService
+      .findUnique({ where: { id: member.id } })
+      .currentAddress();
+    return currentAddress;
+  }
+
+  @ResolveField(() => [Address])
+  async permanentAddress(@Parent() member: Member) {
+    const permanentAddress = await this.membersService
+      .findUnique({ where: { id: member.id } })
+      .permanentAddress();
+    return permanentAddress;
   }
 
   @ResolveField(() => [MemberResourceWithoutMember])
