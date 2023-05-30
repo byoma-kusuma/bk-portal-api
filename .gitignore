@@ -7,8 +7,7 @@ schema.dbml
 
 .DS_Store
 
-**/@generated/
-src/@generated/**
+src/@generated**
 src/schema.graphql
 
 .env
