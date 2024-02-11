@@ -37,6 +37,9 @@ export class GqlConfigService implements GqlOptionsFactory {
     } else {
       // Azure functions linux does not allow to write to graphql file. So we need to load it to memory.
       // autoSchemaFile if set to true generates a schema file in the memory instead of a file.
+      apolloDriverConfig.buildSchemaOptions = {
+        numberScalarMode: "integer"
+      };
       apolloDriverConfig.autoSchemaFile = true;
     }
     return apolloDriverConfig;
