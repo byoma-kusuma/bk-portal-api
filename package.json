@@ -1,5 +1,6 @@
 {
   "name": "bk-portal-api",
+  "name": "bk-portal-api",
   "version": "0.0.1",
   "description": "NestJS Prisma Client Starter Project",
   "author": "Marc Stammerjohann",
