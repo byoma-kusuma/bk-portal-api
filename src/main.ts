@@ -3,7 +3,6 @@ import { ConfigService } from "@nestjs/config";
 import { NestFactory } from "@nestjs/core";
 import { NestExpressApplication } from "@nestjs/platform-express";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
-import { PrismaService } from "nestjs-prisma";
 import { AppModule } from "./app/app.module";
 import type {
   CorsConfig,
@@ -21,9 +20,7 @@ export default async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
 
   // enable shutdown hook
-  const prismaService: PrismaService = app.get(PrismaService);
-
-  prismaService.enableShutdownHooks(app);
+  app.enableShutdownHooks();
 
   // Prisma Client Exception Filter for unhandled exceptions
 
@@ -36,18 +33,18 @@ export default async function bootstrap() {
   const graphqlConfig = configService.get<GraphqlConfig>("graphql");
 
   // Swagger Api
-  if (swaggerConfig?.enabled) {
-    const options = new DocumentBuilder()
-      .setTitle(swaggerConfig?.title || "Nestjs")
-      .setDescription(
-        swaggerConfig?.description || "The nestjs API description"
-      )
-      .setVersion(swaggerConfig?.version || "1.0")
-      .build();
-    const document = SwaggerModule.createDocument(app, options);
+  // if (swaggerConfig?.enabled) {
+  //   const options = new DocumentBuilder()
+  //     .setTitle(swaggerConfig?.title || "Nestjs")
+  //     .setDescription(
+  //       swaggerConfig?.description || "The nestjs API description"
+  //     )
+  //     .setVersion(swaggerConfig?.version || "1.0")
+  //     .build();
+  //   const document = SwaggerModule.createDocument(app, options);
 
-    SwaggerModule.setup(swaggerConfig?.path || "api", app, document);
-  }
+  //   SwaggerModule.setup(swaggerConfig?.path || "api", app, document);
+  // }
 
   app.setGlobalPrefix(graphqlConfig?.globalPrefix || "api");
 

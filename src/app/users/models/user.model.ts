@@ -2,7 +2,8 @@ import {
   ObjectType,
   registerEnumType,
   HideField,
-  Field
+  Field, 
+  Int
 } from "@nestjs/graphql";
 import { UserStatus } from "@prisma/client";
 import { Member } from "../../member/entities/member.entity";
@@ -16,11 +17,16 @@ registerEnumType(UserStatus, {
 
 @ObjectType()
 export class User extends SoftDeleteBaseModel {
+  @Field(() => Int)
   id: number;
 
+  @Field()
   userName: string;
+
+  @Field(() => Role)
   role: Role;
 
+  @Field()
   avatar: string;
 
   @HideField()
@@ -29,7 +35,9 @@ export class User extends SoftDeleteBaseModel {
   @Field(() => UserStatus)
   status: UserStatus;
 
+  @Field(() => Member)
   member: Member;
 
+  @Field(() => Int)
   memberId: number;
 }

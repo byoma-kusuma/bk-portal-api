@@ -145,89 +145,93 @@ export class MembersService {
       ...updateMemberArgs
     } = updateMemberInput;
 
-    return this.prisma.member.update({
+    const currentAddressToUpsert = {
+      memberIdCurrentAddress: id,
+      country: currentCountry,
+      street: currentStreetAddress,
+      city: currentCity,
+      stateProvince: currentStateProvince
+    };
+
+    const permanentAddressToUpsert = {
+      memberIdPermanentAddress: id,
+      country: permanentCountry,
+      street: permanentStreetAddress,
+      city: permanentCity,
+      stateProvince: permanentStateProvince
+    };
+
+    const upsertCurrentAddressOperation = this.prisma.address.upsert({
+      update: currentAddressToUpsert,
+      create: currentAddressToUpsert,
+      where: { memberIdCurrentAddress: id }
+    });
+
+    const upsertPermanentAddressOperation = this.prisma.address.upsert({
+      update: permanentAddressToUpsert,
+      create: permanentAddressToUpsert,
+      where: { memberIdPermanentAddress: id }
+    });
+
+    const updateMemberOperation = this.prisma.member.update({
+      where: { id },
       data: {
         ...updateMemberArgs,
         centre: {
           connect: {
             id: centreId
           }
-        },
-        currentAddress: {
-          update: {
-            country: currentCountry,
-            street: currentStreetAddress,
-            city: currentCity,
-            stateProvince: currentStateProvince
-          }
-        },
-        permanentAddress: {
-          create: {
-            country: permanentCountry,
-            street: permanentStreetAddress,
-            city: permanentCity,
-            stateProvince: permanentStateProvince
-          }
-        },
-        ...(groupIds && {
-          groups: {
-            upsert: groupIds.map((groupId) => ({
-              where: {
-                memberId_groupId: { memberId: id, groupId }
-              },
-              update: {},
-              create: { group: { connect: { id: groupId } } }
-            })),
-            deleteMany: {
-              memberId: id,
-              groupId: { notIn: groupIds }
-            }
-          }
-        }),
-        ...(memberAbhisekhaDetails
-          ? {
-              memberAbhisekha: {
-                upsert: memberAbhisekhaDetails.map(
-                  ({ abhisekhaDate, abhisekhaId, abhisekhaPlace, type }) => ({
-                    where: {
-                      memberId_abhisekhaId: {
-                        memberId: id,
-                        abhisekhaId: abhisekhaId
-                      }
-                    },
-                    update: {
-                      abhisekhaDate,
-                      abhisekhaPlace,
-                      type
-                    },
-                    create: {
-                      abhisekha: {
-                        connect: {
-                          id: abhisekhaId
-                        }
-                      },
-                      abhisekhaDate,
-                      abhisekhaPlace,
-                      type
-                    }
-                  })
-                ),
-                deleteMany: {
-                  memberId: id,
-                  abhisekhaId: {
-                    notIn: memberAbhisekhaDetails.map(
-                      ({ abhisekhaId }) => abhisekhaId
-                    )
-                  }
-                }
-              }
-            }
-          : {})
-      },
-      where: {
-        id
+        }
+        // ...(memberAbhisekhaDetails
+        //   ? {
+        //       memberAbhisekha: {
+        //         upsert: memberAbhisekhaDetails.map(
+        //           ({ abhisekhaDate, abhisekhaId, abhisekhaPlace, type }) => ({
+        //             where: {
+        //               memberId_abhisekhaId: {
+        //                 memberId: id,
+        //                 abhisekhaId: abhisekhaId
+        //               }
+        //             },
+        //             update: {
+        //               abhisekhaDate,
+        //               abhisekhaPlace,
+        //               type
+        //             },
+        //             create: {
+        //               abhisekha: {
+        //                 connect: {
+        //                   id: abhisekhaId
+        //                 }
+        //               },
+        //               abhisekhaDate,
+        //               abhisekhaPlace,
+        //               type
+        //             }
+        //           })
+        //         ),
+        //         deleteMany: {
+        //           memberId: id,
+        //           abhisekhaId: {
+        //             notIn: memberAbhisekhaDetails.map(
+        //               ({ abhisekhaId }) => abhisekhaId
+        //             )
+        //           }
+        //         }
+        //       }
+        //     }
+        //   : {})
       }
     });
+
+    const prismaTransactionResponse =  await this.prisma.$transaction([
+      updateMemberOperation,
+      upsertPermanentAddressOperation,
+      upsertCurrentAddressOperation
+    ]);
+
+    // return updated member info
+    return prismaTransactionResponse[0]
   }
 
   async remove(id: number, myId: number) {

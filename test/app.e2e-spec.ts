@@ -2,7 +2,7 @@ import { Test, TestingModule } from "@nestjs/testing";
 import { INestApplication } from "@nestjs/common";
 import * as request from "supertest";
 import { Chance } from "chance";
-import { AppModule } from "../src/app.module";
+import { AppModule } from "@src/app/app.module";
 
 const chance = new Chance();
 

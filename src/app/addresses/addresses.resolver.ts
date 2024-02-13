@@ -4,7 +4,7 @@ import { Address } from "./entities/address.entity";
 import { UpdateAddressInput } from "./dto/update-address.input";
 import { GqlAuthGuard } from "../auth/gql-auth.guard";
 import { UseGuards } from "@nestjs/common";
-import { AddressCreateInput } from "src/@generated/address/address-create.input";
+import { AddressCreateInput } from "../../@generated/address/address-create.input";
 
 @Resolver(() => Address)
 @UseGuards(GqlAuthGuard)

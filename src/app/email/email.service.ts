@@ -50,15 +50,20 @@ export class EmailService {
     const getEmailRecipients = (address: string | string[]): EmailAddress[] => {
       const recipient: EmailAddress[] = [];
       if (Array.isArray(address)) {
-        address.forEach((item) => recipient.push({ email: item }));
+        address.forEach((item) => recipient.push({
+          address: item,
+          displayName: "",
+        }))
       } else {
-        recipient.push({ email: address });
+        recipient.push({
+          address: address,
+          displayName: ""});
       }
       return recipient;
     };
 
     const msg: EmailMessage = {
-      sender: this.config.from,
+      senderAddress: this.config.from,
       recipients: {
         to: getEmailRecipients(emailModel.to)
       },
@@ -67,8 +72,8 @@ export class EmailService {
         html: emailModel.html ?? emailModel.text!
       }
     };
-    if (emailModel.cC) msg.recipients.cC = getEmailRecipients(emailModel.cC);
-    if (emailModel.bCC) msg.recipients.bCC = getEmailRecipients(emailModel.bCC);
+    if (emailModel.cC) msg.recipients.cc = getEmailRecipients(emailModel.cC);
+    if (emailModel.bCC) msg.recipients.bcc = getEmailRecipients(emailModel.bCC);
 
     return msg;
   };
@@ -79,7 +84,8 @@ export class EmailService {
     const msg = this.mapEmailModelToAzureEmail(emailModel);
 
     try {
-      await this.client.send(msg);
+      const poller = await this.client.beginSend(msg);
+      const response = await poller.pollUntilDone();
     } catch (e: unknown) {
       Logger.log("Could not send email", [JSON.stringify(msg)], e);
     }
