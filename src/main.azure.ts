@@ -13,9 +13,7 @@ export async function createApp(): Promise<INestApplication> {
   app.useGlobalPipes(new ValidationPipe());
 
   // enable shutdown hook
-  const prismaService: PrismaService = app.get(PrismaService);
-
-  prismaService.enableShutdownHooks(app);
+  app.enableShutdownHooks();
 
   // Prisma Client Exception Filter for unhandled exceptions
   app.useGlobalFilters(new HttpExceptionFilter());

@@ -11,7 +11,7 @@ import { MembersService } from "./members.service";
 import { Member } from "./entities/member.entity";
 import { CreateMemberInput } from "./dto/create-member.input";
 import { UpdateMemberInput } from "./dto/update-member.input";
-import { GqlAuthGuard } from "src/app/auth/gql-auth.guard";
+import { GqlAuthGuard } from "../../app/auth/gql-auth.guard";
 import { UseGuards } from "@nestjs/common";
 import { User } from "../../app/users/models/user.model";
 import { Centre } from "../../app/centre/entities/centre.entity";

@@ -6,6 +6,8 @@ import { User } from "../../users/models/user.model";
 @ObjectType()
 export class Role extends SoftDeleteBaseModel {
   users: User[];
+  
+  @Field()
   name: string;
 
   @Field((type) => Type) // it's very important

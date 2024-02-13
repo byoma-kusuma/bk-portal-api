@@ -1,4 +1,4 @@
-import { CentreCreateInput } from "src/@generated/centre/centre-create.input";
+import { CentreCreateInput } from "@src/@generated/centre/centre-create.input";
 
 import { createMock } from "@golevelup/ts-jest";
 import { Prisma } from "@prisma/client";

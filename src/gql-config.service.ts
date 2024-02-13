@@ -6,7 +6,7 @@ import { ConfigService } from "@nestjs/config";
 import { GqlOptionsFactory } from "@nestjs/graphql";
 
 import { GraphqlConfig } from "./common/configs/config.interface";
-import { ApolloServerPluginLandingPageLocalDefault } from "apollo-server-core";
+import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default'; //was 'apollo-server-core'
 
 @Injectable()
 export class GqlConfigService implements GqlOptionsFactory {
@@ -17,10 +17,11 @@ export class GqlConfigService implements GqlOptionsFactory {
 
     const apolloDriverConfig: ApolloDriverConfig = {
       installSubscriptionHandlers: true,
-      debug: graphqlConfig?.debug,
+      // debug: graphqlConfig?.debug,
       playground: false,
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
-      context: ({ req }) => ({ req }),
+      context: ({ req }: any) => ({ req }),
+
       useGlobalPrefix: graphqlConfig?.globalPrefix ? true : false
     };
 
@@ -28,7 +29,7 @@ export class GqlConfigService implements GqlOptionsFactory {
       apolloDriverConfig.sortSchema = graphqlConfig?.sortSchema;
       apolloDriverConfig.autoSchemaFile = join(
         process.cwd(),
-        graphqlConfig?.schemaDestination || "src/schema.graphql"
+        graphqlConfig?.schemaDestination || "@src/schema.graphql"
       );
       apolloDriverConfig.buildSchemaOptions = {
         numberScalarMode: "integer"
@@ -37,6 +38,9 @@ export class GqlConfigService implements GqlOptionsFactory {
     } else {
       // Azure functions linux does not allow to write to graphql file. So we need to load it to memory.
       // autoSchemaFile if set to true generates a schema file in the memory instead of a file.
+      apolloDriverConfig.buildSchemaOptions = {
+        numberScalarMode: "integer"
+      };
       apolloDriverConfig.autoSchemaFile = true;
     }
     return apolloDriverConfig;
