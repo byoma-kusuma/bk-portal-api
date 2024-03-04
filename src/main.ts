@@ -33,18 +33,18 @@ export default async function bootstrap() {
   const graphqlConfig = configService.get<GraphqlConfig>("graphql");
 
   // Swagger Api
-  // if (swaggerConfig?.enabled) {
-  //   const options = new DocumentBuilder()
-  //     .setTitle(swaggerConfig?.title || "Nestjs")
-  //     .setDescription(
-  //       swaggerConfig?.description || "The nestjs API description"
-  //     )
-  //     .setVersion(swaggerConfig?.version || "1.0")
-  //     .build();
-  //   const document = SwaggerModule.createDocument(app, options);
+  if (swaggerConfig?.enabled) {
+    const options = new DocumentBuilder()
+      .setTitle(swaggerConfig?.title || "Nestjs")
+      .setDescription(
+        swaggerConfig?.description || "The nestjs API description"
+      )
+      .setVersion(swaggerConfig?.version || "1.0")
+      .build();
+    const document = SwaggerModule.createDocument(app, options);
 
-  //   SwaggerModule.setup(swaggerConfig?.path || "api", app, document);
-  // }
+    SwaggerModule.setup(swaggerConfig?.path || "api", app, document);
+  }
 
   app.setGlobalPrefix(graphqlConfig?.globalPrefix || "api");
 
@@ -52,6 +52,9 @@ export default async function bootstrap() {
   if (corsConfig?.enabled) {
     app.enableCors();
   }
+
+  // Prisma Client Exception Filter for unhandled exceptions
+  app.useGlobalFilters(new HttpExceptionFilter());
 
   await app.listen(nestConfig?.port || 7200);
   return app;

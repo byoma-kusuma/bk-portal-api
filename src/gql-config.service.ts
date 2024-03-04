@@ -21,8 +21,7 @@ export class GqlConfigService implements GqlOptionsFactory {
       playground: false,
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
       context: ({ req }: any) => ({ req }),
-
-      useGlobalPrefix: graphqlConfig?.globalPrefix ? true : false
+      useGlobalPrefix: graphqlConfig?.globalPrefix ? true : false,
     };
 
     if (this.configService.get<string>("NODE_ENV") === "development") {
