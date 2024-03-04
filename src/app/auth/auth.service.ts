@@ -130,7 +130,7 @@ export class AuthService {
       const passwordToken = await this.passwordTokenService.create(user.id);
 
       await this.emailService.sendMail({
-        to: "xamoghx@gmail.com",
+        to: user.member.email,
         subject: "Password reset request for BKBDS portal",
         text: `Please click the link below for password reset 
             \n ${this.configService.get(

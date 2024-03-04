@@ -52,110 +52,110 @@ export class CreateMemberInput {
   @IsBoolean()
   active: boolean;
 
-  @Field({ nullable: true })
+  @Field(() => String, { nullable: true })
   @IsString()
   @IsOptional()
   phoneMobile?: string;
 
-  @Field({ nullable: true })
+  @Field(() => String, { nullable: true })
   @IsString()
   @IsOptional()
   phoneLand?: string;
 
-  @Field({ nullable: true })
+  @Field(() => String, { nullable: true })
   @IsString()
   @IsOptional()
   phoneOther?: string;
 
-  @Field({ nullable: true })
+  @Field(() => Number, { nullable: true })
   @IsOptional()
   centreId?: number;
 
-  @Field({ nullable: true })
+  @Field(() => MembershipType, { nullable: true })
   @IsOptional()
   @IsEnum(MembershipType)
   membershipType?: MembershipType;
 
-  @Field({ nullable: true })
+  @Field(() => Number, { nullable: true })
   @IsOptional()
   yearOfBirth?: number;
 
-  @Field({ nullable: true })
+  @Field(() => GenderType, { nullable: true })
   @IsEnum(GenderType)
   @IsOptional()
   gender?: GenderType;
 
-  @Field({ nullable: true })
+  @Field(() => Date, { nullable: true })
   @IsDate()
   @MaxDate(new Date())
   @IsOptional()
   sanghaJoinDate?: Date;
 
-  @Field({ nullable: true })
+  @Field(() => String, { nullable: true })
   @IsString()
   @IsOptional()
   @MaxLength(128)
   refugeName?: string;
 
-  @Field({ nullable: true })
+  @Field(() => String, { nullable: true })
   @IsString()
   @IsOptional()
   @MaxLength(256)
   viber?: string;
 
-  @Field({ nullable: true })
+  @Field(() => String, { nullable: true })
   @IsString()
   @IsOptional()
   @MaxLength(256)
   messenger?: string;
 
-  @Field({ nullable: true })
+  @Field(() => String, { nullable: true })
   @IsString()
   @IsOptional()
   @MaxLength(256)
   insta?: string;
 
-  @Field({ nullable: true })
+  @Field(() => String, { nullable: true })
   @IsUrl()
   @IsOptional()
   @MaxLength(512)
   photo?: string;
 
-  @Field({ nullable: true })
+  @Field(() => String, { nullable: true })
   @IsString()
   @IsOptional()
   @MaxLength(3000)
   note?: string;
 
-  @Field({ nullable: true })
+  @Field(() => String, { nullable: true })
   @IsOptional()
   currentStreetAddress?: string;
 
-  @Field({ nullable: true })
+  @Field(() => String, { nullable: true })
   @IsOptional()
   permanentStreetAddress?: string;
 
-  @Field({ nullable: true })
+  @Field(() => String, { nullable: true })
   @IsOptional()
   currentCity?: string;
 
-  @Field({ nullable: true })
+  @Field(() => String, { nullable: true })
   @IsOptional()
   permanentCity?: string;
 
-  @Field({ nullable: true })
+  @Field(() => String, { nullable: true })
   @IsOptional()
   currentStateProvince?: string;
 
-  @Field({ nullable: true })
+  @Field(() => String, { nullable: true })
   @IsOptional()
   permanentStateProvince?: string;
 
-  @Field({ nullable: true })
+  @Field(() => String, { nullable: true })
   @IsOptional()
   currentCountry?: string;
 
-  @Field({ nullable: true })
+  @Field(() => String, { nullable: true })
   @IsOptional()
   permanentCountry?: string;
 
