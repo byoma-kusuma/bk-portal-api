@@ -5,11 +5,11 @@ import { Token } from "./models/token.model";
 import { LoginInput } from "./dto/login.input";
 import { RefreshTokenInput } from "./dto/refresh-token.input";
 // import { UseGuards } from "@nestjs/common";
-// import { GqlThrottlerGuard } from "src/common/throttling/GqlThrottlerGuard";
+// import { GqlThrottlerGuard } from "@src/common/throttling/GqlThrottlerGuard";
 // import { Throttle } from "@nestjs/throttler";
 import { ResetPasswordInput } from "./dto/reset-password.input";
 import { ResetPasswordInitiateInput } from "./dto/reset-password-initiate.input";
-import ResponseStatus from "src/common/ResponseClasses/ResponseStatus";
+import ResponseStatus from "../../common/ResponseClasses/ResponseStatus";
 
 // 4 requests per 60 secods
 // const AUTH_THROTTLE_RATE = [4, 60];
@@ -39,7 +39,7 @@ export class AuthResolver {
     @Args("resetPasswordInitiateInput")
     resetPasswordInitiateInput: ResetPasswordInitiateInput
   ) {
-    // dont await here because we want response to be immediate and ambigious for all scenarios
+    // don't await here because we want response to be immediate and ambiguous for all scenarios
     this.auth.initiateRequestPassword(resetPasswordInitiateInput.userName);
     return new ResponseStatus("Completed");
   }

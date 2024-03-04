@@ -5,8 +5,8 @@ import { createMock } from "@golevelup/ts-jest";
 
 import { RolesResolver } from "./roles.resolver";
 import { GraphQLResolveInfo } from "graphql";
-import { RoleWhereInput } from "src/@generated/role/role-where.input";
-import { RoleWhereUniqueInput } from "src/@generated/role/role-where-unique.input";
+import { RoleWhereInput } from "@src/@generated/role/role-where.input";
+import { RoleWhereUniqueInput } from "@src/@generated/role/role-where-unique.input";
 import { Role } from "./entities/role.model";
 
 describe("RolesResolver", () => {

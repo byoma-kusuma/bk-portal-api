@@ -3,7 +3,6 @@ import { ConfigService } from "@nestjs/config";
 import { NestFactory } from "@nestjs/core";
 import { NestExpressApplication } from "@nestjs/platform-express";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
-import { PrismaService } from "nestjs-prisma";
 import { AppModule } from "./app/app.module";
 import type {
   CorsConfig,
@@ -21,9 +20,7 @@ export default async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
 
   // enable shutdown hook
-  const prismaService: PrismaService = app.get(PrismaService);
-
-  prismaService.enableShutdownHooks(app);
+  app.enableShutdownHooks();
 
   // Prisma Client Exception Filter for unhandled exceptions
 
@@ -55,6 +52,9 @@ export default async function bootstrap() {
   if (corsConfig?.enabled) {
     app.enableCors();
   }
+
+  // Prisma Client Exception Filter for unhandled exceptions
+  app.useGlobalFilters(new HttpExceptionFilter());
 
   await app.listen(nestConfig?.port || 7200);
   return app;
