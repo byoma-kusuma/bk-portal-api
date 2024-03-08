@@ -1,5 +1,5 @@
 import { InputType, Field, Int } from "@nestjs/graphql";
-import { GenderType, MembershipType } from "@prisma/client";
+import { CalendarType, GenderType, MembershipType } from "@prisma/client";
 import {
   IsArray,
   IsBoolean,
@@ -168,6 +168,38 @@ export class CreateMemberInput {
   @IsNumber({}, { each: true })
   @IsOptional()
   groupIds?: Array<number>;
+
+  @Field(() => Number, { nullable: true })
+  @IsOptional()
+  yearOfRefuge?: number;
+
+  @Field(() => CalendarType, { nullable: true })
+  @IsOptional()
+  @IsEnum(CalendarType)
+  yearOfRefugeCalendarType?: CalendarType;
+
+  @Field(() => Date, { nullable: true })
+  @IsDate()
+  @MaxDate(new Date())
+  @IsOptional()
+  dateOfApplication?: Date;
+
+  @Field(() => CalendarType, { nullable: true })
+  @IsOptional()
+  @IsEnum(CalendarType)
+  dateOfApplicationCalendarType?: CalendarType;
+
+  @Field(() => String, { nullable: true })
+  @IsOptional()
+  dharmaInstructor?: string;
+
+  @Field(() => String, { nullable: true })
+  @IsOptional()
+  education?: string;
+
+  @Field(() => String, { nullable: true })
+  @IsOptional()
+  occupation?: string;
 }
 
 @InputType()

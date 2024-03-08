@@ -1,5 +1,5 @@
 import { Field, Int, ObjectType, registerEnumType } from "@nestjs/graphql";
-import { GenderType, MembershipType } from "@prisma/client";
+import { CalendarType, GenderType, MembershipType } from "@prisma/client";
 import { User } from "../../users/models/user.model";
 import { Centre } from "../../centre/entities/centre.entity";
 import { Address } from "../../addresses/entities/address.entity";
@@ -14,6 +14,11 @@ registerEnumType(GenderType, {
 registerEnumType(MembershipType, {
   name: "Membership_Type",
   description: "Types of membership"
+});
+
+registerEnumType(CalendarType, {
+  name: "Calender_Type",
+  description: "Types of Calender"
 });
 
 @ObjectType()
@@ -60,31 +65,31 @@ export class Member extends SoftDeleteBaseModel {
   @Field(() => GenderType, { nullable: true })
   gender?: GenderType;
 
-  @Field({ nullable: true })
+  @Field(() => Date, { nullable: true })
   sanghaJoinDate?: Date;
 
-  @Field({ nullable: true })
+  @Field(() => String, { nullable: true })
   refugeName?: string;
 
-  @Field({ nullable: true })
+  @Field(() => String, { nullable: true })
   viber?: string;
 
-  @Field({ nullable: true })
+  @Field(() => String, { nullable: true })
   messenger?: string;
 
-  @Field({ nullable: true })
+  @Field(() => String, { nullable: true })
   insta?: string;
 
-  @Field({ nullable: true })
+  @Field(() => String, { nullable: true })
   photo?: string;
 
-  @Field({ nullable: true })
+  @Field(() => String, { nullable: true })
   notes?: string;
 
   @Field(() => User, { nullable: true })
   user?: User;
 
-  @Field({ nullable: true })
+  @Field(() => Centre, { nullable: true })
   centre?: Centre;
 
   @Field(() => Int, { nullable: true })
@@ -107,4 +112,25 @@ export class Member extends SoftDeleteBaseModel {
 
   @Field(() => [Event], { nullable: true })
   events?: Array<Event>;
+
+  @Field(() => Number, { nullable: true })
+  yearOfRefuge?: number;
+
+  @Field(() => CalendarType, { nullable: true })
+  yearOfRefugeCalendarType?: CalendarType;
+
+  @Field(() => Date, { nullable: true })
+  dateOfApplication?: Date;
+
+  @Field(() => CalendarType, { nullable: true })
+  dateOfApplicationCalendarType?: CalendarType;
+
+  @Field(() => String, { nullable: true })
+  dharmaInstructor?: string;
+
+  @Field(() => String, { nullable: true })
+  education?: string;
+
+  @Field(() => String, { nullable: true })
+  occupation?: string;
 }

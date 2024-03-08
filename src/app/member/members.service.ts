@@ -35,7 +35,7 @@ export class MembersService {
   async create(createMemberInput: CreateMemberInput) {
     const {
       groupIds,
-      memberAbhisekhaDetails,
+      // memberAbhisekhaDetails,
       currentStreetAddress,
       permanentStreetAddress,
       currentCity,
@@ -81,21 +81,21 @@ export class MembersService {
                 }))
               }
             }
-          : {}),
-        ...(memberAbhisekhaDetails
-          ? {
-              memberAbhisekha: {
-                create: memberAbhisekhaDetails.map(
-                  ({ abhisekhaDate, abhisekhaPlace, abhisekhaId, type }) => ({
-                    abhisekha: { connect: { id: abhisekhaId } },
-                    type,
-                    abhisekhaDate,
-                    abhisekhaPlace
-                  })
-                )
-              }
-            }
           : {})
+        // ...(memberAbhisekhaDetails
+        //   ? {
+        //       memberAbhisekha: {
+        //         create: memberAbhisekhaDetails.map(
+        //           ({ abhisekhaDate, abhisekhaPlace, abhisekhaId, type }) => ({
+        //             abhisekha: { connect: { id: abhisekhaId } },
+        //             type,
+        //             abhisekhaDate,
+        //             abhisekhaPlace
+        //           })
+        //         )
+        //       }
+        //     }
+        //   : {})
       }
     });
 
@@ -224,14 +224,14 @@ export class MembersService {
       }
     });
 
-    const prismaTransactionResponse =  await this.prisma.$transaction([
+    const prismaTransactionResponse = await this.prisma.$transaction([
       updateMemberOperation,
       upsertPermanentAddressOperation,
       upsertCurrentAddressOperation
     ]);
 
     // return updated member info
-    return prismaTransactionResponse[0]
+    return prismaTransactionResponse[0];
   }
 
   async remove(id: number, myId: number) {
