@@ -26,7 +26,7 @@ model User {
     password String
     avatar   String?
 
-    isDeleted Boolean  @default(false)
+    isDeleted Boolean  @default(false) 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
     uniqueKey String?  @unique
@@ -80,6 +80,11 @@ enum MembershipType {
     GeneralMember
 }
 
+enum CalendarType {
+    BS
+    AD
+}
+
 model Member {
     id Int @id @default(autoincrement())
 
@@ -103,6 +108,14 @@ model Member {
     insta          String?
     photo          String?
     note           String?
+
+    yearOfRefuge                  Int?       
+    yearOfRefugeCalendarType      CalendarType?
+    dateOfApplication             DateTime?
+    dateOfApplicationCalendarType CalendarType?
+    dharmaInstructor              String?
+    education                     String?
+    occupation                    String?
 
     isDeleted Boolean  @default(false)
     createdAt DateTime @default(now())
@@ -230,7 +243,7 @@ model Abhisekha {
     description String
     teacher     String
 
-    isDeleted Boolean  @default(false)
+    isDeleted Boolean  @default(false) 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
     uniqueKey String?  @unique
@@ -246,7 +259,7 @@ model Abhisekha {
 model Event {
     id        Int      @id @default(autoincrement())
     name      String
-    startDate DateTime
+    startDate DateTime 
     endDate   DateTime
     notes     String?
     type      String
