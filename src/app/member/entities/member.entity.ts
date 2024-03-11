@@ -133,4 +133,7 @@ export class Member extends SoftDeleteBaseModel {
 
   @Field(() => String, { nullable: true })
   occupation?: string;
+
+  @Field(() => String)
+  memberNumber: string;
 }

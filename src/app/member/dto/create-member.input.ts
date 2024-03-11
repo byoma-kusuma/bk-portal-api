@@ -200,6 +200,10 @@ export class CreateMemberInput {
   @Field(() => String, { nullable: true })
   @IsOptional()
   occupation?: string;
+
+  @Field(() => String)
+  @IsOptional()
+  memberNumber: string;
 }
 
 @InputType()
